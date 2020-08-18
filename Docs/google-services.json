@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "85105407605",
+    "firebase_url": "https://socialject.firebaseio.com",
+    "project_id": "socialject",
+    "storage_bucket": "socialject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:85105407605:android:743892bf917afda6c12a3c",
+        "android_client_info": {
+          "package_name": "com.socialject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "85105407605-hfodde0avb2i628pkh8es7e85jint7qg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDm3TPqmwTPlyDe-Q7aTdhsIxKzxtCnJxM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "85105407605-hfodde0avb2i628pkh8es7e85jint7qg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
