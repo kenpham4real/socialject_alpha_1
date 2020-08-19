@@ -2,7 +2,7 @@ Components are independent and reusable bits of code.
 They serve the same purpose as JavaScript functions, but work in isolation and returns HTML via a render function.
 
 For example, we need a search bar across our web app. 
-We can just style a search bar again and again for every screen
+We CAN NOT just style a search bar again and again for every screen
 --> Code waste, time-consuming and not persistent
 
 We then must create a component to render that specific search bar.
