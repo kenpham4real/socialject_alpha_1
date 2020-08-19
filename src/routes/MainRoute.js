@@ -9,6 +9,7 @@ const MainRoute = ()=> {
         <Router>
             <Switch>
                 <Route path="" component={ExplorePage} />
+                {/* import from ExplorePage.js */}
             </Switch>
         </Router>
     )
