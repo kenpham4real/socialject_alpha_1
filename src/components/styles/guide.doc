@@ -1,0 +1,6 @@
+The folder styles contain all the style for the components
+
+For instance:
+
+If you have a component called SearchBar.js which is used to render a search bar,
+you can have a CSS file to style only for that search bar component--> SearchBar.css
