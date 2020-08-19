@@ -1,14 +1,16 @@
 import React from 'react';
 
-// Components
-// import Header from '../../../../components/Header';
-// import ProjectType from '../../../../components/ProjectType'
 
 const ExplorePage = props => {
     return(
+        <form>
         <div className="container">
-           <h1>Social-Ject-1</h1>
+           <h1>Social-Ject</h1>
+           <p>hi there!!!!!!!!</p>  
         </div>
+        <input></input>
+         <button aria-label="Tìm kiếm"></button>
+        </form>
     )
 }
 
