@@ -23,7 +23,7 @@ const ExplorePage = props => {
             
             {/*Search bar */}
             <input
-              className="search-input"
+              className="search-bar-input"
               type="text"
               placeholder="Tìm Kiếm dự án..." 
             ></input>
@@ -36,18 +36,26 @@ const ExplorePage = props => {
             />
             </div>
           {/*avatar icon*/}
-          <div className="container-avatar" >
-              <img
-                className="avatar"
-                alt="Avatar"
-                src={require('../../../assets/images/T.png')}
-                />
-              <div> 
-                  <p className="name"> Trần Ngọc Tiến</p> 
+          <div className="border-area-avatar">
+              <div className="container-avatar" >
+                  <img
+                    className="avatar"
+                    alt="Avatar"
+                    src={require('../../../assets/images/T.png')}
+                    />
+                  <div> 
+                      <p className="name"> Trần Ngọc Tiến</p> 
+                  </div>
+                  
+                    <img
+                    className="arrow"
+                        alt="arrow"
+                        src={require('../../../assets/images/arrow.png')}
+                    />  
+                  
               </div>
-              
           </div>
-       
+       {/*End this part*/}
        </div>     
           
 
@@ -76,7 +84,7 @@ const ExplorePage = props => {
               
             </div> 
             
-            <div className="project-card">
+            <div className="my-project-card">
                   <img
                     alt="Projects"
                     className="projects-image"
@@ -88,7 +96,7 @@ const ExplorePage = props => {
             
             </div>   
 
-            <div className="project-card">    
+            <div className="my-project-card">    
                         <img
                           alt="Projects"
                           className="projects-image"
@@ -100,7 +108,7 @@ const ExplorePage = props => {
                     
             </div>   
             
-            <div className="project-card">
+            <div className="my-project-card">
                     <img
                       alt="Projects"
                       className="projects-image"
@@ -113,7 +121,7 @@ const ExplorePage = props => {
               
             </div>      
             
-            <div className="project-card">
+            <div className="my-project-card">
                     <img
                       alt="Projects"
                       className="projects-image"
@@ -127,7 +135,7 @@ const ExplorePage = props => {
               
             </div>      
             
-            <div className="project-card">
+            <div className="my-project-card">
                     <img
                       alt="Projects"
                       className="projects-image"
@@ -139,7 +147,7 @@ const ExplorePage = props => {
               
             </div>
             
-            <div className="project-card">
+            <div className="my-project-card">
                       <img
                         alt="Projects"
                         className="projects-image"

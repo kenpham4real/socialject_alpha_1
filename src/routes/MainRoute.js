@@ -8,9 +8,8 @@ const MainRoute = () => {
   return (
     <Router>
       <Switch>
-      <Route path="/Screen03" component={ChooseType} />
-      <Route path="" component={ExplorePage} />
-      
+        <Route path="/Screen03" component={ChooseType} />
+        <Route path="" component={ExplorePage} />
       </Switch>
     </Router>
   );
