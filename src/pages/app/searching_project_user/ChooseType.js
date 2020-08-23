@@ -62,7 +62,7 @@ const ChooseType = (props) => {
           <input
             class="search-input"
             type="text"
-            placeholder="Search somthing..."
+            placeholder="Search something..."
           ></input>
           <img
             class="icon"
@@ -84,7 +84,7 @@ const ChooseType = (props) => {
         <div class="language-title">Language</div>
         {/*Criteria*/}
         {langData.map((langData) => (
-          <p class="button">
+          <p class="button language">
             <a> {langData.name}</a>
           </p>
         ))}
@@ -94,13 +94,13 @@ const ChooseType = (props) => {
       <div class="filter-container">
         <a class="filter-title">Filter by: </a>
         {/*Criteria*/}
-        <div class="button">
+        <div class="button filter">
           <a> Progress </a>
         </div>
-        <div class="button">
+        <div class="button filter">
           <a> Places </a>
         </div>
-        <div class="button">
+        <div class="button filter">
           <a> Popularities </a>
         </div>
       </div>
@@ -113,7 +113,7 @@ const ChooseType = (props) => {
           <div class="project-card">
             <img class="project-image" src={progressData.url} />
             <a class="button project"> {progressData.name} </a>
-            <a>Description</a>
+            <p>Description</p>
           </div>
         ))}
       </div>
@@ -125,7 +125,7 @@ const ChooseType = (props) => {
           <div class="project-card">
             <img class="project-image" src={progressData.url} />
             <a class="button project"> {progressData.name} </a>
-            <a>Description</a>
+            <p>Description</p>
           </div>
         ))}
       </div>
