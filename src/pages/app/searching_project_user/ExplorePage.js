@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /*
 *Contributor: Tiến 19th August 2020
 *Function: Screen 02: Main (render overview home screen)
@@ -297,6 +296,3 @@ const ExplorePage = props => {
 }
 
 export default ExplorePage;
-
-  
-
