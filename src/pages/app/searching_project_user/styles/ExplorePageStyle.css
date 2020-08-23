@@ -1,0 +1,247 @@
+
+
+/* All the style for Explore Page goes here */
+
+*{
+  margin:0px;
+}
+.page{
+ margin:0px;
+}
+
+.view-header{
+  background-image: url('../../../../assets/images/SJ.png');
+  background-size: cover;
+}
+.icon-hamburger {
+  width: 40px;
+  margin-left: 10px;
+  padding-right: 1%;
+  vertical-align: -40%;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.my-header{
+  margin-top:20px;
+  font-size: 30px;
+  font-weight: bold;
+  margin-right:6px;
+  margin-left:40px;
+  cursor: pointer;
+}
+
+
+.search-input {
+  padding: 1%;
+  padding-left: 1%;
+  padding-right: 1%;
+  margin-left: 1%;
+  margin-right:1%;
+  margin-bottom: 1%;
+  margin-top:10px;
+  font-size: 17px;
+  width: 25%;
+  height:10px ;
+  font-weight: bold;
+  border: 2px solid black;
+  border-radius: 25px;
+}
+
+.container-search{
+  border: 2px solid black;
+  border-radius: 10px;
+  display: inline-block;
+  width: 35px;
+  height:35px ;
+  background-color: gray;
+}
+.icon-search{
+  width: 30px;
+  margin-left: 0;
+  padding-right: 1%;
+  vertical-align: -40%;
+  display: inline-block;
+  cursor: pointer;
+  margin-right:-100px;
+  
+}
+
+.container-avatar{
+
+margin-right:150px ;
+border-radius: 25px ;
+width: 50px;
+height: 30px;
+margin-top: 10px;
+display: inline-flex;
+float: right;
+object-fit: cover;
+}
+
+.avatar{
+  width: 40px;
+  height: 50px;
+
+  margin-right:5px;
+  margin-left: 10px;
+  cursor: pointer;
+  border-radius: 25%;
+  vertical-align: middle;
+  margin-top: -10px;
+  
+  background-position: top center;
+} 
+
+.name{
+  margin-left: 5px;
+  font-family: initial;
+  font-weight: bold;
+  margin-right: 10px;
+  white-space:nowrap;
+  margin-top:5px;
+  cursor: pointer;
+}
+
+.my-text{
+font-weight: bold;
+font-size:30px;
+margin-top:30px;
+margin-bottom:-40px;
+margin-left:30px;
+}
+
+.container-explore{
+    overflow-x:scroll ;
+    display:grid;
+    margin:50px;
+    margin-right: 10px;
+    margin-bottom:200px;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto auto;
+    grid-gap:10px;
+    padding: 10px;
+    text-align: center;
+    
+  }
+
+.project-card-1{
+    border: 4px solid black;
+    width: 400px;
+    height: 829px;
+    cursor: pointer;
+    margin-right: 10px;
+    grid-row: 1/span 2;
+    text-justify: inter-word;
+    border-radius: 25px;
+}
+
+.projects-image-1{
+  width: 400px;
+  height: 425px;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 4%;
+}
+
+
+.projects-type-1{
+  margin-left:60px;
+  width: 290px;
+  height: 30px;
+  margin-top:110px;
+  margin-left:40px;
+  padding:10px;
+  margin-bottom: -30px;
+  text-align: center;
+  font-family: normal;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 28px;
+  color: #000000
+}
+  
+.project-card{
+  border: 4px solid black;
+  height: 400px ;
+  width: 400px;
+  margin-right: 10px;
+  cursor:pointer;
+  border-radius: 25px;
+  margin-bottom: 10px;
+}
+
+
+.projects-image{
+  width: 399px;
+  height: 250px;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 4%;
+}
+
+
+.projects-type{
+  margin-left:60px;
+  width: 290px;
+  height: 30px;
+  margin-top:20px;
+  margin-left:50px;
+  padding:10px;
+  margin-bottom: -30px;
+  text-align: center;
+  font-family: normal;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 28px;
+  color: #000000;
+  }
+
+.container{
+  overflow-x:scroll ;
+  size: 25%;
+  display:flex;
+  size: 1px;
+  margin-right: 10px;
+  margin:50px
+}
+
+.picture-projects{
+  
+  height: 250px;
+  width: 400px;
+  margin-right: 20px;
+ text-align: center;
+ display: inline;
+ cursor: pointer;
+ border-radius: 15%;
+}
+
+
+
+
+
+.footer{
+  border-top:5px solid black;
+  
+}
+.text-1{
+  font-family: initial;
+  font-style: normal;
+  font-size: 25px;
+  line-height: 96px;
+  font-weight: bold;
+  margin-left:10px;
+}
+.text-2{
+  float: right;
+  font-family: Inter;
+  font-style: normal;
+  font-size: 25px;
+  font-weight: bold;
+  line-height: 96px;
+  margin-top:-96px;
+  margin-right:10px;
+}
