@@ -60,9 +60,12 @@ const ChooseType = (props) => {
         {/*Search Bar*/}
         <a class="banner-search-bar">
           <input
-            class="search-input"
+            // class="search-input"
+            // type="text"
+            // placeholder="Search somthing..."
+            className="search-input"
             type="text"
-            placeholder="Search somthing..."
+            placeholder="Search something..."
           ></input>
           <img
             class="icon"

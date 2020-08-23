@@ -7,7 +7,7 @@
 import React from 'react';
 import './styles/ExplorePageStyle.css';
 
-// import {Button} from '@material-ui/core';
+
 
 const ExplorePage = props => {
   return(

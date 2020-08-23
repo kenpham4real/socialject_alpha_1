@@ -10,7 +10,9 @@
 .view-header{
   background-image: url('../../../../assets/images/SJ.png');
   background-size: cover;
+  background-attachment: fixed;
 }
+
 .icon-hamburger {
   width: 40px;
   margin-left: 10px;

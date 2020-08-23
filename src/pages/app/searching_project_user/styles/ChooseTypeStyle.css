@@ -24,10 +24,11 @@
 }
 
 /*Search Input*/
-.search-input {
+.search-input{
   padding: 1%;
   font-size: 17px;
   width: 50%;
+  border-radius: 5px;
 }
 /*Card Panel*/
 .card-panel {
