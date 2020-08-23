@@ -15,7 +15,7 @@
 /*General*/
 /*Icon*/
 .icon {
-  width: 32px;
+  height: 32px;
   padding-left: 1%;
   padding-right: 1%;
   vertical-align: -40%;
@@ -100,6 +100,7 @@
   display: run-in;
 }
 .card-panel.language {
+  border-radius: 20px;
   padding-left: auto;
   padding-right: auto;
   display: block;
@@ -107,7 +108,7 @@
   grid-template-areas: "image details delete";
   position: relative;
   background: linear-gradient(rgba(182, 143, 151, 0.5), rgba(0, 0, 0, 0.5)),
-    url("");
+    url("https://i.kym-cdn.com/photos/images/facebook/001/602/751/099.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -139,6 +140,7 @@
 
 .project-card {
   cursor: pointer;
+  border-radius: 5px;
   margin-left: 1%;
   margin-right: 1%;
   border: 2px solid var(--title);
