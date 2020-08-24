@@ -5,6 +5,7 @@
 }
 .page{
  margin:0px;
+ display: grid;
 }
 
 .view-header{
@@ -28,7 +29,7 @@
   font-size: 30px;
   font-weight: bold;
   margin-right:6px;
-  margin-left:40px;
+  margin-left:20px;
   cursor: pointer;
   color: dodgerblue;
 }
@@ -66,7 +67,7 @@
   margin-left: 3px;
   margin-right: 0px;
   vertical-align: -40%;
-  display: inline-block;
+  display: inline;
   cursor: pointer;
 }
 
@@ -221,25 +222,42 @@ margin-left:30px;
 
 .container{
   overflow-x:scroll ;
-  size: 25%;
   display:flex;
-  size: 1px;
   margin-right: 10px;
-  margin:50px
+  margin:50px;
+  height:450px;
+}
+.featured-cards{
+  border: 4px solid black;
+  height: 410px ;
+  width: 220px;
+  margin-right: 10px;
+  cursor:pointer;
+  border-radius: 25px;
+  margin-bottom: 10px;
 }
 
 .picture-projects{
-  
-  height: 250px;
-  width: 400px;
-  margin-right: 20px;
- text-align: center;
- display: inline;
- cursor: pointer;
- border-radius: 15%;
+height: 200px;
+width: 220px;
+margin-right: 20px;
+text-align: center;
+cursor: pointer;
+border-radius: 6%;
+display: inline-table;
 }
-
-
+.small-logo-projects{
+  height: 80px;
+  width: 80px;
+  border-radius: 30%;
+  border:3px solid red;
+  cursor: pointer;
+}
+.text-logo-featured{
+  text-align: center;
+  padding-bottom: 20px;
+  cursor: pointer;
+}
 
 
 

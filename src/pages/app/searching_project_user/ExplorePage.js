@@ -35,8 +35,8 @@ const ExplorePage = props => {
               src={require('../../../assets/images/search2.png')}
             />
             </div>
-          {/*avatar icon*/}
-          <div className="border-area-avatar">
+             {/*avatar icon*/}
+        <div className="border-area-avatar">
               <div className="container-avatar" >
                   <img
                     className="avatar"
@@ -54,8 +54,10 @@ const ExplorePage = props => {
                     />  
                   
               </div>
+         
           </div>
        {/*End this part*/}
+       
        </div>     
           
 
@@ -176,46 +178,136 @@ const ExplorePage = props => {
       </div>
 
       <div className="container">
-          <img
-            alt="Projects"
-            className="picture-projects"
-            src={require("../../../assets/images/7.jpg")} 
-          />
-          <img
-            alt="Projects"
-            className="picture-projects"
-            src={require("../../../assets/images/2.jpg")} 
-          />
-          <img
-            alt="Projects"
-            className="picture-projects"
-            src={require("../../../assets/images/3.jpg")} 
-          />
-          <img
-            alt="Projects"
-            className="picture-projects"
-            src={require("../../../assets/images/4.jpg")} 
-          />
-          <img
-            alt="Projects"
-            className="picture-projects"
-            src={require("../../../assets/images/5.jpg")} 
-          />
-          <img
-            alt="Projects"
-            className="picture-projects"
-            src={require("../../../assets/images/6.jpg")} 
-          />
-           <img
-            alt="Projects"
-            className="picture-projects"
-            src={require("../../../assets/images/7.jpg")} 
-          />
-           <img
-            alt="Projects"
-            className="picture-projects"
-            src={require("../../../assets/images/7.jpg")} 
-          />
+          
+          <div className="featured-cards">
+                      <img
+                        alt="Projects"
+                        className="picture-projects"
+                        src={require("../../../assets/images/7.jpg")}
+                      /> 
+                      <img
+                    alt="Projects"
+                    className="small-logo-projects"
+                    src={require("../../../assets/images/SJ.png")} 
+                      />
+                        <p className="text-logo-featured">Mùa hè xanh </p>
+                        <p className="text-logo-featured">Social Ject </p>
+                        <p className="text-logo-featured">Deadline: 25/8/2020 </p>
+              
+          </div>
+
+          <div className="featured-cards">
+                  <img
+                    alt="Projects"
+                    className="picture-projects"
+                    src={require("../../../assets/images/2.jpg")} 
+                  />
+                  
+                   <img
+                    alt="Projects"
+                    className="small-logo-projects"
+                    src={require("../../../assets/images/SJ.png")} 
+                    />
+                  <p className="text-logo-featured">Mùa hè xanh </p>
+                        <p className="text-logo-featured">Social Ject </p>
+                        <p className="text-logo-featured">Deadline: 25/8/2020 </p>
+          </div>
+
+          <div className="featured-cards">
+                  <img
+                    alt="Projects"
+                    className="picture-projects"
+                    src={require("../../../assets/images/2.jpg")} 
+                  />
+                   <img
+                    alt="Projects"
+                    className="small-logo-projects"
+                    src={require("../../../assets/images/SJ.png")} 
+                    />
+                  <p className="text-logo-featured">Mùa hè xanh </p>
+                        <p className="text-logo-featured">Social Ject </p>
+                        <p className="text-logo-featured">Deadline: 25/8/2020 </p>
+          </div>
+
+          <div className="featured-cards">
+                  <img
+                    alt="Projects"
+                    className="picture-projects"
+                    src={require("../../../assets/images/2.jpg")} 
+                  />
+                   <img
+                    alt="Projects"
+                    className="small-logo-projects"
+                    src={require("../../../assets/images/SJ.png")} 
+                    />
+                 <p className="text-logo-featured">Mùa hè xanh </p>
+                        <p className="text-logo-featured">Social Ject </p>
+                        <p className="text-logo-featured">Deadline: 25/8/2020 </p>
+          </div>
+
+          <div className="featured-cards">
+                  <img
+                    alt="Projects"
+                    className="picture-projects"
+                    src={require("../../../assets/images/2.jpg")} 
+                  />
+                   <img
+                    alt="Projects"
+                    className="small-logo-projects"
+                    src={require("../../../assets/images/SJ.png")} 
+                    />
+                  <p className="text-logo-featured">Mùa hè xanh </p>
+                        <p className="text-logo-featured">Social Ject </p>
+                        <p className="text-logo-featured">Deadline: 25/8/2020 </p>
+          </div>
+
+          <div className="featured-cards">
+                  <img
+                    alt="Projects"
+                    className="picture-projects"
+                    src={require("../../../assets/images/2.jpg")} 
+                  />
+                   <img
+                    alt="Projects"
+                    className="small-logo-projects"
+                    src={require("../../../assets/images/SJ.png")} 
+                    />
+                  <p className="text-logo-featured">Mùa hè xanh </p>
+                        <p className="text-logo-featured">Social Ject </p>
+                        <p className="text-logo-featured">Deadline: 25/8/2020 </p>
+          </div>
+
+          <div className="featured-cards">
+                  <img
+                    alt="Projects"
+                    className="picture-projects"
+                    src={require("../../../assets/images/2.jpg")} 
+                  />
+                   <img
+                    alt="Projects"
+                    className="small-logo-projects"
+                    src={require("../../../assets/images/SJ.png")} 
+                    />
+                 <p className="text-logo-featured">Mùa hè xanh </p>
+                        <p className="text-logo-featured">Social Ject </p>
+                        <p className="text-logo-featured">Deadline: 25/8/2020 </p>
+          </div>
+
+          <div className="featured-cards">
+                  <img
+                    alt="Projects"
+                    className="picture-projects"
+                    src={require("../../../assets/images/2.jpg")} 
+                  />
+                   <img
+                    alt="Projects"
+                    className="small-logo-projects"
+                    src={require("../../../assets/images/SJ.png")} 
+                    />
+                 <p className="text-logo-featured">Mùa hè xanh </p>
+                        <p className="text-logo-featured">Social Ject </p>
+                        <p className="text-logo-featured">Deadline: 25/8/2020 </p>
+          </div>
         
     </div>
 
@@ -228,32 +320,86 @@ const ExplorePage = props => {
     </div>
 
     <div className="container">
-          <img
-            alt="Projects"
-            className="picture-projects"
-            src={require("../../../assets/images/1.jpg")} 
-          />
-          <img
-            alt="Projects"
-            className="picture-projects"
-            src={require("../../../assets/images/7.jpg")} 
-          />
-          <img
-            alt="Projects"
-            className="picture-projects"
-            src={require("../../../assets/images/2.jpg")} 
-          />
-          <img
-            alt="Projects"
-            className="picture-projects"
-            src={require("../../../assets/images/4.jpg")} 
-          />
-          <img
-            alt="Projects"
-            className="picture-projects"
-            src={require("../../../assets/images/5.jpg")} 
-          />
+    <div className="featured-cards">
+                  <img
+                    alt="Projects"
+                    className="picture-projects"
+                    src={require("../../../assets/images/2.jpg")} 
+                  />
+                   <img
+                    alt="Projects"
+                    className="small-logo-projects"
+                    src={require("../../../assets/images/SJ.png")} 
+                    />
+                  <p className="text-logo-featured">Mùa hè xanh </p>
+                        <p className="text-logo-featured">Social Ject </p>
+                        <p className="text-logo-featured">Deadline: 25/8/2020 </p>
+          </div>
 
+          <div className="featured-cards">
+                  <img
+                    alt="Projects"
+                    className="picture-projects"
+                    src={require("../../../assets/images/2.jpg")} 
+                  />
+                   <img
+                    alt="Projects"
+                    className="small-logo-projects"
+                    src={require("../../../assets/images/SJ.png")} 
+                    />
+                  <p className="text-logo-featured">Mùa hè xanh </p>
+                        <p className="text-logo-featured">Social Ject </p>
+                        <p className="text-logo-featured">Deadline: 25/8/2020 </p>
+          </div>
+
+         <div className="featured-cards">
+                  <img
+                    alt="Projects"
+                    className="picture-projects"
+                    src={require("../../../assets/images/2.jpg")} 
+                  />
+                      <img
+                        alt="Projects"
+                        className="small-logo-projects"
+                        src={require("../../../assets/images/SJ.png")} 
+                      />
+                 <p className="text-logo-featured">Mùa hè xanh </p>
+                        <p className="text-logo-featured">Social Ject </p>
+                        <p className="text-logo-featured">Deadline: 25/8/2020 </p>
+          </div>
+
+         <div className="featured-cards">
+                  <img
+                    alt="Projects"
+                    className="picture-projects"
+                    src={require("../../../assets/images/2.jpg")} 
+                  />
+                      <img
+                          alt="Projects"
+                          className="small-logo-projects"
+                          src={require("../../../assets/images/SJ.png")} 
+                      />
+                 <p className="text-logo-featured">Mùa hè xanh </p>
+                        <p className="text-logo-featured">Social Ject </p>
+                        <p className="text-logo-featured">Deadline: 25/8/2020 </p>
+          </div>
+
+          <div className="featured-cards">
+                  <img
+                    alt="Projects"
+                    className="picture-projects"
+                    src={require("../../../assets/images/2.jpg")} 
+                  />
+                      <img
+                          alt="Projects"
+                          className="small-logo-projects"
+                          src={require("../../../assets/images/SJ.png")} 
+                      />
+                  <p className="text-logo-featured">Mùa hè xanh </p>
+                        <p className="text-logo-featured">Social Ject </p>
+                        <p className="text-logo-featured">Deadline: 25/8/2020 </p>
+          </div>
+          {/*End of this part*/}
     </div>
 
       {/*Featured 3 */}
@@ -265,39 +411,95 @@ const ExplorePage = props => {
     </div>
     
     <div className="container">
-          <img
-            alt="Projects"
-            className="picture-projects"
-            src={require("../../../assets/images/5.jpg")} 
-          />
-          <img
-            alt="Projects"
-            className="picture-projects"
-            src={require("../../../assets/images/3.jpg")} 
-          />
-          <img
-            alt="Projects"
-            className="picture-projects"
-            src={require("../../../assets/images/7.jpg")} 
-          />
-          <img
-            alt="Projects"
-            className="picture-projects"
-            src={require("../../../assets/images/8.jpg")} 
-          />
-          <img
-            alt="Projects"
-            className="picture-projects"
-            src={require("../../../assets/images/1.jpg")} 
-          />
+        <div className="featured-cards">
+                  <img
+                    alt="Projects"
+                    className="picture-projects"
+                    src={require("../../../assets/images/2.jpg")} 
+                  />
+                        <img
+                          alt="Projects"
+                          className="small-logo-projects"
+                          src={require("../../../assets/images/SJ.png")} 
+                        />
+                 <p className="text-logo-featured">Mùa hè xanh </p>
+                        <p className="text-logo-featured">Social Ject </p>
+                        <p className="text-logo-featured">Deadline: 25/8/2020 </p>
+          </div>
+
+          <div className="featured-cards">
+                  <img
+                    alt="Projects"
+                    className="picture-projects"
+                    src={require("../../../assets/images/2.jpg")} 
+                  />
+                        <img
+                          alt="Projects"
+                          className="small-logo-projects"
+                          src={require("../../../assets/images/SJ.png")} 
+                        />
+                  <p className="text-logo-featured">Mùa hè xanh </p>
+                        <p className="text-logo-featured">Social Ject </p>
+                        <p className="text-logo-featured">Deadline: 25/8/2020 </p>
+          </div>
+
+          <div className="featured-cards">
+                  <img
+                    alt="Projects"
+                    className="picture-projects"
+                    src={require("../../../assets/images/2.jpg")} 
+                  />
+                        <img
+                          alt="Projects"
+                          className="small-logo-projects"
+                          src={require("../../../assets/images/SJ.png")} 
+                        />
+                 <p className="text-logo-featured">Mùa hè xanh </p>
+                        <p className="text-logo-featured">Social Ject </p>
+                        <p className="text-logo-featured">Deadline: 25/8/2020 </p>
+          </div>
+
+          <div className="featured-cards">
+                  <img
+                    alt="Projects"
+                    className="picture-projects"
+                    src={require("../../../assets/images/2.jpg")} 
+                  />
+                        <img
+                          alt="Projects"
+                          className="small-logo-projects"
+                          src={require("../../../assets/images/SJ.png")} 
+                        />
+                 <p className="text-logo-featured">Mùa hè xanh </p>
+                        <p className="text-logo-featured">Social Ject </p>
+                        <p className="text-logo-featured">Deadline: 25/8/2020 </p>
+          </div>
+
+          <div className="featured-cards">
+                  <img
+                    alt="Projects"
+                    className="picture-projects"
+                    src={require("../../../assets/images/2.jpg")} 
+                  />
+                         <img
+                          alt="Projects"
+                          className="small-logo-projects"
+                          src={require("../../../assets/images/SJ.png")} 
+                        />
+                  <p className="text-logo-featured">Mùa hè xanh </p>
+                        <p className="text-logo-featured">Social Ject </p>
+                        <p className="text-logo-featured">Deadline: 25/8/2020 </p>
+          </div>
           
       </div>
-      
+      {/*end of featured 3*/}
+
+      {/*start footer part */}
       <div className="footer">
               <p className="text-1">Copyright...</p>
               <p className="text-2">Social Media Icons</p>
       </div>
-
+      {/*end of this part */}      
     
     </div>
   )
