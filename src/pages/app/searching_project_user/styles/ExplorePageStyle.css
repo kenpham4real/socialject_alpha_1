@@ -5,12 +5,16 @@
 }
 .page{
  margin:0px;
+ display: grid;
 }
 
 .view-header{
   background-image: url('../../../../assets/images/SJ.png');
   background-size: cover;
+  background-attachment: fixed;
+  border:1px solid black;
 }
+
 .icon-hamburger {
   width: 40px;
   margin-left: 10px;
@@ -25,12 +29,15 @@
   font-size: 30px;
   font-weight: bold;
   margin-right:6px;
-  margin-left:40px;
+  margin-left:20px;
   cursor: pointer;
+  color: dodgerblue;
 }
 
 
-.search-input {
+
+
+.search-bar-input {
   padding: 1%;
   padding-left: 1%;
   padding-right: 1%;
@@ -48,56 +55,72 @@
 
 .container-search{
   border: 2px solid black;
-  border-radius: 10px;
+  border-radius: 40%;
   display: inline-block;
   width: 35px;
   height:35px ;
-  background-color: gray;
+  background-color:whitesmoke;
 }
 .icon-search{
   width: 30px;
-  margin-left: 0;
-  padding-right: 1%;
+  margin-top:2px;
+  margin-left: 3px;
+  margin-right: 0px;
   vertical-align: -40%;
-  display: inline-block;
+  display: inline;
   cursor: pointer;
-  margin-right:-100px;
-  
+}
+
+.border-area-avatar{
+  border-left:1px solid black;
+  margin-left:190px ;
+  width: 250px;
+  height: 70px;
+  display: inline-flex;
+  float: right;
+  object-fit: cover;
 }
 
 .container-avatar{
-
-margin-right:150px ;
+border:2px solid black;
+margin-right:1px;
+margin-left: 20px;
 border-radius: 25px ;
-width: 50px;
-height: 30px;
+width: 40px;
+height: 40px;
 margin-top: 10px;
 display: inline-flex;
-float: right;
-object-fit: cover;
+background-color: white;
 }
 
 .avatar{
-  width: 40px;
-  height: 50px;
-
-  margin-right:5px;
-  margin-left: 10px;
+  width: 45px;
+  height: 40px;
   cursor: pointer;
-  border-radius: 25%;
+  border-radius: 50%;
   vertical-align: middle;
-  margin-top: -10px;
-  
+  margin-top: 0px;
+  margin-right: 2px;
+  margin-left:-2px;
   background-position: top center;
 } 
 
 .name{
   margin-left: 5px;
-  font-family: initial;
+  font-family: inherit;
   font-weight: bold;
-  margin-right: 10px;
+  margin-right: 0px;
   white-space:nowrap;
   margin-top:5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.arrow{
+  margin-left:0px;
+  width: 40px;
+  height: 35px;
+  display: inline-flex;
   cursor: pointer;
 }
 
@@ -160,7 +183,7 @@ margin-left:30px;
   color: #000000
 }
   
-.project-card{
+.my-project-card{
   border: 4px solid black;
   height: 400px ;
   width: 400px;
@@ -199,25 +222,42 @@ margin-left:30px;
 
 .container{
   overflow-x:scroll ;
-  size: 25%;
   display:flex;
-  size: 1px;
   margin-right: 10px;
-  margin:50px
+  margin:50px;
+  height:450px;
+}
+.featured-cards{
+  border: 4px solid black;
+  height: 410px ;
+  width: 220px;
+  margin-right: 10px;
+  cursor:pointer;
+  border-radius: 25px;
+  margin-bottom: 10px;
 }
 
 .picture-projects{
-  
-  height: 250px;
-  width: 400px;
-  margin-right: 20px;
- text-align: center;
- display: inline;
- cursor: pointer;
- border-radius: 15%;
+height: 200px;
+width: 220px;
+margin-right: 20px;
+text-align: center;
+cursor: pointer;
+border-radius: 6%;
+display: inline-table;
 }
-
-
+.small-logo-projects{
+  height: 80px;
+  width: 80px;
+  border-radius: 30%;
+  border:3px solid red;
+  cursor: pointer;
+}
+.text-logo-featured{
+  text-align: center;
+  padding-bottom: 20px;
+  cursor: pointer;
+}
 
 
 
