@@ -68,7 +68,7 @@ const ChooseType = (props) => {
         {/*Search Bar*/}
         <a class="banner-search-bar">
           <input
-            class="search-input"
+            class="search-input-banner"
             type="text"
             placeholder="Search something..."
           ></input>
