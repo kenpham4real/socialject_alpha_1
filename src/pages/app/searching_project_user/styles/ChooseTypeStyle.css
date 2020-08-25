@@ -2,33 +2,36 @@
 
 /* colours */
 :root {
-  --primary: #e1e4d2;
-  --secondary: #9ba9bb;
-  --title: #2d2e38;
+  --primary: #fdfff4;
+  --secondary: #adb1b8;
+  --shadow: rgb(78, 78, 83);
+  --title: #14151a;
 }
 
 * {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-family: "Inter";
   color: var(--title);
+  border-radius: none;
+  vertical-align: middle;
 }
 
 /*General*/
 /*Icon*/
 .icon {
   height: 32px;
-  padding-left: 1%;
-  padding-right: 1%;
-  vertical-align: -40%;
   display: inline-block;
   cursor: pointer;
 }
 
 /*Search Input*/
 .search-input {
-  padding: 1%;
   font-size: 17px;
-  width: 50%;
-  border-radius: 5px;
+  font-weight: normal;
+  width: 70%;
+  border: 0px solid;
+  border-radius: 0px;
+  background-color: var(--secondary);
+  height: inherit;
 }
 /*Card Panel*/
 .card-panel {
@@ -36,13 +39,9 @@
   transition: -webkit-box-shadow 0.25s;
   transition: box-shadow 0.25s;
   transition: box-shadow 0.25s, -webkit-box-shadow 0.25s;
-  padding: 4%;
-  background-color: #fff;
 }
 
 .button {
-  margin-left: 10px;
-  margin-right: 10px;
   background-color: whitesmoke;
   border: none;
   color: white;
@@ -68,102 +67,150 @@
 
 /*top*/
 .banner {
-  display: inline-block;
-  padding: 0;
+  display: flexbox;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 .banner-title {
+  overflow-x: hidden;
   font-size: 150%;
   font-weight: bold;
   color: var(--title);
 }
 .banner-search-bar {
-  margin-left: 1%;
-  margin-right: 1%;
+  margin-left: 20px;
+  margin-right: 20px;
   display: inline-block;
-  width: 70%;
+  width: 50%;
 }
 .banner-user-bar {
-  position: relative;
-  right: -40px;
+  margin-top: 1px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  float: right;
   display: -webkit-inline-flex;
+}
+.banner-user-bar-bottom {
+  padding: none;
+  float: right;
+  display: -webkit-inline-flex;
+}
+.icon.avatar {
+  margin-top: inherit;
+  border-radius: 16px;
+  width: 32px;
+  object-fit: cover;
 }
 
 /*Language*/
 .language {
-  margin-top: 20px;
+  display: inline-block;
 }
 .language-title {
-  margin-left: 200px;
-  margin-right: 200px;
-  padding-bottom: 10px;
-  color: var(--secondary);
+  margin-left: 50px;
+  margin-bottom: 20px;
+  color: var(--primary);
   font-size: 300%;
 }
-.language-select {
-  margin: 0;
-  display: run-in;
-}
 .button.language {
-  display: auto;
-  margin-left: 100px;
-  margin-right: 100px;
+  margin-right: 50px;
 }
 .card-panel.language {
-  border-radius: 10px;
-  padding-left: auto;
-  padding-right: auto;
+  padding: 50px;
+  padding-left: 100px;
   display: block;
-  grid-template-columns: 2fr 6fr 1fr;
-  grid-template-areas: "image details delete";
   position: relative;
-  background: linear-gradient(rgba(182, 143, 151, 0.5), rgba(0, 0, 0, 0.5)),
-    url("https://i.kym-cdn.com/photos/images/facebook/001/602/751/099.png");
+  background: linear-gradient(rgba(143, 155, 182, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/11a82051-faf5-408c-91e6-0f6a31cad763/ddu9pqh-cca306ee-b699-44c6-b4ef-d089ca6e3a24.jpg/v1/fill/w_1920,h_1201,q_75,strp/witch_with_eyes_of_emerald_by_luuhienlong201_ddu9pqh-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMTFhODIwNTEtZmFmNS00MDhjLTkxZTYtMGY2YTMxY2FkNzYzXC9kZHU5cHFoLWNjYTMwNmVlLWI2OTktNDRjNi1iNGVmLWQwODljYTZlM2EyNC5qcGciLCJoZWlnaHQiOiI8PTEyMDEiLCJ3aWR0aCI6Ijw9MTkyMCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS53YXRlcm1hcmsiXSwid21rIjp7InBhdGgiOiJcL3dtXC8xMWE4MjA1MS1mYWY1LTQwOGMtOTFlNi0wZjZhMzFjYWQ3NjNcL2x1dWhpZW5sb25nMjAxLTQucG5nIiwib3BhY2l0eSI6OTUsInByb3BvcnRpb25zIjowLjQ1LCJncmF2aXR5IjoiY2VudGVyIn19.H9m-NjiXbxdxAeMEe2Ru8aksBpeHuEE6FEKrQML6lCw");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
 }
 
 /*Filter*/
-.filter-container {
-  padding-left: 5%;
-  padding-right: 5%;
+.card-panel.filter {
+  padding: 5px;
+  padding-left: 100px;
   display: block;
-  background-color: white;
+  background-color: var(--secondary);
 }
 .filter-title {
-  font-weight: bold;
+  font-size: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 .button.filter {
+  margin-bottom: 5px;
+  margin-top: 5px;
   margin-left: 50px;
-  margin-right: 50px;
+  display: -webkit-inline-flex;
+  width: fit-content;
+  border-radius: 2px;
+  box-shadow: 2px 2px 2px rgb(87, 88, 94);
+}
+.icon.filter {
+  height: 16px;
+  padding: 5px;
 }
 
 /*Project display*/
 .project-container {
   display: flex;
   overflow-x: auto;
+  padding-left: 20px;
 }
 .project-title {
   width: auto;
-  text-align: center;
+  padding-top: 10px;
+  padding-left: 20px;
   margin-bottom: 1%;
-  font-size: larger;
+  font-size: 32px;
+  color: var(--shadow);
 }
 .project-card {
   cursor: pointer;
-  height: 300px;
+  height: 450px;
   border-radius: 5px;
-  margin-left: 1%;
-  margin-right: 1%;
-  border: 2px solid var(--title);
-  text-align: center;
+  margin-left: 5px;
+  border: none;
+  text-align: left;
+  box-shadow: 2px 2px 2px rgb(130, 133, 143);
+}
+.icon.project {
+  display: grid;
+  width: 90px;
+  height: 90px;
+  position: relative;
+  object-fit: cover;
+  top: -30px;
+  left: 20px;
 }
 .project-image {
-  width: 200px;
+  width: 300px;
   height: 200px;
   object-fit: cover;
   cursor: pointer;
 }
+.project-text-container {
+  padding-left: 20px;
+}
+.project-text {
+  font-size: 20px;
+  color: var(--shadow);
+}
+.project-text.title {
+  font-size: 32px;
+  color: var(--title);
+}
 .button.project {
   color: var(--title);
+}
+
+/*Bottom*/
+.bottom-text {
+  font-size: 25px;
+  color: var(--shadow);
+}
+.bottom-text.right {
+  float: right;
 }
