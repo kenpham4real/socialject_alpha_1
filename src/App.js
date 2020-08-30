@@ -5,6 +5,7 @@ function App() {
   return (
     <div>
       <MainRoute />
+      {/* import MainRoute.js to export */}
     </div>
   );
 }
