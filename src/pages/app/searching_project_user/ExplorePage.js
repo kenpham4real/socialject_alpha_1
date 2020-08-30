@@ -8,7 +8,6 @@ import React from 'react';
 import './styles/ExplorePageStyle.css';
 
 
-
 const ExplorePage = props => {
   return(
     <div className="page">
