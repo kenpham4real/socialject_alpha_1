@@ -1,0 +1,14 @@
+.bulletinItems {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+.bulletinMark {
+  background: #c4c4c4;
+  border: 1px solid #000000;
+  border-radius: 50%;
+  margin-right: 23px;
+
+  width: 44px;
+  height: 44px;
+}

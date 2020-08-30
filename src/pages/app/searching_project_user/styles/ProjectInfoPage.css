@@ -1,0 +1,226 @@
+/*
+This is CSS file for ProjectInfoPage.js
+*/
+
+/*GENERAL ATTRIBUTES OF THE PAGE*/
+* {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+/*SPECIFIC ATTRIBUTES */
+
+/*PROJECT'S GENERAL INFORMATION BOARD
+ - position: At the top of the page, below Navigation Bar */
+
+.generalInfoBoard {
+  width: 100%;
+  min-height: 436px;
+  background: rgb(42, 0, 57, 0.7);
+
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+/*generalInfo components  */
+.generalInfoComponents {
+  display: block;
+}
+
+.tags {
+  width: 232px;
+  height: 70px;
+}
+.tags a {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 96px;
+}
+
+.currentTags {
+  color: white;
+}
+
+.projectName {
+  font-weight: bold;
+  font-size: 34px;
+  line-height: 96px;
+
+  display: flex;
+  letter-spacing: -0.022em;
+  width: 238px;
+  height: 72px;
+  color: #ffffff;
+}
+
+.location {
+  color: grey;
+  font-size: 14px;
+}
+.projectLogo {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+
+  position: inline;
+  margin-right: 8px;
+}
+.joinedUsers {
+  color: white;
+  align-items: center;
+  text-align: center;
+  width: 207px;
+}
+.joinedUsers span {
+  color: white;
+  font-weight: bold;
+}
+.organizationNameandPicture {
+  color: white;
+  padding-top: 29px;
+  padding-bottom: 29px;
+  display: flex;
+}
+.organizationNameandPicture .organizationName {
+  color: white;
+  display: flex;
+  align-items: center;
+}
+.organizationNameandPicture button {
+  margin-left: 11px;
+}
+
+.applyButton {
+  width: 207px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 50px;
+  /* or 312% */
+
+  align-items: center;
+  justify-content: center;
+  letter-spacing: -0.022em;
+
+  border-radius: 3px;
+  color: #000000;
+  background-color: white;
+}
+
+.applyButton:hover {
+  background-color: #c4c4c4;
+}
+
+.applyNow {
+  height: 32px;
+}
+.dueDay {
+  font-size: 14px;
+  font-weight: normal;
+  height: 30px;
+}
+
+/* 'projectPicture' components*/
+
+.projectPicture {
+  width: 497px;
+  height: 369px;
+  margin-top: 28.5px;
+  opacity: 10;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 3px 3px 0px 0px;
+}
+
+/*CONTENT
+-position: Below Navigation Bar 
+- The content divivion is divided into 2 smaller divs: 'leftColumn' and 'rightColumn'
+*/
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-column-gap: 19px;
+
+  padding-top: 50px;
+  padding-left: 86px;
+  padding-right: 86px;
+}
+/* LEFT COLUMN GENERAL DESIGN */
+.leftColumn {
+  display: grid;
+  grid-auto-rows: auto;
+  grid-row-gap: 10px;
+}
+.leftColumn > div {
+  background-color: #c4c4c4;
+  border-radius: 3px;
+  padding-left: 41px;
+  padding-bottom: 34px;
+}
+
+.projectHeadings {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  letter-spacing: -0.022em;
+}
+/*Left column specific design of each box*/
+
+/*Held By Box*/
+
+.heldByContainer .organizationName {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  margin: 0px;
+
+  letter-spacing: -0.022em;
+  color: #000000;
+}
+.heldByContainer .projectLogo {
+  width: 76px;
+  height: 76px;
+}
+.viewAllButton {
+  width: 68px;
+  height: 21px;
+
+  background: #c4c4c4;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 3px;
+
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 20px;
+
+  text-align: center;
+
+  color: #000000;
+}
+
+.viewAllButton:hover {
+  background-color: gray;
+}
+
+/* RIGHT COLUMN GENERAL DESIGN */
+.rightColumn {
+  display: grid;
+  grid-auto-rows: min-content;
+  grid-row-gap: 10px;
+}
+
+.rightColumn > div {
+  background-color: #c4c4c4;
+  border-radius: 3px;
+  padding-left: 44px;
+  padding-bottom: 44px;
+}
+
+.aboutContainer {
+  position: relative;
+}
