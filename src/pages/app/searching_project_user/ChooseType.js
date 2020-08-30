@@ -55,7 +55,7 @@ const progressData = [
 
 const ChooseType = (props) => {
   return (
-    <div class="page">
+    <div class="chooseTypePage">
       {/*Top*/}
       <div class="banner">
         {/*Menu Icon*/}
