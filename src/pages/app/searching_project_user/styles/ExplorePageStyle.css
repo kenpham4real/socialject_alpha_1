@@ -8,16 +8,8 @@
   display: grid;
 }
 
-<<<<<<< HEAD
 .view-header{
   border:1px solid black;
-=======
-.view-header {
-  background-image: url("../../../../assets/images/SJ.png");
-  background-size: cover;
-  background-attachment: fixed;
-  border: 1px solid black;
->>>>>>> 14ab0a35717e14d9dc4950087bd0162724fedf7b
 }
 
 .icon-hamburger {
@@ -44,10 +36,6 @@
   padding-left: 1%;
   padding-right: 1%;
   margin-left: 1%;
-<<<<<<< HEAD
-=======
-  margin-right: 1%;
->>>>>>> 14ab0a35717e14d9dc4950087bd0162724fedf7b
   margin-bottom: 1%;
   margin-top: 10px;
   font-size: 17px;
@@ -58,38 +46,19 @@
   
 }
 
-<<<<<<< HEAD
 .container-search{
   border: 1px solid black;
   display: inline-block;
   width: 50px;
-  height:40.4px ;
-  background-color:whitesmoke;
-  margin-left:-2px;
-  margin-bottom: 4px;
-  background-color: green;
+  height:41px ;
+  margin-left:-1px;
+  /* background-color: green; */
   text-align: center;
   justify-items: center;
-=======
-.container-search {
-  border: 2px solid black;
-  border-radius: 40%;
-  display: inline-block;
-  width: 35px;
-  height: 35px;
-  background-color: whitesmoke;
->>>>>>> 14ab0a35717e14d9dc4950087bd0162724fedf7b
 }
 .icon-search {
   width: 30px;
-<<<<<<< HEAD
   margin-top:2px;
-=======
-  margin-top: 2px;
-  margin-left: 3px;
-  margin-right: 0px;
-  vertical-align: -40%;
->>>>>>> 14ab0a35717e14d9dc4950087bd0162724fedf7b
   display: inline;
   cursor: pointer;
 }
@@ -168,7 +137,6 @@
   text-align: center;
 }
 
-<<<<<<< HEAD
 .project-card-1{
     border:none;
     width: 400px;
@@ -179,17 +147,6 @@
     text-justify: inter-word;
     box-shadow: 2px 2px 2px rgb(130, 133, 143);
    border-radius: 5px;
-=======
-.project-card-1 {
-  border: 4px solid black;
-  width: 400px;
-  height: 829px;
-  cursor: pointer;
-  margin-right: 10px;
-  grid-row: 1 / span 2;
-  text-justify: inter-word;
-  border-radius: 25px;
->>>>>>> 14ab0a35717e14d9dc4950087bd0162724fedf7b
 }
 
 .projects-image-1 {
@@ -204,17 +161,9 @@
   margin-left: 60px;
   width: 290px;
   height: 30px;
-<<<<<<< HEAD
   margin-top: 90px;
   margin-left:40px;
   text-align: left;
-=======
-  margin-top: 110px;
-  margin-left: 40px;
-  padding: 10px;
-  margin-bottom: -30px;
-  text-align: center;
->>>>>>> 14ab0a35717e14d9dc4950087bd0162724fedf7b
   font-family: normal;
   font-style: normal;
   font-weight: normal;
@@ -222,7 +171,6 @@
   line-height: 28px;
   color: #000000;
 }
-<<<<<<< HEAD
   
 .my-project-card{
   border: none;
@@ -230,16 +178,6 @@
   width: 400px;
   margin-right: 10px;
   cursor:pointer;
-=======
-
-.my-project-card {
-  border: 4px solid black;
-  height: 400px;
-  width: 400px;
-  margin-right: 10px;
-  cursor: pointer;
-  border-radius: 25px;
->>>>>>> 14ab0a35717e14d9dc4950087bd0162724fedf7b
   margin-bottom: 10px;
   border-radius: 5px;
   box-shadow: 2px 2px 2px rgb(130, 133, 143);
@@ -257,15 +195,9 @@
   margin-left: 60px;
   width: 290px;
   height: 30px;
-<<<<<<< HEAD
   margin-top:10px;
   margin-left:50px;
   padding:10px;
-=======
-  margin-top: 20px;
-  margin-left: 50px;
-  padding: 10px;
->>>>>>> 14ab0a35717e14d9dc4950087bd0162724fedf7b
   margin-bottom: -30px;
   text-align: center;
   font-family: normal;
@@ -283,7 +215,6 @@
   margin: 50px;
   height: 450px;
 }
-<<<<<<< HEAD
 .featured-cards{
   border: none;
   height: 410px ;
@@ -291,20 +222,10 @@
   margin-right: 10px;
   cursor:pointer;
   border-radius: 5px;
-=======
-.featured-cards {
-  border: 4px solid black;
-  height: 410px;
-  width: 220px;
-  margin-right: 10px;
-  cursor: pointer;
-  border-radius: 25px;
->>>>>>> 14ab0a35717e14d9dc4950087bd0162724fedf7b
   margin-bottom: 10px;
   box-shadow: 2px 2px 2px rgb(130, 133, 143);
 }
 
-<<<<<<< HEAD
 .picture-projects{
 height: 200px;
 width: 220px;
@@ -313,36 +234,16 @@ text-align: center;
 cursor: pointer;
 border-radius: 5px;
 display: inline-table;
-=======
-.picture-projects {
-  height: 200px;
-  width: 220px;
-  margin-right: 20px;
-  text-align: center;
-  cursor: pointer;
-  border-radius: 6%;
-  display: inline-table;
->>>>>>> 14ab0a35717e14d9dc4950087bd0162724fedf7b
 }
 .small-logo-projects {
   height: 80px;
   width: 80px;
-<<<<<<< HEAD
   border-radius:5px;
-=======
-  border-radius: 30%;
-  border: 3px solid red;
->>>>>>> 14ab0a35717e14d9dc4950087bd0162724fedf7b
   cursor: pointer;
   margin-top: -30px;
 }
-<<<<<<< HEAD
 .text-logo-featured{
   text-align: left;
-=======
-.text-logo-featured {
-  text-align: center;
->>>>>>> 14ab0a35717e14d9dc4950087bd0162724fedf7b
   padding-bottom: 20px;
   cursor: pointer;
   margin-left: 5px;

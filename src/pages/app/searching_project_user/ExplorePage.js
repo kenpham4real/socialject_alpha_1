@@ -16,19 +16,6 @@ const ExplorePage = (props) => {
                 alt='Hamburger icon'
                 src={require('../../../assets/images/hamburger.png')}
             /> */}
-<<<<<<< HEAD
-            
-            <a className="my-header">Social Ject</a>
-            
-            {/*Search bar */}
-            <input
-              className="search-bar-input"
-              type="text"
-              placeholder="Tìm Kiếm dự án..." 
-            ></input>
-            
-            <div className="container-search">
-=======
 
         <a className="my-header">Social Ject</a>
 
@@ -49,7 +36,6 @@ const ExplorePage = (props) => {
         {/*avatar icon*/}
         <div className="border-area-avatar">
           <div className="container-avatar">
->>>>>>> 14ab0a35717e14d9dc4950087bd0162724fedf7b
             <img
               className="avatar"
               alt="Avatar"

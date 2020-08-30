@@ -12,8 +12,8 @@ const MainRoute = () => {
   return (
     <Router>
       <Switch>
-        <Route path="" component={ProjectInfoPage} />
-        <Route path="" component={ChooseType} />
+        <Route path="/Screen04" component={ProjectInfoPage} />
+        <Route path="/Screen03" component={ChooseType} />
         <Route path="" component={ExplorePage} />
       </Switch>
     </Router>
