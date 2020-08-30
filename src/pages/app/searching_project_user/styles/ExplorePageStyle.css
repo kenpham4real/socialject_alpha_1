@@ -1,15 +1,23 @@
 /* All the style for Explore Page goes here */
 
-*{
-  margin:0px;
+* {
+  margin: 0px;
 }
-.page{
- margin:0px;
- display: grid;
+.explorePage {
+  margin: 0px;
+  display: grid;
 }
 
+<<<<<<< HEAD
 .view-header{
   border:1px solid black;
+=======
+.view-header {
+  background-image: url("../../../../assets/images/SJ.png");
+  background-size: cover;
+  background-attachment: fixed;
+  border: 1px solid black;
+>>>>>>> 14ab0a35717e14d9dc4950087bd0162724fedf7b
 }
 
 .icon-hamburger {
@@ -21,34 +29,36 @@
   cursor: pointer;
 }
 
-.my-header{
-  margin-top:20px;
+.my-header {
+  margin-top: 20px;
   font-size: 30px;
   font-weight: bold;
-  margin-right:6px;
-  margin-left:20px;
+  margin-right: 6px;
+  margin-left: 20px;
   cursor: pointer;
   color: black;
 }
-
-
-
 
 .search-bar-input {
   padding: 1%;
   padding-left: 1%;
   padding-right: 1%;
   margin-left: 1%;
+<<<<<<< HEAD
+=======
+  margin-right: 1%;
+>>>>>>> 14ab0a35717e14d9dc4950087bd0162724fedf7b
   margin-bottom: 1%;
-  margin-top:10px;
+  margin-top: 10px;
   font-size: 17px;
   width: 25%;
-  height:10px ;
+  height: 10px;
   font-weight: bold;
   border: 1px solid black;
   
 }
 
+<<<<<<< HEAD
 .container-search{
   border: 1px solid black;
   display: inline-block;
@@ -60,17 +70,33 @@
   background-color: green;
   text-align: center;
   justify-items: center;
+=======
+.container-search {
+  border: 2px solid black;
+  border-radius: 40%;
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  background-color: whitesmoke;
+>>>>>>> 14ab0a35717e14d9dc4950087bd0162724fedf7b
 }
-.icon-search{
+.icon-search {
   width: 30px;
+<<<<<<< HEAD
   margin-top:2px;
+=======
+  margin-top: 2px;
+  margin-left: 3px;
+  margin-right: 0px;
+  vertical-align: -40%;
+>>>>>>> 14ab0a35717e14d9dc4950087bd0162724fedf7b
   display: inline;
   cursor: pointer;
 }
 
-.border-area-avatar{
-  border-left:1px solid black;
-  margin-left:190px ;
+.border-area-avatar {
+  border-left: 1px solid black;
+  margin-left: 190px;
   width: 250px;
   height: 70px;
   display: inline-flex;
@@ -78,19 +104,19 @@
   object-fit: cover;
 }
 
-.container-avatar{
-border:2px solid black;
-margin-right:1px;
-margin-left: 20px;
-border-radius: 25px ;
-width: 40px;
-height: 40px;
-margin-top: 10px;
-display: inline-flex;
-background-color: white;
+.container-avatar {
+  border: 2px solid black;
+  margin-right: 1px;
+  margin-left: 20px;
+  border-radius: 25px;
+  width: 40px;
+  height: 40px;
+  margin-top: 10px;
+  display: inline-flex;
+  background-color: white;
 }
 
-.avatar{
+.avatar {
   width: 45px;
   height: 40px;
   cursor: pointer;
@@ -98,51 +124,51 @@ background-color: white;
   vertical-align: middle;
   margin-top: 0px;
   margin-right: 2px;
-  margin-left:-2px;
+  margin-left: -2px;
   background-position: top center;
-} 
+}
 
-.name{
+.name {
   margin-left: 5px;
   font-family: inherit;
   font-weight: bold;
   margin-right: 0px;
-  white-space:nowrap;
-  margin-top:5px;
+  white-space: nowrap;
+  margin-top: 5px;
   cursor: pointer;
   font-size: 20px;
 }
 
-.arrow{
-  margin-left:0px;
+.arrow {
+  margin-left: 0px;
   width: 40px;
   height: 35px;
   display: inline-flex;
   cursor: pointer;
 }
 
-.my-text{
-font-weight: bold;
-font-size:30px;
-margin-top:30px;
-margin-bottom:-40px;
-margin-left:30px;
+.my-text {
+  font-weight: bold;
+  font-size: 30px;
+  margin-top: 30px;
+  margin-bottom: -40px;
+  margin-left: 30px;
 }
 
-.container-explore{
-    overflow-x:scroll ;
-    display:grid;
-    margin:50px;
-    margin-right: 10px;
-    margin-bottom:200px;
-    grid-template-columns: auto auto auto auto;
-    grid-template-rows: auto auto;
-    grid-gap:10px;
-    padding: 10px;
-    text-align: center;
-    
-  }
+.container-explore {
+  overflow-x: scroll;
+  display: grid;
+  margin: 50px;
+  margin-right: 10px;
+  margin-bottom: 200px;
+  grid-template-columns: auto auto auto auto;
+  grid-template-rows: auto auto;
+  grid-gap: 10px;
+  padding: 10px;
+  text-align: center;
+}
 
+<<<<<<< HEAD
 .project-card-1{
     border:none;
     width: 400px;
@@ -153,9 +179,20 @@ margin-left:30px;
     text-justify: inter-word;
     box-shadow: 2px 2px 2px rgb(130, 133, 143);
    border-radius: 5px;
+=======
+.project-card-1 {
+  border: 4px solid black;
+  width: 400px;
+  height: 829px;
+  cursor: pointer;
+  margin-right: 10px;
+  grid-row: 1 / span 2;
+  text-justify: inter-word;
+  border-radius: 25px;
+>>>>>>> 14ab0a35717e14d9dc4950087bd0162724fedf7b
 }
 
-.projects-image-1{
+.projects-image-1 {
   width: 400px;
   height: 200px;
   object-fit: cover;
@@ -163,21 +200,29 @@ margin-left:30px;
  
 }
 
-
-.projects-type-1{
-  margin-left:60px;
+.projects-type-1 {
+  margin-left: 60px;
   width: 290px;
   height: 30px;
+<<<<<<< HEAD
   margin-top: 90px;
   margin-left:40px;
   text-align: left;
+=======
+  margin-top: 110px;
+  margin-left: 40px;
+  padding: 10px;
+  margin-bottom: -30px;
+  text-align: center;
+>>>>>>> 14ab0a35717e14d9dc4950087bd0162724fedf7b
   font-family: normal;
   font-style: normal;
   font-weight: normal;
   font-size: 30px;
   line-height: 28px;
-  color: #000000
+  color: #000000;
 }
+<<<<<<< HEAD
   
 .my-project-card{
   border: none;
@@ -185,13 +230,22 @@ margin-left:30px;
   width: 400px;
   margin-right: 10px;
   cursor:pointer;
+=======
+
+.my-project-card {
+  border: 4px solid black;
+  height: 400px;
+  width: 400px;
+  margin-right: 10px;
+  cursor: pointer;
+  border-radius: 25px;
+>>>>>>> 14ab0a35717e14d9dc4950087bd0162724fedf7b
   margin-bottom: 10px;
   border-radius: 5px;
   box-shadow: 2px 2px 2px rgb(130, 133, 143);
 }
 
-
-.projects-image{
+.projects-image {
   width: 399px;
   height: 150px;
   object-fit: cover;
@@ -199,14 +253,19 @@ margin-left:30px;
  
 }
 
-
-.projects-type{
-  margin-left:60px;
+.projects-type {
+  margin-left: 60px;
   width: 290px;
   height: 30px;
+<<<<<<< HEAD
   margin-top:10px;
   margin-left:50px;
   padding:10px;
+=======
+  margin-top: 20px;
+  margin-left: 50px;
+  padding: 10px;
+>>>>>>> 14ab0a35717e14d9dc4950087bd0162724fedf7b
   margin-bottom: -30px;
   text-align: center;
   font-family: normal;
@@ -215,15 +274,16 @@ margin-left:30px;
   font-size: 30px;
   line-height: 28px;
   color: #000000;
-  }
-
-.container{
-  overflow-x:scroll ;
-  display:flex;
-  margin-right: 10px;
-  margin:50px;
-  height:450px;
 }
+
+.container {
+  overflow-x: scroll;
+  display: flex;
+  margin-right: 10px;
+  margin: 50px;
+  height: 450px;
+}
+<<<<<<< HEAD
 .featured-cards{
   border: none;
   height: 410px ;
@@ -231,10 +291,20 @@ margin-left:30px;
   margin-right: 10px;
   cursor:pointer;
   border-radius: 5px;
+=======
+.featured-cards {
+  border: 4px solid black;
+  height: 410px;
+  width: 220px;
+  margin-right: 10px;
+  cursor: pointer;
+  border-radius: 25px;
+>>>>>>> 14ab0a35717e14d9dc4950087bd0162724fedf7b
   margin-bottom: 10px;
   box-shadow: 2px 2px 2px rgb(130, 133, 143);
 }
 
+<<<<<<< HEAD
 .picture-projects{
 height: 200px;
 width: 220px;
@@ -243,42 +313,59 @@ text-align: center;
 cursor: pointer;
 border-radius: 5px;
 display: inline-table;
+=======
+.picture-projects {
+  height: 200px;
+  width: 220px;
+  margin-right: 20px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 6%;
+  display: inline-table;
+>>>>>>> 14ab0a35717e14d9dc4950087bd0162724fedf7b
 }
-.small-logo-projects{
+.small-logo-projects {
   height: 80px;
   width: 80px;
+<<<<<<< HEAD
   border-radius:5px;
+=======
+  border-radius: 30%;
+  border: 3px solid red;
+>>>>>>> 14ab0a35717e14d9dc4950087bd0162724fedf7b
   cursor: pointer;
   margin-top: -30px;
 }
+<<<<<<< HEAD
 .text-logo-featured{
   text-align: left;
+=======
+.text-logo-featured {
+  text-align: center;
+>>>>>>> 14ab0a35717e14d9dc4950087bd0162724fedf7b
   padding-bottom: 20px;
   cursor: pointer;
   margin-left: 5px;
 }
 
-
-
-.footer{
-  border-top:5px solid black;
-  
+.footer {
+  border-top: 5px solid black;
 }
-.text-1{
+.text-1 {
   font-family: initial;
   font-style: normal;
   font-size: 25px;
   line-height: 96px;
   font-weight: bold;
-  margin-left:10px;
+  margin-left: 10px;
 }
-.text-2{
+.text-2 {
   float: right;
   font-family: Inter;
   font-style: normal;
   font-size: 25px;
   font-weight: bold;
   line-height: 96px;
-  margin-top:-96px;
-  margin-right:10px;
+  margin-top: -96px;
+  margin-right: 10px;
 }

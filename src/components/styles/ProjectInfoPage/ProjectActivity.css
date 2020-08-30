@@ -1,0 +1,30 @@
+.projectActivity {
+  display: flex;
+}
+.activityInfo {
+  padding-left: 29px;
+}
+.activityPicture {
+  height: 52px;
+  width: 51.39px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  border-radius: 3px;
+}
+
+.activityName {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 13px;
+  letter-spacing: -0.022em;
+}
+.activityTime,
+.activityLocation {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+
+  letter-spacing: -0.022em;
+
+  color: #848484;
+}

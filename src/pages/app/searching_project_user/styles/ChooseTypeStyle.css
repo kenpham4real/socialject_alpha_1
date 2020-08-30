@@ -8,8 +8,7 @@
   --title: #14151a;
 }
 
-* {
-  font-family: "Inter";
+.chooseTypePage {
   color: var(--title);
   border-radius: none;
   vertical-align: middle;
