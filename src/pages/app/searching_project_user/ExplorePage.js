@@ -19,7 +19,7 @@ const ExplorePage = props => {
                 src={require('../../../assets/images/hamburger.png')}
             /> */}
             
-            <a  className="my-header">Social Ject</a>
+            <a className="my-header">Social Ject</a>
             
             {/*Search bar */}
             <input
