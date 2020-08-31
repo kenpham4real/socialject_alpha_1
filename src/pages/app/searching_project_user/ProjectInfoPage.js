@@ -1,10 +1,8 @@
 import React from "react";
-import "../../../components/app/NavigationBar";
-import NavigationBar from "../../../components/app/NavigationBar";
+import NavigationBar from "../../../components/app/NavigationBar.js";
 import "./styles/ProjectInfoPage.css";
-import "../../../components/app/ProjectInfoPage/ListedItems";
-import ListedItems from "../../../components/app/ProjectInfoPage/ListedItems";
-import ProjectActivity from "../../../components/app/ProjectInfoPage/ProjectActivity";
+import ListedItems from "../../../components/app/ProjectInfoPage/ListedItems.js";
+import ProjectActivity from "../../../components/app/ProjectInfoPage/ProjectActivity.js";
 
 const ProjectInfoPage = (props) => {
   return (

@@ -13,7 +13,7 @@ const MainRoute = () => {
     <Router>
       <Switch>
         <Route path="/projectInfo" component={ProjectInfoPage} />
-        <Route path="/chosenType" component={ChooseType} />
+        <Route path="/chooseType" component={ChooseType} />
         <Route path="" component={ExplorePage} />
       </Switch>
     </Router>

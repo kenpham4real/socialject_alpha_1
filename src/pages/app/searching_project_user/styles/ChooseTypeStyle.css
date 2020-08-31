@@ -12,6 +12,7 @@
   color: var(--title);
   border-radius: none;
   vertical-align: middle;
+  font-family: "Inter";
 }
 
 /*General*/
@@ -36,6 +37,7 @@
   height: inherit;
   vertical-align: middle;
 }
+
 /*Card Panel*/
 .card-panel {
   -webkit-transition: -webkit-box-shadow 0.25s;
@@ -74,18 +76,21 @@
   padding-left: 10px;
   padding-right: 10px;
 }
+
 .banner-title {
   overflow-x: hidden;
   font-size: 150%;
   font-weight: bold;
   color: var(--title);
 }
+
 .banner-search-bar {
   margin-left: 20px;
   margin-right: 20px;
   display: inline-block;
   width: 50%;
 }
+
 .banner-user-bar {
   margin-top: 1px;
   padding-top: 5px;
@@ -93,11 +98,13 @@
   float: right;
   display: -webkit-inline-flex;
 }
+
 .banner-user-bar-bottom {
   padding: none;
   float: right;
   display: -webkit-inline-flex;
 }
+
 .icon.avatar {
   margin-top: inherit;
   border-radius: 16px;
@@ -109,15 +116,12 @@
 .language {
   display: inline-block;
 }
-.language-title {
-  margin-left: 50px;
-  margin-bottom: 20px;
-  color: var(--primary);
-  font-size: 300%;
-}
+
+
 .button.language {
   margin-right: 50px;
 }
+
 .card-panel.language {
   padding: 50px;
   padding-left: 100px;
@@ -137,11 +141,13 @@
   display: block;
   background-color: var(--secondary);
 }
+
 .filter-title {
   font-size: 20px;
   margin-top: 15px;
   margin-bottom: 15px;
 }
+
 .button.filter {
   margin-bottom: 5px;
   margin-top: 5px;
@@ -151,70 +157,8 @@
   border-radius: 2px;
   box-shadow: 2px 2px 2px rgb(87, 88, 94);
 }
+
 .icon.filter {
   height: 16px;
   padding: 5px;
-}
-
-/*Project display*/
-.project-container {
-  display: flex;
-  overflow-x: auto;
-  padding-left: 20px;
-}
-.project-title {
-  width: auto;
-  padding-top: 10px;
-  padding-left: 20px;
-  margin-bottom: 1%;
-  font-size: 32px;
-  color: var(--shadow);
-}
-.project-card {
-  cursor: pointer;
-  height: 450px;
-  border-radius: 5px;
-  margin-left: 5px;
-  margin-right: 5px;
-  border: none;
-  text-align: left;
-  box-shadow: 2px 2px 2px rgb(130, 133, 143);
-}
-.icon.project {
-  display: grid;
-  width: 90px;
-  height: 90px;
-  position: relative;
-  object-fit: cover;
-  top: -30px;
-  left: 20px;
-}
-.project-image {
-  width: 300px;
-  height: 200px;
-  object-fit: cover;
-  cursor: pointer;
-}
-.project-text-container {
-  padding-left: 20px;
-}
-.project-text {
-  font-size: 20px;
-  color: var(--shadow);
-}
-.project-text.title {
-  font-size: 32px;
-  color: var(--title);
-}
-.button.project {
-  color: var(--title);
-}
-
-/*Bottom*/
-.bottom-text {
-  font-size: 25px;
-  color: var(--shadow);
-}
-.bottom-text.right {
-  float: right;
 }
