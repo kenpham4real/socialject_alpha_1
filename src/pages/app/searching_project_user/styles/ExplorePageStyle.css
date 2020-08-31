@@ -50,17 +50,18 @@
   border: 1px solid black;
   display: inline-block;
   width: 50px;
-  height:41px ;
+  height:40.9px ;
   margin-left:-1px;
-  /* background-color: green; */
+  background-color: green;
   text-align: center;
-  justify-items: center;
+  /* justify-items: center; */
+ 
 }
 .icon-search {
   width: 30px;
   margin-top:2px;
-  display: inline;
   cursor: pointer;
+  vertical-align: -7px;
 }
 
 .border-area-avatar {
@@ -83,10 +84,12 @@
   margin-top: 10px;
   display: inline-flex;
   background-color: white;
+  justify-items: center;
+  
 }
 
 .avatar {
-  width: 45px;
+  width: 43px;
   height: 40px;
   cursor: pointer;
   border-radius: 50%;
@@ -151,7 +154,7 @@
 
 .projects-image-1 {
   width: 400px;
-  height: 200px;
+  height: 250px;
   object-fit: cover;
   cursor: pointer;
  
@@ -161,7 +164,7 @@
   margin-left: 60px;
   width: 290px;
   height: 30px;
-  margin-top: 90px;
+  margin-top: 50px;
   margin-left:40px;
   text-align: left;
   font-family: normal;
@@ -199,11 +202,11 @@
   margin-left:50px;
   padding:10px;
   margin-bottom: -30px;
-  text-align: center;
+  text-align: left;
   font-family: normal;
   font-style: normal;
   font-weight: normal;
-  font-size: 30px;
+  font-size: 20px;
   line-height: 28px;
   color: #000000;
 }
@@ -241,6 +244,7 @@ display: inline-table;
   border-radius:5px;
   cursor: pointer;
   margin-top: -30px;
+  margin-left: 10px;
 }
 .text-logo-featured{
   text-align: left;

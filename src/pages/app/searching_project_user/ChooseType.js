@@ -89,7 +89,7 @@ const ChooseType = (props) => {
       </div>
       {/*Language*/}
       <div class="card-panel language">
-        <div style={{ color: "silver" }}>Explore>Language</div>
+        <div style={{ color: "silver" }}>Explore Language</div>
         <div class="language-title">Language</div>
         {/*Criteria*/}
         {langData.map((langData) => (
@@ -104,7 +104,7 @@ const ChooseType = (props) => {
         {/*Criteria*/}
         {filterData.map((filterData) => (
           <div class="button filter">
-            <a>{filterData.name}</a>
+            <a onClick={() => props.history.push('/')}>{filterData.name}</a>
             <img
               class="icon filter"
               src="https://static.thenounproject.com/png/551749-200.png"

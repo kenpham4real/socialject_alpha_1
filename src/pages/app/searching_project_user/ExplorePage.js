@@ -66,7 +66,7 @@ const ExplorePage = (props) => {
           <img
             alt="Projects"
             className="projects-image-1"
-            src={require("../../../assets/images/T.jpg")}
+            src={require("../../../assets/images/T.png")}
           />
 
           <p className="projects-type-1">Âm nhạc</p>
