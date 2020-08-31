@@ -1,0 +1,10 @@
+.icon {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.icon:hover {
+    background-color: #c4c4c4;
+}

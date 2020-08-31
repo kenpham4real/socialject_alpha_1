@@ -5,82 +5,49 @@
 }
 
 .navigationBar {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  color: var(--title);
-  display: flexbox;
+  font-family: "Inter";
+  color: #2d2e38;
+  padding: 5px;
   padding-left: 10px;
   padding-right: 10px;
+  display: flexbox;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: white;
+  border: 1px solid var(--secondary);
+}
+
+.navigationBar .banner-title {
+  vertical-align: middle;
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--title);
+
 }
 
 /*General*/
-/*Icon*/
-.navigationBar .icon {
-  width: 32px;
-  padding-left: 1%;
-  padding-right: 1%;
-  vertical-align: -40%;
-  display: inline-block;
-  cursor: pointer;
-}
-.navigationBar .icon:hover {
-  background-color: #c4c4c4;
-}
-
-.navigationBar .search-input {
-  font-size: 20px;
-  background-color: #c4c4c4;
-  border: 1px solid black;
-}
-
 /*Search Input*/
-.search-input-banner {
-  margin: 5px;
-  padding: 5px;
-  font-size: 17px;
-  font-weight: normal;
-  width: 70%;
-  height: max-content;
-  border: 0px solid;
-  border-radius: 0px;
-  background-color: var(--secondary);
-  height: inherit;
-  vertical-align: middle;
+.navigationBar .search-container {
+  display: inline-flexbox;
 }
-/*Specific*/
-/*Page*/
 
-/*top*/
-.navigationBar {
-  display: flexbox;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-.banner-title {
-  overflow-x: hidden;
-  font-size: 150%;
-  font-weight: bold;
-  color: var(--title);
-}
-.banner-search-bar {
-  margin-left: 20px;
-  margin-right: 20px;
-  display: inline-block;
+.navigationBar .search-container .search-input {
+  vertical-align: middle;
+  font-size: 18px;
+  height: 28px;
   width: 50%;
+  background-color: #d4dbe6;
 }
-.banner-user-bar {
-  margin-top: 1px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+
+.navigationBar .user-bar {
+  vertical-align: middle;
   float: right;
   display: -webkit-inline-flex;
 }
-.banner-user-bar-bottom {
-  padding: none;
-  float: right;
-  display: -webkit-inline-flex;
-}
-.icon.avatar {
-  margin-top: inherit;
+
+.navigationBar .user-bar .icon.avatar {
+  vertical-align: middle;
   border-radius: 16px;
   width: 32px;
   object-fit: cover;
