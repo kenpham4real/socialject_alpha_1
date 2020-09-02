@@ -19,11 +19,12 @@
 }
 
 .navigationBar .banner-title {
+  margin-left: 2px;
+  margin-right: 2px;
   vertical-align: middle;
   font-size: 24px;
   font-weight: bold;
   color: var(--title);
-
 }
 
 /*General*/

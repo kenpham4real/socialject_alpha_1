@@ -91,7 +91,7 @@ const ChooseType = (props) => {
       <NavigationBar></NavigationBar>
 
       {/*Slogan Panel*/}
-      <SloganPanel source={imageURL}></SloganPanel>
+      <SloganPanel></SloganPanel>
 
       {/* <FilterBar></FilterBar> */}
 
