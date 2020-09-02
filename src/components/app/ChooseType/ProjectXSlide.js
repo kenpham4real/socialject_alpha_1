@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../../styles/ChooseType/ProjectSlide.css";
 
-function ProjectCard(props) {
+function ProjectXSlide(props) {
   const Data = props.Data;
   const title = props.title;
   return (
@@ -25,4 +25,4 @@ function ProjectCard(props) {
   );
 }
 
-export default ProjectCard;
+export default ProjectXSlide;
