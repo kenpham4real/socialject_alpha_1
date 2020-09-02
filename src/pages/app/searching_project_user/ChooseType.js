@@ -1,9 +1,9 @@
 import React from "react";
 import "./styles/ChooseTypeStyle.css";
-import NavigationBar from "../../../components/app/NavigationBar";
-import CopyrightBar from "../../../components/app/CopyrightBar";
-import SloganPanel from "../../../components/app/ChooseType/SloganPanel";
-import ProjectSlide from "../../../components/app/ChooseType/ProjectSlide";
+import NavigationBar from "../../../components/app/NavigationBar.js";
+import CopyrightBar from "../../../components/app/CopyrightBar.js";
+import SloganPanel from "../../../components/app/ChooseType/SloganPanel.js";
+import ProjectSlide from "../../../components/app/ChooseType/ProjectSlide.js";
 
 {
   /*
