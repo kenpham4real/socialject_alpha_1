@@ -73,8 +73,9 @@ const ChooseType = (props) => {
     <div class="chooseTypePage">
       {/*Navigation Bar*/}
       <NavigationBar></NavigationBar>
-      {/*Topic Panel*/}
-      <SloganPanel source={imageURL}></SloganPanel>
+
+      {/*Slogan Panel*/}
+      <SloganPanel></SloganPanel>
 
       {/*
       <div class="card-panel filter">
