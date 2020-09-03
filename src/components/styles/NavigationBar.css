@@ -16,34 +16,38 @@
   z-index: 1;
   background-color: white;
   border: 1px solid var(--secondary);
+  overflow: hidden;
 }
 
 .navigationBar .banner-title {
+  margin-left: 2px;
+  margin-right: 2px;
   vertical-align: middle;
   font-size: 24px;
   font-weight: bold;
   color: var(--title);
-
 }
 
 /*General*/
 /*Search Input*/
 .navigationBar .search-container {
-  display: inline-flexbox;
+  display: inline-block;
+  width: 70%;
 }
 
 .navigationBar .search-container .search-input {
   vertical-align: middle;
   font-size: 18px;
   height: 28px;
-  width: 50%;
+  width: 80%;
   background-color: #d4dbe6;
 }
 
 .navigationBar .user-bar {
   vertical-align: middle;
+  margin: 2px;
   float: right;
-  display: -webkit-inline-flex;
+  display: inline-flex;
 }
 
 .navigationBar .user-bar .icon.avatar {
