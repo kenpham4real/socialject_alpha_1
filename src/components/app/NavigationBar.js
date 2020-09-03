@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "../styles/NavigationBar.css";
 import IconButton from "./IconButton";
 
@@ -23,9 +23,9 @@ function NavigationBar(props) {
       </a>
       {/*Top right corner*/}
       <a class="user-bar">
-        <img class="icon avatar" src={imageURL} />
+        <img alt="" class="icon avatar" src={imageURL} />
         <a class="banner-title">Username</a>
-        <img
+        <img alt=""
           class="icon"
           src="https://cdn.iconscout.com/icon/free/png-512/down-arrow-16-460295.png"
         />

@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React,  from "react";
 import "../styles/IconButton.css";
 
 function IconButton(props) {
-  return <img class="icon" src={props.source} />;
+  return <img alt="" class="icon" src={props.source} />;
 }
 
 export default IconButton;

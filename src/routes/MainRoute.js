@@ -13,8 +13,8 @@ const MainRoute = () => {
     <Router>
       <Switch>
         <Route path="/projectInfo" component={ProjectInfoPage} />
-        <Route path="/chooseType" component={ChooseType} />
-        <Route path="" component={ExplorePage} />
+        <Route path="" component={ChooseType} />
+        {/* <Route path="" component={ExplorePage} /> */}
       </Switch>
     </Router>
   );
