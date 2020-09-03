@@ -37,7 +37,7 @@ const FinishCreate = (props) => {
                     </div>
 
             <div >
-                <button onClick={()=> props.history.push('/projectInfo')} className="container-finish">
+                <button onClick={()=> props.history.push('/profile')} className="container-finish">
                 
                 <span>Finish</span>
                 
