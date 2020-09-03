@@ -20,29 +20,29 @@ const FinishCreate = (props) => {
                         </div>
 
                     <div className="view-text-input-FinishCreate">
-                        <input className='input-text-FinishCreate'
-                            type='text'
-                            placeholder="Email *">                
-                        </input>
-                        
-                        <input className='input-text-FinishCreate'
-                            type='text'
-                            placeholder="Phone number">                
-                        </input>
+                            <input className='input-text-FinishCreate'
+                                type='text'
+                                placeholder="Email *">                
+                            </input>
+                            
+                            <input className='input-text-FinishCreate'
+                                type='text'
+                                placeholder="Phone number">                
+                            </input>
 
-                        <input className='input-text-FinishCreate'
-                            type='text'
-                            placeholder="Facebook">                
-                        </input>
+                            <input className='input-text-FinishCreate'
+                                type='text'
+                                placeholder="Facebook">                
+                            </input>
                     </div>
 
-            <div >
-                <button onClick={()=> props.history.push('/profile')} className="container-finish">
-                
-                <span>Finish</span>
-                
-                </button>
-            </div>
+                    <div >
+                            <button onClick={()=> props.history.push('/profile')} className="container-finish">
+                            
+                                <span>Finish</span>
+                            
+                            </button>
+                    </div>
                     
             </div>
                 
