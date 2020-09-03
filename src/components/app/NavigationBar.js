@@ -11,9 +11,9 @@ function NavigationBar(props) {
       {/*Menu Icon*/}
       <IconButton source="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/1200px-Hamburger_icon.svg.png"></IconButton>
       {/*Title*/}
-      <a class="banner-title"> SOCIALJECT </a>
+      <a href="www.facebook.com" class="banner-title"> SOCIALJECT </a>
       {/*Search Bar*/}
-      <a class="search-container">
+      <a href="www.facebook.com" class="search-container">
         <input
           class="search-input"
           type="text"
@@ -22,9 +22,9 @@ function NavigationBar(props) {
         <IconButton source="https://img.icons8.com/pastel-glyph/2x/search--v2.png"></IconButton>
       </a>
       {/*Top right corner*/}
-      <a class="user-bar">
+      <a href="www.facebook.com" class="user-bar">
         <img alt="" class="icon avatar" src={imageURL} />
-        <a class="banner-title">Username</a>
+        <a href="www.facebook.com" class="banner-title">Username</a>
         <img alt=""
           class="icon"
           src="https://cdn.iconscout.com/icon/free/png-512/down-arrow-16-460295.png"
