@@ -3,6 +3,7 @@ import NavigationBar from "../../../components/app/NavigationBar.js";
 import "./styles/ProjectInfoPage.css";
 import ListedItems from "../../../components/app/ProjectInfoPage/ListedItems.js";
 import ProjectActivity from "../../../components/app/ProjectInfoPage/ProjectActivity.js";
+import CopyrightBar from "../../../components/app/CopyrightBar.js";
 
 const ProjectInfoPage = (props) => {
   return (
@@ -17,8 +18,8 @@ const ProjectInfoPage = (props) => {
         {/*'generalInfo' division*/}
         <div class="generalInfoComponents">
           <div class="tags">
-            <a>Explore</a> <span>  </span>
-            <a>Language</a> <span>  </span>
+            <a>Explore</a> <span> </span>
+            <a>Language</a> <span> </span>
             <a class="currentTags">Tags</a> <span> </span>
           </div>
           <div class="projectName">Project's Name</div>
@@ -109,7 +110,9 @@ const ProjectInfoPage = (props) => {
           </div>
         </div>
       </div>
-      <div class="footer">footer</div>
+      <div class="footer">
+        <CopyrightBar />
+      </div>
     </div>
   );
 };
