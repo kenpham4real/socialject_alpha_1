@@ -20,8 +20,7 @@ const MainRoute = () => {
       <Switch>
         <Route path="/profile" component={ProfilePage} />
         <Route path="/projectInfo" component={ProjectInfoPage} />
-        <Route path="/chooseType" component={ChooseType} />
-        <Route path="/explorePage" component={ExplorePage} />
+        <Route path="" component={ChooseType} />
         <Route path="/registration" component={Registration}/>
         <Route path="/beautifyProfile" component={BeautifyProfile}/>
         <Route path="/finishCreate" component={FinishCreate}/>

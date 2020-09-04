@@ -81,12 +81,12 @@ const ProjectInfoPage = (props) => {
             <ListedItems />
             <ListedItems />
           </div>
-          <div class="teamContainer">
+          {/* <div class="teamContainer">
             <h1 class="projectHeadings">Team</h1>
             <ListedItems />
             <ListedItems />
             <ListedItems />
-          </div>
+          </div> */}
         </div>
         <div class="rightColumn">
           <div class="aboutContainer">
