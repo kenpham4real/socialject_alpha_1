@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import "../../styles/ChooseType/SloganPanel.css";
 
 function SloganPanel(props) {
   return (
     <div class="slogan">
-      <a style={{ color: "silver" }}>Explore</a>
-      <a style={{ color: "white" }}>{">"}Language</a>
+      <a href="www.facebook.com" style={{ color: "silver" }}>Explore</a>
+      <a href="www.facebook.com" style={{ color: "white" }}>{">"}Language</a>
       <div class="slogan-title">Language</div>
     </div>
   );

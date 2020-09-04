@@ -1,3 +1,4 @@
+
 /*
 *Contributor: Long 19th August 2020
 *Component:
@@ -36,8 +37,9 @@ function NavigationBar(props) {
       {/*Menu Icon*/}
       <img class="icon avatar" src={SJ} />
       {/*Title*/}
-      <a class="banner-title"> SOCIALJECT </a>
+      <a href="www.facebook.com" class="banner-title"> SOCIALJECT </a>
       {/*Search Bar*/}
+
       {/*<SearchBar></SearchBar>*/}
       {/*Top right corner*/}
       <a class="user-bar">
