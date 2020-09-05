@@ -19,10 +19,10 @@ const MainRoute = () => {
     <Router>
       <Switch>
         <Route path="/profile" component={ProfilePage} />
-        <Route path="/projectInfo" component={ProjectInfoPage} />
-        <Route path="" component={ChooseType} />
-        <Route path="/registration" component={Registration}/>
         <Route path="/beautifyProfile" component={BeautifyProfile}/>
+        <Route path="/projectInfo" component={ProjectInfoPage} />
+        <Route path="/" component={ChooseType} />
+        <Route path="/registration" component={Registration}/>
         <Route path="/finishCreate" component={FinishCreate}/>
       </Switch>
     </Router>
