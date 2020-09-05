@@ -3,7 +3,7 @@ import "../styles/CopyrightBar.css";
 
 function CopyrightBar(props) {
   return (
-    <div>
+    <div class="copyright-container">
       {/*Copyright*/}
       <a href="www.facebook.com" class="copyright-text"> Copyrighted by ...</a>
       {/*Top right corner*/}

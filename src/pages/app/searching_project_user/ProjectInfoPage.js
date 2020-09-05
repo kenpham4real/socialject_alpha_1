@@ -3,6 +3,7 @@ import NavigationBar from "../../../components/app/NavigationBar.js";
 import "./styles/ProjectInfoPage.css";
 import ListedItems from "../../../components/app/ProjectInfoPage/ListedItems.js";
 import ProjectActivity from "../../../components/app/ProjectInfoPage/ProjectActivity.js";
+import CopyrightBar from "../../../components/app/CopyrightBar.js";
 
 const ProjectInfoPage = (props) => {
   return (
@@ -17,9 +18,12 @@ const ProjectInfoPage = (props) => {
         {/*'generalInfo' division*/}
         <div class="generalInfoComponents">
           <div class="tags">
-            <a href="">Explore</a> <span>  </span>
-            <a href="">Language</a> <span>  </span>
-            <a href="" class="currentTags">Tags</a> <span> </span>
+            <a href="">Explore</a> <span> </span>
+            <a href="">Language</a> <span> </span>
+            <a href="" class="currentTags">
+              Tags
+            </a>{" "}
+            <span> </span>
           </div>
           <div class="projectName">Project's Name</div>
           <div class="location">Location</div>
@@ -81,12 +85,12 @@ const ProjectInfoPage = (props) => {
             <ListedItems />
             <ListedItems />
           </div>
-          <div class="teamContainer">
+          {/* <div class="teamContainer">
             <h1 class="projectHeadings">Team</h1>
             <ListedItems />
             <ListedItems />
             <ListedItems />
-          </div>
+          </div> */}
         </div>
         <div class="rightColumn">
           <div class="aboutContainer">
@@ -109,7 +113,9 @@ const ProjectInfoPage = (props) => {
           </div>
         </div>
       </div>
-      <div class="footer">footer</div>
+      <div class="footer">
+        <CopyrightBar />
+      </div>
     </div>
   );
 };

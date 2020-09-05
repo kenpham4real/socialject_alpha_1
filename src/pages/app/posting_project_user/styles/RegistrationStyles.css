@@ -1,0 +1,53 @@
+.page{
+    display: grid;
+}
+.container-registration{
+    display: grid;
+    margin-top:50px;
+    margin-left: 100px;
+}
+.my-header-registration{
+    margin-top:50px;
+    font-weight: bold;
+    font-size: 30px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.description-registration{
+    font-size: 20px;
+    margin-top:20px;
+
+}
+.view-text-input-registration{
+    margin-left:50px;
+    margin-right:20px;
+    margin-bottom:20px;
+    margin-top:10px;    
+    
+    display: grid;
+}
+.input-text-registration{
+    margin-left:-50px;
+    margin-bottom:20px;
+    margin-top:10px;
+    margin-right: 30px;
+    height: 50px;
+    font-size:20px;
+    border:2px solid black;
+    border-radius: 5px;
+    width: 330px; 
+}
+.input-text-registration.description{
+    margin-left:-50px;
+    margin-right:30px;
+    margin-bottom:20px;
+    margin-top:20px;
+    text-align: left;
+    top:3px;
+    position: relative;
+    height: 150px;
+}
+
+.container-continue{
+    width:340px;
+    cursor: pointer;
+}

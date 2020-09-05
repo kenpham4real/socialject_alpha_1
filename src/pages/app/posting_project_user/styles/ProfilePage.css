@@ -1,0 +1,109 @@
+/* All the style for Choose Type Page (Screen 03) goes here */
+
+/* colours */
+:root {
+  --primary: #fdfff4;
+  --secondary: #9fa8b6;
+  --shadow: rgb(67, 67, 83);
+  --title: #11131b;
+}
+
+.profilePage {
+  color: var(--title);
+  background-color: var(--secondary);
+  border-radius: none;
+  vertical-align: middle;
+  font-family: "Inter";
+}
+
+/*Component*/
+.profile--title {
+  color: var(--title);
+  font-size: 150%;
+  font-weight: bold;
+  margin: 1%;
+}
+
+.profile-avatar {
+  height: 150px;
+  width: 150px;
+  border-radius: 75px;
+  object-fit: cover;
+}
+
+.profile-button {
+  display: inline-block;
+  /*Size and border*/
+  width: 150px;
+  border-radius: 5px;
+  /*Spacing*/
+  margin: 5px;
+  padding: 5px;
+  /*coloring*/
+  color: var(--title);
+  background-color: var(--secondary);
+  /*text*/
+  text-align: center;
+  font-weight: 500;
+  /*Animation*/
+  cursor: pointer;
+}
+
+/*Container*/
+.profile-name-container {
+  display: inline-flex;
+  /*margin*/
+  margin-bottom: 5%;
+  /*padding*/
+  padding: 20px;
+  padding-left: 5%;
+  padding-right: 5%;
+  /*size*/
+  width: 90%;
+  /*color*/
+  background-color: var(--primary);
+  /*children adjusting*/
+  text-align: justify;
+  vertical-align: middle;
+}
+
+.profile-block-container {
+  display: grid;
+  /*border*/
+  border-radius: 10px;
+  /*margin*/
+  margin-top: 1%;
+  margin-left: 15%;
+  margin-right: 15%;
+  /*padding*/
+  padding: 2%;
+  padding-left: 5%;
+  padding-right: 5%;
+  /*size*/
+  width: 60%;
+  /*color*/
+  background-color: var(--primary);
+  /*text adjusting*/
+  text-align: justify;
+}
+.profile-block-container-small {
+  display: flexbox;
+  /*margin*/
+  margin-left: 2%;
+  margin-right: 2%;
+  /*padding*/
+  padding: none;
+  /*size*/
+  width: 60%;
+  /*color*/
+  background-color: var(--primary);
+  /*text adjusting*/
+  text-align: justify;
+}
+.profile-block-container-smaller {
+  margin: none;
+  margin-top: 1%;
+  width: 20%;
+  color: var(--secondary);
+  overflow-x: hidden;
+}
