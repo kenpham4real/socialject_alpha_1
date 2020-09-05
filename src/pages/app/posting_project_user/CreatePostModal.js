@@ -1,3 +1,9 @@
+/*
+*Contributor: Đạt 4th september 2020
+*Function: Project Registeration (render page for PPU to create their project)
+
+*/
+
 import React, { Component } from "react";
 import "./styles/CreatePostModal.css";
 
