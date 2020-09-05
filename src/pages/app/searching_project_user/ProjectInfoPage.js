@@ -105,7 +105,10 @@ const ProjectInfoPage = (props) => {
             <div class="viewAllButton">View all</div>
           </div>
           <div class="progressContainer">
-            <h1 class="projectHeadings">Progress</h1>
+            <div className="progress-container--header">
+              <h1 class="projectHeadings">Progress</h1>
+              <a className="progress-container-header-addActivityButton" href="/addActivity">Add an activity</a>
+            </div>
             <ProjectActivity />
             <ProjectActivity />
             <ProjectActivity />

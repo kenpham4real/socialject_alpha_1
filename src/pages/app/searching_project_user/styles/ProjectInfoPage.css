@@ -169,6 +169,7 @@ This is CSS file for ProjectInfoPage.js
   letter-spacing: -0.022em;
   padding-bottom: 10px;
   padding-top: 10px;
+  flex: 3;
 }
 /*Left column specific design of each box*/
 
@@ -207,6 +208,16 @@ This is CSS file for ProjectInfoPage.js
 
 .viewAllButton:hover {
   background-color: gray;
+}
+
+.progress-container--header{
+  display: flex;
+  justify-content: start;
+}
+
+.progress-container-header-addActivityButton{
+  flex: 1;
+  margin-top: 10px;
 }
 
 /* RIGHT COLUMN GENERAL DESIGN */
