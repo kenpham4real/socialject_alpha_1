@@ -1,5 +1,9 @@
 /*Bottom*/
 
+.copyright-container {
+  margin-top: 5%;
+}
+
 .copyright-text {
   font-family: "Inter";
   font-size: 25px;
