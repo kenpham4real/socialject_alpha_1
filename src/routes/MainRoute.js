@@ -23,12 +23,13 @@ const MainRoute = () => {
         <Route path="/profile" component={ProfilePage} />
         <Route path="/beautifyProfile" component={BeautifyProfile} />
         <Route path="/projectInfo" component={ProjectInfoPage} />
-        <Route path="/" component={ChooseType} />
         <Route path="/registration" component={Registration} />
         <Route path="/finishCreate" component={FinishCreate} />
         <Route path="/createPostModal" component={CreatePostModal} />
         <Route path="/createPostModal_2" component={CreatePostModal_2} />
         <Route path="/createPostModal_3" component={CreatePostModal_3} />
+        <Route path="/" component={ChooseType} />
+      
       </Switch>
     </Router>
   );
