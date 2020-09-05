@@ -18,9 +18,12 @@ const ProjectInfoPage = (props) => {
         {/*'generalInfo' division*/}
         <div class="generalInfoComponents">
           <div class="tags">
-            <a>Explore</a> <span> </span>
-            <a>Language</a> <span> </span>
-            <a class="currentTags">Tags</a> <span> </span>
+            <a href="">Explore</a> <span> </span>
+            <a href="">Language</a> <span> </span>
+            <a href="" class="currentTags">
+              Tags
+            </a>{" "}
+            <span> </span>
           </div>
           <div class="projectName">Project's Name</div>
           <div class="location">Location</div>
@@ -82,12 +85,12 @@ const ProjectInfoPage = (props) => {
             <ListedItems />
             <ListedItems />
           </div>
-          <div class="teamContainer">
+          {/* <div class="teamContainer">
             <h1 class="projectHeadings">Team</h1>
             <ListedItems />
             <ListedItems />
             <ListedItems />
-          </div>
+          </div> */}
         </div>
         <div class="rightColumn">
           <div class="aboutContainer">

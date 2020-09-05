@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "../../styles/ChooseType/ProjectSlide.css";
 
 function ProjectCard(props) {
@@ -11,8 +11,8 @@ function ProjectCard(props) {
         {/*Render the list*/}
         {Data.map((Data) => (
           <div class="project-card">
-            <img class="project-image" src={Data.url} />
-            <img class="icon project" src={Data.url} />
+            <img alt="" class="project-image" src={Data.url} />
+            <img alt="" class="icon project" src={Data.url} />
             <div class="project-text-container">
               <p class="project-text title"> {Data.name} </p>
               <p class="project-text">Organization</p>
