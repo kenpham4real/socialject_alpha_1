@@ -61,7 +61,7 @@ function OrgHistory(props) {
   );
 }
 
-const profilePage = (props) => {
+const ProfilePage = (props) => {
   return (
     <div class="profilePage">
       {/*Navigation Bar*/}
@@ -83,4 +83,4 @@ const profilePage = (props) => {
   );
 };
 
-export default profilePage;
+export default ProfilePage;

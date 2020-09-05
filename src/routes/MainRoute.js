@@ -25,7 +25,6 @@ const MainRoute = () => {
         <Route path="/" component={ChooseType} />
         <Route path="/registration" component={Registration}/>
         <Route path="/finishCreate" component={FinishCreate}/>
-        <Route path="/profile" component={ProfilePage} />
         
       </Switch>
     </Router>

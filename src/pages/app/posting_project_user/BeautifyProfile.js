@@ -27,33 +27,34 @@ const BeautifyProfile = (props) => {
                 <p className='description-BeautifyFrofile'> Polish your page with additional information </p>
             </div>
             <div className="view-text-input-beautifyProfile">
-                        <Select 
+                <Select 
                     options = {options} 
                     className="select" 
                     placeholder="Location *" 
-                        />
-                        <input 
+                />
+                <input 
                     className='input-text-beautifyProfile'
                     type='text'
                     placeholder="School/University" > 
-                        </input>
+                </input>
                 <div className='avatar-box'>
                     <p className="avatar-text"> Avatar * </p>
                     <img 
-                className="image"
-                alt="Search icon"
-                src={require("../../../assets/images/camera.png")}
+                        className="image"
+                        alt="Search icon"
+                        src={require("../../../assets/images/camera.png")}
                     />
                 </div>
             </div>
 
             
             <div>
-                    <button
-                onClick={()=> props.history.push('/finishCreate')}
-                className="container-continue" >
-                    <span> Next </span>
-                    </button>
+                <button
+                    onClick={()=> props.history.push('/finishCreate')}
+                    className="container-continue" 
+                >
+                <span> Next </span>
+                </button>
             </div>
         </div>
     </div>

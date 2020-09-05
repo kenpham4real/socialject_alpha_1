@@ -17,32 +17,32 @@ const FinishCreate = (props) => {
                 <p className='description-FinishCreate'> Tell people about how to contact your page </p>
             </div>
             <div className="view-text-input-FinishCreate">
-                    <input 
-                className='input-text-FinishCreate'
-                type='text'
-                placeholder="Email * "  >
-                    </input>
+                <input 
+                    className='input-text-FinishCreate'
+                    type='text'
+                    placeholder="Email * "  >
+                </input>
                     
-                    <input 
-                className='input-text-FinishCreate'
-                type='text'
-                placeholder="Phone number" > 
-                    </input>
-                    <input 
-                className='input-text-FinishCreate'
-                type='text'
-                placeholder="Facebook" > 
-                    </input>
+                <input 
+                    className='input-text-FinishCreate'
+                    type='text'
+                    placeholder="Phone number" > 
+                </input>
+                <input 
+                    className='input-text-FinishCreate'
+                    type='text'
+                    placeholder="Facebook" > 
+                </input>
             </div>
 
 
-                    <div>
-                            <button 
+                <div>
+                    <button 
                         onClick={()=> props.history.push('/profile')} 
                         className="container-finish" >                        
-                            <span> Finish </span>                       
-                            </button>
-                    </div>                   
+                        <span> Finish </span>                       
+                    </button>
+                </div>                   
         </div>
     </div>
     );
