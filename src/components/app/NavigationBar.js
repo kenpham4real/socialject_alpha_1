@@ -34,16 +34,16 @@ function NavigationBar(props) {
   return (
     <div class="navigationBar">
       {/*Menu Icon*/}
-      <img class="icon avatar" src={SJ} />
+      <img alt="" class="icon avatar" src={SJ} />
       {/*Title*/}
       <a href="www.facebook.com" class="banner-title"> SOCIALJECT </a>
       {/*Search Bar*/}
       {/*<SearchBar></SearchBar>*/}
       {/*Top right corner*/}
       <a class="user-bar">
-        <img class="icon avatar" src={SJ} />
+        <img alt="" class="icon avatar" src={SJ} />
         <a class="banner-title">Username</a>
-        <img class="icon" src={arrow} />
+        <img alt="" class="icon" src={arrow} />
       </a>
     </div>
   );

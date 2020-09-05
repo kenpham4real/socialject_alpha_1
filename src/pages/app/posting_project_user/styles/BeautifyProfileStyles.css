@@ -45,7 +45,8 @@
     border-radius: 5px;
     height: 200px;
     width:335px;
-    margin-top:20px
+    margin-top:20px;
+    margin-bottom:20px;
 }
 .avatar-text{
     font-weight: bold;
