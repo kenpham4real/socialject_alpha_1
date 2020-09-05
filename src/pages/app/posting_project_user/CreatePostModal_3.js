@@ -7,7 +7,7 @@
 import React, { Component } from "react";
 import "./styles/CreatePostModal_3.css";
 
-const CreatePostModal = (props) => {
+const CreatePostModal_3 = (props) => {
   return (
     <div id="createPostModal_3">
       <h1>Bring it to everyone</h1>
@@ -47,4 +47,4 @@ const CreatePostModal = (props) => {
   );
 };
 
-export default CreatePostModal;
+export default CreatePostModal_3;
