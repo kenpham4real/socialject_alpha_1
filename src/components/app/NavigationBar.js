@@ -18,9 +18,9 @@ import arrow from "../../assets/images/arrow.png";
 
 function SearchBar(props) {
   return (
-    <a class="search-container">
+    <a className="search-container">
       <input
-        class="search-input"
+        className="search-input"
         type="text"
         placeholder="Search something..."
       ></input>
@@ -32,19 +32,19 @@ function SearchBar(props) {
 //Main
 function NavigationBar(props) {
   return (
-    <div class="navigationBar">
+    <div className="navigationBar">
       {/*Menu Icon*/}
-      <img alt="" class="icon avatar" src={SJ} />
+      <img alt="" className="icon avatar" src={SJ} />
       {/*Title*/}
-      <a href="www.facebook.com" class="banner-title"> SOCIALJECT </a>
+      <a href="www.facebook.com" className="banner-title"> SOCIALJECT </a>
       {/*Search Bar*/}
       {/*<SearchBar></SearchBar>*/}
       {/*Top right corner*/}
-      <a class="user-bar">
-        <img alt="" class="icon avatar" src={SJ} />
-        <a class="banner-title">Username</a>
-        <img alt="" class="icon" src={arrow} />
-      </a>
+      <div className="user-bar">
+        <img alt="" className="icon avatar" src={SJ} />
+        <a className="banner-title">Username</a>
+        <img alt="" className="icon" src={arrow} />
+      </div>
     </div>
   );
 }

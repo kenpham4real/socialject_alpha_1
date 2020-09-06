@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import ReduxThunk from 'redux-thunk';
 
 // This reducer is just an example. Take a look at the guide in the store/reducers/guide.doc
-import { projectReducer } from "./store/reducers/posting-project-user/project/example";
+import { projectReducer } from "./store/reducers/posting-project-user/project/project";
 
 const rootReducer = combineReducers({
   // An example

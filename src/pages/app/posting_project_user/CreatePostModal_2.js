@@ -12,10 +12,10 @@ const CreatePostModal_2 = (props) => {
     <div id="createPostModal_2">
       <h1>Recruiting your Members</h1>
       <p>Create a form with simple questions for your applicants</p>
-      <div class="addQuestionBox">
+      <div className="addQuestionBox">
         <div>
           Question
-          <div class="addQuestionButton">+</div>
+          <div className="addQuestionButton">+</div>
         </div>
 
         <ul>

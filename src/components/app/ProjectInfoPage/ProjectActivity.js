@@ -1,23 +1,25 @@
-import React, { Component } from "react";
+import React from "react";
 import "../../styles/ProjectInfoPage/ProjectActivity.css";
-class ProjectActivity extends Component {
-  render() {
+
+// This component is used for both Project Timeline and Activity timeline
+// Be careful to use to avoid confusion
+
+
+// Testing static data
+// This data will be fetched from the database when the PPU enters the profile page
+
+const ProjectActivity = props => {
     return (
-      <div class="projectActivity">
-        <div class="activityPicture"></div>
-        <div class="activityInfo">
-          <div class="activityName"> Name of activity</div>
-          <div class="activityTime">Oct 13 - Prensent - 11 months</div>
-          <div class="activityLocation">Location</div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-            auctor, diam in interdum semper, lacus odio tincidunt velit, id
-            luctus mauris lorem tincidunt nisl....
-          </p>
+      <div className="projectActivity">
+        <div className="activityPicture">{props.project_activity_avatar}</div>
+        <div className="activityInfo">
+          <div className="activityName">{props.project_activity_name}</div>
+          <div className="activityTime">{props.project_activity_date}</div>
+          <div className="activityLocation">{props.project_activity_location}</div>
+          <p className="activityDescription">{props.project_activity_description}</p>
         </div>
       </div>
     );
-  }
 }
 
 export default ProjectActivity;
