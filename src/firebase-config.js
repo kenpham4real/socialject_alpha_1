@@ -8,15 +8,15 @@ import firebase from 'firebase';
 
 // Configuration 
 const firebaseConfig = {
-    apiKey: "AIzaSyDUW6GK7F9-jQsiAyI811uIcM2yggKahAI",
-    authDomain: "socialject.firebaseapp.com",
-    databaseURL: "https://socialject.firebaseio.com",
-    projectId: "socialject",
-    storageBucket: "socialject.appspot.com",
-    messagingSenderId: "85105407605",
-    appId: "1:85105407605:web:82a44961b0d41c48c12a3c",
-    measurementId: "G-N0ZN9TC8MX"
-};
+    apiKey: "AIzaSyANefACmNzpTWpVHDyeSCtvgrRNFseCMxE",
+    authDomain: "socialject-alpha-1.firebaseapp.com",
+    databaseURL: "https://socialject-alpha-1.firebaseio.com",
+    projectId: "socialject-alpha-1",
+    storageBucket: "socialject-alpha-1.appspot.com",
+    messagingSenderId: "80276637489",
+    appId: "1:80276637489:web:79f9cd422d86417a6bd210",
+    measurementId: "G-K9MHRFQSPZ"
+}
 
 // Initialize Firebase
 const firebaseApp = firebase.initializeApp(firebaseConfig);
