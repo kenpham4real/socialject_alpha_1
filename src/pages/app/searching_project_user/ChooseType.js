@@ -68,7 +68,7 @@ const progressData = [
 
 const ChooseType = (props) => {
   return (
-    <div class="chooseTypePage">
+    <div className="chooseTypePage">
       {/*Navigation Bar*/}
       <NavigationBar></NavigationBar>
 
@@ -76,11 +76,11 @@ const ChooseType = (props) => {
       <SloganPanel></SloganPanel>
 
       {/*
-      <div class="card-panel filter">
-        <a class="filter-title">Filter by: </a>
+      <div className="card-panel filter">
+        <a className="filter-title">Filter by: </a>
         
         {filterData.map((filterData) => (
-          <div class="button filter">
+          <div className="button filter">
             <a>{filterData.name}</a>
             <IconButton source="https://static.thenounproject.com/png/551749-200.png"></IconButton>
           </div>

@@ -1,3 +1,9 @@
+
+// Contributor: Ken Sep 6th 2020
+// Purpose: 
+// => Setting firebase configuration
+
+// NPM package
 import firebase from 'firebase';
 
 // Configuration 
@@ -15,7 +21,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 
-// Export the necessary packages from firebase
 export const firebase_db = firebaseApp.firestore();
-export const firebase_auth = firebase.auth();
-export const firebase_storage = firebase.storage();
+export const firebase_storage = firebaseApp.storage();
+export const firebase_auth = firebaseApp.auth();

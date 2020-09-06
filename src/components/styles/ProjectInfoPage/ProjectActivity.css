@@ -21,9 +21,9 @@
   font-weight: bold;
   font-size: 13px;
   letter-spacing: -0.022em;
+  color: black;
 }
-.activityTime,
-.activityLocation {
+.activityTime, .activityLocation {
   font-style: normal;
   font-weight: normal;
   font-size: 13px;
@@ -31,4 +31,8 @@
   letter-spacing: -0.022em;
 
   color: #848484;
+}
+
+.activityDescription{
+  color: black;
 }
