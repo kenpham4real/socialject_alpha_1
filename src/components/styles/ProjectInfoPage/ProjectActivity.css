@@ -1,15 +1,19 @@
 .projectActivity {
   display: flex;
+  margin-top: 20px;
 }
 .activityInfo {
-  padding-left: 29px;
+  flex: 7;
+  margin-left: 29px;
+  margin-right: 29px;
 }
 .activityPicture {
   height: 52px;
-  width: 51.39px;
+  width: 70px;
   border: 1px solid black;
   box-sizing: border-box;
   border-radius: 3px;
+  flex: 1;
 }
 
 .activityName {
