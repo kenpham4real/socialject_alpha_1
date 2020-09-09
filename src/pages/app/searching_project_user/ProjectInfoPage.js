@@ -1,3 +1,15 @@
+/**
+ * Contributors: Đạt, Ken
+ * Main Component: 
+ * ProjectInfoPage{
+ *  _loadProjectst() => Fetch the projects from Firestore
+ *  _project_tags() => Render the tag of the project
+ *  _organizationInfo() => Render the info of organization, including name, avatar and the follow button
+ *  _project_apply_button() => Render the apply button for the project
+ *  _
+ * }
+ */
+
 import React, { useEffect, useCallback } from "react";
 import {useDispatch, useSelector} from 'react-redux'
 
@@ -19,15 +31,21 @@ const ProjectInfoPage = (props) => {
   // Retrieve the projects state from the reducer
   // state.projectReducer --> From App.js
   // .projects --> From reducer
+  // Global state: projects
   const projectData = useSelector(state => state.projectReducer.projects);
 
   // useDispatch() from react-redux
   const dispatch = useDispatch()
 
-  // A callback to fetch projects
+  /**
+   * @summary A callback to fetch projects
+   * @param {void}
+   * @returns {function} @callback
+   * @author Ken Pham
+   */
   const _loadProjects = useCallback( async () => {
     try {
-      dispatch(projectActions.fetchProject_recruitInfo_ppu())
+      dispatch(projectActions._fetchProject_recruitInfo_ppu())
 
     } catch (error) {
       console.log('error', error)
@@ -41,7 +59,13 @@ const ProjectInfoPage = (props) => {
   }, [dispatch, _loadProjects])
 
 
-  // Render the tags of the project
+  /********************************* Small UI components *********************************/ 
+  /**
+   * @summary Render the tags of the project
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
   const _project_tags = () => {
     return(
       <div className="tags">
@@ -55,7 +79,12 @@ const ProjectInfoPage = (props) => {
     )
   }
   
-  // Render the info of organization, including name, avatar and the follow button
+  /**
+   * @summary Render the info of organization, including name, avatar and the follow button
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
   const _organization_info = () => {
     return(
       <div className="organizationNameandPicture">
@@ -70,7 +99,12 @@ const ProjectInfoPage = (props) => {
     )
   }
 
-  // Render the apply button for the project
+  /**
+   * @summary Render the apply button for the project
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
   const _project_apply_button = () => {
     return(
       <div className="applyButton">
@@ -80,7 +114,12 @@ const ProjectInfoPage = (props) => {
     )
   }
 
-  // Render the avatar of the project
+  /**
+   * @summary Render the avatar of the project
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
   const _project_avatar = () => {
     return(
       <div>
@@ -93,7 +132,12 @@ const ProjectInfoPage = (props) => {
     )
   }
 
-  // Render the showing-joined-user-number div
+  /**
+   * @summary Render the showing-joined-user-number div
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
   const _project_joined_users = () => {
     return(
       <div class="joinedUsers">
@@ -102,7 +146,12 @@ const ProjectInfoPage = (props) => {
     )
   }
   
-  // Render the held-by section of the project
+  /**
+   * @summary Render the held-by section of the project
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
   const _project_held_by_section = () => {
     return(
       <div className="heldByContainer">
@@ -124,7 +173,12 @@ const ProjectInfoPage = (props) => {
     )
   }
 
-  // Render the benefits section
+  /**
+   * @summary Render the benefits section
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
   const _project_benefit_section = () => {
     return(
       <div className="benefitContainer">
@@ -136,7 +190,12 @@ const ProjectInfoPage = (props) => {
     )
   }
 
-  // Render the requirements section
+  /**
+   * @summary Render the requirements section
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
   const _project_requirement_section = () => {
     return(
       <div className="requirementsContaner">
@@ -148,7 +207,12 @@ const ProjectInfoPage = (props) => {
     )
   }
 
-  // Render the about section of the project
+  /**
+   * @summary Render the about section of the project
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
   const _project_about_section = () => {
     return(
       <div className="aboutContainer">
@@ -159,7 +223,12 @@ const ProjectInfoPage = (props) => {
     )
   }
 
-  // Render the progress section of the project
+  /**
+   * @summary Render the progress section of the project
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
   const _project_progress_section = () => {
     return(
       <div className="progressContainer">
@@ -175,6 +244,7 @@ const ProjectInfoPage = (props) => {
     )
   }
 
+  /********************************* MAIN Component: ProjectInfoPage *********************************/ 
   return (
     <div className="projectInfoPage">
       <div>
