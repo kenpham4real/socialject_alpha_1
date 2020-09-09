@@ -11,7 +11,7 @@
  */
 
 import React, { useEffect, useCallback } from "react";
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux';
 
 // Styles
 import "./styles/ProjectInfoPage.css";
@@ -24,6 +24,7 @@ import CopyrightBar from "../../../components/app/CopyrightBar.js";
 
 // Functions
 import * as projectActions from "../../../store/actions/posting-project-user/project/project.js";
+import * as activityActions from '../../../store/actions/posting-project-user/activity/activity';
 
 
 const ProjectInfoPage = (props) => {
@@ -32,7 +33,8 @@ const ProjectInfoPage = (props) => {
   // state.projectReducer --> From App.js
   // .projects --> From reducer
   // Global state: projects
-  const projectData = useSelector(state => state.projectReducer.projects);
+  const projects_recruit_info = useSelector(state => state.projectReducer.projects_recruit_info);
+  const activities = useSelector(state => state.activityReducer.activities);
 
   // useDispatch() from react-redux
   const dispatch = useDispatch()
@@ -52,11 +54,27 @@ const ProjectInfoPage = (props) => {
     }
   }, [dispatch]) 
 
+
+  const _loadProjectActivity = useCallback(async () => {
+    try {
+      dispatch(activityActions._fetchProjectActivity_ppu())
+    } catch (error) {
+      console.log('error', error)
+    }
+  }, [dispatch])
+
+  useEffect(() => {
+    _loadProjectActivity()
+    .then(() => console.log('activities loaded successfully'));
+  }, [dispatch, _loadProjectActivity])
+
   // Fetch projects when PPU enters the page
   useEffect(() => {
     _loadProjects()
     .then(() => console.log('projects loaded successfully'))
   }, [dispatch, _loadProjects])
+
+  console.log('fetched projects', projects_recruit_info)
 
 
   /********************************* Small UI components *********************************/ 
@@ -109,7 +127,7 @@ const ProjectInfoPage = (props) => {
     return(
       <div className="applyButton">
         <div className="applyNow">Apply Now</div>
-        <div className="dueDay">Ends {projectData.deadline}</div>
+        <div className="dueDay">Ends some day</div>
       </div>
     )
   }
@@ -140,7 +158,7 @@ const ProjectInfoPage = (props) => {
    */
   const _project_joined_users = () => {
     return(
-      <div class="joinedUsers">
+      <div className="joinedUsers">
         <span>100, 000</span> has joined
       </div>
     )
@@ -183,9 +201,13 @@ const ProjectInfoPage = (props) => {
     return(
       <div className="benefitContainer">
         <h1 className="projectHeadings">Benefit</h1>
-        <ListedItems />
-        <ListedItems />
-        <ListedItems />
+        <ul>
+          {projects_recruit_info.benefits.map(benefit => (
+            <ListedItems
+              title={benefit}
+            />
+          ))}
+        </ul>
       </div>
     )
   }
@@ -198,11 +220,13 @@ const ProjectInfoPage = (props) => {
    */
   const _project_requirement_section = () => {
     return(
-      <div className="requirementsContaner">
+      <div className="requirementContaner">
         <h1 className="projectHeadings">Requirements</h1>
-        <ListedItems />
-        <ListedItems />
-        <ListedItems />
+        {projects_recruit_info.requirements.map(requirement => (
+          <ListedItems
+            title={requirement}
+          />
+        ))}
       </div>
     )
   }
@@ -217,11 +241,30 @@ const ProjectInfoPage = (props) => {
     return(
       <div className="aboutContainer">
         <h1 className="projectHeadings">About</h1>
-        <div>{projectData.description}</div>
+        <div>Best project ever</div>
         <div className="viewAllButton">View all</div>
       </div>
     )
   }
+
+  /**
+   * @summary Render the activities
+   * @param {void}
+   * @returns JSX 
+   * @author Ken Pham
+   */
+  const _project_activity_item = activities.map((activity) => {
+    return(
+        <ProjectActivity
+          key={activity.activityId}
+          project_activity_avatar={null}
+          project_activity_name={activity.activityName}
+          project_activity_date={activity.createdAt?.seconds == true ? activity.createdAt.seconds : activity.createdAt}
+          project_activity_location={activity.activityLocation}
+          project_activity_description={activity.activityDescription}
+        />
+    )
+  })
 
   /**
    * @summary Render the progress section of the project
@@ -236,9 +279,9 @@ const ProjectInfoPage = (props) => {
           <h1 className="projectHeadings">Progress</h1>
           <a className="progress-container-header-addActivityButton" href="/addActivity">Add an activity</a>
         </div>
-        <ProjectActivity />
-        <ProjectActivity />
-        <ProjectActivity />
+        <ul className="progress-container-activity">
+          <a>{_project_activity_item}</a>
+        </ul>
         <div className="viewAllButton">View all</div>
       </div>
     )
@@ -257,8 +300,8 @@ const ProjectInfoPage = (props) => {
         {/*'generalInfo' division*/}
         <div className="generalInfoComponents">
           {_project_tags()}
-          <div className="projectName">{projectData.projectName}</div>
-          <div className="location">{projectData.projectLocation}</div>
+          <div className="projectName">SocialJect_1</div>
+          <div className="location">Home</div>
           {_organization_info()}
 
           {_project_apply_button()}
