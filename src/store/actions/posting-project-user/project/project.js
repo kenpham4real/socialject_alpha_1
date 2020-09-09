@@ -13,7 +13,7 @@ export const ADD_ACTIVITY = "ADD_ACTIVITY";
 /******************************** ACTIONS ********************************/
 
 /**
- * @summary Fetch the details of the project (recruit-info)
+ * @summary Fetch the basic info of the project (recruit-info)
  * @param {void}
  * @returns @async @function
  * @author Ken Pham
@@ -56,7 +56,21 @@ export const _fetchProject_basic_info_ppu = () => {
     }
 }
 
+/**
+ * @summary Fetch the detailed (benefits, requirements) info of the project
+ * @param {void}
+ * @returns {void} @async @function
+ * @author Ken Pham
+ */
 export const _fetchProject_recruit_info_ppu = () => {
+
+    /**
+     * @summary Fetch the detailed (benefits, requirements) info of the project then dispatch the changes to reducer
+     * @param dispatch
+     * @param getState
+     * @returns {void} 
+     * @author Ken Pham
+     */
     return async (dispatch, getState) => {
         let recruitInfo;
         try {
@@ -74,6 +88,10 @@ export const _fetchProject_recruit_info_ppu = () => {
 
             console.log('recruit info of project loaded successfully', recruitInfo);
 
+            /**
+             * @description This is called Destructuring in JS
+             * @tutorial {https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment}
+             */
             const {benefits, requirements} = recruitInfo
 
             dispatch({
