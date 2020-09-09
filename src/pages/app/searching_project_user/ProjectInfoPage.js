@@ -45,7 +45,7 @@ const ProjectInfoPage = (props) => {
    */
   const _loadProjects = useCallback( async () => {
     try {
-      dispatch(projectActions._fetchProject_recruitInfo_ppu())
+      dispatch(projectActions._fetchProject_recruit_info_ppu())
 
     } catch (error) {
       console.log('error', error)
