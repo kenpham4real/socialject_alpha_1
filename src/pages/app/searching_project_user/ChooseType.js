@@ -30,6 +30,13 @@ import IconButton from "../../../components/app/IconButton.js";
 import SloganPanel from "../../../components/app/ChooseType/SloganPanel.js";
 import ProjectXSlide from "../../../components/app/ChooseType/ProjectXSlide.js";
 
+/*
+const langData = [
+  { name: "Engrisk" },
+  { name: "Vietnamese" },
+  { name: "Spanish" },
+];
+*/
 const imageURL =
   "https://c4.wallpaperflare.com/wallpaper/963/733/213/anime-girls-ghost-blade-wlop-wallpaper-preview.jpg";
 
@@ -86,14 +93,14 @@ const projectData = [
 
 const ChooseType = (props) => {
   return (
-    <div class="chooseTypePage">
+    <div className="chooseTypePage">
       {/*Navigation Bar*/}
       <NavigationBar></NavigationBar>
 
       {/*Slogan Panel*/}
       <SloganPanel></SloganPanel>
 
-      {/* <FilterBar></FilterBar> */}
+      {/*Filter (NA now)*/}
 
       {/*Projects*/}
       <ProjectXSlide Data={projectData} title="Charity"></ProjectXSlide>

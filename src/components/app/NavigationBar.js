@@ -14,13 +14,13 @@ import React, { Component } from "react";
 import "../styles/NavigationBar.css";
 import IconButton from "./IconButton";
 import SJ from "../../assets/images/SJ.png";
+import arrow from "../../assets/images/arrow.png";
 
-//Search Bar
 function SearchBar(props) {
   return (
-    <a class="search-container">
+    <a className="search-container">
       <input
-        class="search-input"
+        className="search-input"
         type="text"
         placeholder="Search something..."
       ></input>
@@ -32,20 +32,22 @@ function SearchBar(props) {
 //Main
 function NavigationBar(props) {
   return (
-    <div class="navigationBar">
+    <div className="navigationBar">
       {/*Menu Icon*/}
-      <img class="icon avatar" src={SJ} />
+      <img alt="" className="icon avatar" src={SJ} />
       {/*Title*/}
-      <a class="banner-title">SOCIALJECT</a>
-      {/*Top right corner*/}
-      <a class="user-bar">
-        <img class="icon avatar" src={SJ} />
-        <a class="banner-title"> Username</a>
-        <img
-          class="icon"
-          src="https://cdn.iconscout.com/icon/free/png-512/down-arrow-16-460295.png"
-        />
+      <a href="www.facebook.com" className="banner-title">
+        {" "}
+        SOCIALJECT{" "}
       </a>
+      {/*Search Bar*/}
+      {/*<SearchBar></SearchBar>*/}
+      {/*Top right corner*/}
+      <div className="user-bar">
+        <img alt="" className="icon avatar" src={SJ} />
+        <a className="banner-title">Username</a>
+        <img alt="" className="icon" src={arrow} />
+      </div>
     </div>
   );
 }

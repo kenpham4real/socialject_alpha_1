@@ -1,0 +1,83 @@
+#createPostModal_3 {
+  display: grid;
+  padding-top: 10vh;
+  grid-template-columns: minmax(auto, 94px) 92%;
+  grid-auto-rows: minmax(max-content, 59px);
+  height: 100vh;
+  background-color: #f4f4f4;
+  font-family: Helvetica, Arial, sans-serif;
+}
+#createPostModal_3 > * {
+  grid-column-start: 2;
+}
+#createPostModal_3 > h1 {
+  font-size: 20px;
+  letter-spacing: -0.022em;
+  color: #000000;
+}
+
+#createPostModal_3 > p {
+  grid-column-start: 2;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  max-width: 328px;
+  /* or 167% */
+
+  letter-spacing: -0.022em;
+
+  color: #929292;
+}
+
+#createPostModal_3 .modalContent > div {
+  border: 2px solid black;
+  max-width: 328px;
+  margin-top: 36px;
+}
+
+#createPostModal_3 > button {
+  background-color: #c4c4c4;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 3px;
+  max-width: 328px;
+  margin-top: 36px;
+}
+#createPostModal_3 .addBenefitBox {
+  max-width: 328px;
+
+  background-color: #c4c4c4;
+  border: 1px solid #6d6d6d;
+  box-sizing: border-box;
+  border-radius: 3px;
+  padding-bottom: 46px;
+  margin-bottom: 32px;
+}
+#createPostModal_3 .addBenefitBox > div {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+#createPostModal_3 .addBenefitButton {
+  margin: 8px;
+}
+
+#createPostModal_3 .addBenefitBox li input {
+  width: 80%;
+}
+#createPostModal_3 .addBenefitBox li {
+  margin-bottom: 10px;
+}
+
+#createPostModal_3 .avatarBox {
+  max-width: 328px;
+  height: 142px;
+  background-color: #c4c4c4;
+  border: 1px solid #6d6d6d;
+  box-sizing: border-box;
+  border-radius: 3px;
+  padding-bottom: 46px;
+  margin-bottom: 32px;
+}

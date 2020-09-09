@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "../../styles/ChooseType/ProjectSlide.css";
 
 function ProjectCard(props) {
@@ -6,17 +6,17 @@ function ProjectCard(props) {
   const title = props.title;
   return (
     <div>
-      <div class="project-title">{title}</div>
-      <div class="project-slider-vertical">
+      <div className="project-title">{title}</div>
+      <div className="project-container">
         {/*Render the list*/}
         {Data.map((Data) => (
-          <div class="project-card">
-            <img class="project-image" src={Data.url} />
-            <img class="icon project" src={Data.url} />
-            <div class="project-text-container">
-              <p class="project-text title"> {Data.name} </p>
-              <p class="project-text">Organization</p>
-              <p class="project-text">Deadline: 6/9/1969</p>
+          <div className="project-card">
+            <img alt="" className="project-image" src={Data.url} />
+            <img alt="" className="icon project" src={Data.url} />
+            <div className="project-text-container">
+              <p className="project-text title"> {Data.name} </p>
+              <p className="project-text">Organization</p>
+              <p className="project-text">Deadline: 6/9/1969</p>
             </div>
           </div>
         ))}

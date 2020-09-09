@@ -1,0 +1,66 @@
+#createPostModal_2 {
+  display: grid;
+  padding-top: 10vh;
+  grid-template-columns: minmax(auto, 94px) 92%;
+  grid-auto-rows: minmax(max-content, 59px);
+  height: 100vh;
+  background-color: #f4f4f4;
+  font-family: Helvetica, Arial, sans-serif;
+}
+#createPostModal_2 > * {
+  grid-column-start: 2;
+}
+#createPostModal_2 > h1 {
+  font-size: 20px;
+  letter-spacing: -0.022em;
+  color: #000000;
+}
+
+#createPostModal_2 > p {
+  grid-column-start: 2;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  max-width: 328px;
+  /* or 167% */
+
+  letter-spacing: -0.022em;
+
+  color: #929292;
+}
+
+#createPostModal_2 .modalContent > div {
+  border: 2px solid black;
+  max-width: 328px;
+  margin-top: 36px;
+}
+
+#createPostModal_2 > button {
+  background-color: #c4c4c4;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 3px;
+  max-width: 328px;
+  margin-top: 36px;
+}
+#createPostModal_2 .addQuestionBox {
+  max-width: 328px;
+
+  background-color: #c4c4c4;
+  border: 1px solid #6d6d6d;
+  box-sizing: border-box;
+  border-radius: 3px;
+  padding-bottom: 46px;
+}
+#createPostModal_2 .addQuestionBox > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+#createPostModal_2 .addQuestionButton {
+  margin: 8px;
+}
+
+#createPostModal_2 .addQuestionBox li input {
+  width: 80%;
+}
