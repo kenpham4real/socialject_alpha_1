@@ -60,15 +60,19 @@ function OrgHistory(props) {
 
   // This is a testing array of KEYS
   // testing_project_id is a testing key which is imported from constants folder
-  const project_activity_ids = [`${testing_project_id}`,2,3,4,5]
+  const project_ids = [`${testing_project_id}`,2,3,4,5]
 
-  // Render the list of projects, each of which MUST have a UNIQUE KEY
-  // The keys are extracted from project_activity_ids
-  const project_activity_item = project_activity_ids.map((project_activity_id) => {
+  /**
+   * @summary Render the list of projects, each of which MUST have a UNIQUE KEY. The keys are extracted from project_activity_ids
+   * @param {string[]} project_id
+   * @returns JSX Components
+   * @author Ken Pham, Long Avenger
+   */
+  const project_item = project_ids.map((project_id) => {
     return(
       <li>
         <ProjectActivity
-          key={project_activity_id}
+          key={project_id}
           project_activity_avatar={null}
           project_activity_name="Name of project/activity"
           project_activity_date={new Date().toUTCString()}
@@ -89,7 +93,7 @@ function OrgHistory(props) {
             href="/projectInfo/project_1" 
             onClick={() => props.history.push('/projectInfo/project_1')}
           >
-            {project_activity_item}
+            {project_item()}
           </a>
         </ul>
       </div>
