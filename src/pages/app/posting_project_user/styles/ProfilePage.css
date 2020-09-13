@@ -45,6 +45,7 @@
   display: inline-block;
   /*Size and border*/
   width: 150px;
+  border: none;
   border-radius: 5px;
   /*Spacing*/
   margin: 5px;
@@ -53,10 +54,21 @@
   color: var(--title);
   background-color: var(--secondary);
   /*text*/
+  font-family: "Inter";
+  font-size: 16px;
   text-align: center;
+  text-decoration: none;
   font-weight: 500;
   /*Animation*/
   cursor: pointer;
+}
+
+.profile-button:active {
+  opacity: 0.5;
+}
+.profile-button:hover {
+  color: var(--primary);
+  background-color: rgb(87, 87, 121);
 }
 
 /*Container*/
@@ -96,6 +108,7 @@
   /*text adjusting*/
   text-align: justify;
 }
+
 .profile-block-container-small {
   display: flexbox;
   /*margin*/
@@ -110,6 +123,7 @@
   /*text adjusting*/
   text-align: justify;
 }
+
 .profile-block-container-smaller {
   margin: none;
   margin-top: 1%;
