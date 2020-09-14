@@ -22,6 +22,7 @@
 
 import React from "react";
 import "./styles/ChooseTypeStyle.css";
+import { Link } from "react-router-dom";
 //General
 import NavigationBar from "../../../components/app/NavigationBar.js";
 import CopyrightBar from "../../../components/app/CopyrightBar.js";

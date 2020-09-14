@@ -41,6 +41,11 @@
   object-fit: cover;
 }
 
+.profile-link {
+  color: var(--title);
+  text-decoration: none;
+}
+
 .profile-button {
   display: inline-block;
   /*Size and border*/

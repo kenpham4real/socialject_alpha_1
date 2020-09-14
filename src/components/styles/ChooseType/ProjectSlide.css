@@ -1,4 +1,8 @@
 /*Project display*/
+.project-link {
+  text-decoration: none;
+}
+
 .project-card {
   cursor: pointer;
   height: 450px;

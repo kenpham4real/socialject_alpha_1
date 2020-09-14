@@ -21,6 +21,6 @@ export const profileReducer = (state = initialState, action) => {
         profileKey: action.payload,
       };
     default:
-      return { profileData: action.type, profileKey: action.type };
+      return { profileData: action.type, profileKey: undefined };
   }
 };

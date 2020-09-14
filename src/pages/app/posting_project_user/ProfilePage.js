@@ -10,8 +10,9 @@
 //
 
 //Initial stuff
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 // Styles
 import "./styles/ProfilePage.css";
@@ -42,7 +43,11 @@ function OrgName(props) {
           {props.location} / {props.category}
         </div>
         <div>{props.description}</div>
-        <button className="profile-button">Add a project</button>
+        <button className="profile-button">
+          <Link className="profile-link" to="/createPostModal">
+            Add a project
+          </Link>
+        </button>
       </a>
       <a className="profile-block-container-smaller">
         <div>Email: chillisaucery@gmail.com</div>
@@ -56,7 +61,7 @@ function OrgVision(props) {
   return (
     <div className="profile-block-container">
       <div className="profile--title">Our vision</div>
-      <p>{loremText}</p>
+      <p>{props.description}</p>
     </div>
   );
 }
@@ -64,7 +69,7 @@ function OrgVision(props) {
 function OrgHistory(props) {
   // This is a testing array of KEYS
   // testing_project_id is a testing key which is imported from constants folder
-  const project_activity_ids = ["id1", "id2", "id3", "id4", "id5"];
+  const project_activity_ids = ["id1", "id2", "id3", "id4", "id5", "id6"];
 
   // Render the list of projects, each of which MUST have a UNIQUE KEY
   // The keys are extracted from project_activity_ids
@@ -75,10 +80,10 @@ function OrgHistory(props) {
           <ProjectActivity
             project_key={project_activity_id}
             project_activity_avatar={null}
-            project_activity_name="Name of project/activity"
+            project_activity_name={props.name}
             project_activity_date={new Date().toUTCString()}
             project_activity_location="Ho Chi Minh"
-            project_activity_description={loremText}
+            project_activity_description={props.description}
           />
         </li>
       );
@@ -104,20 +109,39 @@ function OrgHistory(props) {
 }
 
 //The code to fetch data lies below
-function ProfilePage(props) {
-  //Fetchdata once user enter the page using useEffect(). The function to fetch is declared below.
-  useEffect(() => FetchData(), []);
+const ProfilePage = (props) => {
+  //Initialise the data container variable
+  let profileData = {
+    deadline: null,
+    description: null,
+    orgAvatar: null,
+    orgId: null,
+    orgName: null,
+    projectAvatar: null,
+    projectId: null,
+    projectName: null,
+  };
+
   //Declare useDispatch hook to use;
   const dispatch = useDispatch();
-  //Load profileData from global store using useSelector() hook
-  const profileData = useSelector(
+  //Load profileData from global store into 'selectedData' variable using useSelector() hook
+  const selectedData = useSelector(
     (state) => state.profileReducer.profileData.props
   );
-  console.log("Profile data saved succesfully", profileData); //For testing purpose
+  //Update the data from the 'selectedData' variable into the local variable
+  //If the data is not equal to undefined (this mean the data is fetched succesfully) then
+  //assign it into the local variable.
+  //else, execute the FetchData() function.
+  if (selectedData != undefined) {
+    profileData = selectedData;
+  } else FetchData();
+  console.log("This is ProfileData name", profileData.orgName); // For testing purpose
+  console.log("Profile data saved succesfully:", profileData); //For testing purpose
   //Function to fetch data and dispatch it into the global store. I will move this is the profileAction.js later
   //The function need to use async and await to be able to fetch.
   async function FetchData() {
     let fetchedData; //This will later be used to fetch data.
+    console.log("Starting to fetch data: "); //For testing purpose
     //try and catch (from the concept promises) is to catch error.
     try {
       // Retrieve the data from Firestore Cloud database. Need to be 'await'
@@ -127,20 +151,20 @@ function ProfilePage(props) {
         .get() //not sure what this do
         .then((documentSnapshot) => (fetchedData = documentSnapshot.data())); //fetch data into a variable.
       console.log("Profile Data fetched succesfully", fetchedData); //For testing purpose
-      const save = (props) => {
+      const saveData = (props) => {
         //Dispatch this to the global store using "profileReducer"
         dispatch({
           type: "CHANGE_TEXT",
           payload: { props }, //data need to pass
         });
       };
-      save(fetchedData); //now the data is dispatched
+      saveData(fetchedData); //now the data is dispatched into global store.
     } catch (error) {
       console.log("error", error);
     }
   }
 
-  //The data will later be passed into this profile Page
+  //The data will later be passed into this profile Page UI
   return (
     <div className="profilePage">
       {/*Navigation Bar*/}
@@ -148,23 +172,29 @@ function ProfilePage(props) {
 
       {/*Org. Name Panel*/}
       <OrgName
-        name="Pokemon"
+        name={profileData.orgName}
         location="Ho Chi Minh"
         category="Gaming"
-        description={loremText}
+        description={profileData.description}
       ></OrgName>
 
       {/*Org. Vision*/}
-      <OrgVision></OrgVision>
+      <OrgVision description={profileData.description}></OrgVision>
 
       {/*Org. History*/}
-      <OrgHistory></OrgHistory>
+
+      <OrgHistory
+        name={profileData.projectName}
+        id={profileData.projectId}
+        deadline={profileData.deadline}
+        description={profileData.description}
+      ></OrgHistory>
       {/*Copyright*/}
       <CopyrightBar></CopyrightBar>
 
       {/* End of code */}
     </div>
   );
-}
+};
 
 export default ProfilePage;
