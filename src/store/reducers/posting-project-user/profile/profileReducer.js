@@ -2,14 +2,21 @@ import { CHANGE_TEXT } from "../../../actions/posting-project-user/profile/profi
 import { fetchProfile_ppu } from "../../../actions/posting-project-user/profile/profileAction";
 
 const initialState = {
+  projectData: [],
   profileData: [],
   profileKey: [],
 };
 
 export const profileReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "CHANGE_TEXT":
-      console.log("Text payload: ", action.payload);
+    case "public-projects":
+      console.log("Project payload: ", action.payload);
+      return {
+        ...state,
+        projectData: action.payload,
+      };
+    case "organization":
+      console.log("Profile payload: ", action.payload);
       return {
         ...state,
         profileData: action.payload,
@@ -21,6 +28,10 @@ export const profileReducer = (state = initialState, action) => {
         profileKey: action.payload,
       };
     default:
-      return { profileData: action.type, profileKey: undefined };
+      return {
+        projectData: action.type,
+        profileData: action.type,
+        profileKey: undefined,
+      };
   }
 };

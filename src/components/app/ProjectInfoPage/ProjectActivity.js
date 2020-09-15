@@ -33,9 +33,7 @@ const ProjectActivity = (props) => {
               {props.project_activity_avatar}
             </div>
             <div className="activityInfo">
-              <div className="activityName">
-                {props.project_activity_name} - {id}
-              </div>
+              <div className="activityName">{props.project_activity_name}</div>
               <div className="activityTime">{props.project_activity_date}</div>
               <div className="activityLocation">
                 {props.project_activity_location}

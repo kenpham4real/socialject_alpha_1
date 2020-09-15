@@ -1,13 +1,44 @@
-// Contributor: Long 19th August 2020
+/* Contributor: Long 15th September 2020
 // Component:
 //    In use:
-//    Main: ChooseType (the page)
+//    Main: Profile Page (the page)
 //    *Navigation Bar: Header, display user menu and socialject menu
 //    *CopyrightBar: Footer, display text, content is copyright
 //    *ProjectActivity
-// *Data needed: (currently provided in this file already)
-//    texts
-//
+// 
+// Functionality:
+//    Fetch the data from Cloud Firestore
+//    Dispatch the data fetched into global store
+//    Select data from the global store and render it
+//    Link to next pages:
+//        Create Modal
+//        Project Info
+// *Data needed: (from Firestore)
+      let projectData = {
+        deadline: string,
+        description: string,
+        orgAvatar: null,
+        orgId: string,
+        orgName: string,
+        projectAvatar: null,
+        projectId: string,
+        projectName: string,
+      };
+
+      let profileData = {
+        orgId: string,
+        orgName: string,
+        location: string,
+        university: string,
+        category: string,
+        description: string,
+        email: string,
+        facebook: string,
+        phoneNumber: string,
+        vision: string,
+      };
+
+*/
 
 //Initial stuff
 import React from "react";
@@ -24,34 +55,33 @@ import ProjectActivity from "../../../components/app/ProjectInfoPage/ProjectActi
 
 //Firebase stuff
 import { firebase_db } from "../../../firebase-config";
-import { testing_project_id } from "../../../constants/testing-keys";
+import {
+  testing_project_id,
+  testing_organization_id,
+} from "../../../constants/testing-keys";
 
 const imageURL =
   "https://c4.wallpaperflare.com/wallpaper/963/733/213/anime-girls-ghost-blade-wlop-wallpaper-preview.jpg";
 
-const loremText =
-  "Khi Beyond Birthday lấy mạng nạn nhân thứ ba của mình, hắn định làm một thử nghiệm—để xem có cách nào làm một con người chết vì xuất huyết trong mà không cần phải hủy hoại một bộ phận cơ thể nào hay không. Cụ thể, hắn cho nạn nhân chìm vào trạng thái vô thức bằng thuốc mê; ...";
-
 function OrgName(props) {
-  //UI
   return (
     <div className="profile-name-container">
       <img className="profile-avatar" src={imageURL} />
       <a className="profile-block-container-small">
-        <div className="profile--title">{props.name}</div>
+        <div className="profile--title">{props.data.orgName}</div>
         <div style={{ color: "gray" }}>
-          {props.location} / {props.category}
+          {props.data.location} / {props.data.university} /{" "}
+          {props.data.category}
         </div>
-        <div>{props.description}</div>
-        <button className="profile-button">
-          <Link className="profile-link" to="/createPostModal">
-            Add a project
-          </Link>
-        </button>
+        <div>{props.data.description}</div>
+        <Link className="profile-link" to="/createPostModal">
+          <button className="profile-button">Add a project</button>
+        </Link>
       </a>
       <a className="profile-block-container-smaller">
-        <div>Email: chillisaucery@gmail.com</div>
-        <div>Phone: 0912345678</div>
+        <div>Email: {props.data.email}</div>
+        <div>Phone: {props.data.phoneNumber}</div>
+        <div>Facebook: {props.data.facebook}</div>
       </a>
     </div>
   );
@@ -60,7 +90,7 @@ function OrgName(props) {
 function OrgVision(props) {
   return (
     <div className="profile-block-container">
-      <div className="profile--title">Our vision</div>
+      <div className="profile--title">{props.vision}</div>
       <p>{props.description}</p>
     </div>
   );
@@ -81,8 +111,8 @@ function OrgHistory(props) {
             project_key={project_activity_id}
             project_activity_avatar={null}
             project_activity_name={props.name}
-            project_activity_date={new Date().toUTCString()}
-            project_activity_location="Ho Chi Minh"
+            project_activity_date={props.deadline}
+            project_activity_location={props.location}
             project_activity_description={props.description}
           />
         </li>
@@ -111,7 +141,7 @@ function OrgHistory(props) {
 //The code to fetch data lies below
 const ProfilePage = (props) => {
   //Initialise the data container variable
-  let profileData = {
+  let projectData = {
     deadline: null,
     description: null,
     orgAvatar: null,
@@ -121,40 +151,61 @@ const ProfilePage = (props) => {
     projectId: null,
     projectName: null,
   };
+  let profileData = {
+    orgId: null,
+    orgName: null,
+    location: null,
+    university: null,
+    category: null,
+    description: null,
+    email: null,
+    facebook: null,
+    phoneNumber: null,
+    vision: null,
+  };
 
   //Declare useDispatch hook to use;
   const dispatch = useDispatch();
-  //Load profileData from global store into 'selectedData' variable using useSelector() hook
-  const selectedData = useSelector(
+
+  //Load data from global store into variables variable using useSelector() hook
+  const selectedProject = useSelector(
+    (state) => state.profileReducer.projectData.props
+  );
+  const selectedProfile = useSelector(
     (state) => state.profileReducer.profileData.props
   );
+
   //Update the data from the 'selectedData' variable into the local variable
-  //If the data is not equal to undefined (this mean the data is fetched succesfully) then
-  //assign it into the local variable.
-  //else, execute the FetchData() function.
-  if (selectedData != undefined) {
-    profileData = selectedData;
-  } else FetchData();
-  console.log("This is ProfileData name", profileData.orgName); // For testing purpose
-  console.log("Profile data saved succesfully:", profileData); //For testing purpose
-  //Function to fetch data and dispatch it into the global store. I will move this is the profileAction.js later
+  //If the data is equal to undefined (not fetched succesfully) then execute the FetchData() function.
+  if (selectedProject != undefined) {
+    projectData = selectedProject;
+  } else FetchData("public-projects", `${testing_project_id}`);
+  console.log("Profile data saved succesfully:", profileData.orgName); //For testing purpose
+  //Similar for Profile Data
+  if (selectedProfile != undefined) {
+    profileData = selectedProfile;
+  } else FetchData("organization", `${testing_organization_id}`);
+  console.log("Profile data saved succesfully:", profileData.orgName); //For testing purpose
+
+  //Function to fetch data and dispatch it into the global store.
   //The function need to use async and await to be able to fetch.
-  async function FetchData() {
+  async function FetchData(collection, fetchId) {
     let fetchedData; //This will later be used to fetch data.
     console.log("Starting to fetch data: "); //For testing purpose
-    //try and catch (from the concept promises) is to catch error.
+    console.log("Params: ", collection, " + ", fetchId); //For testing purpose
+
     try {
       // Retrieve the data from Firestore Cloud database. Need to be 'await'
       await firebase_db
-        .collection("public-projects") //access public projects
-        .doc(`${testing_project_id}`) //access the docs with this id
+        .collection(collection) //access public projects
+        .doc(fetchId) //access the docs with this id
         .get() //not sure what this do
         .then((documentSnapshot) => (fetchedData = documentSnapshot.data())); //fetch data into a variable.
       console.log("Profile Data fetched succesfully", fetchedData); //For testing purpose
       const saveData = (props) => {
         //Dispatch this to the global store using "profileReducer"
         dispatch({
-          type: "CHANGE_TEXT",
+          type: collection,
           payload: { props }, //data need to pass
         });
       };
@@ -164,31 +215,29 @@ const ProfilePage = (props) => {
     }
   }
 
-  //The data will later be passed into this profile Page UI
+  //The data now is passed into this profile Page UI
   return (
     <div className="profilePage">
       {/*Navigation Bar*/}
       <NavigationBar> </NavigationBar>
 
       {/*Org. Name Panel*/}
-      <OrgName
-        name={profileData.orgName}
-        location="Ho Chi Minh"
-        category="Gaming"
-        description={profileData.description}
-      ></OrgName>
+      <OrgName data={profileData}></OrgName>
 
       {/*Org. Vision*/}
-      <OrgVision description={profileData.description}></OrgVision>
+      <OrgVision
+        vision={profileData.vision}
+        description={profileData.description}
+      ></OrgVision>
 
       {/*Org. History*/}
-
       <OrgHistory
-        name={profileData.projectName}
-        id={profileData.projectId}
-        deadline={profileData.deadline}
-        description={profileData.description}
+        name={projectData.projectName}
+        id={projectData.projectId}
+        deadline={projectData.deadline}
+        description={projectData.description}
       ></OrgHistory>
+
       {/*Copyright*/}
       <CopyrightBar></CopyrightBar>
 

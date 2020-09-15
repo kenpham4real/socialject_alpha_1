@@ -73,7 +73,11 @@
 }
 .profile-button:hover {
   color: var(--primary);
-  background-color: rgb(87, 87, 121);
+  background-color: rgb(51, 79, 117);
+  transition: 0.3s;
+}
+.profile-button:not(:hover) {
+  transition: 0.3s;
 }
 
 /*Container*/
@@ -133,6 +137,8 @@
   margin: none;
   margin-top: 1%;
   width: 20%;
+  word-wrap: break-word;
+  text-align: justify;
+  filter: brightness(80%);
   color: var(--secondary);
-  overflow-x: hidden;
 }

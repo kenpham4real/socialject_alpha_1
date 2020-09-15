@@ -41,14 +41,20 @@
 .activityContainerButton {
   display: grid;
   align-content: flex;
-  background-color: white;
+  background-color: inherit;
   border: 2px gray;
   padding: 0.5rem;
   border-radius: 0.5rem;
 }
 
 .activityContainerButton:hover {
-  background-color: rgb(206, 203, 216);
+  background-color: var(--primary);
+  filter: brightness(80%);
+  transition: 0.2s;
+}
+
+.activityContainerButton:not(:hover) {
+  transition: 0.2s;
 }
 
 .activityLink {

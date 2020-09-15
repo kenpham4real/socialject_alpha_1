@@ -12,9 +12,9 @@ function ProjectXSlide(props) {
         {/*Render the list*/}
         {Data.map((Data) => (
           <div class="project-card">
-            <Link className= "project-link" to="/projectInfo">
+            <Link className="project-link" to="/projectInfo">
               <img class="project-image" src={Data.url} />
-              <img class="icon project" src={Data.url} />
+              <img class="project-icon" src={Data.url} />
               <div class="project-text-container">
                 <p class="project-text title"> {Data.name} </p>
                 <p class="project-text">Organization</p>
