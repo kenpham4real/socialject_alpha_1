@@ -1,56 +1,189 @@
-/*
-*Contributor: Tiến 2nd september 2020
-*Function: Page register(render page for PPU to create their account)
+import { IoMdImage } from "react-icons/io";
+import { firebase_storage } from "../../../firebase-config";
 
-*/
 
-import React from "react";
-import "./styles/BeautifyProfileStyles.css";
+//Packages
+import React, { useState} from "react";
 import Select from "react-select";
 
+//Styles
+import "./styles/BeautifyProfileStyles.css";
+
+//Select
 const options = [
-  { value: "ha noi", label: "Ha Noi" },
-  { value: "ho chi minh", label: "Ho Chi Minh" },
-  { value: "hai phong", label: "Hai Phong" },
-  { value: "da nang", label: "Da Nang" },
+  { id: "ha_noi", value: "ha noi", label: "Ha Noi" },
+  { id: "ho_chi_minh", value: "ho chi minh", label: "Ho Chi Minh" },
+  { id: "hai_phong", value: "hai phong", label: "Hai Phong" },
+  { id: "da_nang", value: "da nang", label: "Da Nang" },
 ];
 
+   
+
+
 const BeautifyProfile = (props) => {
+
+  //Intialize the states
+  const [location, setLocation]= useState("");
+  const [university, setUniversity]= useState("");
+  const [image, setImage]= useState(null);
+  const [imageName,setImageName]=useState("");
+ 
+
+  const orginaztionName = props.location.orginaztionName;
+  const description=props.location.description;
+  
+ 
+  /**
+   * @summary Handle Select
+   * @param {string} location
+   * @return {void}
+   * @author TrNgTien
+   */
+  const handleChange =(location) =>{
+    setLocation({selectedOption:location})
+  }
+  
+
+  /**
+	 * @summary Handle states input
+	 * @param {string} University
+	 * @return {void}
+   * @author TrNgTien
+	 */
+
+	const _onChangeUniversity=(university)=>{
+    setUniversity(university);
+  }
+
+   
+  /**
+   * @summary Handle change the image
+   * @param {file} avatar
+   * @return {void}
+   * @author TrNgTien
+   */
+  
+  //  const handleImageChange =(e) =>{
+  //    console.log("hey",e.target.file[0])
+  //  }
+
+   /**
+   * @summary Handle change the image
+   * @param {file} avatar
+   * @return {void}
+   * @author TrNgTien
+   */
+  //  const handleImageChange =(e)=>{
+  //     if(e.target.files[0]){
+  //       setImage(e.target.files[0]);
+  //     }
+  //  };
+
+   const imageHandler =(e) =>{
+     const reader =new FileReader();
+     console.log("e",e)
+     reader.onload= (event) =>{
+       console.log('event',event)
+       if(reader.readyState===2){
+         setImage(event.target.result)
+       }
+     }
+     reader.readAsDataURL(e[0])
+     setImageName(e[0].name);
+     console.log("image name",imageName)
+   }
+       /**
+   * @summary Handle upload the image
+   * @param {file} avatar
+   * @return {void}
+   * @author TrNgTien
+   */
+  const handleUpLoad =()=>{
+    const uploadTask = firebase_storage.ref(`images/${imageName}`)
+    return new Promise((resolve, reject) => {
+      uploadTask.put(`${imageName}`).on(
+        "state_changed",
+        snapshot => {},
+        error =>{
+          console.log(error);
+          reject(error)
+        },
+        ()=>{
+          uploadTask
+            .child(imageName)
+            .getDownloadURL()
+            .then(url=>{
+              console.log(url)
+              resolve(url)
+            });
+        }
+      )
+    })
+    
+ };
+ 
+ console.log("imageName: ",imageName)
+   
   return (
     <div className="page">
       <div className="container-BeautifyProfile">
         <div>
           <h1 className="my-header-BeautifyProfile"> Beautify Your Page </h1>
           <p className="description-BeautifyFrofile">
-            {" "}
-            Polish your page with additional information{" "}
+            Polish your page with additional information
           </p>
+          
         </div>
         <div className="view-text-input-beautifyProfile">
           <Select
-            options={options}
             className="select"
             placeholder="Location *"
+            options={options}
+            value={location.selectedOption}
+            onChange={handleChange}
           />
           <input
             className="input-text-beautifyProfile"
             type="text"
             placeholder="School/University"
-          ></input>
+            value={university}
+            onChange={(university)=> _onChangeUniversity(university.target.value)}
+          />
           <div className="avatar-box">
             <p className="avatar-text"> Avatar * </p>
             <img
-              className="image"
-              alt="Search icon"
-              src={require("../../../assets/images/camera.png")}
+              className="image-holder"
+              alt=""
+              src={image}
             />
+            <input
+              className="import-file"
+              alt="hi"
+              type="file" 
+              name="image" 
+              capture='camera'
+              accept="image/x-png,image/gif,image/jpeg"
+              onChange={(img) =>imageHandler(img.target.files)}
+            />
+            <div className="add-advatar">
+                <IoMdImage />
+            </div>
           </div>
         </div>
-
+      
         <div>
           <button
-            onClick={() => props.history.push("/finishCreate")}
             className="container-continue"
+            // onClick={() => props.history.push({ 	
+            //       pathname:'/finishCreate',
+            //       orginaztionName,
+            //       description,
+            //       university,
+            //       location,
+            //       image,
+            //   })
+            // }
+            onClick={handleUpLoad}
           >
             <span> Next </span>
           </button>
@@ -59,5 +192,6 @@ const BeautifyProfile = (props) => {
     </div>
   );
 };
+
 
 export default BeautifyProfile;
