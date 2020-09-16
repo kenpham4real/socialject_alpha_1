@@ -136,7 +136,7 @@ function OrgHistory(props) {
             //href="/projectInfo/project_1"
             //onClick={() => props.history.push("/projectInfo/project_1")}
           >
-            {project_item}
+            {project_activity_item}
           </a>
         </ul>
       </div>
