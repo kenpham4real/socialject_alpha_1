@@ -1,5 +1,5 @@
 // Firebase database
-import {firebase_db} from '../../../../firebase-config'
+import {firebase_db, firebase_storage} from '../../../../firebase-config'
 
 // Constants
 import {testing_project_id, testing_activity_id} from '../../../../constants/testing-keys'
@@ -60,7 +60,7 @@ export const _fetchProjectActivity_ppu = () => {
  * @returns @async @function
  * @author Ken Pham
  */
-export const _addActivity_ppu = (activityId, activityName, activityDescription, activityLocation, activityDate) => {
+export const _addActivity_ppu = (activityId, activityName, activityDescription, activityLocation, activityDate, activityImage) => {
 
     /**
      * @summary Asynchronous function calling the database to push the data
@@ -84,7 +84,7 @@ export const _addActivity_ppu = (activityId, activityName, activityDescription, 
                 activityName: activityName,
                 activityDescription: activityDescription,
                 activityLocation: activityLocation,
-                activityDate: activityDate
+                activityDate: activityDate,
             })
 
             console.log('Add activities successfully');
@@ -96,7 +96,7 @@ export const _addActivity_ppu = (activityId, activityName, activityDescription, 
                     activityName: activityName,
                     activityDescription: activityDescription,
                     activityLocation: activityLocation,
-                    activityDate: activityDate
+                    activityDate: activityDate,
                 }
             })
             
