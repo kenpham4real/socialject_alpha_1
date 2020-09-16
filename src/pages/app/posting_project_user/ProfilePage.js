@@ -33,12 +33,12 @@ function OrgName(props) {
   return (
     <div className="profile-name-container">
       <img className="profile-avatar" src={imageURL} />
-      <a className="profile-block-container-small">
+      <div className="profile-block-container-small">
         <div className="profile--title">Organization's Name</div>
         <div style={{ color: "gray" }}>Location Category</div>
         <div>{loremText}</div>
-        <div className="profile-button">Add a project</div>
-      </a>
+        <a onClick={props._onNavigateToCreateProjectModal} className="profile-button">Add a project</a>
+      </div>
       <a className="profile-block-container-smaller">
         <div>Email: chillisaucery@gmail.com</div>
         <div>Phone: 0912345678</div>
@@ -75,7 +75,7 @@ function OrgHistory(props) {
           key={project_id}
           project_activity_avatar={null}
           project_activity_name="Name of project/activity"
-          project_activity_date={new Date().toUTCString()}
+          project_activity_date={new Date().toDateString()}
           project_activity_location="Ho Chi Minh"
           project_activity_description={loremText}
         />
@@ -86,6 +86,7 @@ function OrgHistory(props) {
   return (
     <div className="profile-block-container">
       <div className="profile--title">Projects</div>
+      <a onClick={props._onNavigateToCreateProjectModal} className="profile-button">Add a project</a>
       <div>
         <ul className="project-activity-list">
           <a 
@@ -93,7 +94,7 @@ function OrgHistory(props) {
             href="/projectInfo/project_1" 
             onClick={() => props.history.push('/projectInfo/project_1')}
           >
-            {project_item()}
+            {project_item}
           </a>
         </ul>
       </div>
@@ -102,13 +103,26 @@ function OrgHistory(props) {
 }
 
 const ProfilePage = (props) => {
+
+  /**
+   * @summary Navigate to the create project modal
+   * @function
+   * @param {void}
+   * @returns {void}
+   */
+  const _onNavigateToCreateProjectModalHandler = () => {
+    props.history.push('/createPostModal')
+  }
+
   return (
     <div className="profilePage">
       {/*Navigation Bar*/}
       <NavigationBar></NavigationBar>
 
       {/*Org. Name Panel*/}
-      <OrgName></OrgName>
+      <OrgName 
+        _onNavigateToCreateProjectModal={_onNavigateToCreateProjectModalHandler}
+      />
 
       {/*Org. Vision*/}
       <OrgVision></OrgVision>
