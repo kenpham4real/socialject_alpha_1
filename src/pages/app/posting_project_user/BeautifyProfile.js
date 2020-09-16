@@ -8,6 +8,7 @@ import Select from "react-select";
 
 //Styles
 import "./styles/BeautifyProfileStyles.css";
+import { storage } from "firebase";
 
 //Select
 const options = [
@@ -81,15 +82,15 @@ const BeautifyProfile = (props) => {
 
    const imageHandler =(e) =>{
      const reader =new FileReader();
-     console.log("e",e)
+     console.log("e",e.files)
      reader.onload= (event) =>{
        console.log('event',event)
        if(reader.readyState===2){
          setImage(event.target.result)
        }
      }
-     reader.readAsDataURL(e[0])
-     setImageName(e[0].name);
+     reader.readAsDataURL(e.files[0])
+     setImageName(e.files[0]);
      console.log("image name",imageName)
    }
        /**
@@ -99,26 +100,22 @@ const BeautifyProfile = (props) => {
    * @author TrNgTien
    */
   const handleUpLoad =()=>{
-    const uploadTask = firebase_storage.ref(`images/${imageName}`)
-    return new Promise((resolve, reject) => {
-      uploadTask.put(`${imageName}`).on(
+    const uploadTask = firebase_storage.ref(`images/${imageName.name}`).put(imageName);
+    uploadTask.on(
         "state_changed",
-        snapshot => {},
         error =>{
           console.log(error);
-          reject(error)
         },
         ()=>{
-          uploadTask
-            .child(imageName)
+          storage
+            .ref("images")
+            .child(imageName.name)
             .getDownloadURL()
             .then(url=>{
               console.log(url)
-              resolve(url)
             });
         }
-      )
-    })
+      );
     
  };
  
@@ -163,7 +160,7 @@ const BeautifyProfile = (props) => {
               name="image" 
               capture='camera'
               accept="image/x-png,image/gif,image/jpeg"
-              onChange={(img) =>imageHandler(img.target.files)}
+              onChange={(img) => imageHandler(img.target)}
             />
             <div className="add-advatar">
                 <IoMdImage />
