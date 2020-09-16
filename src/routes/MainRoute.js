@@ -15,6 +15,7 @@ import CreatePostModal from "../pages/app/posting_project_user/CreatePostModal";
 import CreatePostModal_2 from "../pages/app/posting_project_user/CreatePostModal_2";
 import CreatePostModal_3 from "../pages/app/posting_project_user/CreatePostModal_3";
 import AddActivityModal from "../pages/app/posting_project_user/AddActivityModal";
+import ProfilePage_example from '../pages/app/posting_project_user/ProfilePage_example.js'
 // react-router-dom
 
 const MainRoute = () => {
@@ -30,6 +31,7 @@ const MainRoute = () => {
         <Route path="/createPostModal_2" component={CreatePostModal_2} />
         <Route path="/createPostModal_3" component={CreatePostModal_3} />
         <Route path="/addActivity" component={AddActivityModal} />
+        <Route exact path="/profilePage_test" component={ProfilePage_example} />
         <Route path="/" component={ChooseType} />
       </Switch>
     </Router>
