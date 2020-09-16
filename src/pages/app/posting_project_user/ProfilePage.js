@@ -103,6 +103,12 @@ function OrgHistory(props) {
 
   // Render the list of projects, each of which MUST have a UNIQUE KEY
   // The keys are extracted from project_activity_ids
+  /**
+   * @summary Render the list of projects, each of which MUST have a UNIQUE KEY. The keys are extracted from project_activity_ids
+   * @param {string[]} project_id
+   * @returns JSX Components
+   * @author Ken Pham, Long Avenger
+   */
   const project_activity_item = project_activity_ids.map(
     (project_activity_id) => {
       return (
@@ -130,7 +136,7 @@ function OrgHistory(props) {
             //href="/projectInfo/project_1"
             //onClick={() => props.history.push("/projectInfo/project_1")}
           >
-            {project_activity_item}
+            {project_item}
           </a>
         </ul>
       </div>
