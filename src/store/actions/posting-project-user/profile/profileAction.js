@@ -1,29 +1,52 @@
 // Firebase database
-import { firebase_db } from "../../../../firebase-config";
+import { firebaseApp, firebase_db } from "../../../../firebase-config";
 
 // Constants
-import { testing_project_id } from "../../../../constants/testing-keys";
+import { testing_project_id, testing_organization_id } from "../../../../constants/testing-keys";
 
 // Export the actions
-export const CHANGE_TEXT = "CHANGE_TEXT";
+export const SET_ORGANIZATION_PROFILE = "SET_ORGANIZATION_PROFILE";
 
-export const fetchProfile_ppu = () => {
+/**
+ * @summary Fetch the information of the organization
+ * @function
+ * @param {void}
+ * @author Ken Pham, Long Luu
+ */
+export const _fetchProfile_ppu = () => {
+  
   return async (dispatch, getState) => {
     let profileData;
+    let projects = [];
     try {
       // Retrieve the data from Firestore Cloud database
-      await firebase_db
-        .collection("public-projects")
-        .doc(`${testing_project_id}`)
+      const organizationRef = firebase_db.collection("organization").doc(`${testing_organization_id}`)
+      await organizationRef
+      .get()
+      .then((documentSnapshot) => (profileData = documentSnapshot.data()))
+      .then(async() => {
+        await organizationRef
+        .collection('projects')
         .get()
-        .then((documentSnapshot) => (profileData = documentSnapshot.data()));
+        .then(
+          querySnapshot => {
+            console.log('bitch')
+            querySnapshot.forEach(
+              (doc) => {
+                  projects.push(doc.data())
+              }
+            ) 
+          }
+        )
+      })
 
-      console.log("Profile Data fetched succesfully", profileData);
+      console.log("Profile Data fetched succesfully bitch", profileData);
 
       // dispatch helps us store the changed state/ data into the reducers
       dispatch({
-        type: CHANGE_TEXT,
-        payload: profileData,
+        type: SET_ORGANIZATION_PROFILE,
+        profileData: profileData,
+        profile_projectData: projects
       });
     } catch (error) {
       console.log("error", error);

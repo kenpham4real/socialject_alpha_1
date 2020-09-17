@@ -1,27 +1,33 @@
+// Action types
 import {
   SET_PROJECT,
-  ADD_NAME,
-  ADD_DESCRIPTION,
-  ADD_LOCATION,
-  ADD_DEADLINE,
-  ADD_QUESTION,
-  ADD_BENEFIT,
-  ADD_REQUIREMENT,
-  ADD_AVATAR,
 } from "../../../actions/posting-project-user/project/project";
+    SET_PROJECT_RECRUIT_INFO,
+    SET_PROJECT_BASIC_INFO
+} from '../../../actions/posting-project-user/project/project'
 
+// Initialize the state
 const initialState = {
   projects: [],
-  name: null,
-  description: null,
-  location: null,
-  deadline: null,
-  question: null,
-  benefit: null,
-  requirement: null,
-  avatar: null,
+  postData: {
+    name: null,
+    description: null,
+    location: null,
+    deadline: null,
+    question: null,
+    benefit: [],
+    requirement: [],
+    avatar: null,
+    }
+    
 };
-
+/**
+ * @summary Handle the states of the projects (initialState above)
+ * @param {Object} state 
+ * @param {Object} action
+ * @returns {Object} new state
+ * @author Ken Pham
+ */
 export const projectReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_PROJECT:
@@ -29,30 +35,41 @@ export const projectReducer = (state = initialState, action) => {
         ...state,
         projects: action.projectData,
       };
-    case ADD_NAME:
+    case "ADD_NAME":
       console.log("Name dispatched.");
       return {
         ...state,
-        name: action.payload,
+        postData: {
+            name: action.payload,
+        }
       };
-    case ADD_DESCRIPTION:
+    case "ADD_DESCRIPTION":
       console.log("Description dispatched.");
       return {
         ...state,
-        description: action.payload,
+        postData: {
+            description: action.payload,
+        }
+        
       };
-    case ADD_LOCATION:
+    case "ADD_LOCATION":
       console.log("Location dispatched.");
       return {
         ...state,
-        location: action.payload,
+        postData: {
+            location: action.payload,
+        }
+       
       };
-    case ADD_DEADLINE:
+    case "ADD_DEADLINE":
       console.log("Deadline dispatched.");
       return {
         ...state,
-        deadline: action.payload,
+        postData: {
+            deadline: action.payload,
+        }
       };
+    /* For later use. Haven't finished this :))))
     case ADD_QUESTION:
       return {
         ...state,
@@ -73,6 +90,7 @@ export const projectReducer = (state = initialState, action) => {
         ...state,
         avatar: action.payload,
       };
+      */
     default:
       return state;
   }

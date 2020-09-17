@@ -1,5 +1,17 @@
+/**
+ * Contributors: Đạt, Ken
+ * Main Component: 
+ * ProjectInfoPage{
+ *  _loadProjectst() => Fetch the projects from Firestore
+ *  _project_tags() => Render the tag of the project
+ *  _organizationInfo() => Render the info of organization, including name, avatar and the follow button
+ *  _project_apply_button() => Render the apply button for the project
+ *  _
+ * }
+ */
+
 import React, { useEffect, useCallback } from "react";
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux';
 
 // Styles
 import "./styles/ProjectInfoPage.css";
@@ -12,6 +24,7 @@ import CopyrightBar from "../../../components/app/CopyrightBar.js";
 
 // Functions
 import * as projectActions from "../../../store/actions/posting-project-user/project/project.js";
+import * as activityActions from '../../../store/actions/posting-project-user/activity/activity';
 
 
 const ProjectInfoPage = (props) => {
@@ -19,20 +32,41 @@ const ProjectInfoPage = (props) => {
   // Retrieve the projects state from the reducer
   // state.projectReducer --> From App.js
   // .projects --> From reducer
-  const projectData = useSelector(state => state.projectReducer.projects);
+  // Global state: projects
+  const projects_recruit_info = useSelector(state => state.projectReducer.projects_recruit_info);
+  const activities = useSelector(state => state.activityReducer.activities);
 
   // useDispatch() from react-redux
   const dispatch = useDispatch()
 
-  // A callback to fetch projects
+  /**
+   * @summary A callback to fetch projects
+   * @param {void}
+   * @returns {function} @callback
+   * @author Ken Pham
+   */
   const _loadProjects = useCallback( async () => {
     try {
-      dispatch(projectActions.fetchProject_recruitInfo_ppu())
+      dispatch(projectActions._fetchProject_recruit_info_ppu())
 
     } catch (error) {
       console.log('error', error)
     }
   }, [dispatch]) 
+
+
+  const _loadProjectActivity = useCallback(async () => {
+    try {
+      dispatch(activityActions._fetchProjectActivity_ppu())
+    } catch (error) {
+      console.log('error', error)
+    }
+  }, [dispatch])
+
+  useEffect(() => {
+    _loadProjectActivity()
+    .then(() => console.log('activities loaded successfully'));
+  }, [dispatch, _loadProjectActivity])
 
   // Fetch projects when PPU enters the page
   useEffect(() => {
@@ -40,8 +74,16 @@ const ProjectInfoPage = (props) => {
     .then(() => console.log('projects loaded successfully'))
   }, [dispatch, _loadProjects])
 
+  console.log('fetched projects', projects_recruit_info)
 
-  // Render the tags of the project
+
+  /********************************* Small UI components *********************************/ 
+  /**
+   * @summary Render the tags of the project
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
   const _project_tags = () => {
     return(
       <div className="tags">
@@ -55,7 +97,12 @@ const ProjectInfoPage = (props) => {
     )
   }
   
-  // Render the info of organization, including name, avatar and the follow button
+  /**
+   * @summary Render the info of organization, including name, avatar and the follow button
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
   const _organization_info = () => {
     return(
       <div className="organizationNameandPicture">
@@ -70,17 +117,27 @@ const ProjectInfoPage = (props) => {
     )
   }
 
-  // Render the apply button for the project
+  /**
+   * @summary Render the apply button for the project
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
   const _project_apply_button = () => {
     return(
       <div className="applyButton">
         <div className="applyNow">Apply Now</div>
-        <div className="dueDay">Ends {projectData.deadline}</div>
+        <div className="dueDay">Ends some day</div>
       </div>
     )
   }
 
-  // Render the avatar of the project
+  /**
+   * @summary Render the avatar of the project
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
   const _project_avatar = () => {
     return(
       <div>
@@ -93,16 +150,26 @@ const ProjectInfoPage = (props) => {
     )
   }
 
-  // Render the showing-joined-user-number div
+  /**
+   * @summary Render the showing-joined-user-number div
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
   const _project_joined_users = () => {
     return(
-      <div class="joinedUsers">
+      <div className="joinedUsers">
         <span>100, 000</span> has joined
       </div>
     )
   }
   
-  // Render the held-by section of the project
+  /**
+   * @summary Render the held-by section of the project
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
   const _project_held_by_section = () => {
     return(
       <div className="heldByContainer">
@@ -124,42 +191,87 @@ const ProjectInfoPage = (props) => {
     )
   }
 
-  // Render the benefits section
+  /**
+   * @summary Render the benefits section
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
   const _project_benefit_section = () => {
     return(
       <div className="benefitContainer">
         <h1 className="projectHeadings">Benefit</h1>
-        <ListedItems />
-        <ListedItems />
-        <ListedItems />
+        <ul>
+          {projects_recruit_info.benefits.map(benefit => (
+            <ListedItems
+              title={benefit}
+            />
+          ))}
+        </ul>
       </div>
     )
   }
 
-  // Render the requirements section
+  /**
+   * @summary Render the requirements section
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
   const _project_requirement_section = () => {
     return(
-      <div className="requirementsContaner">
+      <div className="requirementContaner">
         <h1 className="projectHeadings">Requirements</h1>
-        <ListedItems />
-        <ListedItems />
-        <ListedItems />
+        {projects_recruit_info.requirements.map(requirement => (
+          <ListedItems
+            title={requirement}
+          />
+        ))}
       </div>
     )
   }
 
-  // Render the about section of the project
+  /**
+   * @summary Render the about section of the project
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
   const _project_about_section = () => {
     return(
       <div className="aboutContainer">
         <h1 className="projectHeadings">About</h1>
-        <div>{projectData.description}</div>
+        <div>Best project ever</div>
         <div className="viewAllButton">View all</div>
       </div>
     )
   }
 
-  // Render the progress section of the project
+  /**
+   * @summary Render the activities
+   * @param {void}
+   * @returns JSX 
+   * @author Ken Pham
+   */
+  const _project_activity_item = activities.map((activity) => {
+    return(
+        <ProjectActivity
+          key={activity.activityId}
+          project_activity_avatar={null}
+          project_activity_name={activity.activityName}
+          project_activity_date={activity.createdAt?.seconds == true ? activity.createdAt.seconds : activity.createdAt}
+          project_activity_location={activity.activityLocation}
+          project_activity_description={activity.activityDescription}
+        />
+    )
+  })
+
+  /**
+   * @summary Render the progress section of the project
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
   const _project_progress_section = () => {
     return(
       <div className="progressContainer">
@@ -167,14 +279,15 @@ const ProjectInfoPage = (props) => {
           <h1 className="projectHeadings">Progress</h1>
           <a className="progress-container-header-addActivityButton" href="/addActivity">Add an activity</a>
         </div>
-        <ProjectActivity />
-        <ProjectActivity />
-        <ProjectActivity />
+        <ul className="progress-container-activity">
+          <a>{_project_activity_item}</a>
+        </ul>
         <div className="viewAllButton">View all</div>
       </div>
     )
   }
 
+  /********************************* MAIN Component: ProjectInfoPage *********************************/ 
   return (
     <div className="projectInfoPage">
       <div>
@@ -187,8 +300,8 @@ const ProjectInfoPage = (props) => {
         {/*'generalInfo' division*/}
         <div className="generalInfoComponents">
           {_project_tags()}
-          <div className="projectName">{projectData.projectName}</div>
-          <div className="location">{projectData.projectLocation}</div>
+          <div className="projectName">SocialJect_1</div>
+          <div className="location">Home</div>
           {_organization_info()}
 
           {_project_apply_button()}
