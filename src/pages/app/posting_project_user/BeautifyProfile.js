@@ -1,5 +1,5 @@
 import { IoMdImage } from "react-icons/io";
-import { firebase_storage } from "../../../firebase-config";
+
 
 
 //Packages
@@ -8,7 +8,7 @@ import Select from "react-select";
 
 //Styles
 import "./styles/BeautifyProfileStyles.css";
-import { storage } from "firebase";
+
 
 //Select
 const options = [
@@ -25,15 +25,13 @@ const BeautifyProfile = (props) => {
 
   //Intialize the states
   const [location, setLocation]= useState("");
-  const [university, setUniversity]= useState("");
+  const [University, setUniversity]= useState("");
   const [image, setImage]= useState(null);
-  const [imageName,setImageName]=useState("");
+  const [imageFile,setImageFile]=useState("");
  
 
   const orginaztionName = props.location.orginaztionName;
   const description=props.location.description;
-  
- 
   /**
    * @summary Handle Select
    * @param {string} location
@@ -52,21 +50,10 @@ const BeautifyProfile = (props) => {
    * @author TrNgTien
 	 */
 
-	const _onChangeUniversity=(university)=>{
-    setUniversity(university);
+	const _onChangeUniversity=(University)=>{
+    setUniversity(University);
   }
 
-   
-  /**
-   * @summary Handle change the image
-   * @param {file} avatar
-   * @return {void}
-   * @author TrNgTien
-   */
-  
-  //  const handleImageChange =(e) =>{
-  //    console.log("hey",e.target.file[0])
-  //  }
 
    /**
    * @summary Handle change the image
@@ -74,52 +61,21 @@ const BeautifyProfile = (props) => {
    * @return {void}
    * @author TrNgTien
    */
-  //  const handleImageChange =(e)=>{
-  //     if(e.target.files[0]){
-  //       setImage(e.target.files[0]);
-  //     }
-  //  };
 
    const imageHandler =(e) =>{
      const reader =new FileReader();
-     console.log("e",e.files)
+     console.log('e', e)
      reader.onload= (event) =>{
-       console.log('event',event)
+       console.log('event', event)
        if(reader.readyState===2){
          setImage(event.target.result)
        }
      }
-     reader.readAsDataURL(e.files[0])
-     setImageName(e.files[0]);
-     console.log("image name",imageName)
+     reader.readAsDataURL(e[0])
+     setImageFile(e[0]);
    }
-       /**
-   * @summary Handle upload the image
-   * @param {file} avatar
-   * @return {void}
-   * @author TrNgTien
-   */
-  const handleUpLoad =()=>{
-    const uploadTask = firebase_storage.ref(`images/${imageName.name}`).put(imageName);
-    uploadTask.on(
-        "state_changed",
-        error =>{
-          console.log(error);
-        },
-        ()=>{
-          storage
-            .ref("images")
-            .child(imageName.name)
-            .getDownloadURL()
-            .then(url=>{
-              console.log(url)
-            });
-        }
-      );
-    
- };
- 
- console.log("imageName: ",imageName)
+     
+
    
   return (
     <div className="page">
@@ -143,8 +99,8 @@ const BeautifyProfile = (props) => {
             className="input-text-beautifyProfile"
             type="text"
             placeholder="School/University"
-            value={university}
-            onChange={(university)=> _onChangeUniversity(university.target.value)}
+            value={University}
+            onChange={(University)=> _onChangeUniversity(University.target.value)}
           />
           <div className="avatar-box">
             <p className="avatar-text"> Avatar * </p>
@@ -160,7 +116,8 @@ const BeautifyProfile = (props) => {
               name="image" 
               capture='camera'
               accept="image/x-png,image/gif,image/jpeg"
-              onChange={(img) => imageHandler(img.target)}
+              onChange={(img) => imageHandler(img.target.files)}
+         
             />
             <div className="add-advatar">
                 <IoMdImage />
@@ -171,16 +128,16 @@ const BeautifyProfile = (props) => {
         <div>
           <button
             className="container-continue"
-            // onClick={() => props.history.push({ 	
-            //       pathname:'/finishCreate',
-            //       orginaztionName,
-            //       description,
-            //       university,
-            //       location,
-            //       image,
-            //   })
-            // }
-            onClick={handleUpLoad}
+            onClick={() => props.history.push({ 	
+                  pathname:'/finishCreate',
+                  orginaztionName,
+                  description,
+                  University,
+                  location,
+                  image,
+                  imageFile,
+              })
+            }
           >
             <span> Next </span>
           </button>
