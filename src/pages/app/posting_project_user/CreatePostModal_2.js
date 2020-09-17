@@ -6,6 +6,7 @@
 
 import React, { Component } from "react";
 import "./styles/CreatePostModal_2.css";
+import { Link } from "react-router-dom";
 
 const CreatePostModal_2 = (props) => {
   return (
@@ -24,7 +25,12 @@ const CreatePostModal_2 = (props) => {
           </li>
         </ul>
       </div>
-      <button>Continue</button>
+      <Link to="/CreatePostModal_3" className="profile-link">
+        <button className="profile-button">Continue</button>
+      </Link>
+      <Link to="/CreatePostModal" className="profile-link">
+        <button className="profile-button">Go Back</button>
+      </Link>
     </div>
   );
 };
