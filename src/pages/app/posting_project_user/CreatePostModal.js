@@ -6,6 +6,7 @@
 
 import React, { Component } from "react";
 import "./styles/CreatePostModal.css";
+import { Link } from "react-router-dom";
 
 const CreatePostModal_1 = (props) => {
   return (
@@ -26,7 +27,9 @@ const CreatePostModal_1 = (props) => {
           <input type="text" placeholder="Deadline *"></input>
         </div>
       </div>
-      <button>Continue</button>
+      <Link to="/CreatePostModal_2" className="profile-link">
+        <button className="profile-button">Continue</button>
+      </Link>
     </div>
   );
 };
