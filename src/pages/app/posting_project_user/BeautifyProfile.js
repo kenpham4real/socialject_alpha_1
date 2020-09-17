@@ -1,10 +1,8 @@
-import { IoMdImage } from "react-icons/io";
-
-
-
 //Packages
 import React, { useState} from "react";
 import Select from "react-select";
+import { IoMdImage } from "react-icons/io";
+
 
 //Styles
 import "./styles/BeautifyProfileStyles.css";
