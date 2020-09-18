@@ -31,7 +31,6 @@ const MainRoute = () => {
         <Route path="/createPostModal_3" component={CreatePostModal_3} />
         <Route path="/addActivity" component={AddActivityModal} />
         <Route path="/" component={ChooseType} />
-      
       </Switch>
     </Router>
   );

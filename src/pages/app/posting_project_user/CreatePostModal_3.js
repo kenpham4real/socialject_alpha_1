@@ -1,13 +1,35 @@
 /*
 *Contributor: Đạt 4th september 2020
-*Function: Project Registeration (render page for PPU to create their project)
+*Function: Create Form for PPU to create Project
+
 
 */
 
-import React, { Component } from "react";
+import React, { useState, useDispatch } from "react";
 import "./styles/CreatePostModal_3.css";
 
 const CreatePostModal_3 = (props) => {
+  //Initialize the state
+  const [projectBenefitArray, setProjectBenefitArray] = useState([]);
+  const [projectBenefit, setProjectBenefit] = useState("");
+
+  const [projectRequirementArray, setProjectRequirementArray] = useState([]);
+  const [projectRequirement, setProjectRequirement] = useState("");
+
+  //Handling Add benefits and requirements event
+
+  const _onChangeAddBenefit = (benefit) => {
+    setProjectBenefit(benefit);
+    setProjectBenefitArray((benefit) => projectBenefitArray.concat(benefit));
+  };
+
+  const _onChangeAddRequirement = (requirement) => {
+    setProjectRequirement(requirement);
+    setProjectRequirementArray((requirement) =>
+      projectRequirementArray.concat(requirement)
+    );
+  };
+
   return (
     <div id="createPostModal_3">
       <h1>Bring it to everyone</h1>
@@ -18,11 +40,27 @@ const CreatePostModal_3 = (props) => {
           <div className="addBenefitButton">+</div>
         </div>
         <ul>
+          {" "}
+          {/*Add benefit*/}
           <li>
-            <input type="text" placeholder="" />
+            <input
+              type="text"
+              placeholder=""
+              value={projectBenefit}
+              onChange={(projectBenefit) =>
+                _onChangeAddBenefit(projectBenefit.target.value)
+              }
+            />
           </li>
           <li>
-            <input type="text" placeholder="" />
+            <input
+              type="text"
+              placeholder=""
+              value={projectRequirement}
+              onChange={(projectRequirement) =>
+                _onChangeAddRequirement(projectRequirement.target.value)
+              }
+            />
           </li>
         </ul>
       </div>
@@ -34,10 +72,24 @@ const CreatePostModal_3 = (props) => {
         </div>
         <ul>
           <li>
-            <input type="text" placeholder="" />
+            <input
+              type="text"
+              placeholder=""
+              value={projectRequirement}
+              onChange={(projectRequirement) =>
+                _onChangeAddRequirement(projectRequirement.target.value)
+              }
+            />
           </li>
           <li>
-            <input type="text" placeholder="" />
+            <input
+              type="text"
+              placeholder=""
+              value={projectRequirement}
+              onChange={(projectRequirement) =>
+                _onChangeAddRequirement(projectRequirement.target.value)
+              }
+            />
           </li>
         </ul>
       </div>
