@@ -4,8 +4,10 @@
 
 */
 
-import React, { useState, useReducer } from "react";
+import React, { Component, useState } from "react";
+import { useDispatch } from "react-redux";
 import "./styles/CreatePostModal.css";
+import { Link } from "react-router-dom";
 
 const CreatePostModal = (props) => {
   //initialize the state

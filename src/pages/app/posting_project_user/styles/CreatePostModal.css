@@ -1,3 +1,8 @@
+* {
+  font-family: "Inter";
+  font-size: 16px;
+}
+
 #createPostModal {
   display: grid;
   padding-top: 10vh;

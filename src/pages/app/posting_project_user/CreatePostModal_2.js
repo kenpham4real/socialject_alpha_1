@@ -9,6 +9,7 @@ import React, { useState, useReducer } from "react";
 import "./styles/CreatePostModal_2.css";
 
 const CreatePostModal_2 = (props) => {
+  console.log(props);
   //Initialize the state
   const [projectQuestionArray, setProjectQuestionArray] = useState([]);
   const [projectQuestion, setProjectQuestion] = useState("");
@@ -18,17 +19,17 @@ const CreatePostModal_2 = (props) => {
     setProjectQuestion(question);
 
     setProjectQuestionArray((projectQuestionArray) =>
-      projectQuestionArray[0].concat(question)
+      projectQuestionArray.concat(question)
     );
   };
   console.log(projectQuestionArray);
   const _onChangeHandleContinue = () => {
     props.history.push({
       pathname: "/createPostModal_3",
-      projectName: props.location.projectName,
-      projectDescription: props.location.projectDescription,
-      projectLocation: props.location.projectLocation,
-      projectDeadline: props.location.projectDeadline,
+      projectName: props.location.state.projectName,
+      projectDescription: props.location.state.projectDescription,
+      projectLocation: props.location.state.projectLocation,
+      projectDeadline: props.location.state.projectDeadline,
       projectQuestionArray:
         projectQuestionArray[projectQuestionArray.length - 1],
     });
