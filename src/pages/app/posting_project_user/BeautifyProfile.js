@@ -7,6 +7,8 @@ import { IoMdImage } from "react-icons/io";
 //Styles
 import "./styles/BeautifyProfileStyles.css";
 
+// Helper
+import {_previewImageHandler} from '../../../../src/helper/image/imageHandler'
 
 //Select
 const options = [
@@ -28,7 +30,7 @@ const BeautifyProfile = (props) => {
   const [imageFile,setImageFile]=useState("");
  
 
-  const orginaztionName = props.location.orginaztionName;
+  const organizationName = props.location.organizationName;
   const description=props.location.description;
   /**
    * @summary Handle Select
@@ -51,27 +53,6 @@ const BeautifyProfile = (props) => {
 	const _onChangeUniversity=(University)=>{
     setUniversity(University);
   }
-
-
-   /**
-   * @summary Handle change the image
-   * @param {file} avatar
-   * @return {void}
-   * @author TrNgTien
-   */
-
-   const imageHandler =(e) =>{
-     const reader =new FileReader();
-     console.log('e', e)
-     reader.onload= (event) =>{
-       console.log('event', event)
-       if(reader.readyState===2){
-         setImage(event.target.result)
-       }
-     }
-     reader.readAsDataURL(e[0])
-     setImageFile(e[0]);
-   }
      
 
    
@@ -114,7 +95,7 @@ const BeautifyProfile = (props) => {
               name="image" 
               capture='camera'
               accept="image/x-png,image/gif,image/jpeg"
-              onChange={(img) => imageHandler(img.target.files)}
+              onChange={(img) => _previewImageHandler(img.target.files, setImage, setImageFile)}
          
             />
             <div className="add-advatar">
@@ -128,7 +109,7 @@ const BeautifyProfile = (props) => {
             className="container-continue"
             onClick={() => props.history.push({ 	
                   pathname:'/finishCreate',
-                  orginaztionName,
+                  organizationName,
                   description,
                   University,
                   location,

@@ -15,7 +15,7 @@ import "./styles/RegistrationStyles.css";
 const Registration = (props) => {
 
 	//Initialize the states
-	const [orginaztionName, setOrginaztionName]=useState("");
+	const [organizationName, setOrganizationName]=useState("");
 	const [description,setDescription]=useState("");
 	
 
@@ -25,7 +25,7 @@ const Registration = (props) => {
 	 * @returns {void} 
 	 */
 	const _onChangeOrganizationName = (name) => {
-		setOrginaztionName(name);
+		setOrganizationName(name);
 	}
 	/**
 	 * @summary Handle the state of description
@@ -48,8 +48,8 @@ const Registration = (props) => {
 					<input 
 						className='input-text-registration'
 						type= 'text'
-						placeholder= "Orginaztion's name *" 
-						value={orginaztionName}
+						placeholder= "Organization's name *" 
+						value={organizationName}
 						onChange={(name)=> _onChangeOrganizationName(name.target.value)}
 					/>
 					<input 
@@ -68,7 +68,7 @@ const Registration = (props) => {
 						{()=> props.history.push
 							({ 	
 								pathname:'/beautifyProfile',
-								orginaztionName,
+								organizationName,
 								description,
 							})
 						}
