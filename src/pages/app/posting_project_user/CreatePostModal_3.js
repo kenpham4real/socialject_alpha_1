@@ -6,11 +6,13 @@
 */
 
 import React, { Component, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+
 import "./styles/CreatePostModal_3.css";
-import { Link } from "react-router-dom";
+
 //Firebase stuff. Include this allow the PushData() function to run properly
 import { firebase_db } from "../../../firebase-config";
+import { _createProject_ppu } from "../../../store/actions/posting-project-user/project/project";
 
 //Function to pushdata on Firebase. The id of the object will be generated randomly
 function PushData(data, profileId) {
@@ -41,7 +43,8 @@ function PushData(data, profileId) {
 
 //Main function.
 const CreatePostModal_3 = (props) => {
-  console.log(props);
+  const dispatch = useDispatch();
+
   //Initialize the state
   const [projectBenefitArray, setProjectBenefitArray] = useState([]);
   const [projectBenefit, setProjectBenefit] = useState("");
@@ -53,14 +56,15 @@ const CreatePostModal_3 = (props) => {
 
   const _onChangeAddBenefit = (benefit) => {
     setProjectBenefit(benefit);
-    setProjectBenefitArray((benefit) => projectBenefitArray.concat(benefit));
+    // setProjectBenefitArray((benefit) => projectBenefitArray.concat(benefit));
+    setProjectBenefitArray((prev) => [...prev, benefit]);
+    console.log("projectBenefitArray", projectBenefitArray);
   };
 
   const _onChangeAddRequirement = (requirement) => {
     setProjectRequirement(requirement);
-    setProjectRequirementArray((requirement) =>
-      projectRequirementArray.concat(requirement)
-    );
+    setProjectRequirementArray((req) => req.concat(requirement));
+    console.log("projectRequirementArray", projectRequirementArray);
   };
 
   //The data to push to Fire Base. This is selected from the global store (Redux)
@@ -70,8 +74,8 @@ const CreatePostModal_3 = (props) => {
     projectLocation: props.location.projectLocation,
     projectDeadline: props.location.projectDeadline,
     question: props.location.projectQuestionArray,
-    benefit: props.location.projectBenefit,
-    requirement: ["Artistic Soul", "Coder Endurence"],
+    // benefit: projectBenefitArray,
+    // requirement: projectRequirementArray,
     avatar: null,
   };
   console.log("Post Data: ", postData);
@@ -144,20 +148,27 @@ const CreatePostModal_3 = (props) => {
       </div>
       <div className="avatarBox"> Avatar</div>
       {/*<Link> </Link> component is to navigate*/}
-      <Link to="/projectInfo" className="profile-link">
-        <button
-          className="profile-button"
-          onClick={
-            //Now push the data onto Firebase.
-            () => PushData(postData)
-          }
-        >
-          Continue
-        </button>
-      </Link>
-      <Link to="/CreatePostModal_2" className="profile-link">
-        <button className="profile-button">Go Back</button>
-      </Link>
+      {/* <Link to="/projectInfo" className="profile-link"> */}
+      <button
+        className="profile-button"
+        onClick={
+          //Now push the data onto Firebase.
+          () =>
+            dispatch(
+              _createProject_ppu(
+                postData,
+                projectBenefitArray[projectBenefitArray.length - 1],
+                projectRequirementArray[projectRequirementArray.length - 1]
+              )
+            )
+        }
+      >
+        Continue
+      </button>
+      {/* </Link> */}
+      {/* <Link to="/CreatePostModal_2" className="profile-link"> */}
+      <button className="profile-button">Go Back</button>
+      {/* </Link> */}
     </div>
   );
 };
