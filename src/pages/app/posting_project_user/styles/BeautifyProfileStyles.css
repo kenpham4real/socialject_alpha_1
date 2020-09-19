@@ -32,8 +32,7 @@
     border:2px solid black;
     border-radius: 5px;
     font-size:20px;
-    width:330px
-
+    width:330px;
 }
 .select{
     width: 340px;
@@ -47,21 +46,33 @@
     width:335px;
     margin-top:20px;
     margin-bottom:20px;
+    background-color: rgb(22, 206, 181);
 }
 .avatar-text{
     font-weight: bold;
     font-size:20px;
     margin-left: 10px;
 }
-.image{
-    height: 100px;
+.image-holder{
     justify-items: center;
-    position: relative;
-    margin-left: 135px;
-    margin-top:50px;
-    width:50px;
-    height:50px;
-    cursor: pointer;
+    margin-left: 103px;
+    margin-top:10px;
+    width:120px;
+    height:120px;
+    border:3px solid black;
+    border-radius: 10px;
+    object-fit: cover;
+}
+.import-file{
+    /* display: none; */
+    margin-left:105px;
+}
+.add-avatar{
+    margin-left:100px;
+    margin-top: 5px;
+    background-color: black;
+    border-radius: 10px;
+    color: white;
 }
 .container-continue{
     width:340px;
