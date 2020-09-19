@@ -9,6 +9,7 @@ import "./styles/BeautifyProfileStyles.css";
 
 // Helper
 import {_previewImageHandler} from '../../../../src/helper/image/imageHandler'
+import { ImagePreview } from "../../../components/app/ImagePreview";
 
 //Select
 const options = [
@@ -81,27 +82,11 @@ const BeautifyProfile = (props) => {
             value={University}
             onChange={(University)=> _onChangeUniversity(University.target.value)}
           />
-          <div className="avatar-box">
-            <p className="avatar-text"> Avatar * </p>
-            <img
-              className="image-holder"
-              alt=""
-              src={image}
-            />
-            <input
-              className="import-file"
-              alt="hi"
-              type="file" 
-              name="image" 
-              capture='camera'
-              accept="image/x-png,image/gif,image/jpeg"
-              onChange={(img) => _previewImageHandler(img.target.files, setImage, setImageFile)}
-         
-            />
-            <div className="add-advatar">
-                <IoMdImage />
-            </div>
-          </div>
+          <ImagePreview
+            setImage={setImage}
+            setImageFile={setImageFile}
+            image={image}
+          />
         </div>
       
         <div>

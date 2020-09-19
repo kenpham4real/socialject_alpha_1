@@ -20,6 +20,10 @@ import * as _activityActions from '../../../store/actions/posting-project-user/a
 // Constants
 import {testing_project_id} from '../../../constants/testing-keys'
 
+// Helper
+import {_previewImageHandler} from '../../../helper/image/imageHandler'
+import { ImagePreview } from "../../../components/app/ImagePreview";
+
 
 const AddActivityModal = (props) => {
 
@@ -30,7 +34,7 @@ const AddActivityModal = (props) => {
   const [activityDate, setActivityDate] = useState(new Date());
   const [showCalendar, setShowCalendar] = useState(false);
   const [activityImage, setActivityImage] = useState(null)
-  const [imageLoading, setImageLoading] = useState(false);
+  const [activityImageFile, setActivityImageFile] = useState(false);
 
   // Dispatch 
   const dispatch = useDispatch();
@@ -91,20 +95,6 @@ const AddActivityModal = (props) => {
     setShowCalendar(prevState => !prevState)
   }
 
-  const _chooseImageHandle = (image) => {
-    const reader = new FileReader();
-    reader.onloadstart = () => setImageLoading(true)
-
-    reader.onload = event => {
-      console.log('event onload', event)
-      setActivityImage(event.target.result);
-      setImageLoading(false)
-    };
-  
-    reader.readAsDataURL(image[0]);
-    console.log('data', activityImage)
-  }
-
   return (
     <div id="createPostModal_2">
       <h1>Start with the basics</h1>
@@ -147,14 +137,11 @@ const AddActivityModal = (props) => {
           />
         }
       </div>
-      <input
-          id="car"
-          type="file"
-          accept="image/*"
-          capture="camera"
-          onChange={img => _chooseImageHandle(img.target.files)}
-        />
-        <img src={activityImage} />
+      <ImagePreview
+        setImage={setActivityImage}
+        setImageFile={setActivityImageFile}
+        image={activityImage}
+      />
       <button 
         onClick={_onAddActivity}
       >

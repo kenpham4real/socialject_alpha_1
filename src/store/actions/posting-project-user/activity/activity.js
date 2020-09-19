@@ -7,6 +7,9 @@ import {testing_project_id, testing_activity_id} from '../../../../constants/tes
 // Classes and models
 import {Activity} from '../../../../models/activity'
 
+// Helper
+import {_imageUploadHandler} from '../../../../helper/image/imageHandler'
+
 // Export all the action types
 export const ADD_ACTIVITY = "ADD_ACTIVITY";
 export const SET_ACTIVITY = "SET_ACTIVITY";
@@ -70,6 +73,9 @@ export const _addActivity_ppu = (activityId, activityName, activityDescription, 
      * @author Ken Pham
      */
     return async (dispatch, getState) => {
+
+        const activityImageUrl = _imageUploadHandler(activityImage);
+
         try {
             await
             firebase_db
@@ -85,6 +91,7 @@ export const _addActivity_ppu = (activityId, activityName, activityDescription, 
                 activityDescription: activityDescription,
                 activityLocation: activityLocation,
                 activityDate: activityDate,
+                activityImage: activityImageUrl
             })
 
             console.log('Add activities successfully');
@@ -97,6 +104,7 @@ export const _addActivity_ppu = (activityId, activityName, activityDescription, 
                     activityDescription: activityDescription,
                     activityLocation: activityLocation,
                     activityDate: activityDate,
+                    activityImage: activityImageUrl
                 }
             })
             
