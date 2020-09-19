@@ -1,3 +1,5 @@
+import {firebase_storage} from '../../firebase-config'
+
 /**
  * @summary This file contains all the helper functions used to handle any functionalities relating to images
  * @author Ken Pham
@@ -11,13 +13,12 @@
 /**
  * @summary Upload the image to storage of Firebase and then return the downloadable URL of the image
  * @param {Object} imageFile An object containing the image's properties such as {name:...,type:img/png,...vv}
- * @param {Object} storage The firebase storage
  * @return {string} The image's downloadable url
  * @author TrNgTien, Ken Pham
  */
-export const _imageUploadHandler = async (imageFile, storage)=>{
+export const _imageUploadHandler = async (imageFile)=>{
 
-    const projectImageRef = storage.ref(`images/${imageFile.name}`)
+    const projectImageRef = firebase_storage.ref(`images/${imageFile.name}`)
 
     return new Promise(async (res, rej) => {
         projectImageRef.put(imageFile).on(
@@ -28,7 +29,7 @@ export const _imageUploadHandler = async (imageFile, storage)=>{
                 rej(error)
             },
             ()=>{ 
-                storage
+                firebase_storage
                 .ref("images")
                 .child(imageFile.name)
                 .getDownloadURL()
