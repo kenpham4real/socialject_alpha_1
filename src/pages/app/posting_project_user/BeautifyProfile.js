@@ -1,56 +1,122 @@
-/*
-*Contributor: Tiến 2nd september 2020
-*Function: Page register(render page for PPU to create their account)
-
-*/
-
-import React from "react";
-import "./styles/BeautifyProfileStyles.css";
+//Packages
+import React, { useState} from "react";
 import Select from "react-select";
+import { IoMdImage } from "react-icons/io";
 
+
+//Styles
+import "./styles/BeautifyProfileStyles.css";
+
+// Helper
+import {_previewImageHandler} from '../../../../src/helper/image/imageHandler'
+
+//Select
 const options = [
-  { value: "ha noi", label: "Ha Noi" },
-  { value: "ho chi minh", label: "Ho Chi Minh" },
-  { value: "hai phong", label: "Hai Phong" },
-  { value: "da nang", label: "Da Nang" },
+  { id: "ha_noi", value: "ha noi", label: "Ha Noi" },
+  { id: "ho_chi_minh", value: "ho chi minh", label: "Ho Chi Minh" },
+  { id: "hai_phong", value: "hai phong", label: "Hai Phong" },
+  { id: "da_nang", value: "da nang", label: "Da Nang" },
 ];
 
+   
+
+
 const BeautifyProfile = (props) => {
+
+  //Intialize the states
+  const [location, setLocation]= useState("");
+  const [University, setUniversity]= useState("");
+  const [image, setImage]= useState(null);
+  const [imageFile,setImageFile]=useState("");
+ 
+
+  const organizationName = props.location.organizationName;
+  const description=props.location.description;
+  /**
+   * @summary Handle Select
+   * @param {string} location
+   * @return {void}
+   * @author TrNgTien
+   */
+  const handleChange =(location) =>{
+    setLocation({selectedOption:location})
+  }
+  
+
+  /**
+	 * @summary Handle states input
+	 * @param {string} University
+	 * @return {void}
+   * @author TrNgTien
+	 */
+
+	const _onChangeUniversity=(University)=>{
+    setUniversity(University);
+  }
+     
+
+   
   return (
     <div className="page">
       <div className="container-BeautifyProfile">
         <div>
           <h1 className="my-header-BeautifyProfile"> Beautify Your Page </h1>
           <p className="description-BeautifyFrofile">
-            {" "}
-            Polish your page with additional information{" "}
+            Polish your page with additional information
           </p>
+          
         </div>
         <div className="view-text-input-beautifyProfile">
           <Select
-            options={options}
             className="select"
             placeholder="Location *"
+            options={options}
+            value={location.selectedOption}
+            onChange={handleChange}
           />
           <input
             className="input-text-beautifyProfile"
             type="text"
             placeholder="School/University"
-          ></input>
+            value={University}
+            onChange={(University)=> _onChangeUniversity(University.target.value)}
+          />
           <div className="avatar-box">
             <p className="avatar-text"> Avatar * </p>
             <img
-              className="image"
-              alt="Search icon"
-              src={require("../../../assets/images/camera.png")}
+              className="image-holder"
+              alt=""
+              src={image}
             />
+            <input
+              className="import-file"
+              alt="hi"
+              type="file" 
+              name="image" 
+              capture='camera'
+              accept="image/x-png,image/gif,image/jpeg"
+              onChange={(img) => _previewImageHandler(img.target.files, setImage, setImageFile)}
+         
+            />
+            <div className="add-advatar">
+                <IoMdImage />
+            </div>
           </div>
         </div>
-
+      
         <div>
           <button
-            onClick={() => props.history.push("/finishCreate")}
             className="container-continue"
+            onClick={() => props.history.push({ 	
+                  pathname:'/finishCreate',
+                  organizationName,
+                  description,
+                  University,
+                  location,
+                  image,
+                  imageFile,
+              })
+            }
           >
             <span> Next </span>
           </button>
@@ -59,5 +125,6 @@ const BeautifyProfile = (props) => {
     </div>
   );
 };
+
 
 export default BeautifyProfile;
