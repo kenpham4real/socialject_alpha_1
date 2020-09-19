@@ -162,6 +162,10 @@ This is CSS file for ProjectInfoPage.js
   padding-bottom: 34px;
 }
 
+.benefitContainer{
+  border: 1px solid red;
+}
+
 .projectHeadings {
   font-style: normal;
   font-weight: bold;
@@ -218,6 +222,12 @@ This is CSS file for ProjectInfoPage.js
 .progress-container-header-addActivityButton{
   flex: 1;
   margin-top: 10px;
+}
+
+.progress-container-activity{
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
 }
 
 /* RIGHT COLUMN GENERAL DESIGN */

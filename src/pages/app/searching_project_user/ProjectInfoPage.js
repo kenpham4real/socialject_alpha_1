@@ -1,122 +1,337 @@
-import React from "react";
-import NavigationBar from "../../../components/app/NavigationBar.js";
+/**
+ * Contributors: Đạt, Ken
+ * Main Component: 
+ * ProjectInfoPage{
+ *  _loadProjectst() => Fetch the projects from Firestore
+ *  _project_tags() => Render the tag of the project
+ *  _organizationInfo() => Render the info of organization, including name, avatar and the follow button
+ *  _project_apply_button() => Render the apply button for the project
+ *  _
+ * }
+ */
+
+import React, { useEffect, useCallback } from "react";
+import {useDispatch, useSelector} from 'react-redux';
+
+// Styles
 import "./styles/ProjectInfoPage.css";
+
+// COmponents
+import NavigationBar from "../../../components/app/NavigationBar.js";
 import ListedItems from "../../../components/app/ProjectInfoPage/ListedItems.js";
 import ProjectActivity from "../../../components/app/ProjectInfoPage/ProjectActivity.js";
 import CopyrightBar from "../../../components/app/CopyrightBar.js";
 
+// Functions
+import * as projectActions from "../../../store/actions/posting-project-user/project/project.js";
+import * as activityActions from '../../../store/actions/posting-project-user/activity/activity';
+
+
 const ProjectInfoPage = (props) => {
+
+  // Retrieve the projects state from the reducer
+  // state.projectReducer --> From App.js
+  // .projects --> From reducer
+  // Global state: projects
+  const projects_recruit_info = useSelector(state => state.projectReducer.projects_recruit_info);
+  const activities = useSelector(state => state.activityReducer.activities);
+
+  // useDispatch() from react-redux
+  const dispatch = useDispatch()
+
+  /**
+   * @summary A callback to fetch projects
+   * @param {void}
+   * @returns {function} @callback
+   * @author Ken Pham
+   */
+  const _loadProjects = useCallback( async () => {
+    try {
+      dispatch(projectActions._fetchProject_recruit_info_ppu())
+
+    } catch (error) {
+      console.log('error', error)
+    }
+  }, [dispatch]) 
+
+
+  const _loadProjectActivity = useCallback(async () => {
+    try {
+      dispatch(activityActions._fetchProjectActivity_ppu())
+    } catch (error) {
+      console.log('error', error)
+    }
+  }, [dispatch])
+
+  useEffect(() => {
+    _loadProjectActivity()
+    .then(() => console.log('activities loaded successfully'));
+  }, [dispatch, _loadProjectActivity])
+
+  // Fetch projects when PPU enters the page
+  useEffect(() => {
+    _loadProjects()
+    .then(() => console.log('projects loaded successfully'))
+  }, [dispatch, _loadProjects])
+
+  console.log('fetched projects', projects_recruit_info)
+
+
+  /********************************* Small UI components *********************************/ 
+  /**
+   * @summary Render the tags of the project
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
+  const _project_tags = () => {
+    return(
+      <div className="tags">
+        <a href="">Explore</a> <span> </span>
+        <a href="">Language</a> <span> </span>
+        <a href="" className="currentTags">
+          Tags
+        </a>{" "}
+        <span> </span>
+      </div>
+    )
+  }
+  
+  /**
+   * @summary Render the info of organization, including name, avatar and the follow button
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
+  const _organization_info = () => {
+    return(
+      <div className="organizationNameandPicture">
+        <img
+          className="projectLogo"
+          src="https://w7.pngwing.com/pngs/1003/487/png-transparent-github-pages-random-icons-white-logo-monochrome.png"
+          alt="orgLogo"
+        />
+        <div className="organizationName">Organization's Name </div>
+        <button>Follow</button>
+      </div>
+    )
+  }
+
+  /**
+   * @summary Render the apply button for the project
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
+  const _project_apply_button = () => {
+    return(
+      <div className="applyButton">
+        <div className="applyNow">Apply Now</div>
+        <div className="dueDay">Ends some day</div>
+      </div>
+    )
+  }
+
+  /**
+   * @summary Render the avatar of the project
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
+  const _project_avatar = () => {
+    return(
+      <div>
+        <img
+          className="projectPicture"
+          src="https://scontent-xsp1-1.xx.fbcdn.net/v/t1.0-9/10514712_1441620719449458_2919014509954445678_n.jpg?_nc_cat=103&_nc_sid=110474&_nc_ohc=S_vl00GT_9sAX9yvuwq&_nc_ht=scontent-xsp1-1.xx&oh=a0b2a92958685faec2cc28775a437903&oe=5F69B421"
+          alt="projectPicture"
+        />
+      </div>
+    )
+  }
+
+  /**
+   * @summary Render the showing-joined-user-number div
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
+  const _project_joined_users = () => {
+    return(
+      <div className="joinedUsers">
+        <span>100, 000</span> has joined
+      </div>
+    )
+  }
+  
+  /**
+   * @summary Render the held-by section of the project
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
+  const _project_held_by_section = () => {
+    return(
+      <div className="heldByContainer">
+        <h1 className="projectHeadings"> Held by</h1>
+        <img
+          className="projectLogo"
+          src="https://w7.pngwing.com/pngs/1003/487/png-transparent-github-pages-random-icons-white-logo-monochrome.png"
+          alt="orgLogo"
+        />
+        <span>
+          <p className="organizationName">Organization's Name</p>
+          <p>
+            This paragraph will be the section “About” in the Profile of the
+            Organization.
+          </p>
+        </span>
+        <div className="viewAllButton">View all</div>
+      </div>
+    )
+  }
+
+  /**
+   * @summary Render the benefits section
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
+  const _project_benefit_section = () => {
+    return(
+      <div className="benefitContainer">
+        <h1 className="projectHeadings">Benefit</h1>
+        <ul>
+          {projects_recruit_info.benefits.map(benefit => (
+            <ListedItems
+              title={benefit}
+            />
+          ))}
+        </ul>
+      </div>
+    )
+  }
+
+  /**
+   * @summary Render the requirements section
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
+  const _project_requirement_section = () => {
+    return(
+      <div className="requirementContaner">
+        <h1 className="projectHeadings">Requirements</h1>
+        {projects_recruit_info.requirements.map(requirement => (
+          <ListedItems
+            title={requirement}
+          />
+        ))}
+      </div>
+    )
+  }
+
+  /**
+   * @summary Render the about section of the project
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
+  const _project_about_section = () => {
+    return(
+      <div className="aboutContainer">
+        <h1 className="projectHeadings">About</h1>
+        <div>Best project ever</div>
+        <div className="viewAllButton">View all</div>
+      </div>
+    )
+  }
+
+  /**
+   * @summary Render the activities
+   * @param {void}
+   * @returns JSX 
+   * @author Ken Pham
+   */
+  const _project_activity_item = activities.map((activity) => {
+    return(
+        <ProjectActivity
+          key={activity.activityId}
+          project_activity_avatar={null}
+          project_activity_name={activity.activityName}
+          project_activity_date={activity.createdAt?.seconds == true ? activity.createdAt.seconds : activity.createdAt}
+          project_activity_location={activity.activityLocation}
+          project_activity_description={activity.activityDescription}
+        />
+    )
+  })
+
+  /**
+   * @summary Render the progress section of the project
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
+  const _project_progress_section = () => {
+    return(
+      <div className="progressContainer">
+        <div className="progress-container--header">
+          <h1 className="projectHeadings">Progress</h1>
+          <a className="progress-container-header-addActivityButton" href="/addActivity">Add an activity</a>
+        </div>
+        <ul className="progress-container-activity">
+          <a>{_project_activity_item}</a>
+        </ul>
+        <div className="viewAllButton">View all</div>
+      </div>
+    )
+  }
+
+  /********************************* MAIN Component: ProjectInfoPage *********************************/ 
   return (
-    <div class="projectInfoPage">
+    <div className="projectInfoPage">
       <div>
         <NavigationBar />
       </div>
 
-      <div class="generalInfoBoard">
+      <div className="generalInfoBoard">
         {/* The 'generalInfo' division is divided into 2 smaller division: 'generInfoComponents' and 'projectPicture' */}
 
         {/*'generalInfo' division*/}
-        <div class="generalInfoComponents">
-          <div class="tags">
-            <a href="">Explore</a> <span> </span>
-            <a href="">Language</a> <span> </span>
-            <a href="" class="currentTags">
-              Tags
-            </a>{" "}
-            <span> </span>
-          </div>
-          <div class="projectName">Project's Name</div>
-          <div class="location">Location</div>
-          <div class="organizationNameandPicture">
-            <img
-              class="projectLogo"
-              src="https://w7.pngwing.com/pngs/1003/487/png-transparent-github-pages-random-icons-white-logo-monochrome.png"
-              alt="orgLogo"
-            />
-            <div class="organizationName">Organization's Name </div>
-            <button>Follow</button>
-          </div>
-          <div class="applyButton">
-            <div class="applyNow">Apply Now</div>
-            <div class="dueDay">Ends Juls 29</div>
-          </div>
-          <div class="joinedUsers">
-            <span>100, 000</span> has joined
-          </div>
+        <div className="generalInfoComponents">
+          {_project_tags()}
+          <div className="projectName">SocialJect_1</div>
+          <div className="location">Home</div>
+          {_organization_info()}
+
+          {_project_apply_button()}
+
+          {_project_joined_users()}
         </div>
 
         {/*'projectPicture' division*/}
-        <div>
-          <img
-            class="projectPicture"
-            src="https://scontent-xsp1-1.xx.fbcdn.net/v/t1.0-9/10514712_1441620719449458_2919014509954445678_n.jpg?_nc_cat=103&_nc_sid=110474&_nc_ohc=S_vl00GT_9sAX9yvuwq&_nc_ht=scontent-xsp1-1.xx&oh=a0b2a92958685faec2cc28775a437903&oe=5F69B421"
-            alt="projectPicture"
-          />
-        </div>
+        {_project_avatar()}
+        
       </div>
 
-      <div class="content">
-        <div class="leftColumn">
-          <div class="heldByContainer">
-            <h1 class="projectHeadings"> Held by</h1>
-            <img
-              class="projectLogo"
-              src="https://w7.pngwing.com/pngs/1003/487/png-transparent-github-pages-random-icons-white-logo-monochrome.png"
-              alt="orgLogo"
-            />
-            <span>
-              <text class="organizationName">Organization's Name</text>
-              <p>
-                This paragraph will be the section “About” in the Profile of the
-                Organization.
-              </p>
-            </span>
-            <div class="viewAllButton">View all</div>
-          </div>
-          <div class="benefitContainer">
-            <h1 class="projectHeadings">Benefit</h1>
-            <ListedItems />
-            <ListedItems />
-            <ListedItems />
-          </div>
-          <div class="requirementsContaner">
-            <h1 class="projectHeadings">Requirements</h1>
-            <ListedItems />
-            <ListedItems />
-            <ListedItems />
-          </div>
-          {/* <div class="teamContainer">
-            <h1 class="projectHeadings">Team</h1>
+      <div className="content">
+        <div className="leftColumn">
+          {_project_held_by_section()}
+          {_project_benefit_section()}
+          {_project_requirement_section()}
+          {/* <div className="teamContainer">
+            <h1 className="projectHeadings">Team</h1>
             <ListedItems />
             <ListedItems />
             <ListedItems />
           </div> */}
         </div>
-        <div class="rightColumn">
-          <div class="aboutContainer">
-            <h1 class="projectHeadings">About</h1>
-            <div>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-              auctor, diam in interdum semper, lacus odio tincidunt velit, id
-              luctus mauris lorem tincidunt nisl. Donec auctor, diam in interdum
-              semper, lacus odio tincidunt velit, id luctus mauris lorem
-              tincidunt nisl.
-            </div>
-            <div class="viewAllButton">View all</div>
-          </div>
-          <div class="progressContainer">
-            <div className="progress-container--header">
-              <h1 class="projectHeadings">Progress</h1>
-              <a className="progress-container-header-addActivityButton" href="/addActivity">Add an activity</a>
-            </div>
-            <ProjectActivity />
-            <ProjectActivity />
-            <ProjectActivity />
-            <div class="viewAllButton">View all</div>
-          </div>
+        <div className="rightColumn">
+          {_project_about_section()}
+          {_project_progress_section()}
         </div>
       </div>
-      <div class="footer">
+      <div className="footer">
         <CopyrightBar />
       </div>
     </div>

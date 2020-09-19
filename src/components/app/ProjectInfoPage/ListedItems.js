@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import "../../styles/ProjectInfoPage/ListedItems.css";
-class ListedItems extends Component {
-  render() {
-    return (
-      <div class="bulletinItems">
-        <div class="bulletinMark" />
-        <div>Lorem ipsum dolor sit amet</div>
-      </div>
-    );
-  }
+const ListedItems = props => {
+  
+  return (
+    <div className="bulletinItems">
+      <div className="bulletinMark" />
+      <div>{props.title}</div>
+    </div>
+  );
 }
 
 export default ListedItems;

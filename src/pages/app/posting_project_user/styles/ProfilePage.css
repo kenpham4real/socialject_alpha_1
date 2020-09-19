@@ -24,6 +24,16 @@
   margin: 1%;
 }
 
+.project-activity-list{
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.project-activity-list--component{
+  text-decoration-line: none;
+}
+
 .profile-avatar {
   height: 150px;
   width: 150px;

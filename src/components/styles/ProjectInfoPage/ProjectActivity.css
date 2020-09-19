@@ -1,15 +1,19 @@
 .projectActivity {
   display: flex;
+  margin-top: 20px;
 }
 .activityInfo {
-  padding-left: 29px;
+  flex: 7;
+  margin-left: 29px;
+  margin-right: 29px;
 }
 .activityPicture {
   height: 52px;
-  width: 51.39px;
+  width: 70px;
   border: 1px solid black;
   box-sizing: border-box;
   border-radius: 3px;
+  flex: 1;
 }
 
 .activityName {
@@ -17,9 +21,9 @@
   font-weight: bold;
   font-size: 13px;
   letter-spacing: -0.022em;
+  color: black;
 }
-.activityTime,
-.activityLocation {
+.activityTime, .activityLocation {
   font-style: normal;
   font-weight: normal;
   font-size: 13px;
@@ -27,4 +31,8 @@
   letter-spacing: -0.022em;
 
   color: #848484;
+}
+
+.activityDescription{
+  color: black;
 }

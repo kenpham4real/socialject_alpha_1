@@ -12,10 +12,10 @@ const CreatePostModal_3 = (props) => {
     <div id="createPostModal_3">
       <h1>Bring it to everyone</h1>
       <p>Let your project applicants know more about how to join</p>
-      <div class="addBenefitBox">
+      <div className="addBenefitBox">
         <div>
           Benefits for applicants
-          <div class="addBenefitButton">+</div>
+          <div className="addBenefitButton">+</div>
         </div>
         <ul>
           <li>
@@ -27,10 +27,10 @@ const CreatePostModal_3 = (props) => {
         </ul>
       </div>
       {/*REQUIREMENTS*/}
-      <div class="addBenefitBox">
+      <div className="addBenefitBox">
         <div>
           Requirements to join
-          <div class="addBenefitButton">+</div>
+          <div className="addBenefitButton">+</div>
         </div>
         <ul>
           <li>
@@ -41,7 +41,7 @@ const CreatePostModal_3 = (props) => {
           </li>
         </ul>
       </div>
-      <div class="avatarBox"> Avatar</div>
+      <div className="avatarBox"> Avatar</div>
       <button>Continue</button>
     </div>
   );
