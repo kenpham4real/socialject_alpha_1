@@ -1,11 +1,14 @@
 // Firebase database
-import {firebase_db} from '../../../../firebase-config'
+import {firebase_db, firebase_storage} from '../../../../firebase-config'
 
 // Constants
 import {testing_project_id, testing_activity_id} from '../../../../constants/testing-keys'
 
 // Classes and models
 import {Activity} from '../../../../models/activity'
+
+// Helper
+import {_imageUploadHandler} from '../../../../helper/image/imageHandler'
 
 // Export all the action types
 export const ADD_ACTIVITY = "ADD_ACTIVITY";
@@ -60,7 +63,7 @@ export const _fetchProjectActivity_ppu = () => {
  * @returns @async @function
  * @author Ken Pham
  */
-export const _addActivity_ppu = (activityId, activityName, activityDescription, activityLocation, activityDate) => {
+export const _addActivity_ppu = (activityId, activityName, activityDescription, activityLocation, activityDate, activityImage) => {
 
     /**
      * @summary Asynchronous function calling the database to push the data
@@ -70,6 +73,9 @@ export const _addActivity_ppu = (activityId, activityName, activityDescription, 
      * @author Ken Pham
      */
     return async (dispatch, getState) => {
+
+        const activityImageUrl = _imageUploadHandler(activityImage);
+
         try {
             await
             firebase_db
@@ -84,7 +90,8 @@ export const _addActivity_ppu = (activityId, activityName, activityDescription, 
                 activityName: activityName,
                 activityDescription: activityDescription,
                 activityLocation: activityLocation,
-                activityDate: activityDate
+                activityDate: activityDate,
+                activityImage: activityImageUrl
             })
 
             console.log('Add activities successfully');
@@ -96,7 +103,8 @@ export const _addActivity_ppu = (activityId, activityName, activityDescription, 
                     activityName: activityName,
                     activityDescription: activityDescription,
                     activityLocation: activityLocation,
-                    activityDate: activityDate
+                    activityDate: activityDate,
+                    activityImage: activityImageUrl
                 }
             })
             

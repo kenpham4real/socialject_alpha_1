@@ -24,7 +24,7 @@ export const _createProfile_ppu = (orgId, orgName, description, location, Univer
      * @author TrNgTien
      */
     return async (dispatch, getState) => {
-        const imageUrl = await _imageUploadHandler(imageFile, firebase_storage);
+        const imageUrl = await _imageUploadHandler(imageFile);
         try {
             await
             firebase_db
