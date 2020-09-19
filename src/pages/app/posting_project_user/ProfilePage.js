@@ -35,12 +35,13 @@ function OrgName(props) {
   return (
     <div className="profile-name-container">
       <img className="profile-avatar" src={imageURL} />
-      <a className="profile-block-container-small">
-        <div className="profile--title">{props.orgName}</div>
-        <div style={{ color: "gray" }}>{props.orgCategory}</div>
-        <div>{props.orgVision}</div>
-        <div className="profile-button">Add a project</div>
-      </a>
+      <div className="profile-block-container-small">
+        <div className="profile--title">Organization's Name</div>
+        <div style={{ color: "gray" }}>Location Category</div>
+        <div>{loremText}</div>
+        <a onClick={props._onNavigateToCreateProjectModal} className="profile-button">Add a project</a>
+      </div>
+
       <a className="profile-block-container-smaller">
         <div>{props.orgEmail}</div>
         <div>{props.orgPhoneNumber}</div>
@@ -59,6 +60,7 @@ function OrgVision(props) {
 }
 
 function OrgHistory(props) {
+
 
     /**
      * @summary Render the list of projects, each of which MUST have a UNIQUE KEY. The keys are extracted from project_activity_ids

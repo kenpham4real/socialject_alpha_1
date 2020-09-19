@@ -4,10 +4,39 @@
 
 */
 
-import React from "react";
+// Packages
+import React, { useState} from "react";
+
+
+//Styles
 import "./styles/RegistrationStyles.css";
 
+
 const Registration = (props) => {
+
+	//Initialize the states
+	const [organizationName, setOrganizationName]=useState("");
+	const [description,setDescription]=useState("");
+	
+
+	/**
+	 * @summary Handle the state of organiztion's name
+	 * @param {string} name
+	 * @returns {void} 
+	 */
+	const _onChangeOrganizationName = (name) => {
+		setOrganizationName(name);
+	}
+	/**
+	 * @summary Handle the state of description
+	 * @param {string} description
+	 * @returns {void}
+	 */
+	const _onChangeDescription = (description) => {
+		setDescription(description);
+	}
+
+	
 	return (
 		<div className="page" >
 			<div className="container-registration">
@@ -19,20 +48,34 @@ const Registration = (props) => {
 					<input 
 						className='input-text-registration'
 						type= 'text'
-						placeholder= "Orginaztion's name *" >
-					</input>
+						placeholder= "Organization's name *" 
+						value={organizationName}
+						onChange={(name)=> _onChangeOrganizationName(name.target.value)}
+					/>
 					<input 
+						
 						className='input-text-registration description'
 						type='text'
-						placeholder= "Description" >
-					</input>
+						placeholder= "Description" 
+						value={description}
+						onChange={(description) => _onChangeDescription(description.target.value)} 
+					/>
 				</div>
 				<div>
 					<button 
-						onClick={()=> props.history.push('/beautifyProfile')} 
-						className="container-continue" >
+						className="container-continue" 
+						onClick =
+						{()=> props.history.push
+							({ 	
+								pathname:'/beautifyProfile',
+								organizationName,
+								description,
+							})
+						}
+					>
 						<span> Continue </span>
 					</button>
+					
 				</div>
 			</div>
 					
