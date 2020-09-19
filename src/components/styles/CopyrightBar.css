@@ -5,6 +5,7 @@
 }
 
 .copyright-text {
+  display: inline;
   font-family: "Inter";
   font-size: 25px;
   color: var(--shadow);
