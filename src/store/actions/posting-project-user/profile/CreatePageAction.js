@@ -6,69 +6,47 @@ import { storage } from "firebase";
 // Constants
 import { testing_organization_id} from '../../../../constants/testing-keys';
 
+// Helper
+import {_imageUploadHandler} from '../../../../helper/image/imageHandler'
+
 
 // Export all the action types
 export const CREATE_PROFILE = "CREATE_PROFILE";
 
 /******************************** ACTIONS ********************************/
 
-  
+export const _createProfile_ppu = (orgId, orgName, description, location, University,email,phoneNumber,facebook,imageFile) => {
     /**
-     * @summary Handle upload the image to storage of Firebase
-     * @param {Object} imageFile An object containning such as {name:...,type:img/png,...vv}
-     * @return {void}
+     * @summary Asynchronous function calling the database to push the data
+     * @param {function} dispatch => Function used to send the action type and data to the Redux reducer
+     * @param {function} getState => Function used to access the current state of the application
+     * @returns {void}
      * @author TrNgTien
      */
-    const handleUpLoad = async (imageFile)=>{
-    
-        const uploadTask = firebase_storage.ref(`images/${imageFile.name}`)
+    return async (dispatch, getState) => {
+        const imageUrl = await _imageUploadHandler(imageFile, firebase_storage);
+        try {
+            await
+            firebase_db
+            .collection('organization')
+            .doc(`${testing_organization_id}`)
+            .set({
+                orgId:orgId,
+                orgName:orgName,
+                description:description,
+                location:location,
+                university:University,
+                email:email,
+                phoneNumber:phoneNumber,
+                facebook:facebook,
+                imageFile:imageUrl,
+            }, {merge: true})
+            console.log('Create profile successfully');
 
-        return new Promise(async (res, rej) => {
-            uploadTask.put(imageFile).on(
-                "state_changed",
-                snapshot =>{},
-                error =>{
-                    console.log("big erroor",error);
-                    rej(error)
-                },
-                ()=>{ 
-                    firebase_storage
-                    .ref("images")
-                    .child(imageFile.name)
-                    .getDownloadURL()
-                    .then(url=>{
-                        console.log(url)
-                        res(url)
-                        });
-                }
-            );
-        })
-        
             
-    }
- 
-
-
- 
-
-
-
-    export const _createProfile_ppu = (orgId, orgName, description, location, University,email,phoneNumber,facebook,imageFile) => {
-        /**
-         * @summary Asynchronous function calling the database to push the data
-         * @param {function} dispatch => Function used to send the action type and data to the Redux reducer
-         * @param {function} getState => Function used to access the current state of the application
-         * @returns {void}
-         * @author TrNgTien
-         */
-        return async (dispatch, getState) => {
-            const imageUrl = await handleUpLoad(imageFile);
-            try {
-                await
-                firebase_db
-                .collection('organization')
-                .doc(`${testing_organization_id}`)
-                .set({
+            dispatch({
+                type: CREATE_PROFILE,
+                finishCreate: {
                     orgId:orgId,
                     orgName:orgName,
                     description:description,
@@ -77,28 +55,12 @@ export const CREATE_PROFILE = "CREATE_PROFILE";
                     email:email,
                     phoneNumber:phoneNumber,
                     facebook:facebook,
-                    imageFile:imageUrl,
-                }, {merge: true})
-                console.log('Create profile successfully');
-
-                
-                dispatch({
-                    type: CREATE_PROFILE,
-                    finishCreate: {
-                        orgId:orgId,
-                        orgName:orgName,
-                        description:description,
-                        location:location,
-                        university:University,
-                        email:email,
-                        phoneNumber:phoneNumber,
-                        facebook:facebook,
-                        imageFile:imageFile,
-                    }
-                })
-                
-            } catch (error) {
-                console.log('Error::', error);
-            }
+                    imageFile:imageFile,
+                }
+            })
+            
+        } catch (error) {
+            console.log('Error::', error);
         }
+    }
 }
