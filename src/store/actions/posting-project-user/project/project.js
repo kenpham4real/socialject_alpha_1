@@ -128,3 +128,22 @@ export const _fetchProject_recruit_info_ppu = () => {
     }
   };
 };
+
+export const _createProject_ppu = (projectData, benefits, requirements) => {
+  return async (dispatch, getState) => {
+    try {
+      await firebase_db
+        .collection("public-projects")
+        .doc(`${testing_project_id}`)
+        .set({
+          projectData: projectData,
+          benefits: benefits,
+          requirements: requirements,
+        });
+
+      console.log("Create project successfully");
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+};
