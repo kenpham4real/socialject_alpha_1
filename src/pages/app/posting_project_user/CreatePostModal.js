@@ -16,23 +16,8 @@ const CreatePostModal_1 = (props) => {
   //This is to allow the user to change the value of name, description, etc. (useState hooks)
   const [name, setName] = useState(null);
   const [desc, setDesc] = useState(null);
-  const [location, setLoca] = useState(null);
+  const [location, setLocation] = useState(null);
   const [deadline, setDeadline] = useState(null);
-
-  //Function to dispatch the data onto the global store. (Redux)
-  /* Not finished
-  const toNextModal = (name, desc, location, deadline) => {
-    dispatch(
-      { type: "ADD_NAME", payload: name },);
-    dispatch(
-    { type: "ADD_DESCRIPTION", payload: desc },);
-    dispatch(
-      { type: "ADD_LOCATION", payload: location },);
-    dispatch(
-      { type: "ADD_DEADLINE", payload: deadline });
-    );
-  };
-  */
 
   //UI rendering
   return (
@@ -58,7 +43,7 @@ const CreatePostModal_1 = (props) => {
           <input
             type="text"
             placeholder="Location *"
-            onChange={(event) => setLoca(event.target.value)}
+            onChange={(event) => setLocation(event.target.value)}
           ></input>
         </div>
         <div className="boxModal">
@@ -69,14 +54,12 @@ const CreatePostModal_1 = (props) => {
           ></input>
         </div>
       </div>
-      <Link to="/CreatePostModal_2" className="profile-link">
         <button
           className="profile-button"
-          onClick={() => toNextModal(name, desc, location, deadline)}
+          onClick={() => props.history.push('/createPostModal_2')}
         >
           Continue
         </button>
-      </Link>
     </div>
   );
 };
