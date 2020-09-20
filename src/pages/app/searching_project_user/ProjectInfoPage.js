@@ -219,6 +219,7 @@ const ProjectInfoPage = (props) => {
           ))}
         </ul>
       </div>
+      //Somthing is wrong in this section, detail:"benefits". That makes the page broken
     )
   }
 
