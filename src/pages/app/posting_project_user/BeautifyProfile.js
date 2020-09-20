@@ -26,13 +26,8 @@ const BeautifyProfile = (props) => {
 
   //Intialize the states
   const [location, setLocation]= useState("");
-<<<<<<< HEAD
-  const [University, setUniversity]= useState("");
-  const [image, setImage]= useState(require("../../../assets/images/blank-profile.png"));
-=======
   const [university, setUniversity]= useState("");
   const [image, setImage]= useState(null);
->>>>>>> 8764661b751c5d07a856753d26a10023609a33a7
   const [imageFile,setImageFile]=useState("");
  
 
@@ -59,31 +54,7 @@ const BeautifyProfile = (props) => {
 	const _onChangeUniversity=(university)=>{
     setUniversity(university);
   }
-<<<<<<< HEAD
-
-
-   /**
-   * @summary Handle change the image
-   * @param {file} avatar
-   * @return {void}
-   * @author TrNgTien
-   */
-
-   const imageHandler =(e) =>{
-     const reader =new FileReader();
-     console.log('e', e)
-     reader.onload= (event) =>{
-       console.log('event', event)
-       if(reader.readyState===2){
-         setImage(event.target.result)
-       }
-     }
-     reader.readAsDataURL(e[0])
-     setImageFile(e[0]);
-   }
-=======
      
->>>>>>> e6b208961f173e554b9b31d507faa4ea86f5b9c4
 
    
   return (
@@ -111,35 +82,11 @@ const BeautifyProfile = (props) => {
             value={university}
             onChange={(uni)=> _onChangeUniversity(uni.target.value)}
           />
-<<<<<<< HEAD
-          <div className="avatar-box">
-            <p className="avatar-text"> Avatar * </p>
-            <img
-              className="image-holder"
-              alt=""
-              src={image}
-            />
-            <input
-              className="import-file"
-              alt="hi"
-              type="file" 
-              name="image" 
-              capture='camera'
-              accept="image/x-png,image/gif,image/jpeg"
-              onChange={(img) => imageHandler(img.target.files)}
-         
-            />
-            <div >
-                <IoMdImage className="add-advatar" />
-            </div>
-          </div>
-=======
           <ImagePreview
             setImage={setImage}
             setImageFile={setImageFile}
             image={image}
           />
->>>>>>> e6b208961f173e554b9b31d507faa4ea86f5b9c4
         </div>
       
         <div>
