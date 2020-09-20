@@ -20,6 +20,7 @@ const rootReducer = combineReducers({
   profileReducer: profileReducer,
 });
 
+
 // Initialize Redux store
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 

@@ -26,7 +26,7 @@ const BeautifyProfile = (props) => {
 
   //Intialize the states
   const [location, setLocation]= useState("");
-  const [University, setUniversity]= useState("");
+  const [university, setUniversity]= useState("");
   const [image, setImage]= useState(null);
   const [imageFile,setImageFile]=useState("");
  
@@ -46,13 +46,13 @@ const BeautifyProfile = (props) => {
 
   /**
 	 * @summary Handle states input
-	 * @param {string} University
+	 * @param {string} university
 	 * @return {void}
    * @author TrNgTien
 	 */
 
-	const _onChangeUniversity=(University)=>{
-    setUniversity(University);
+	const _onChangeUniversity=(university)=>{
+    setUniversity(university);
   }
      
 
@@ -79,8 +79,8 @@ const BeautifyProfile = (props) => {
             className="input-text-beautifyProfile"
             type="text"
             placeholder="School/University"
-            value={University}
-            onChange={(University)=> _onChangeUniversity(University.target.value)}
+            value={university}
+            onChange={(uni)=> _onChangeUniversity(uni.target.value)}
           />
           <ImagePreview
             setImage={setImage}
@@ -96,7 +96,7 @@ const BeautifyProfile = (props) => {
                   pathname:'/finishCreate',
                   organizationName,
                   description,
-                  University,
+                  university,
                   location,
                   image,
                   imageFile,

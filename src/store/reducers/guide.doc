@@ -1,2 +1,0 @@
-Reducers are the store of the states. After we trigger the actions and create new states, or any changes with the states,
-we'll store the states in here

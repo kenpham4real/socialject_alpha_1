@@ -30,7 +30,7 @@ import CopyrightBar from "../../../components/app/CopyrightBar.js";
 import IconButton from "../../../components/app/IconButton.js";
 //Specific
 import SloganPanel from "../../../components/app/ChooseType/SloganPanel.js";
-import ProjectSlide from "../../../components/app/ChooseType/ProjectSlide.js";
+import ProjectXSlide from "../../../components/app/ChooseType/ProjectXSlide.js";
 
 //Data
 import * as landingAction from "../../../store/actions/searching-project-user/landing/landingAction";

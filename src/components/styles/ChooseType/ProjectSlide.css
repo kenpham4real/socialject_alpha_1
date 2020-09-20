@@ -36,6 +36,12 @@
   transition: 0.2s;
 }
 
+.project-container-vertical {
+  display: flex;
+  overflow-x: auto;
+  padding-left: 20px;
+}
+
 .project-title {
   width: auto;
   padding-top: 10px;
@@ -54,6 +60,15 @@
   border-radius: 0.5rem;
   top: -30px;
   left: 20px;
+}
+
+.project-icon:hover {
+  filter: brightness(120%);
+  transition: 0.2s;
+}
+
+.project-icon:not(:hover) {
+  transition: 0.2s;
 }
 
 .project-image {

@@ -50,6 +50,7 @@ function OrgName(props) {
           Add a project
         </a>
       </div>
+
       <a className="profile-block-container-smaller">
         <div>Email: {props.data.email}</div>
         <div>Phone: {props.data.phoneNumber}</div>
