@@ -1,9 +1,7 @@
 import {
-  CHANGE_TEXT, 
-  SET_ORGANIZATION_PROFILE, 
-  SET_ORGANIZATION_PROJECT 
-} from "../../../actions/posting-project-user/profile/profileAction";
-import { fetchProfile_ppu } from "../../../actions/posting-project-user/profile/profileAction";
+  SET_ORGANIZATION_PROFILE,
+  CREATE_PROFILE
+} from '../../../actions/posting-project-user/profile/profileAction';
 
 const initialState = {
   projectData: [],

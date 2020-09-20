@@ -29,7 +29,7 @@ export const _fetchProject_basic_info_ppu = () => {
    */
   return async (dispatch, getState) => {
     let projectData;
-
+    console.log('Fetching basic info of projects')
     try {
       // Retrieve the data from Firestore Cloud database
       await firebase_db
@@ -72,6 +72,7 @@ export const _fetchProject_recruit_info_ppu = () => {
    */
   return async (dispatch, getState) => {
     let recruitInfo;
+    console.log('Fetching recruit info of projects')
     try {
       await firebase_db
         .collection("public-projects")
