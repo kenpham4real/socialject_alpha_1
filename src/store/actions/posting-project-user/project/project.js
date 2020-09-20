@@ -2,41 +2,15 @@
 import { firebase_db } from "../../../../firebase-config";
 
 // Constants
-import { testing_project_id } from "../../../../constants/testing-keys";
+import { testing_organization_id, testing_project_id } from "../../../../constants/testing-keys";
 
-// Export the actions.
-export const SET_PROJECT = "SET_PROJECT";
+// Helper
+import { _imageUploadHandler } from "../../../../helper/image/imageHandler";
 
-/******************************** ACTIONS ********************************/
-
-// Fetch the details of the project (recruit-info)
-export const fetchProject_recruitInfo_ppu = () => {
-  return async (dispatch, getState) => {
-    let projectData;
-    try {
-      // Retrieve the data from Firestore Cloud database
-      await firebase_db
-        .collection("public-projects")
-        .doc(`${testing_project_id}`)
-        .get()
-        .then((documentSnapshot) => (projectData = documentSnapshot.data()));
-
-      console.log("project data", projectData);
-
-      // dispatch helps us store the changed state/ data into the reducers
-      dispatch({
-        type: SET_PROJECT,
-        projectData: projectData,
-      });
-    } catch (error) {
-      console.log("error", error);
-    }
-  };
-};
+// Export the actions
 export const SET_PROJECT_BASIC_INFO = "SET_PROJECT_BASIC_INFO";
 export const SET_PROJECT_RECRUIT_INFO = "SET_PROJECT_RECRUIT_INFO";
 export const ADD_PROJECT = "ADD_PROJECT";
-export const ADD_ACTIVITY = "ADD_ACTIVITY";
 
 /******************************** ACTIONS ********************************/
 
@@ -129,17 +103,55 @@ export const _fetchProject_recruit_info_ppu = () => {
   };
 };
 
-export const _createProject_ppu = (projectData, benefits, requirements) => {
+/**
+ * @summary Push the data of the project the PPU want to create to firestore
+ * @param {string} name The name of the project
+ * @param {string} description The description of the project
+ * @param {string} location The location of of the project
+ * @param {string} deadline The deadline of the project
+ * @param {String[]} benefits The array string representing the benefits of the project
+ * @param {String[]} requirements The array of string representing the requirements when applying the project
+ * @param {Object} imageFIle The object file containing the properties of an image chosen from the PPU's local machine
+ * @param {string} category The category string of the project
+ */
+export const _createProject_ppu = (name, description, location, deadline, benefits, requirements, imageFIle, category="General") => {
   return async (dispatch, getState) => {
+
+    const projectImageUrl = _imageUploadHandler(imageFIle);
+    const projectRef = firebase_db.collection("public-projects").doc(`${testing_project_id}`);
+    const organizationRef = firebase_db.collection('organization').doc(`${testing_organization_id}`)
+
     try {
-      await firebase_db
-        .collection("public-projects")
-        .doc(`${testing_project_id}`)
-        .set({
-          projectData: projectData,
-          benefits: benefits,
-          requirements: requirements,
-        });
+      await
+      projectRef
+      .set({
+        projectName: name,
+        description: description,
+        location: location,
+        deadline: deadline,
+        projectImage: projectImageUrl,
+        category: category
+      })
+      await
+      projectRef
+      .collection('recruit-info')
+      .doc(`${testing_project_id}`)
+      .set({
+        benefits: benefits,
+        requirements: requirements
+      })
+      await
+      organizationRef
+      .collection('projects')
+      .doc(`${testing_project_id}`)
+      .set({
+        projectName: name,
+        description: description,
+        location: location,
+        deadline: deadline,
+        projectImage: projectImageUrl,
+        category: category
+      })
 
       console.log("Create project successfully");
     } catch (error) {
