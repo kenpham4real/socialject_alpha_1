@@ -1,3 +1,21 @@
+/**
+ * (*)Contributor: 
+ * 
+ * (+)TrNgTien
+ * (+)Ken
+ * 
+ * (*)Day:
+ *  
+ * (+)Tien forgot the day I started
+ * (+)Ken started with Tien to hanlde upload image - 17/9/2020
+ * 
+ * (*)Main function:
+ *  
+ * (-) ACtion: 
+ * (+) Upload image to storage, put the url of the image into cloud firestore.
+ * (+) Upload text to clould firestrore
+ */
+
 // Firebase database
 import {firebase_db} from '../../../../firebase-config';
 import { firebase_storage } from "../../../../firebase-config";
