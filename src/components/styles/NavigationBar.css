@@ -1,6 +1,6 @@
 :root {
   --primary: #e1e4d2;
-  --secondary: #9ba9bb;
+  --secondary: #7c78bb;
   --title: #2d2e38;
 }
 
@@ -20,14 +20,35 @@
 }
 
 .navigationBar .banner-title {
+  display: inline;
   margin-left: 2px;
   margin-right: 2px;
   vertical-align: middle;
   font-size: 24px;
   font-weight: bold;
   color: var(--title);
-  text-decoration:none;/*remove link underline*/
-  
+  background-color: var(--primary);
+  border: none;
+  border-radius: 0.4rem;
+  text-decoration: none; /*remove link underline*/
+}
+
+.navigationBar .banner-title:hover {
+  color: var(--secondary);
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.navigationBar .banner-title:not(:hover) {
+  transition: 0.2s;
+}
+
+.navigationBar .link {
+  margin: none;
+  padding: none;
+  text-decoration: none;
+  background-color: none;
+  border: none;
 }
 
 /*General*/
@@ -52,9 +73,18 @@
   display: inline-flex;
 }
 
-.navigationBar .user-bar .icon.avatar {
+.navigationBar .icon.avatar {
   vertical-align: middle;
   border-radius: 16px;
   width: 32px;
   object-fit: cover;
+}
+
+.navigationBar .icon.avatar:hover {
+  filter: brightness(150%);
+  transition: 0.2s;
+}
+
+.navigationBar .icon.avatar:not(:hover) {
+  transition: 0.2s;
 }
