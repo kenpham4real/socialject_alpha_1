@@ -6,19 +6,11 @@ import {
 
 // Initialize the state
 const initialState = {
-<<<<<<< HEAD
-=======
-
->>>>>>> 0e0fef4a504ebf33f7e6a5fac8370cf05b87b644
   projects_basic_info: [],
   projects_recruit_info: {
     benefits: [],
     requirements: []
   }
-<<<<<<< HEAD
-    
-=======
->>>>>>> 0e0fef4a504ebf33f7e6a5fac8370cf05b87b644
 };
 /**
  * @summary Handle the states of the projects (initialState above)
