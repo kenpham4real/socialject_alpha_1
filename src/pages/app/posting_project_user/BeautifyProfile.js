@@ -26,8 +26,13 @@ const BeautifyProfile = (props) => {
 
   //Intialize the states
   const [location, setLocation]= useState("");
+<<<<<<< HEAD
   const [University, setUniversity]= useState("");
   const [image, setImage]= useState(require("../../../assets/images/blank-profile.png"));
+=======
+  const [university, setUniversity]= useState("");
+  const [image, setImage]= useState(null);
+>>>>>>> 8764661b751c5d07a856753d26a10023609a33a7
   const [imageFile,setImageFile]=useState("");
  
 
@@ -46,13 +51,13 @@ const BeautifyProfile = (props) => {
 
   /**
 	 * @summary Handle states input
-	 * @param {string} University
+	 * @param {string} university
 	 * @return {void}
    * @author TrNgTien
 	 */
 
-	const _onChangeUniversity=(University)=>{
-    setUniversity(University);
+	const _onChangeUniversity=(university)=>{
+    setUniversity(university);
   }
 <<<<<<< HEAD
 
@@ -103,8 +108,8 @@ const BeautifyProfile = (props) => {
             className="input-text-beautifyProfile"
             type="text"
             placeholder="School/University"
-            value={University}
-            onChange={(University)=> _onChangeUniversity(University.target.value)}
+            value={university}
+            onChange={(uni)=> _onChangeUniversity(uni.target.value)}
           />
 <<<<<<< HEAD
           <div className="avatar-box">
@@ -144,7 +149,7 @@ const BeautifyProfile = (props) => {
                   pathname:'/finishCreate',
                   organizationName,
                   description,
-                  University,
+                  university,
                   location,
                   image,
                   imageFile,

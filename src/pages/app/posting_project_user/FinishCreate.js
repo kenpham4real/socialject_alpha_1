@@ -8,7 +8,7 @@
 import React, {useState} from "react";
 import{useDispatch} from "react-redux";
 import { testing_organization_id } from "../../../constants/testing-keys";
-import { _createProfile_ppu } from "../../../store/actions/posting-project-user/profile/CreatePageAction";
+import * as profileActions from '../../../store/actions/posting-project-user/profile/profileAction'
 
 
 //Styles
@@ -30,9 +30,9 @@ const FinishCreate = (props) => {
         orgName: props.location.organizationName,
         description: props.location.description,
         location: props.location.location.selectedOption.label,
-        university: props.location.University,
+        university: props.location.university,
         image:props.location.image,
-        imageFile:props.location.imageFile, // abc.jpg
+        imageFile:props.location.imageFile,
         email: Email,
         phoneNumber:PhoneNumber,
         facebook:Facebook,
@@ -81,7 +81,7 @@ const FinishCreate = (props) => {
 
 	const _onFinish =() => {
         console.log('Creating profile')
-        dispatch(_createProfile_ppu(total.orgId,total.orgName,total.description,total.location,total.university,total.email,total.phoneNumber,total.facebook,total.imageFile, total.image));
+        dispatch(profileActions._createProfile_ppu(total.orgId,total.orgName,total.description,total.location,total.university,total.email,total.phoneNumber,total.facebook,total.imageFile, total.image));
         
     }
 

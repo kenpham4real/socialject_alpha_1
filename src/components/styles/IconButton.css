@@ -1,10 +1,13 @@
 .icon {
-    width: 32px;
-    height: 32px;
-    cursor: pointer;
-    vertical-align: middle;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  vertical-align: middle;
+  border-radius: 0.5rem;
 }
 
 .icon:hover {
-    background-color: #cad2db;
+  background-color: var(--secondary);
+  filter: brightness(130%);
+  transition: 0.5s;
 }

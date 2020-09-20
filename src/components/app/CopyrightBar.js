@@ -5,9 +5,9 @@ function CopyrightBar(props) {
   return (
     <div className="copyright-container">
       {/*Copyright*/}
-      <a href="www.facebook.com" className="copyright-text"> Copyrighted by ...</a>
+      <p className="copyright-text">Copyrighted by ...</p>
       {/*Top right corner*/}
-      <a href="www.facebook.com" className="copyright-text right">SocialJect </a>
+      <p className="copyright-text right">SocialJect </p>
     </div>
   );
 }

@@ -1,4 +1,3 @@
-
 // Contributor: Long 19th August 2020
 // Component:
 //    In use:
@@ -10,7 +9,7 @@
 //    texts
 //
 
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 // Styles
 import "./styles/ProfilePage.css";
@@ -22,6 +21,9 @@ import ProjectActivity from "../../../components/app/ProjectInfoPage/ProjectActi
 
 // Constants
 import {testing_project_id} from '../../../constants/testing-keys'
+import { useDispatch, useSelector } from "react-redux";
+import * as profileActions from "../../../store/actions/posting-project-user/profile/profileAction";
+import { functions } from "firebase";
 
 const imageURL =
   "https://c4.wallpaperflare.com/wallpaper/963/733/213/anime-girls-ghost-blade-wlop-wallpaper-preview.jpg";
@@ -39,9 +41,10 @@ function OrgName(props) {
         <div>{loremText}</div>
         <a onClick={props._onNavigateToCreateProjectModal} className="profile-button">Add a project</a>
       </div>
+
       <a className="profile-block-container-smaller">
-        <div>Email: chillisaucery@gmail.com</div>
-        <div>Phone: 0912345678</div>
+        <div>{props.orgEmail}</div>
+        <div>{props.orgPhoneNumber}</div>
       </a>
     </div>
   );
@@ -51,90 +54,110 @@ function OrgVision(props) {
   return (
     <div className="profile-block-container">
       <div className="profile--title">Our vision</div>
-      <p>{loremText}</p>
+      <p>{props.orgVision}</p>
     </div>
   );
 }
 
 function OrgHistory(props) {
 
-  // This is a testing array of KEYS
-  // testing_project_id is a testing key which is imported from constants folder
-  const project_ids = [`${testing_project_id}`,2,3,4,5]
 
-  /**
-   * @summary Render the list of projects, each of which MUST have a UNIQUE KEY. The keys are extracted from project_activity_ids
-   * @param {string[]} project_id
-   * @returns JSX Components
-   * @author Ken Pham, Long Avenger
-   */
-  const project_item = project_ids.map((project_id) => {
-    return(
-      <li>
-        <ProjectActivity
-          key={project_id}
-          project_activity_avatar={null}
-          project_activity_name="Name of project/activity"
-          project_activity_date={new Date().toDateString()}
-          project_activity_location="Ho Chi Minh"
-          project_activity_description={loremText}
-        />
-      </li>
-    )
-  })
+    /**
+     * @summary Render the list of projects, each of which MUST have a UNIQUE KEY. The keys are extracted from project_activity_ids
+     * @param {string[]} project_id
+     * @returns JSX Components
+     * @author Ken Pham, Long Avenger
+     */
+    const projects = typeof(props.projects) == 'object' ? props.projects : []
+    const project_item = projects.map((project) => {
+        return(
+        <li>
+            <ProjectActivity
+            key={project.projectId}
+            project_activity_avatar={null}
+            project_activity_name={project.projectName}
+            project_activity_date={project.deadline}
+            project_activity_location={project.location}
+            project_activity_description={project.description}
+            />
+        </li>
+        )
+    })
 
-  return (
-    <div className="profile-block-container">
-      <div className="profile--title">Projects</div>
-      <a onClick={props._onNavigateToCreateProjectModal} className="profile-button">Add a project</a>
-      <div>
-        <ul className="project-activity-list">
-          <a 
-            className="project-activity-list--component" 
-            href="/projectInfo/project_1" 
-            onClick={() => props.history.push('/projectInfo/project_1')}
-          >
-            {project_item}
-          </a>
-        </ul>
-      </div>
-    </div>
-  );
+    return (
+        <div className="profile-block-container">
+        <div className="profile--title">Projects</div>
+        <div>
+            <ul className="project-activity-list">
+            <a 
+                className="project-activity-list--component" 
+                href="/projectInfo/project_1" 
+                onClick={() => props.history.push('/projectInfo/project_1')}
+            >
+                {project_item}
+            </a>
+            </ul>
+        </div>
+        </div>
+    );
 }
 
 const ProfilePage = (props) => {
 
-  /**
-   * @summary Navigate to the create project modal
-   * @function
-   * @param {void}
-   * @returns {void}
-   */
-  const _onNavigateToCreateProjectModalHandler = () => {
-    props.history.push('/createPostModal')
-  }
+    const [isFinishLoadingProfile, setIsFinishLoadingProfile] = useState(false);
 
-  return (
-    <div className="profilePage">
-      {/*Navigation Bar*/}
-      <NavigationBar></NavigationBar>
+    const dispatch = useDispatch();
+    const organization = useSelector(state => state.profileReducer.profileData)
+    const organization_projects = useSelector(state => state.profileReducer.projectData)
 
-      {/*Org. Name Panel*/}
-      <OrgName 
-        _onNavigateToCreateProjectModal={_onNavigateToCreateProjectModalHandler}
-      />
+	/**
+	 * @summary Define a callback function to load profiles
+	 * @param {void}
+	 * @async @function
+	 * @returns {functions} Return a async function to dispatch the fetch profile action
+	 */
+    const _loadProfile = useCallback(async () => {
+        try {
+            dispatch(profileActions._fetchProfile_ppu())   
+            
+        } catch (error) {
+            console.log('error')
+        }
+    }, [dispatch])
 
-      {/*Org. Vision*/}
-      <OrgVision></OrgVision>
+    useEffect(() => {
+        _loadProfile()
+        .then(() => console.log('Profile loaded successfully'))
+        .then(() => setIsFinishLoadingProfile(true))
+    }, [dispatch, _loadProfile])
 
-      {/*Org. History*/}
-      <OrgHistory></OrgHistory>
-      {/*Copyright*/}
-      <CopyrightBar></CopyrightBar>
 
-      {/* End of code */}
-    </div>
-  );
+	return (
+		<div className="profilePage">
+		{/*Navigation Bar*/}
+		<NavigationBar></NavigationBar>
+
+		{/*Org. Name Panel*/}
+		<OrgName
+			orgName={organization.orgName}
+			orgCategory={organization.category}
+			orgVision={organization.description}
+			orgEmail={organization.email}
+			orgPhoneNumber={organization.phoneNumber}
+		/>
+		<OrgVision
+			orgVision={organization.description}
+		/>
+
+		{isFinishLoadingProfile && <OrgHistory
+			projects={organization_projects}
+		/>
+		}
+
+		<CopyrightBar></CopyrightBar>
+
+		</div>
+	);
 };
 
 export default ProfilePage;

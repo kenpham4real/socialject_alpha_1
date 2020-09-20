@@ -11,6 +11,7 @@
 */
 
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "../styles/NavigationBar.css";
 import IconButton from "./IconButton";
 import SJ from "../../assets/images/SJ.png";
@@ -34,9 +35,12 @@ function NavigationBar(props) {
   return (
     <div className="navigationBar">
       {/*Menu Icon*/}
-      <img alt="" className="icon avatar" src={SJ} />
+
       {/*Title*/}
-      <a href="www.facebook.com" className="banner-title"> SOCIALJECT </a>
+      <Link className="link" to="/">
+        <img alt="" className="icon avatar" src={SJ} />
+        <p className="banner-title">SOCIALJECT</p>
+      </Link>
       {/*Search Bar*/}
       {/*<SearchBar></SearchBar>*/}
       {/*Top right corner*/}
