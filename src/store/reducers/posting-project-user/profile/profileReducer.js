@@ -1,5 +1,8 @@
-// Firebase database
-import { PROJECT_FILTER } from "../../../actions/posting-project-user/profile/profileAction";
+import {
+  SET_ORGANIZATION_PROFILE,
+  CREATE_PROFILE,
+  PROJECT_FILTER
+} from '../../../actions/posting-project-user/profile/profileAction';
 
 //Initial state:
 const initialState = {
