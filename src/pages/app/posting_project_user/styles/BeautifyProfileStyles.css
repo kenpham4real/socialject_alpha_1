@@ -39,7 +39,6 @@
     border:2px solid black;
     border-radius: 7px;
 }
-<<<<<<< HEAD
 .avatar-box{
     border:2px solid black;
     border-radius: 5px;
@@ -66,9 +65,6 @@
     border-radius: 10px;
     object-fit: cover;
 }
-=======
-
->>>>>>> e6b208961f173e554b9b31d507faa4ea86f5b9c4
 .import-file{
     /* display: none; */
     margin-left:105px;
