@@ -1,34 +1,39 @@
 /*Project display*/
-.project-link {
-  text-decoration: none;
+.project-container {
+  display: inline-table;
+  margin-top: 1%;
 }
 
-.project-card {
+.project-container-button {
+  padding: none;
+  padding-bottom: 3rem;
+  margin-bottom: 3rem;
+  border: none;
+  height: inherit;
+  border-radius: 0.5rem;
+  background-color: var(--primary);
+  box-shadow: 2px 2px 2px rgb(130, 133, 143);
   cursor: pointer;
-  height: 450px;
+}
+.project-card {
+  display: inline;
+  cursor: pointer;
   border-radius: 5px;
   margin-left: 5px;
   margin-right: 5px;
   border: none;
   text-align: left;
-  box-shadow: 2px 2px 2px rgb(130, 133, 143);
 }
 
 .project-card:hover {
   cursor: pointer;
   background-color: rgb(176, 175, 179);
-  filter: brightness(130%);
+  filter: brightness(150%);
   transition: 0.2s;
 }
 
 .project-card:not(:hover) {
   transition: 0.2s;
-}
-
-.project-container {
-  display: flex;
-  overflow-x: auto;
-  padding-left: 20px;
 }
 
 .project-container-vertical {
@@ -69,6 +74,7 @@
 .project-image {
   width: 300px;
   height: 200px;
+  border-radius: 0.5rem;
   object-fit: cover;
   cursor: pointer;
 }
@@ -78,8 +84,14 @@
 }
 
 .project-text {
+  width: 280px;
   font-size: 20px;
-  color: var(--shadow);
+  /*wrap text*/
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  -webkit-box-orient: vertical;
 }
 
 .project-text.title {
