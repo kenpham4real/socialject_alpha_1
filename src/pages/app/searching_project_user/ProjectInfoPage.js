@@ -28,6 +28,7 @@ import * as activityActions from '../../../store/actions/posting-project-user/ac
 
 
 const ProjectInfoPage = (props) => {
+  console.log("Id pass from the previous page: ", props.history.location.projectId);
 
   // Retrieve the projects state from the reducer
   // state.projectReducer --> From App.js

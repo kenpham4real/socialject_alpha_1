@@ -8,11 +8,12 @@
   margin-right: 29px;
 }
 .activityPicture {
-  height: 52px;
-  width: 70px;
-  border: 1px solid black;
+  height: 5rem;
+  width: 5rem;
+  border: none;
   box-sizing: border-box;
   border-radius: 3px;
+  object-fit: cover;
   flex: 1;
 }
 
@@ -23,7 +24,8 @@
   letter-spacing: -0.022em;
   color: black;
 }
-.activityTime, .activityLocation {
+.activityTime,
+.activityLocation {
   font-style: normal;
   font-weight: normal;
   font-size: 13px;
@@ -33,6 +35,12 @@
   color: #848484;
 }
 
-.activityDescription{
+.activityDescription {
   color: black;
+  /*wrap text*/
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  -webkit-box-orient: vertical;
 }

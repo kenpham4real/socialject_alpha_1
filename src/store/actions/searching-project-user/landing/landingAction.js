@@ -1,4 +1,3 @@
-// Some actions of SPU for the projects here
 // Firebase database
 import { firebase_db } from "../../../../firebase-config";
 
