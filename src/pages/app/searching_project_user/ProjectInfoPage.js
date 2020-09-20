@@ -12,6 +12,7 @@
 
 import React, { useEffect, useCallback } from "react";
 import {useDispatch, useSelector} from 'react-redux';
+import {Link} from "react-router-dom";
 
 // Styles
 import "./styles/ProjectInfoPage.css";
@@ -126,7 +127,15 @@ const ProjectInfoPage = (props) => {
   const _project_apply_button = () => {
     return(
       <div className="applyButton">
-        <div className="applyNow">Apply Now</div>
+        <div className="applyNow">
+          <Link
+           className="Link"
+           to=
+          {{
+                pathname: '/applyform',
+          }}>
+        Apply Now </Link>
+          </div>
         <div className="dueDay">Ends some day</div>
       </div>
     )
