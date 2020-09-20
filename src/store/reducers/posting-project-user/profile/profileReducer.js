@@ -13,24 +13,11 @@ const initialState = {
 
 export const profileReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "public-projects":
-      console.log("Project payload: ", action.payload);
-      return {
-        ...state,
-        projectData: action.payload,
-      };
-    case "organization":
-      console.log("Profile payload: ", action.payload);
-      return {
-        ...state,
-        profileData: action.payload,
-      };
-    case "CHANGE_KEY":
-      console.log("Key payload: ", action.payload);
-      return {
-        ...state,
-        profileKey: action.payload,
-      };
+    case CREATE_PROFILE:
+      return({
+          ...state,
+          createProfile: action.finishCreate,
+      })
     case SET_ORGANIZATION_PROFILE:
       return{
         ...state,
