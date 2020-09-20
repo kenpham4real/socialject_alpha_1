@@ -6,16 +6,16 @@ import {
 
 // Initialize the state
 const initialState = {
+
   projects_basic_info: [],
   projects_recruit_info: {
     benefits: [],
     requirements: []
   }
-    
 };
 /**
  * @summary Handle the states of the projects (initialState above)
- * @param {Object} state 
+ * @param {Object} state
  * @param {Object} action
  * @returns {Object} new state
  * @author Ken Pham
