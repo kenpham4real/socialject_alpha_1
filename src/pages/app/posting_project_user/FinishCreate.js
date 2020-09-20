@@ -27,7 +27,7 @@ const FinishCreate = (props) => {
 
     //Handle state of 3 screen
     const total = {
-        orgName: props.location.orginaztionName,
+        orgName: props.location.organizationName,
         description: props.location.description,
         location: props.location.location.selectedOption.label,
         university: props.location.University,
@@ -80,10 +80,7 @@ const FinishCreate = (props) => {
 	 */
 
 	const _onFinish =() => {
-		// dispatch( {
-        //     type: "CREATE_PROFILE",
-        //     payload: total,
-        // })
+        console.log('Creating profile')
         dispatch(_createProfile_ppu(total.orgId,total.orgName,total.description,total.location,total.university,total.email,total.phoneNumber,total.facebook,total.imageFile, total.image));
         
     }

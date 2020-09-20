@@ -7,6 +7,9 @@ import { IoMdImage } from "react-icons/io";
 //Styles
 import "./styles/BeautifyProfileStyles.css";
 
+// Helper
+import {_previewImageHandler} from '../../../../src/helper/image/imageHandler'
+import { ImagePreview } from "../../../components/app/ImagePreview";
 
 //Select
 const options = [
@@ -28,7 +31,7 @@ const BeautifyProfile = (props) => {
   const [imageFile,setImageFile]=useState("");
  
 
-  const orginaztionName = props.location.orginaztionName;
+  const organizationName = props.location.organizationName;
   const description=props.location.description;
   /**
    * @summary Handle Select
@@ -51,6 +54,7 @@ const BeautifyProfile = (props) => {
 	const _onChangeUniversity=(University)=>{
     setUniversity(University);
   }
+<<<<<<< HEAD
 
 
    /**
@@ -72,6 +76,9 @@ const BeautifyProfile = (props) => {
      reader.readAsDataURL(e[0])
      setImageFile(e[0]);
    }
+=======
+     
+>>>>>>> e6b208961f173e554b9b31d507faa4ea86f5b9c4
 
    
   return (
@@ -99,6 +106,7 @@ const BeautifyProfile = (props) => {
             value={University}
             onChange={(University)=> _onChangeUniversity(University.target.value)}
           />
+<<<<<<< HEAD
           <div className="avatar-box">
             <p className="avatar-text"> Avatar * </p>
             <img
@@ -120,6 +128,13 @@ const BeautifyProfile = (props) => {
                 <IoMdImage className="add-advatar" />
             </div>
           </div>
+=======
+          <ImagePreview
+            setImage={setImage}
+            setImageFile={setImageFile}
+            image={image}
+          />
+>>>>>>> e6b208961f173e554b9b31d507faa4ea86f5b9c4
         </div>
       
         <div>
@@ -127,7 +142,7 @@ const BeautifyProfile = (props) => {
             className="container-continue"
             onClick={() => props.history.push({ 	
                   pathname:'/finishCreate',
-                  orginaztionName,
+                  organizationName,
                   description,
                   University,
                   location,
