@@ -1,10 +1,9 @@
 // Action types
 import {
   SET_PROJECT,
+  SET_PROJECT_RECRUIT_INFO,
+  SET_PROJECT_BASIC_INFO,
 } from "../../../actions/posting-project-user/project/project";
-    SET_PROJECT_RECRUIT_INFO,
-    SET_PROJECT_BASIC_INFO
-} from '../../../actions/posting-project-user/project/project'
 
 // Initialize the state
 const initialState = {
@@ -18,12 +17,11 @@ const initialState = {
     benefit: [],
     requirement: [],
     avatar: null,
-    }
-    
+  },
 };
 /**
  * @summary Handle the states of the projects (initialState above)
- * @param {Object} state 
+ * @param {Object} state
  * @param {Object} action
  * @returns {Object} new state
  * @author Ken Pham
@@ -40,34 +38,32 @@ export const projectReducer = (state = initialState, action) => {
       return {
         ...state,
         postData: {
-            name: action.payload,
-        }
+          name: action.payload,
+        },
       };
     case "ADD_DESCRIPTION":
       console.log("Description dispatched.");
       return {
         ...state,
         postData: {
-            description: action.payload,
-        }
-        
+          description: action.payload,
+        },
       };
     case "ADD_LOCATION":
       console.log("Location dispatched.");
       return {
         ...state,
         postData: {
-            location: action.payload,
-        }
-       
+          location: action.payload,
+        },
       };
     case "ADD_DEADLINE":
       console.log("Deadline dispatched.");
       return {
         ...state,
         postData: {
-            deadline: action.payload,
-        }
+          deadline: action.payload,
+        },
       };
     /* For later use. Haven't finished this :))))
     case ADD_QUESTION:

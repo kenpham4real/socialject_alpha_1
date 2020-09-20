@@ -7,7 +7,7 @@ import ReduxThunk from "redux-thunk";
 
 import { projectReducer } from "./store/reducers/posting-project-user/project/project";
 import { activityReducer } from "./store/reducers/posting-project-user/activity/activity";
-import { CreatePageReducer } from "./store/reducers/posting-project-user/profile/CreatePageReducer";
+//import { CreatePageReducer } from "./store/reducers/posting-project-user/profile/profileReducer";
 import { landingReducer } from "./store/reducers/searching-project-user/landing/landingReducer";
 import { profileReducer } from "./store/reducers/posting-project-user/profile/profileReducer";
 
@@ -15,11 +15,10 @@ import { profileReducer } from "./store/reducers/posting-project-user/profile/pr
 const rootReducer = combineReducers({
   projectReducer: projectReducer,
   activityReducer: activityReducer,
-  createPageReducer: CreatePageReducer,
+  //createPageReducer: CreatePageReducer,
   landingReducer: landingReducer,
   profileReducer: profileReducer,
 });
-
 
 // Initialize Redux store
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));

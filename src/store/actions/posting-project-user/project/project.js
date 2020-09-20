@@ -2,12 +2,16 @@
 import { firebase_db } from "../../../../firebase-config";
 
 // Constants
-import { testing_organization_id, testing_project_id } from "../../../../constants/testing-keys";
+import {
+  testing_organization_id,
+  testing_project_id,
+} from "../../../../constants/testing-keys";
 
 // Helper
 import { _imageUploadHandler } from "../../../../helper/image/imageHandler";
 
 // Export the actions
+export const SET_PROJECT = "SET_PROJECT";
 export const SET_PROJECT_BASIC_INFO = "SET_PROJECT_BASIC_INFO";
 export const SET_PROJECT_RECRUIT_INFO = "SET_PROJECT_RECRUIT_INFO";
 export const ADD_PROJECT = "ADD_PROJECT";
@@ -114,44 +118,52 @@ export const _fetchProject_recruit_info_ppu = () => {
  * @param {Object} imageFIle The object file containing the properties of an image chosen from the PPU's local machine
  * @param {string} category The category string of the project
  */
-export const _createProject_ppu = (name, description, location, deadline, benefits, requirements, imageFIle, category="General") => {
+export const _createProject_ppu = (
+  name,
+  description,
+  location,
+  deadline,
+  benefits,
+  requirements,
+  imageFIle,
+  category = "General"
+) => {
   return async (dispatch, getState) => {
-
     const projectImageUrl = _imageUploadHandler(imageFIle);
-    const projectRef = firebase_db.collection("public-projects").doc(`${testing_project_id}`);
-    const organizationRef = firebase_db.collection('organization').doc(`${testing_organization_id}`)
+    const projectRef = firebase_db
+      .collection("public-projects")
+      .doc(`${testing_project_id}`);
+    const organizationRef = firebase_db
+      .collection("organization")
+      .doc(`${testing_organization_id}`);
 
     try {
-      await
-      projectRef
-      .set({
+      await projectRef.set({
         projectName: name,
         description: description,
         location: location,
         deadline: deadline,
         projectImage: projectImageUrl,
-        category: category
-      })
-      await
-      projectRef
-      .collection('recruit-info')
-      .doc(`${testing_project_id}`)
-      .set({
-        benefits: benefits,
-        requirements: requirements
-      })
-      await
-      organizationRef
-      .collection('projects')
-      .doc(`${testing_project_id}`)
-      .set({
-        projectName: name,
-        description: description,
-        location: location,
-        deadline: deadline,
-        projectImage: projectImageUrl,
-        category: category
-      })
+        category: category,
+      });
+      await projectRef
+        .collection("recruit-info")
+        .doc(`${testing_project_id}`)
+        .set({
+          benefits: benefits,
+          requirements: requirements,
+        });
+      await organizationRef
+        .collection("projects")
+        .doc(`${testing_project_id}`)
+        .set({
+          projectName: name,
+          description: description,
+          location: location,
+          deadline: deadline,
+          projectImage: projectImageUrl,
+          category: category,
+        });
 
       console.log("Create project successfully");
     } catch (error) {
