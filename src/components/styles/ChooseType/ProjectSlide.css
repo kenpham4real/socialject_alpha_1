@@ -1,4 +1,8 @@
 /*Project display*/
+.project-link {
+  text-decoration: none;
+}
+
 .project-card {
   cursor: pointer;
   height: 450px;
@@ -10,7 +14,24 @@
   box-shadow: 2px 2px 2px rgb(130, 133, 143);
 }
 
+.project-card:hover {
+  cursor: pointer;
+  background-color: rgb(176, 175, 179);
+  filter: brightness(130%);
+  transition: 0.2s;
+}
+
+.project-card:not(:hover) {
+  transition: 0.2s;
+}
+
 .project-container {
+  display: flex;
+  overflow-x: auto;
+  padding-left: 20px;
+}
+
+.project-container-vertical {
   display: flex;
   overflow-x: auto;
   padding-left: 20px;
@@ -25,16 +46,24 @@
   color: var(--shadow);
 }
 
-
-
-.icon.project {
+.project-icon {
   display: grid;
   width: 90px;
   height: 90px;
   position: relative;
   object-fit: cover;
+  border-radius: 0.5rem;
   top: -30px;
   left: 20px;
+}
+
+.project-icon:hover {
+  filter: brightness(120%);
+  transition: 0.2s;
+}
+
+.project-icon:not(:hover) {
+  transition: 0.2s;
 }
 
 .project-image {
