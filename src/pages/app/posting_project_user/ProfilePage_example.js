@@ -13,30 +13,6 @@
 //    Link to next pages:
 //        Create Modal
 //        Project Info
-// *Data needed: (from Firestore)
-      let projectData = {
-        deadline: string,
-        description: string,
-        orgAvatar: null,
-        orgId: string,
-        orgName: string,
-        projectAvatar: null,
-        projectId: string,
-        projectName: string,
-      };
-
-      let profileData = {
-        orgId: string,
-        orgName: string,
-        location: string,
-        university: string,
-        category: string,
-        description: string,
-        email: string,
-        facebook: string,
-        phoneNumber: string,
-        vision: string,
-      };
 
 */
 
