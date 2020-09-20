@@ -23,14 +23,13 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./styles/ChooseTypeStyle.css";
-import { Link } from "react-router-dom";
 //General
 import NavigationBar from "../../../components/app/NavigationBar.js";
 import CopyrightBar from "../../../components/app/CopyrightBar.js";
 import IconButton from "../../../components/app/IconButton.js";
 //Specific
 import SloganPanel from "../../../components/app/ChooseType/SloganPanel.js";
-import ProjectXSlide from "../../../components/app/ChooseType/ProjectXSlide.js";
+import ProjectYSlide from "../../../components/app/ChooseType/ProjectYSlide.js";
 
 //Data
 import * as landingAction from "../../../store/actions/searching-project-user/landing/landingAction";
