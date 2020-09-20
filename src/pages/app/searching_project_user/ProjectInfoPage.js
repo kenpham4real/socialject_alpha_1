@@ -10,7 +10,7 @@
  * }
  */
 
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect, useCallback, useState } from "react";
 import {useDispatch, useSelector} from 'react-redux';
 
 // Styles
@@ -30,15 +30,17 @@ import * as activityActions from '../../../store/actions/posting-project-user/ac
 const ProjectInfoPage = (props) => {
   console.log("Id pass from the previous page: ", props.history.location.projectId);
 
+  // useDispatch() from react-redux
+  const dispatch = useDispatch()
+  const [isFetchedRecruitInfo, setIsFetchedRecruitInfo] = useState(false);
+  const [isFetchedActivities, setIsFetchedActivities] = useState(false);
+
   // Retrieve the projects state from the reducer
   // state.projectReducer --> From App.js
   // .projects --> From reducer
   // Global state: projects
   const projects_recruit_info = useSelector(state => state.projectReducer.projects_recruit_info);
   const activities = useSelector(state => state.activityReducer.activities);
-
-  // useDispatch() from react-redux
-  const dispatch = useDispatch()
 
   /**
    * @summary A callback to fetch projects
@@ -65,15 +67,18 @@ const ProjectInfoPage = (props) => {
   }, [dispatch])
 
   useEffect(() => {
-    _loadProjectActivity()
-    .then(() => console.log('activities loaded successfully'));
-  }, [dispatch, _loadProjectActivity])
-
-  // Fetch projects when PPU enters the page
-  useEffect(() => {
     _loadProjects()
-    .then(() => console.log('projects loaded successfully'))
-  }, [dispatch, _loadProjects])
+    .then(() => {
+      setIsFetchedRecruitInfo(true);
+      console.log('activities loaded successfully')
+    })
+    .then(() => _loadProjectActivity())
+    .then(() => {
+      setIsFetchedActivities(true)
+      console.log('activities loaded successfully')
+    })
+  }, [dispatch, _loadProjectActivity, _loadProjects])
+
 
   console.log('fetched projects', projects_recruit_info)
 
@@ -203,7 +208,7 @@ const ProjectInfoPage = (props) => {
       <div className="benefitContainer">
         <h1 className="projectHeadings">Benefit</h1>
         <ul>
-          {projects_recruit_info.benefits.map(benefit => (
+          {isFetchedRecruitInfo && projects_recruit_info.benefits.map(benefit => (
             <ListedItems
               title={benefit}
             />
@@ -223,7 +228,7 @@ const ProjectInfoPage = (props) => {
     return(
       <div className="requirementContaner">
         <h1 className="projectHeadings">Requirements</h1>
-        {projects_recruit_info.requirements.map(requirement => (
+        {isFetchedRecruitInfo && projects_recruit_info.requirements.map(requirement => (
           <ListedItems
             title={requirement}
           />
@@ -260,7 +265,7 @@ const ProjectInfoPage = (props) => {
           key={activity.activityId}
           project_activity_avatar={null}
           project_activity_name={activity.activityName}
-          project_activity_date={activity.createdAt?.seconds == true ? activity.createdAt.seconds : activity.createdAt}
+          project_activity_date={activity.activityDate}
           project_activity_location={activity.activityLocation}
           project_activity_description={activity.activityDescription}
         />

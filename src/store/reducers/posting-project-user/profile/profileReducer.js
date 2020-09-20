@@ -1,3 +1,8 @@
+
+import {
+  SET_ORGANIZATION_PROFILE,
+  CREATE_PROFILE
+} from '../../../actions/posting-project-user/profile/profileAction';
 // Firebase database
 import { PROJECT_FILTER } from "../../../actions/posting-project-user/profile/profileAction";
 
