@@ -1,8 +1,17 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0e0fef4a504ebf33f7e6a5fac8370cf05b87b644
 import {
   SET_ORGANIZATION_PROFILE,
   CREATE_PROFILE,
   PROJECT_FILTER
 } from '../../../actions/posting-project-user/profile/profileAction';
+<<<<<<< HEAD
+=======
+// Firebase database
+import { PROJECT_FILTER } from "../../../actions/posting-project-user/profile/profileAction";
+>>>>>>> 0e0fef4a504ebf33f7e6a5fac8370cf05b87b644
 
 //Initial state:
 const initialState = {
