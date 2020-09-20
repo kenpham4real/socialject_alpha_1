@@ -24,7 +24,7 @@ const BeautifyProfile = (props) => {
   //Intialize the states
   const [location, setLocation]= useState("");
   const [University, setUniversity]= useState("");
-  const [image, setImage]= useState(null);
+  const [image, setImage]= useState(require("../../../assets/images/blank-profile.png"));
   const [imageFile,setImageFile]=useState("");
  
 
@@ -72,7 +72,6 @@ const BeautifyProfile = (props) => {
      reader.readAsDataURL(e[0])
      setImageFile(e[0]);
    }
-     
 
    
   return (
@@ -117,8 +116,8 @@ const BeautifyProfile = (props) => {
               onChange={(img) => imageHandler(img.target.files)}
          
             />
-            <div className="add-advatar">
-                <IoMdImage />
+            <div >
+                <IoMdImage className="add-advatar" />
             </div>
           </div>
         </div>
