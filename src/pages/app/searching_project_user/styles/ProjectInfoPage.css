@@ -118,6 +118,9 @@ This is CSS file for ProjectInfoPage.js
 .applyNow {
   height: 32px;
 }
+.Link{
+  text-decoration: none;
+}
 .dueDay {
   font-size: 14px;
   font-weight: normal;
