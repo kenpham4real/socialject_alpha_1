@@ -20,91 +20,56 @@
       }
 */
 
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./styles/ChooseTypeStyle.css";
-import { Link } from "react-router-dom";
 //General
 import NavigationBar from "../../../components/app/NavigationBar.js";
 import CopyrightBar from "../../../components/app/CopyrightBar.js";
 import IconButton from "../../../components/app/IconButton.js";
 //Specific
 import SloganPanel from "../../../components/app/ChooseType/SloganPanel.js";
-import ProjectXSlide from "../../../components/app/ChooseType/ProjectXSlide.js";
+import ProjectSlide from "../../../components/app/ChooseType/ProjectSlide.js";
 
-/*
-const langData = [
-  { name: "Engrisk" },
-  { name: "Vietnamese" },
-  { name: "Spanish" },
-];
-*/
-const imageURL =
-  "https://c4.wallpaperflare.com/wallpaper/963/733/213/anime-girls-ghost-blade-wlop-wallpaper-preview.jpg";
+//Data
+import * as landingAction from "../../../store/actions/searching-project-user/landing/landingAction";
 
-const projectData = [
-  {
-    id: "1",
-    topic: "Charity",
-    name: "Project name1",
-    url: imageURL,
-  },
-  {
-    id: "2",
-    topic: "Charity",
-    name: "Project name2",
-    url: imageURL,
-  },
-  {
-    id: "3",
-    topic: "Charity",
-    name: "Project name3",
-    url: imageURL,
-  },
-  {
-    id: "4",
-    topic: "Drawing",
-    name: "Project name4",
-    url: imageURL,
-  },
-  {
-    id: "5",
-    topic: "Drawing",
-    name: "Project name5",
-    url: imageURL,
-  },
-  {
-    id: "6",
-    topic: "Charity",
-    name: "Project name6",
-    url: imageURL,
-  },
-  {
-    id: "7",
-    topic: "Drawing",
-    name: "Project name7",
-    url: imageURL,
-  },
-  {
-    id: "8",
-    topic: "Education",
-    name: "Project name8",
-    url: imageURL,
-  },
-];
-
+//Main function
 const ChooseType = (props) => {
+  //Declare hooks as variables to be more flexible.
+  const dispatch = useDispatch();
+  const callback = useCallback;
+  //Select data from the global state.
+  let data = [];
+  const selectData = useSelector((state) => state.landingReducer.projectData);
+  if (selectData != undefined) data = selectData;
+  //Use 2 hooks useEffect and useCallback to prevent re-render, but it still re-render anyway.
+  const fetchCallback = landingAction.FetchCalling(
+    landingAction.FetchLanding,
+    selectData,
+    dispatch,
+    callback
+  );
+  useEffect(() => {
+    fetchCallback();
+  }, [dispatch]);
+
+  //For testing purpose.
+  console.log("Selected Data:", selectData);
+
   return (
     <div className="chooseTypePage">
       {/*Navigation Bar*/}
       <NavigationBar></NavigationBar>
 
       {/*Slogan Panel*/}
-      <SloganPanel></SloganPanel>
+      <SloganPanel background={imageURL}></SloganPanel>
 
       {/*Filter (NA now)*/}
 
       {/*Projects*/}
-      <ProjectXSlide Data={projectData} title="Charity"></ProjectXSlide>
+
+      <ProjectSlide data={data} history={props.history}></ProjectSlide>
 
       {/*Copyright*/}
       <CopyrightBar></CopyrightBar>
@@ -115,6 +80,9 @@ const ChooseType = (props) => {
 };
 
 export default ChooseType;
+
+const imageURL =
+  "https://c4.wallpaperflare.com/wallpaper/963/733/213/anime-girls-ghost-blade-wlop-wallpaper-preview.jpg";
 
 /*
 const langData = [

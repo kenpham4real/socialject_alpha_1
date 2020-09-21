@@ -29,9 +29,11 @@ const ProjectActivity = (props) => {
       <Link className="activityLink" to="/projectInfo">
         <button className="activityContainerButton" onClick={Navigate}>
           <div className="projectActivity">
-            <div className="activityPicture">
-              {props.project_activity_avatar}
-            </div>
+            <img
+              className="activityPicture"
+              src={props.project_activity_avatar}
+              alt="Loading"
+            />
             <div className="activityInfo">
               <div className="activityName">{props.project_activity_name}</div>
               <div className="activityTime">{props.project_activity_date}</div>

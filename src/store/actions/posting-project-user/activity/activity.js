@@ -20,9 +20,10 @@ export const SET_ACTIVITY = "SET_ACTIVITY";
 export const _fetchProjectActivity_ppu = () => {
 
     return async (dispatch, getState) => {
-        let activityData = []
+        let activityData = [];
+        console.log('Fetching data of project activities')
         try {
-            const something = await
+            await
             firebase_db
             .collection('public-projects')
             .doc(`${testing_project_id}`)
