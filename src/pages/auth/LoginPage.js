@@ -14,21 +14,37 @@ import {firebase_auth} from '../../firebase-config';
 import './styles/LoginPage.css'
 import FeedbackImage from '../../components/FeedbackImage';
 
+/**
+ * @summary Rendering the page users use to login
+ * @param {} props 
+ * @returns JSX Elements
+ */
 const LoginPage = props => {
 
     console.log('props', props);
 
+    /**
+     * @summary Authenticate users with Google
+     */
     const _onGoogleLogin = () => {
+        
+        // Set a new authenticated provider from Google with firebase
         const provider = new firebase.auth.GoogleAuthProvider();
 
+        // Adding scope (Information that we need from the accounts)
         provider.addScope('profile');
         provider.addScope('email');
 
+        // Signing in with the provider above
         firebase_auth.signInWithPopup(provider)
         .then(result => {
             console.log('result from log in', result);
 
+            // Token is unique and always changed whenever users login in
             const token = result.credential.accessToken;
+
+            // Properties of the user object. 
+            // We'll need the uid - a unique and permanent id of the authenticated user
             const user = result.user;
 
             console.log('token', token);
@@ -36,9 +52,18 @@ const LoginPage = props => {
         })
     }
 
+    /**
+     * @summary Authenticate users with Facebook
+     */
     const _onFacebookLogin = () => {
+
+        // Set a new authenticated provider from Google with firebase
         const provider = new firebase.auth.FacebookAuthProvider();
+
+        // Adding scope (Additional information that we need from the accounts)
         provider.addScope('user_birthday');
+
+        // Signing in with the provider above
         firebase_auth.signInWithPopup(provider)
         .then(result => {
             // This gives you a Facebook Access Token.

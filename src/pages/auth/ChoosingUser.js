@@ -13,14 +13,25 @@ import * as userTypes from '../../constants/user-types'
 // Styles
 import './styles/ChoosingUser.css'
 
+/**
+ * @summary Rendering the page which users use to choose their user type
+ * @param {} props 
+ * @returns JSX Elements
+ */
 const ChoosingUser = props => {
 
+    /**
+     * @summary Navigate to the Login Page with the user type of SPU
+     */
     const _onChooseSPU = () => {
         props.history.push('/login',{
             userType: userTypes.IS_SPU
         });
     }
 
+    /**
+     * @summary Navigate to the Login Page with the user type of PPU
+     */
     const _onChoosePPU = () => {
         props.history.push('/login',{
             userType: userTypes.IS_PPU
