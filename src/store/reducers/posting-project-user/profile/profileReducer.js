@@ -42,6 +42,17 @@ export const profileReducer = (state = initialState, action) => {
         profileData: action.payload.profileData,
         projectArray: arrayToPush,
       };
+      case CREATE_PROFILE:
+        return({
+            ...state,
+            createProfile: action.finishCreate,
+        })
+      case SET_ORGANIZATION_PROFILE:
+        return{
+          ...state,
+          profileData: action.profileData,
+          projectData: action.profile_projectData
+        }
     default:
       return {
         projectData: undefined,
