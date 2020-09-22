@@ -46,7 +46,7 @@ export async function FetchProject(dispatch, profileId) {
 
     await firebase_db
       .collection("organization")
-      .doc("1lrR6G5aoc0CuAaIrRN4")
+      .doc(profileId)
       .get()
       .then(function (doc) {
         filteredData.profileData = doc.data();
