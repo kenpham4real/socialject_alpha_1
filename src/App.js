@@ -9,6 +9,7 @@ import { projectReducer } from "./store/reducers/posting-project-user/project/pr
 import { activityReducer } from "./store/reducers/posting-project-user/activity/activity";
 import { landingReducer } from "./store/reducers/searching-project-user/landing/landingReducer";
 import { profileReducer } from "./store/reducers/posting-project-user/profile/profileReducer";
+import { authReducer } from './store/reducers/auth/auth'
 
 // Adding reducers here
 const rootReducer = combineReducers({
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   activityReducer: activityReducer,
   landingReducer: landingReducer,
   profileReducer: profileReducer,
+  authReducer: authReducer
 });
 
 // Initialize Redux store
