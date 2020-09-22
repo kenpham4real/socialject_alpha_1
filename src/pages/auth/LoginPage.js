@@ -5,6 +5,7 @@
  */
 
 import React from 'react';
+import {useDispatch, useSelector} from 'react-redux'
 
 // Firebase
 import firebase from 'firebase';
@@ -13,6 +14,10 @@ import {firebase_auth} from '../../firebase-config';
 // Styles
 import './styles/LoginPage.css'
 import FeedbackImage from '../../components/FeedbackImage';
+
+// Actions
+import * as authActions from '../../store/actions/auth/auth'
+import { FACEBOOK_LOGIN, GOOGLE_LOGIN } from '../../constants/auth';
 
 /**
  * @summary Rendering the page users use to login
@@ -23,58 +28,12 @@ const LoginPage = props => {
 
     console.log('props', props);
 
-    /**
-     * @summary Authenticate users with Google
-     */
-    const _onGoogleLogin = () => {
-        
-        // Set a new authenticated provider from Google with firebase
-        const provider = new firebase.auth.GoogleAuthProvider();
+    const userType = (props.location.state && props.location.state.userType) ? props.location.state.userType : "NO TYPE"
 
-        // Adding scope (Information that we need from the accounts)
-        provider.addScope('profile');
-        provider.addScope('email');
+    const dispatch = useDispatch();
+    const userData = useSelector(state => state.authReducer.userData);
 
-        // Signing in with the provider above
-        firebase_auth.signInWithPopup(provider)
-        .then(result => {
-            console.log('result from log in', result);
-
-            // Token is unique and always changed whenever users login in
-            const token = result.credential.accessToken;
-
-            // Properties of the user object. 
-            // We'll need the uid - a unique and permanent id of the authenticated user
-            const user = result.user;
-
-            console.log('token', token);
-            console.log('user', user);
-        })
-    }
-
-    /**
-     * @summary Authenticate users with Facebook
-     */
-    const _onFacebookLogin = () => {
-
-        // Set a new authenticated provider from Google with firebase
-        const provider = new firebase.auth.FacebookAuthProvider();
-
-        // Adding scope (Additional information that we need from the accounts)
-        provider.addScope('user_birthday');
-
-        // Signing in with the provider above
-        firebase_auth.signInWithPopup(provider)
-        .then(result => {
-            // This gives you a Facebook Access Token.
-            const token = result.credential.accessToken;
-            // The signed-in user info.
-            const user = result.user;
-
-            console.log('token', token);
-            console.log('user', user);
-        });
-    }
+    console.log('userData', userData)
 
     return(
         <div className="login-container">
@@ -84,7 +43,7 @@ const LoginPage = props => {
                     <div className="create-profile__buttons">
                         <button 
                             className="create-profile__buttons--google"
-                            onClick={_onGoogleLogin}
+                            onClick={() => dispatch(authActions._onAuthentication(GOOGLE_LOGIN, userType))}
                         >
                             Login with Google
                         </button>
@@ -92,7 +51,7 @@ const LoginPage = props => {
                     <div className="create-profile__buttons">
                         <button 
                             className="create-profile__buttons--facebook"
-                            onClick={_onFacebookLogin}
+                            onClick={() => dispatch(authActions._onAuthentication(FACEBOOK_LOGIN, userType))}
                         >
                             Login with Facebook
                         </button>
