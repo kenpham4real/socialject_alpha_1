@@ -1,6 +1,7 @@
 /**
  * Contributors: Đạt, Ken
- * Main Component: 
+ * Currently be modified by: Long
+ * Main Component:
  * ProjectInfoPage{
  *  _loadProjectst() => Fetch the projects from Firestore
  *  _project_tags() => Render the tag of the project
@@ -11,8 +12,8 @@
  */
 
 import React, { useEffect, useCallback, useState } from "react";
-import {useDispatch, useSelector} from 'react-redux';
-import {Link} from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 // Styles
 import "./styles/ProjectInfoPage.css";
@@ -25,14 +26,16 @@ import CopyrightBar from "../../../components/app/CopyrightBar.js";
 
 // Functions
 import * as projectActions from "../../../store/actions/posting-project-user/project/project.js";
-import * as activityActions from '../../../store/actions/posting-project-user/activity/activity';
-
+import * as activityActions from "../../../store/actions/posting-project-user/activity/activity";
 
 const ProjectInfoPage = (props) => {
-  console.log("Id pass from the previous page: ", props.history.location.projectId);
+  console.log(
+    "Id pass from the previous page: ",
+    props.history.location.projectId
+  );
 
   // useDispatch() from react-redux
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [isFetchedRecruitInfo, setIsFetchedRecruitInfo] = useState(false);
   const [isFetchedActivities, setIsFetchedActivities] = useState(false);
 
@@ -40,8 +43,10 @@ const ProjectInfoPage = (props) => {
   // state.projectReducer --> From App.js
   // .projects --> From reducer
   // Global state: projects
-  const projects_recruit_info = useSelector(state => state.projectReducer.projects_recruit_info);
-  const activities = useSelector(state => state.activityReducer.activities);
+  const projects_recruit_info = useSelector(
+    (state) => state.projectReducer.projects_recruit_info
+  );
+  const activities = useSelector((state) => state.activityReducer.activities);
 
   /**
    * @summary A callback to fetch projects
@@ -49,42 +54,38 @@ const ProjectInfoPage = (props) => {
    * @returns {function} @callback
    * @author Ken Pham
    */
-  const _loadProjects = useCallback( async () => {
+  const _loadProjects = useCallback(async () => {
     try {
-      dispatch(projectActions._fetchProject_recruit_info_ppu())
-
+      dispatch(projectActions._fetchProject_recruit_info_ppu());
     } catch (error) {
-      console.log('error', error)
+      console.log("error", error);
     }
-  }, [dispatch]) 
-
+  }, [dispatch]);
 
   const _loadProjectActivity = useCallback(async () => {
     try {
-      dispatch(activityActions._fetchProjectActivity_ppu())
+      dispatch(activityActions._fetchProjectActivity_ppu());
     } catch (error) {
-      console.log('error', error)
+      console.log("error", error);
     }
-  }, [dispatch])
+  }, [dispatch]);
 
   useEffect(() => {
     _loadProjects()
-    .then(() => {
-      setIsFetchedRecruitInfo(true);
-      console.log('activities loaded successfully')
-    })
-    .then(() => _loadProjectActivity())
-    .then(() => {
-      setIsFetchedActivities(true)
-      console.log('activities loaded successfully')
-    })
-  }, [dispatch, _loadProjectActivity, _loadProjects])
+      .then(() => {
+        setIsFetchedRecruitInfo(true);
+        console.log("activities loaded successfully");
+      })
+      .then(() => _loadProjectActivity())
+      .then(() => {
+        setIsFetchedActivities(true);
+        console.log("activities loaded successfully");
+      });
+  }, [dispatch, _loadProjectActivity, _loadProjects]);
 
+  console.log("fetched projects", projects_recruit_info);
 
-  console.log('fetched projects', projects_recruit_info)
-
-
-  /********************************* Small UI components *********************************/ 
+  /********************************* Small UI components *********************************/
   /**
    * @summary Render the tags of the project
    * @param {void}
@@ -92,7 +93,7 @@ const ProjectInfoPage = (props) => {
    * @author Ken Pham, Dat Uchiha
    */
   const _project_tags = () => {
-    return(
+    return (
       <div className="tags">
         <a href="">Explore</a> <span> </span>
         <a href="">Language</a> <span> </span>
@@ -101,9 +102,9 @@ const ProjectInfoPage = (props) => {
         </a>{" "}
         <span> </span>
       </div>
-    )
-  }
-  
+    );
+  };
+
   /**
    * @summary Render the info of organization, including name, avatar and the follow button
    * @param {void}
@@ -111,7 +112,7 @@ const ProjectInfoPage = (props) => {
    * @author Ken Pham, Dat Uchiha
    */
   const _organization_info = () => {
-    return(
+    return (
       <div className="organizationNameandPicture">
         <img
           className="projectLogo"
@@ -121,8 +122,8 @@ const ProjectInfoPage = (props) => {
         <div className="organizationName">Organization's Name </div>
         <button>Follow</button>
       </div>
-    )
-  }
+    );
+  };
 
   /**
    * @summary Render the apply button for the project
@@ -131,21 +132,22 @@ const ProjectInfoPage = (props) => {
    * @author Ken Pham, Dat Uchiha
    */
   const _project_apply_button = () => {
-    return(
+    return (
       <div className="applyButton">
         <div className="applyNow">
           <Link
-           className="Link"
-           to=
-          {{
-                pathname: '/applyform',
-          }}>
-        Apply Now </Link>
-          </div>
+            className="Link"
+            to={{
+              pathname: "/applyform",
+            }}
+          >
+            Apply Now{" "}
+          </Link>
+        </div>
         <div className="dueDay">Ends some day</div>
       </div>
-    )
-  }
+    );
+  };
 
   /**
    * @summary Render the avatar of the project
@@ -154,7 +156,7 @@ const ProjectInfoPage = (props) => {
    * @author Ken Pham, Dat Uchiha
    */
   const _project_avatar = () => {
-    return(
+    return (
       <div>
         <img
           className="projectPicture"
@@ -162,8 +164,8 @@ const ProjectInfoPage = (props) => {
           alt="projectPicture"
         />
       </div>
-    )
-  }
+    );
+  };
 
   /**
    * @summary Render the showing-joined-user-number div
@@ -172,13 +174,13 @@ const ProjectInfoPage = (props) => {
    * @author Ken Pham, Dat Uchiha
    */
   const _project_joined_users = () => {
-    return(
+    return (
       <div className="joinedUsers">
         <span>100, 000</span> has joined
       </div>
-    )
-  }
-  
+    );
+  };
+
   /**
    * @summary Render the held-by section of the project
    * @param {void}
@@ -186,7 +188,7 @@ const ProjectInfoPage = (props) => {
    * @author Ken Pham, Dat Uchiha
    */
   const _project_held_by_section = () => {
-    return(
+    return (
       <div className="heldByContainer">
         <h1 className="projectHeadings"> Held by</h1>
         <img
@@ -203,8 +205,8 @@ const ProjectInfoPage = (props) => {
         </span>
         <div className="viewAllButton">View all</div>
       </div>
-    )
-  }
+    );
+  };
 
   /**
    * @summary Render the benefits section
@@ -213,20 +215,19 @@ const ProjectInfoPage = (props) => {
    * @author Ken Pham, Dat Uchiha
    */
   const _project_benefit_section = () => {
-    return(
+    return (
       <div className="benefitContainer">
         <h1 className="projectHeadings">Benefit</h1>
         <ul>
-          {isFetchedRecruitInfo && projects_recruit_info.benefits.map(benefit => (
-            <ListedItems
-              title={benefit}
-            />
-          ))}
+          {isFetchedRecruitInfo &&
+            projects_recruit_info.benefits.map((benefit) => (
+              <ListedItems title={benefit} />
+            ))}
         </ul>
       </div>
       //Somthing is wrong in this section, detail:"benefits". That makes the page broken
-    )
-  }
+    );
+  };
 
   /**
    * @summary Render the requirements section
@@ -235,17 +236,16 @@ const ProjectInfoPage = (props) => {
    * @author Ken Pham, Dat Uchiha
    */
   const _project_requirement_section = () => {
-    return(
+    return (
       <div className="requirementContaner">
         <h1 className="projectHeadings">Requirements</h1>
-        {isFetchedRecruitInfo && projects_recruit_info.requirements.map(requirement => (
-          <ListedItems
-            title={requirement}
-          />
-        ))}
+        {isFetchedRecruitInfo &&
+          projects_recruit_info.requirements.map((requirement) => (
+            <ListedItems title={requirement} />
+          ))}
       </div>
-    )
-  }
+    );
+  };
 
   /**
    * @summary Render the about section of the project
@@ -254,33 +254,33 @@ const ProjectInfoPage = (props) => {
    * @author Ken Pham, Dat Uchiha
    */
   const _project_about_section = () => {
-    return(
+    return (
       <div className="aboutContainer">
         <h1 className="projectHeadings">About</h1>
         <div>Best project ever</div>
         <div className="viewAllButton">View all</div>
       </div>
-    )
-  }
+    );
+  };
 
   /**
    * @summary Render the activities
    * @param {void}
-   * @returns JSX 
+   * @returns JSX
    * @author Ken Pham
    */
   const _project_activity_item = activities.map((activity) => {
-    return(
-        <ProjectActivity
-          key={activity.activityId}
-          project_activity_avatar={null}
-          project_activity_name={activity.activityName}
-          project_activity_date={activity.activityDate}
-          project_activity_location={activity.activityLocation}
-          project_activity_description={activity.activityDescription}
-        />
-    )
-  })
+    return (
+      <ProjectActivity
+        key={activity.activityId}
+        project_activity_avatar={null}
+        project_activity_name={activity.activityName}
+        project_activity_date={activity.activityDate}
+        project_activity_location={activity.activityLocation}
+        project_activity_description={activity.activityDescription}
+      />
+    );
+  });
 
   /**
    * @summary Render the progress section of the project
@@ -289,21 +289,26 @@ const ProjectInfoPage = (props) => {
    * @author Ken Pham, Dat Uchiha
    */
   const _project_progress_section = () => {
-    return(
+    return (
       <div className="progressContainer">
         <div className="progress-container--header">
           <h1 className="projectHeadings">Progress</h1>
-          <a className="progress-container-header-addActivityButton" href="/addActivity">Add an activity</a>
+          <a
+            className="progress-container-header-addActivityButton"
+            href="/addActivity"
+          >
+            Add an activity
+          </a>
         </div>
         <ul className="progress-container-activity">
           <a>{_project_activity_item}</a>
         </ul>
         <div className="viewAllButton">View all</div>
       </div>
-    )
-  }
+    );
+  };
 
-  /********************************* MAIN Component: ProjectInfoPage *********************************/ 
+  /********************************* MAIN Component: ProjectInfoPage *********************************/
   return (
     <div className="projectInfoPage">
       <div>
@@ -327,7 +332,6 @@ const ProjectInfoPage = (props) => {
 
         {/*'projectPicture' division*/}
         {_project_avatar()}
-        
       </div>
 
       <div className="content">

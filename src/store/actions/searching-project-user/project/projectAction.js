@@ -24,42 +24,69 @@ import {
 } from "../../../../constants/testing-keys";
 
 /******************************** ACTIONS ********************************/
+/**
+ * @summary Fetch project, project recruit-info, project progress
+ * @param {useDispatch, projectId}
+ * @returns {void} this function fetch data then dispatch it onto global store
+ * @author Long Wibu
+ * @howToAccess questions=useSelector(state=>state.projectReducerSPU.projectDetail.questions)
+ */
 
 /************Fetch Data*********/
 // Export the actions.
-export const FETCH_LANDING = "FETCH_LANDING";
-
-//The main function call this to activate the function of fetching data
-export function FetchCalling(action, data, dispatch, callback) {
-  if (data == undefined) action(dispatch);
-  return callback(() => action(dispatch), [dispatch]);
-}
+export const PROJECT_DETAILS = "PROJECT_DETAILS";
 
 //Fetch the data from the Firebase.
-export async function FetchLanding(dispatch) {
-  console.log("Fetching is beginning.");
-  let projectArray = [],
-    count = 0;
+export async function FetchProjectInfo(dispatch, projectId) {
+  console.log("Fetching project info is beginning.");
+  let count = 0;
+  let projectData = {
+    projectInfo: {},
+    projectDetail: {},
+    projectProgress: [],
+  };
   try {
     // Retrieve the data from Firestore Cloud database
+    //Data Basic Info
     await firebase_db
       .collection("public-projects")
+      .doc(projectId)
+      .get()
+      .then(function (doc) {
+        projectData.projectInfo = doc.data();
+        console.log("Document data - Info:", projectData.projectInfo);
+      });
+    //Data Recruit Info
+    await firebase_db
+      .collection("public-projects")
+      .doc(projectId)
+      .collection("recruit-info")
+      .doc(projectId)
+      .get()
+      .then(function (doc) {
+        projectData.projectDetail = doc.data();
+        console.log("Document data - Details:", projectData.projectDetail);
+      });
+    //Data Progress
+    await firebase_db
+      .collection("public-projects")
+      .doc(projectId)
+      .collection("recruit-info")
+      .doc(projectId)
+      .collection("progress")
       .get()
       .then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
-          projectArray[count] = doc.data();
+          projectData.projectProgress[count] = doc.data();
           count++;
-          // doc.data() is never undefined for query doc snapshots
-          //console.log(doc.id, " => ", doc.data());
         });
+        console.log("Document data - progress:", projectData.projectProgress);
       });
-
-    console.log("Array fetched: ", projectArray);
 
     // dispatch helps us store the changed state/ data into the reducers
     dispatch({
-      type: FETCH_LANDING,
-      payload: projectArray,
+      type: PROJECT_DETAILS,
+      payload: projectData,
     });
   } catch (error) {
     console.log("error", error);

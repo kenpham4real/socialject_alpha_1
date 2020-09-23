@@ -1,40 +1,48 @@
 // Firebase database
-import { FETCH_LANDING } from "../../../actions/searching-project-user/landing/landingAction";
-import {UP_DATA_FORM } from "../../../actions/searching-project-user/project/project";
+import { UP_DATA_FORM } from "../../../actions/searching-project-user/project/project";
+import { PROJECT_DETAILS } from "../../../actions/searching-project-user/project/projectAction";
 
 //Initial state:
 const initialState = {
-  projectData: [],
-  upDataForm:[],
+  projectsData: {},
+  upDataForm: [],
 };
 
 /******************************** REDUCER ********************************/
 //Save the data onto global store
-export const landingReducer = (state = initialState, action) => {
+export const projectReducerSPU = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_LANDING:
+    case PROJECT_DETAILS:
       console.log("Project array payload: ", action.payload);
       return {
         ...state,
-        projectData: action.payload,
+        projectsData: action.payload,
       };
     default:
       return {
-        projectData: undefined,
+        projectsData: {
+          projectInfo: {},
+          projectDetail: {
+            benefits: [],
+            requirements: [],
+            questions: [],
+          },
+          projectProgress: [],
+        },
       };
   }
 };
 
-
 //Save the data of the Application Form to global store
 export const upDataFormReducer = (state = initialState, action) => {
-    switch (action.type) {
-      case UP_DATA_FORM:
-        console.log("Project array payload: ", action.upDataForm);
-        return {
-          ...state,
-          projectData: action.upDataForm,
-        };
-      default: return state;
-    }
-  };
+  switch (action.type) {
+    case UP_DATA_FORM:
+      console.log("Project array payload: ", action.upDataForm);
+      return {
+        ...state,
+        projectData: action.upDataForm,
+      };
+    default:
+      return state;
+  }
+};

@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import ReduxThunk from "redux-thunk";
 
 import { projectReducer } from "./store/reducers/posting-project-user/project/project";
+import { projectReducerSPU } from "./store/reducers/searching-project-user/project/projectReducer";
 import { activityReducer } from "./store/reducers/posting-project-user/activity/activity";
 //import { CreatePageReducer } from "./store/reducers/posting-project-user/profile/profileReducer";
 import { landingReducer } from "./store/reducers/searching-project-user/landing/landingReducer";
@@ -14,6 +15,7 @@ import { profileReducer } from "./store/reducers/posting-project-user/profile/pr
 // Adding reducers here
 const rootReducer = combineReducers({
   projectReducer: projectReducer,
+  projectReducerSPU: projectReducerSPU,
   activityReducer: activityReducer,
   //createPageReducer: CreatePageReducer,
   landingReducer: landingReducer,
