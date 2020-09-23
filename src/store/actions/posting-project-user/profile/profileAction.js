@@ -79,7 +79,7 @@ export const CREATE_PROFILE = "CREATE_PROFILE";
  * @param {string} email The email of the organization
  * @param {string} phoneNumber The phone number of the organization
  * @param {string} facebook The FB link of the organization
- * @param {Object} imageFile The image file object chosen from the local machine of the PPU whe creating profile
+ * @param {object} imageFile The image file object chosen from the local machine of the PPU whe creating profile
  */
 export const _createProfile_ppu = (
   orgId,
