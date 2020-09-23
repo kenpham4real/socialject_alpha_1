@@ -13,7 +13,6 @@ export const FETCH_LANDING = "FETCH_LANDING";
  */
 //The main function call this to activate the function of fetching data
 export function FetchCalling(action, data, dispatch, callback) {
-  if (data == undefined) action(dispatch);
   return callback(() => action(dispatch), [dispatch]);
 }
 

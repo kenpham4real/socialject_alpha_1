@@ -52,9 +52,7 @@ const ChooseType = (props) => {
   const dispatch = useDispatch();
   const callback = useCallback;
   //Select data from the global state.
-  let data = [];
   const selectData = useSelector((state) => state.landingReducer.projectData);
-  if (selectData != undefined) data = selectData;
   //Use 2 hooks useEffect and useCallback to prevent re-render, but it still re-render anyway.
   /**
    * @summary A callback to fetch projects, then an useEffect to call it.
@@ -88,7 +86,7 @@ const ChooseType = (props) => {
 
       {/*Projects*/}
 
-      <ProjectSlide data={data} history={props.history}></ProjectSlide>
+      <ProjectSlide data={selectData} history={props.history}></ProjectSlide>
 
       {/*Copyright*/}
       <CopyrightBar></CopyrightBar>
