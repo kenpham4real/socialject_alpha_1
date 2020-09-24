@@ -1,6 +1,5 @@
 /**
  * Contributors: Đạt, Ken
- * Currently be modified by: Long
  * Main Component:
  * ProjectInfoPage{
  *  _loadProjectst() => Fetch the projects from Firestore
@@ -25,14 +24,12 @@ import ProjectActivity from "../../../components/app/ProjectInfoPage/ProjectActi
 import CopyrightBar from "../../../components/app/CopyrightBar.js";
 
 // Functions
-import * as projectActions from "../../../store/actions/posting-project-user/project/project.js";
+import * as projectActions from "../../../store/actions/searching-project-user/project/projectAction";
 import * as activityActions from "../../../store/actions/posting-project-user/activity/activity";
 
 const ProjectInfoPage = (props) => {
-  console.log(
-    "Id pass from the previous page: ",
-    props.history.location.projectId
-  );
+  const projectId = props.history.location.projectId;
+  console.log("Id pass from the previous page: ", projectId);
 
   // useDispatch() from react-redux
   const dispatch = useDispatch();
@@ -43,11 +40,12 @@ const ProjectInfoPage = (props) => {
   // state.projectReducer --> From App.js
   // .projects --> From reducer
   // Global state: projects
-  const projects_recruit_info = useSelector(
-    (state) => state.projectReducer.projects_recruit_info
+  const projectsData = useSelector(
+    (state) => state.projectReducerSPU.projectsData
   );
-  const activities = useSelector((state) => state.activityReducer.activities);
 
+  //let activities = useSelector((state) => state.activityReducer.activities);
+  const activities = projectsData.projectProgress;
   /**
    * @summary A callback to fetch projects
    * @param {void}
@@ -56,7 +54,7 @@ const ProjectInfoPage = (props) => {
    */
   const _loadProjects = useCallback(async () => {
     try {
-      dispatch(projectActions._fetchProject_recruit_info_ppu());
+      dispatch(projectActions.FetchProjectInfo(dispatch, projectId));
     } catch (error) {
       console.log("error", error);
     }
@@ -83,7 +81,8 @@ const ProjectInfoPage = (props) => {
       });
   }, [dispatch, _loadProjectActivity, _loadProjects]);
 
-  console.log("fetched projects", projects_recruit_info);
+  console.log("fetched projects", projectsData);
+  console.log("fetched activities", activities);
 
   /********************************* Small UI components *********************************/
   /**
@@ -116,10 +115,12 @@ const ProjectInfoPage = (props) => {
       <div className="organizationNameandPicture">
         <img
           className="projectLogo"
-          src="https://w7.pngwing.com/pngs/1003/487/png-transparent-github-pages-random-icons-white-logo-monochrome.png"
+          src={projectsData.projectInfo.organizationAvatar}
           alt="orgLogo"
         />
-        <div className="organizationName">Organization's Name </div>
+        <div className="organizationName">
+          {projectsData.projectInfo.projectName}{" "}
+        </div>
         <button>Follow</button>
       </div>
     );
@@ -144,7 +145,9 @@ const ProjectInfoPage = (props) => {
             Apply Now{" "}
           </Link>
         </div>
-        <div className="dueDay">Ends some day</div>
+        <div className="dueDay">
+          Deadline: {projectsData.projectInfo.deadline}
+        </div>
       </div>
     );
   };
@@ -160,7 +163,7 @@ const ProjectInfoPage = (props) => {
       <div>
         <img
           className="projectPicture"
-          src="https://scontent-xsp1-1.xx.fbcdn.net/v/t1.0-9/10514712_1441620719449458_2919014509954445678_n.jpg?_nc_cat=103&_nc_sid=110474&_nc_ohc=S_vl00GT_9sAX9yvuwq&_nc_ht=scontent-xsp1-1.xx&oh=a0b2a92958685faec2cc28775a437903&oe=5F69B421"
+          src={projectsData.projectInfo.projectAvatar}
           alt="projectPicture"
         />
       </div>
@@ -176,7 +179,7 @@ const ProjectInfoPage = (props) => {
   const _project_joined_users = () => {
     return (
       <div className="joinedUsers">
-        <span>100, 000</span> has joined
+        <span>Maybe some random number</span> has joined
       </div>
     );
   };
@@ -193,15 +196,14 @@ const ProjectInfoPage = (props) => {
         <h1 className="projectHeadings"> Held by</h1>
         <img
           className="projectLogo"
-          src="https://w7.pngwing.com/pngs/1003/487/png-transparent-github-pages-random-icons-white-logo-monochrome.png"
+          src={projectsData.projectInfo.organizationAvatar}
           alt="orgLogo"
         />
         <span>
-          <p className="organizationName">Organization's Name</p>
-          <p>
-            This paragraph will be the section “About” in the Profile of the
-            Organization.
+          <p className="organizationName">
+            {projectsData.projectInfo.projectName}
           </p>
+          <p>{projectsData.projectInfo.description}</p>
         </span>
         <div className="viewAllButton">View all</div>
       </div>
@@ -220,7 +222,7 @@ const ProjectInfoPage = (props) => {
         <h1 className="projectHeadings">Benefit</h1>
         <ul>
           {isFetchedRecruitInfo &&
-            projects_recruit_info.benefits.map((benefit) => (
+            projectsData.projectDetail.benefits.map((benefit) => (
               <ListedItems title={benefit} />
             ))}
         </ul>
@@ -240,7 +242,7 @@ const ProjectInfoPage = (props) => {
       <div className="requirementContaner">
         <h1 className="projectHeadings">Requirements</h1>
         {isFetchedRecruitInfo &&
-          projects_recruit_info.requirements.map((requirement) => (
+          projectsData.projectDetail.requirements.map((requirement) => (
             <ListedItems title={requirement} />
           ))}
       </div>
@@ -257,7 +259,7 @@ const ProjectInfoPage = (props) => {
     return (
       <div className="aboutContainer">
         <h1 className="projectHeadings">About</h1>
-        <div>Best project ever</div>
+        <div>{projectsData.projectInfo.description}</div>
         <div className="viewAllButton">View all</div>
       </div>
     );
@@ -321,7 +323,9 @@ const ProjectInfoPage = (props) => {
         {/*'generalInfo' division*/}
         <div className="generalInfoComponents">
           {_project_tags()}
-          <div className="projectName">SocialJect_1</div>
+          <div className="projectName">
+            {projectsData.projectInfo.projectName}
+          </div>
           <div className="location">Home</div>
           {_organization_info()}
 
