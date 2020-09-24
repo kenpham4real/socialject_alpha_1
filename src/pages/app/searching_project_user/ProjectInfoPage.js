@@ -23,6 +23,7 @@ import ListedItems from "../../../components/app/ProjectInfoPage/ListedItems.js"
 import ProjectActivity from "../../../components/app/ProjectInfoPage/ProjectActivity.js";
 import CopyrightBar from "../../../components/app/CopyrightBar.js";
 import FormSubmission from "../../../components/app/ProjectInfoPage/FormSubmission";
+import IndividualForm from "../../../components/app/ProjectInfoPage/IndividualForm";
 
 // Functions
 import * as projectActions from "../../../store/actions/searching-project-user/project/projectAction";
@@ -363,6 +364,7 @@ const ProjectInfoPage = (props) => {
           {_project_about_section()}
           {_project_progress_section()}
           <FormSubmission />
+          <IndividualForm />
         </div>
       </div>
       <div className="footer">
