@@ -13,7 +13,9 @@ const initialState = {
         userAvatar: "",
         uid: "",
         token:"",
-        userType:""
+        userType:"",
+        authenticatedMethod: "",
+        isAuth: null
     }
 }
 
@@ -27,7 +29,9 @@ export const authReducer = (state = initialState, action) => {
                 action.userData.userType,
                 action.userData.userEmail,
                 action.userData.userAvatar,
-                action.userData.userName
+                action.userData.userName,
+                action.userData.authenticatedMethod,
+                action.userData.isAuth
             )
 
             return{
