@@ -1,19 +1,23 @@
 /**
  * Contributors: Đạt, Ken
+
  * Currently be modified by: Long
+
  * Main Component:
  * ProjectInfoPage{
  *  _loadProjectst() => Fetch the projects from Firestore
  *  _project_tags() => Render the tag of the project
  *  _organizationInfo() => Render the info of organization, including name, avatar and the follow button
  *  _project_apply_button() => Render the apply button for the project
- *  _
+ *  _project_
  * }
  */
 
 import React, { useEffect, useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { Link } from "react-router-dom";
+
 
 // Styles
 import "./styles/ProjectInfoPage.css";
@@ -28,13 +32,30 @@ import CopyrightBar from "../../../components/app/CopyrightBar.js";
 import * as projectActions from "../../../store/actions/posting-project-user/project/project.js";
 import * as activityActions from "../../../store/actions/posting-project-user/activity/activity";
 
+import * as authenticationActions from "../../../store/actions/auth/auth";
+
+
 const ProjectInfoPage = (props) => {
   console.log(
     "Id pass from the previous page: ",
     props.history.location.projectId
   );
 
+
+  //Static users
+  const Student = {
+    studentId: "ITITIU12000",
+    name: "Lebron",
+    gmail: "khanh.phd@gmail.com",
+    facebook: "",
+    isStudent: "SPU",
+  };
+
+  const user = useSelector((state) => state.authReducer.userData);
+  console.log("user:", user);
+
   // useDispatch() from react-redux
+
   const dispatch = useDispatch();
   const [isFetchedRecruitInfo, setIsFetchedRecruitInfo] = useState(false);
   const [isFetchedActivities, setIsFetchedActivities] = useState(false);
@@ -226,6 +247,7 @@ const ProjectInfoPage = (props) => {
         </ul>
       </div>
       //Somthing is wrong in this section, detail:"benefits". That makes the page broken
+
     );
   };
 
@@ -325,7 +347,7 @@ const ProjectInfoPage = (props) => {
           <div className="location">Home</div>
           {_organization_info()}
 
-          {_project_apply_button()}
+          {user.userType === "IS SPU" && _project_apply_button()}
 
           {_project_joined_users()}
         </div>

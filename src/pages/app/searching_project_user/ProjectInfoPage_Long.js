@@ -221,7 +221,7 @@ const ProjectInfoPage = (props) => {
       <div className="benefitContainer">
         <h1 className="projectHeadings">Benefit</h1>
         <ul>
-          {isFetchedRecruitInfo &&
+          {isFetchedRecruitInfo && isFetchedRecruitInfo &&
             projectsData.projectDetail.benefits.map((benefit) => (
               <ListedItems title={benefit} />
             ))}
