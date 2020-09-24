@@ -6,7 +6,6 @@ import {
 
 // Initialize the state
 const initialState = {
-
   projects_basic_info: [],
   projects_recruit_info: {
     benefits: [],

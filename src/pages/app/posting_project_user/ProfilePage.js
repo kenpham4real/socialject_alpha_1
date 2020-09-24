@@ -1,13 +1,24 @@
-// Contributor: Long 19th August 2020
+/* Contributor: Long 22nd September 2020
 // Component:
 //    In use:
-//    Main: ChooseType (the page)
-//    *Navigation Bar: Header, display user menu and socialject menu
-//    *CopyrightBar: Footer, display text, content is copyright
-//    *ProjectActivity
-// *Data needed: (currently provided in this file already)
-//    texts
-//
+//    Main: Navigation Bar, CopyrightBar, ProjectActivity
+  *Function:
+    Fetch data: import from "landingAction"
+      FetchCalling: to call the fetching action
+      FetchProject: according to the orgId, fetch the profile and its correspoding projects.
+    Hooks: 
+      useCallback, useEffect: To avoid re-fetching, but it still re-fetch anyway.
+      useDispatch: to pass into the action so that the action can dispatch data onto global store
+      useSelector: select data from global store to use
+// *Data needed: 
+      1 organization
+      publics projects with the same orgId with the org.
+      all public-projects. The reducer then will store only the projects that have the same orgId
+        yea, I know I know. This algorithm is fucking stupid. I tried following the Firestore docs 
+        but it didn't work so this is my only idea.
+        I hope you can understand that all the stupidity I made was because I'm stupid, not an error.  
+
+*/
 
 import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -32,6 +43,8 @@ const imageURL =
 const loremText =
   "Khi Beyond Birthday lấy mạng nạn nhân thứ ba của mình, hắn định làm một thử nghiệm—để xem có cách nào làm một con người chết vì xuất huyết trong mà không cần phải hủy hoại một bộ phận cơ thể nào hay không. Cụ thể, hắn cho nạn nhân chìm vào trạng thái vô thức bằng thuốc mê; ...";
 
+//UI component, displaying name, avatar, location, category, university, description, email, phone.
+//Oh, also it has a button to navigate to /createPostModal
 function OrgName(props) {
   return (
     <div className="profile-name-container">
@@ -59,6 +72,7 @@ function OrgName(props) {
   );
 }
 
+//UI displaying the vision and description
 function OrgVision(props) {
   return (
     <div className="profile-block-container">
@@ -68,6 +82,8 @@ function OrgVision(props) {
   );
 }
 
+//UI display all projects of this org.
+//Each child component can nagivate to /projectInfo with an projectId
 function OrgHistory(props) {
   const data = props.data;
   // This is a testing array of KEYS
@@ -119,6 +135,7 @@ function OrgHistory(props) {
   );
 }
 
+//Main component, calling the fetching action and display all UI component.
 const ProfilePage = (props) => {
   /**
    * @summary Navigate to the create project modal
@@ -131,18 +148,21 @@ const ProfilePage = (props) => {
   };
 
   /**
-   * @summary Fetch project data from Data base
+   * @summary Fetch project data from Data base and select it from global store.
    * @function
    * @param {void}
-   * @returns {void}
+   * @returns {profileData and projectData} (The data is selected from global store)
    */
+  //Get the Id from history.location
+  const profileId = props.history.location.profileId;
+  console.log("profile Id received is: ", profileId);
+  //This will not fetch if there is no if passed into it.
   //Declare hooks as variables to be more flexible.
   const dispatch = useDispatch();
   const callback = useCallback;
   //Select data from the global state.
   let projectData = [];
   let profileData = {};
-  const profileId = "1lrR6G5aoc0CuAaIrRN4";
   const selectProject = useSelector(
     (state) => state.profileReducer.projectArray
   );
