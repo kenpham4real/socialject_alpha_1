@@ -15,9 +15,9 @@ const initialState = {
 
 /**
  * @summary Handling the data sent from actions
- * @param {Object} state 
- * @param {Object} action
- * @returns {Object} new state
+ * @param {object} state 
+ * @param {object} action
+ * @returns {object} new state
  * @author Ken Pham
  */
 export const activityReducer = (state = initialState, action) => {

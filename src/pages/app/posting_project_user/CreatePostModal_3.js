@@ -135,6 +135,8 @@ const CreatePostModal_3 = (props) => {
                 projectBenefitArray[projectBenefitArray.length - 1],
                 projectRequirementArray[projectRequirementArray.length - 1],
                 projectImageFile,
+                question,
+                "Something",
               )
             )
         }

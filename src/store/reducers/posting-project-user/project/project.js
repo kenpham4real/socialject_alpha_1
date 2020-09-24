@@ -14,9 +14,9 @@ const initialState = {
 };
 /**
  * @summary Handle the states of the projects (initialState above)
- * @param {Object} state
- * @param {Object} action
- * @returns {Object} new state
+ * @param {object} state
+ * @param {object} action
+ * @returns {object} new state
  * @author Ken Pham
  */
 export const projectReducer = (state = initialState, action) => {
