@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // SPU Pages
 import ExplorePage from "../pages/app/searching_project_user/ExplorePage";
-//import ProjectInfoPage from "../pages/app/searching_project_user/ProjectInfoPage";
-import ProjectInfoPage from "../pages/app/searching_project_user/ProjectInfoPage_Long";
+
+import ProjectInfoPage from "../pages/app/searching_project_user/ProjectInfoPage";
 import ChooseType from "../pages/app/searching_project_user/ChooseType";
 
 // PPU Pages
@@ -16,9 +16,14 @@ import CreatePostModal from "../pages/app/posting_project_user/CreatePostModal";
 import CreatePostModal_2 from "../pages/app/posting_project_user/CreatePostModal_2";
 import CreatePostModal_3 from "../pages/app/posting_project_user/CreatePostModal_3";
 import AddActivityModal from "../pages/app/posting_project_user/AddActivityModal";
+
 import ProfilePage_example from "../pages/app/posting_project_user/ProfilePage_example.js";
+
 import LoginPage from "../pages/auth/LoginPage";
 import ChoosingUser from "../pages/auth/ChoosingUser";
+
+import ApplyForm from "../pages/app/searching_project_user/ApplyForm";
+
 // react-router-dom
 
 const MainRoute = () => {
