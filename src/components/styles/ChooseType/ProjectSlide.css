@@ -1,20 +1,37 @@
 /*Project display*/
 .project-container {
-  display: inline-table;
+  display: table;
   margin-top: 1%;
+  align-items: center;
+  justify-content: center;
 }
 
 .project-container-button {
   padding: none;
   padding-bottom: 3rem;
+  margin: 1rem;
+  margin-top: 2rem;
   margin-bottom: 3rem;
   border: none;
-  height: inherit;
   border-radius: 0.5rem;
   background-color: var(--primary);
   box-shadow: 2px 2px 2px rgb(130, 133, 143);
   cursor: pointer;
 }
+
+.project-container-button:hover {
+  cursor: pointer;
+  background-color: rgb(134, 136, 153);
+  filter: brightness(150%);
+  transform: scale(1.1, 1.1);
+  position: relative;
+  transition: 0.2s;
+}
+
+.project-container-button:not(:hover) {
+  transition: 0.2s;
+}
+
 .project-card {
   display: inline;
   cursor: pointer;
@@ -23,17 +40,6 @@
   margin-right: 5px;
   border: none;
   text-align: left;
-}
-
-.project-card:hover {
-  cursor: pointer;
-  background-color: rgb(176, 175, 179);
-  filter: brightness(150%);
-  transition: 0.2s;
-}
-
-.project-card:not(:hover) {
-  transition: 0.2s;
 }
 
 .project-container-vertical {
@@ -60,15 +66,6 @@
   border-radius: 0.5rem;
   top: -30px;
   left: 20px;
-}
-
-.project-icon:hover {
-  filter: brightness(120%);
-  transition: 0.2s;
-}
-
-.project-icon:not(:hover) {
-  transition: 0.2s;
 }
 
 .project-image {

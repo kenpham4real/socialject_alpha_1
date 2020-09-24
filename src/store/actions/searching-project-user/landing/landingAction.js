@@ -5,12 +5,23 @@ import { firebase_db } from "../../../../firebase-config";
 export const FETCH_LANDING = "FETCH_LANDING";
 
 /******************************** ACTIONS ********************************/
+/**
+ * @summary A callback function to decide if the page should fetch data or not.
+ * @param (Function to fetch, current data, usedispatch, useCallback),
+ * @returns a callback function to fetch.
+ * @author Long Wibu
+ */
 //The main function call this to activate the function of fetching data
 export function FetchCalling(action, data, dispatch, callback) {
-  if (data == undefined) action(dispatch);
   return callback(() => action(dispatch), [dispatch]);
 }
 
+/**
+ * @summary A callback function to decide if the page should fetch data or not.
+ * @param (useDispatch)
+ * @returns {void} this function fetch data then dispatch it onto global store
+ * @author Long Wibu
+ */
 //Fetch the data from the Firebase.
 export async function FetchLanding(dispatch) {
   console.log("Fetching is beginning.");
