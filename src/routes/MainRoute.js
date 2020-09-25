@@ -39,7 +39,7 @@ const MainRoute = () => {
         <Route path="/createPostModal_2" component={CreatePostModal_2} />
         <Route path="/createPostModal_3" component={CreatePostModal_3} />
         <Route path="/addActivity" component={AddActivityModal} />
-
+        <Route path="/applyForm" component={ApplyForm}/>
         <Route exact path="/profilePage_test" component={ProfilePage_example} />
         <Route path="/choosingUser" component={ChoosingUser} />
         <Route path="/login" component={LoginPage} />
