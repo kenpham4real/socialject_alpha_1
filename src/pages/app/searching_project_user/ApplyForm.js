@@ -19,6 +19,8 @@ import QuestionLabel from "../../../components/app/QuestionLabel";
     const [Name, setName] = useState("");
     const [Email, setEmail] = useState("");
     const [Message, setMessage] = useState("");
+    const [valueFromChild, setValueFromChild] = useState('');
+
 
     //Dispatch
     const dispatch = useDispatch();
@@ -27,46 +29,11 @@ import QuestionLabel from "../../../components/app/QuestionLabel";
     const projectsData = useSelector(
         (state) => state.projectReducerSPU.projectsData
       );
-
-      
-    const [valueFromChild, setValueFromChild] = useState('');
-    
     // State of the Form
     const FormState ={
         valueFromChild,
     }
 
-   
-    /**
-     * @summary Handle State of Name
-     * @param {string} Name
-     * @return {void}
-     */
-    const onChangeName=(Name) =>{
-        setName(Name);
-    }
-
-    
-    /**
-     * @summary Handle State of Email
-     * @param {string} Email
-     * @return {void}
-     */
-    const onChangeEmail=(Email) =>{
-        setEmail(Email);
-    }
-
-
-    /**
-     * @summary Handle State of Message
-     * @param {string} Message
-     * @return {void}
-     */
-    const onChangeMessage=(Message) =>{
-        setMessage(Message);
-    }
-
-    // data
 
     const submitForm =() =>{
         console.log("Sumbit form succesful!");
@@ -79,8 +46,8 @@ import QuestionLabel from "../../../components/app/QuestionLabel";
     return (
         
         <div className="page" >
-            <h1 className="h1">Project's Name</h1>
-            <p className="location">Location</p>
+            <h1 className="h1">{projectsData.projectInfo.projectName}</h1>
+            <p className="location">{projectsData.projectInfo.location}</p>
                
                 {/* <QuestionLabel
                     // truyền data ở đây
