@@ -6,8 +6,9 @@
 
  //Packages
  import React, {useState} from "react";
- import { useDispatch } from "react-redux";
+ import { useDispatch, useSelector } from "react-redux";
  import { upDataForm } from "../../../store/actions/searching-project-user/project/project";
+import QuestionLabel from "../../../components/app/QuestionLabel";
 
  //Styles
  import "./styles/ApplyFormStyles.css";
@@ -22,11 +23,19 @@
     //Dispatch
     const dispatch = useDispatch();
 
+    //Global state
+    const projectsData = useSelector(
+        (state) => state.projectReducerSPU.projectsData
+      );
+
+      
+    const [valueFromChild, setValueFromChild] = useState('');
+    
+    // State of the Form
     const FormState ={
-        Name:Name,
-        Email:Email,
-        Message:Message,
+        valueFromChild,
     }
+
    
     /**
      * @summary Handle State of Name
@@ -57,64 +66,33 @@
         setMessage(Message);
     }
 
+    // data
+
     const submitForm =() =>{
         console.log("Sumbit form succesful!");
-        dispatch(upDataForm(FormState.Name,FormState.Email,FormState.Message));
+        dispatch(upDataForm(FormState));
     }
+
+
+    console.log("value",FormState)
+
     return (
+        
         <div className="page" >
             <h1 className="h1">Project's Name</h1>
             <p className="location">Location</p>
-            <div className="contact">
-                <form  className="contact-form" autocomplete="off">
-                    <div className="contact-form-group">
-                        <label 
-                            for="name" 
-                            className="contact-form-label"
-                        >
-                            Your Name
-                        </label>
-                        <input 
-                            id="name" 
-                            type="text" 
-                            className="contact-form-input" 
-                            value={Name}
-                            onChange={(Name)=> onChangeName(Name.target.value)}
-                        />
-                    </div>
-                    <div className="contact-form-group">
-                        <label 
-                            for="email" 
-                            className="contact-form-label"
-                        >
-                            Your Email
-                        </label>
-                        <input 
-                            id="email" 
-                            type="email" 
-                            className="contact-form-input"
-                            value={Email}
-                            onChange={(Email)=>onChangeEmail(Email.target.value)} 
-                        />
-                    </div>
-                        <div className="contact-form-group">
-                        <label 
-                            for="message" 
-                            className="contact-form-label"
-                        >
-                            Your Message
-                        </label>
-                        <textarea 
-                            name="message" 
-                            id="message" 
-                            className="contact-form-area" 
-                            placeholder="Type something if you want"
-                            value={Message}
-                            onChange={(Message)=>onChangeMessage(Message.target.value)}
-                        >
-
-                        </textarea>
-                    </div>
+               
+                {/* <QuestionLabel
+                    // truyền data ở đây
+                    
+                /> */}
+                {projectsData.projectDetail.questions.map((question) => (
+                    <QuestionLabel
+                        questionTitle={question}
+                        value={valueFromChild}
+                        setValueFromChild={setValueFromChild}
+                    />
+                ))}
                     <button 
                         type="submit" 
                         className="contact-form-submit"
@@ -127,8 +105,7 @@
                     >
                         Submit
                     </button>
-                </form>
-</div>
+            
         </div>
         );
     };
