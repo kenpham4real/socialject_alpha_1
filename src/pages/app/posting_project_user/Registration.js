@@ -52,8 +52,7 @@ const Registration = (props) => {
 						value={organizationName}
 						onChange={(name)=> _onChangeOrganizationName(name.target.value)}
 					/>
-					<input 
-						
+					<textarea 
 						className='input-text-registration description'
 						type='text'
 						placeholder= "Description" 
