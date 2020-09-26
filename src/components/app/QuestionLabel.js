@@ -33,13 +33,11 @@
             <form  className="contact-form" autocomplete="off">
                 <div class="contact-form-group">
                     <label 
-                        for="name" 
                         class="contact-form-label"
                     >
                         {props.questionTitle}
                     </label>
                     <input 
-                        id="name" 
                         type="text" 
                         class="contact-form-input"
                         value={answerInput}
