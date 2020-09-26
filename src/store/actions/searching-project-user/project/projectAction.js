@@ -99,11 +99,9 @@ export const UP_DATA_FORM = "UP_DATA_FORM";
 
 /**
  * @summary Send the profile data the PPU want to create to firestore
- * @param {string} name The name of SPU
- * @param {string} email The email of SPU
- * @param {string} message The message of SPU
+ * @param {string} FormState
  */
-export const upDataForm = (name, email, message) => {
+export const upDataForm = (FormState) => {
   /**
    * @summary Asynchronous function calling the database to push the data
    * @param {function} dispatch => Function used to send the action type and data to the Redux reducer
@@ -121,9 +119,7 @@ export const upDataForm = (name, email, message) => {
         .doc()
         .set(
           {
-            name: name,
-            email,
-            message,
+            FormState
           },
           { merge: true }
         );
@@ -132,9 +128,7 @@ export const upDataForm = (name, email, message) => {
       dispatch({
         type: UP_DATA_FORM,
         upDataForm: {
-          name: name,
-          email,
-          message,
+          FormState
         },
       });
     } catch (error) {
