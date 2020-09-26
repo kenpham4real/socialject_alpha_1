@@ -62,13 +62,13 @@ const ProjectInfoPage = (props) => {
     }
   }, [dispatch]);
 
-  const _loadProjectActivity = useCallback(async () => {
-    try {
-      dispatch(activityActions._fetchProjectActivity_ppu());
-    } catch (error) {
-      console.log("error", error);
-    }
-  }, [dispatch]);
+  // const _loadProjectActivity = useCallback(async () => {
+  //   try {
+  //     dispatch(activityActions._fetchProjectActivity_ppu());
+  //   } catch (error) {
+  //     console.log("error", error);
+  //   }
+  // }, [dispatch]);
 
   useEffect(() => {
     _loadProjects()
@@ -76,12 +76,12 @@ const ProjectInfoPage = (props) => {
         setIsFetchedRecruitInfo(true);
         console.log("activities loaded successfully");
       })
-      .then(() => _loadProjectActivity())
-      .then(() => {
-        setIsFetchedActivities(true);
-        console.log("activities loaded successfully");
-      });
-  }, [dispatch, _loadProjectActivity, _loadProjects]);
+      // .then(() => _loadProjectActivity())
+      // .then(() => {
+      //   setIsFetchedActivities(true);
+      //   console.log("activities loaded successfully");
+      // });
+  }, [dispatch, _loadProjects]);
 
   console.log("fetched projects", projectsData);
   console.log("fetched activities", activities);
