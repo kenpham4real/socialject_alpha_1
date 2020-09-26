@@ -7,7 +7,7 @@
 
 
  //Packages
- import React from "react";
+ import React, { useState } from "react";
  
 
  //Styles
@@ -20,12 +20,20 @@
 
  const QuestionLabel=(props)=>{
 
-    const [answerInput, setAnswerInput] = React.useState("");
-    React.useEffect(() => {
-        props.setValueFromChild(answerInput);
-    }, [answerInput]);
+	// const [answerInput, setAnswerInput] = React.useState("");
+    // React.useEffect(() => {
+    //     props.setValueFromChild(answerInput);
+    // }, [answerInput]);
 
+	/**
+	 * @summary Set the state of the input 
+	 * @param {string} text The input user is typing in
+	 */
+	const _answerInputHandler = (text) => {
 
+		// The function plays as a prop, which is executed from the parent component: ApplyForm
+		props._onChangeAnswerInput(text)
+	}
 
      return(
          
@@ -39,9 +47,11 @@
                     </label>
                     <input 
                         type="text" 
-                        class="contact-form-input"
-                        value={answerInput}
-                        onChange={(answer) => setAnswerInput(answer.target.value)}
+						class="contact-form-input"
+						// value={answerInput}
+                        // onChange={(answer) => setAnswerInput(answer.target.value)}
+                        value={props.answer}
+                        onChange={(text) => _answerInputHandler(text.target.value)}
 
                 />
                 </div>
