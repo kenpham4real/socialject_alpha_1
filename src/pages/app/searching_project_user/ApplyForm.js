@@ -5,22 +5,25 @@
  */
 
  //Packages
- import React, {useState} from "react";
+ import React, {useState,useCallback} from "react";
  import { useDispatch, useSelector } from "react-redux";
  import { upDataForm } from "../../../store/actions/searching-project-user/project/project";
-import QuestionLabel from "../../../components/app/QuestionLabel";
+ import QuestionLabel from "../../../components/app/QuestionLabel";
+ import _loadProjects from "./ProjectInfoPage";
+
+//Funtions
+import * as projectActions from "../../../store/actions/searching-project-user/project/projectAction";
+
 
  //Styles
  import "./styles/ApplyFormStyles.css";
 
 
  const ApplyForm = (props) => {
-    //Initialize the states
-    const [Name, setName] = useState("");
-    const [Email, setEmail] = useState("");
-    const [Message, setMessage] = useState("");
+    //Initialize the state
     const [valueFromChild, setValueFromChild] = useState('');
 
+    const projectId = props.history.location.projectId;
 
     //Dispatch
     const dispatch = useDispatch();
@@ -37,9 +40,17 @@ import QuestionLabel from "../../../components/app/QuestionLabel";
 
     const submitForm =() =>{
         console.log("Sumbit form succesful!");
-        dispatch(upDataForm(FormState));
+        dispatch(upDataForm(FormState));   
     }
 
+
+    const _loadProjects = useCallback(async () => {
+        try {
+          dispatch(projectActions.FetchProjectInfo(dispatch, projectId));
+        } catch (error) {
+          console.log("error", error);
+        }
+      }, [dispatch]);
 
     console.log("value",FormState)
 
@@ -48,11 +59,6 @@ import QuestionLabel from "../../../components/app/QuestionLabel";
         <div className="page" >
             <h1 className="h1">{projectsData.projectInfo.projectName}</h1>
             <p className="location">{projectsData.projectInfo.location}</p>
-               
-                {/* <QuestionLabel
-                    // truyền data ở đây
-                    
-                /> */}
                 {projectsData.projectDetail.questions.map((question) => (
                     <QuestionLabel
                         questionTitle={question}
@@ -65,8 +71,10 @@ import QuestionLabel from "../../../components/app/QuestionLabel";
                         className="contact-form-submit"
                         onClick={() => {
                             submitForm();
+                            _loadProjects();
                             props.history.push({
                               pathname: "/projectInfo",
+                              FormState,
                             });
                           }}
                     >
