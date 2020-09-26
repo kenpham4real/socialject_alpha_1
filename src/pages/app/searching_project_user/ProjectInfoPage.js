@@ -149,6 +149,7 @@ const ProjectInfoPage = (props) => {
             className="Link"
             to={{
               pathname: "/applyform",
+              projectId,
             }}
           >
             Apply Now{" "}
