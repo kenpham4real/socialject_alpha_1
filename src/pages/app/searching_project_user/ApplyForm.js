@@ -5,46 +5,37 @@
  */
 
  //Packages
- import React, {useState} from "react";
+ import React, {useState,useCallback} from "react";
  import { useDispatch, useSelector } from "react-redux";
  import { _onSubmitFormAnswers } from "../../../store/actions/searching-project-user/project/project";
  import QuestionLabel from "../../../components/app/QuestionLabel";
+ import _loadProjects from "./ProjectInfoPage";
 
  //Styles
  import "./styles/ApplyFormStyles.css";
 
+ //Funtions
+import * as projectActions from "../../../store/actions/searching-project-user/project/projectAction";
 
- const ApplyForm = (props) => {
-	// //Initialize the state
-	// const [valueFromChild, setValueFromChild] = useState('');
 
-	// const projectId = props.history.location.projectId;
+const ApplyForm = (props) => {
+
+	const projectId = props.history.location.projectId;
     //Dispatch
     const dispatch = useDispatch();
 
     // Global state
 	const projectsData = useSelector((state) => state.projectReducerSPU.projectsData);
 
-	// const FormState ={
-    //     valueFromChild,
-    // }
 
+    const _loadProjects = useCallback(async () => {
+        try {
+          dispatch(projectActions.FetchProjectInfo(dispatch, projectId));
+        } catch (error) {
+          console.log("error", error);
+        }
+      }, [dispatch]);
 
-    // const submitForm =() =>{
-    //     console.log("Sumbit form succesful!");
-    //     dispatch(upDataForm(FormState));   
-    // }
-
-
-    // const _loadProjects = useCallback(async () => {
-    //     try {
-    //       dispatch(projectActions.FetchProjectInfo(dispatch, projectId));
-    //     } catch (error) {
-    //       console.log("error", error);
-    //     }
-    //   }, [dispatch]);
-
-    // console.log("value",FormState)
 
 	// Depending on the number of questions, we'll initialize the according number of states for the inputs
 	// Eg: If there're 2 questions, the answerInput will be initialized as an array of 2 objects, containing "question" and "answer" properties
@@ -55,6 +46,7 @@
 		}
 	}))
 
+
 	/**
 	 * @summary Dispatching the answers to firestore
 	 * @author Ke Pham
@@ -64,6 +56,7 @@
 		const projectId = projectsData.projectInfo.projectId;
 		dispatch(_onSubmitFormAnswers(answerInput,orgId, projectId));   
 	}
+
 
 	/**
 	 * @summary Finding the position of the object containing the question in the answerInput
@@ -82,6 +75,7 @@
 		return foundAnswerPosition;
 	}
 	
+
 	/**
 	 * @summary Set the state of the answerInput
 	 * @param {string} input The answer input state
@@ -103,7 +97,6 @@
 	}
 
     return (
-        
         <div className="page" >
             <h1 className="h1">{projectsData.projectInfo.projectName}</h1>
             <p className="location">{projectsData.projectInfo.location}</p>
@@ -117,9 +110,6 @@
 						return(
 							<QuestionLabel
 								questionTitle={question}
-								// value={valueFromChild}
-								// setValueFromChild={setValueFromChild}
-								
 								answer={answer}
 								_onChangeAnswerInput={(answerText) => {
 									_onChangeAnswerInput(answerText, question)
@@ -129,28 +119,23 @@
 					})}
 				</li>
 			</ul>
-                    <button 
-                        type="submit" 
-                        className="contact-form-submit"
-                        onClick={() => {
-							// submitForm();
-                            // _loadProjects();
-                            // props.history.push({
-                            //   pathname: "/projectInfo",
-                            //   FormState,
-                            // });
-                            _onSubmitAnswers();
-                            props.history.push({
-                              pathname: "/projectInfo",
-                              answerInput,
-                            });
-                          }}
-                    >
-                        Submit
-                    </button>
+			<button 
+				type="submit" 
+				className="contact-form-submit"
+				onClick={() => {
+					_onSubmitAnswers();
+					_loadProjects();
+					props.history.push({
+						pathname: "/projectInfo",
+						answerInput,
+					});
+					}}
+			>
+				Submit
+			</button>
             
         </div>
-        );
-    };
-  export default ApplyForm;
+	);
+};
+export default ApplyForm;
   

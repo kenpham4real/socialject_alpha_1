@@ -7,23 +7,14 @@
 
 
  //Packages
- import React, { useState } from "react";
+ import React from "react";
  
 
  //Styles
  import "../../pages/app/searching_project_user/styles/ApplyFormStyles.css";
 
 
-
-
-
-
  const QuestionLabel=(props)=>{
-
-	// const [answerInput, setAnswerInput] = React.useState("");
-    // React.useEffect(() => {
-    //     props.setValueFromChild(answerInput);
-    // }, [answerInput]);
 
 	/**
 	 * @summary Set the state of the input 
@@ -35,9 +26,9 @@
 		props._onChangeAnswerInput(text)
 	}
 
-     return(
+    return(
          
-         <div className="contact">
+        <div className="contact">
             <form  className="contact-form" autocomplete="off">
                 <div class="contact-form-group">
                     <label 
@@ -47,9 +38,7 @@
                     </label>
                     <input 
                         type="text" 
-						class="contact-form-input"
-						// value={answerInput}
-                        // onChange={(answer) => setAnswerInput(answer.target.value)}
+                        class="contact-form-input"
                         value={props.answer}
                         onChange={(text) => _answerInputHandler(text.target.value)}
 
@@ -57,7 +46,7 @@
                 </div>
                 
             </form>
-     </div>
-     );
+        </div>
+    );
  }
  export default QuestionLabel;
