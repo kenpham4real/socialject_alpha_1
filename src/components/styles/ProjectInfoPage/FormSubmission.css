@@ -1,0 +1,44 @@
+/*General stuff*/
+.formsub-text {
+  font-size: 16px;
+  color: var(--shadow);
+  overflow-x: auto;
+}
+.formsub-text.title {
+  font-weight: 800;
+  color: var(--title);
+  font-size: 20px;
+}
+
+/*The card*/
+.formsub-card {
+  display: inline-flex;
+  width: 40%;
+  padding: 2%;
+}
+
+.formsub-avatar {
+  display: inline-block;
+  margin-right: 5%;
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+  object-fit: cover;
+}
+
+.formsub-textcontainer {
+  display: inline-block;
+  align-items: center;
+}
+
+/*The main component*/
+.formsub-container {
+  display: table;
+  width: inherit;
+}
+
+.formsub-text.big {
+  font-weight: 800;
+  font-size: 32px;
+  margin: 2%;
+}

@@ -75,7 +75,7 @@ export const _addActivity_ppu = (activityId, activityName, activityDescription, 
      */
     return async (dispatch, getState) => {
 
-        const activityImageUrl = _imageUploadHandler(activityImage);
+        const activityImageUrl = await _imageUploadHandler(activityImage);
 
         try {
             await

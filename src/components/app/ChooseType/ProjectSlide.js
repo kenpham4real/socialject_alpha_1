@@ -1,7 +1,7 @@
 import React from "react";
 import "../../styles/ChooseType/ProjectSlide.css";
 
-function ProjectXSlide(props) {
+function ProjectSlide(props) {
   const Data = props.data;
   const history = props.history;
   console.log("Data in slide is: ", Data);
@@ -37,4 +37,4 @@ function ProjectXSlide(props) {
   );
 }
 
-export default ProjectXSlide;
+export default ProjectSlide;

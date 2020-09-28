@@ -58,7 +58,8 @@ export const [
                 displayName,
                 email,
                 photoURL,
-                uid
+                uid,
+                authenticatedMethod: GOOGLE_LOGIN
             })
         })
         .catch(err => reject(err))
@@ -101,7 +102,8 @@ export const _onFacebookLogin = async () => {
                 displayName,
                 email,
                 photoURL,
-                uid
+                uid,
+                authenticatedMethod: FACEBOOK_LOGIN
             })
         })
         .catch(err => reject(err)) 
@@ -114,8 +116,8 @@ export const _onFacebookLogin = async () => {
  * @summary Dispatching and adding the authenticated data of the user to the store and to firestore, respectively
  * @param {function} dispatch The reference of the  dispatch function of Redux store
  * @param {function} getState The reference of the getState function used to get the current state of the Redux global store
- * @param {Object} authenticatedUserData The object contains authenticated data of the users after they log in
- * @param {String} userType The type of the user
+ * @param {object} authenticatedUserData The object contains authenticated data of the users after they log in
+ * @param {string} userType The type of the user
  */
 const _addUser = async (dispatch, getState, authenticatedUserData, userType) => {
 
@@ -132,7 +134,8 @@ const _addUser = async (dispatch, getState, authenticatedUserData, userType) => 
             userName: authenticatedUserData.displayName,
             userAvatar: authenticatedUserData.photoURL,
             userId: authenticatedUserData.uid,
-            userType: userType
+            userType: userType,
+            authenticatedMethod: authenticatedUserData.authenticatedMethod
         })
     } catch (error) {
         console.error(error)
@@ -147,16 +150,28 @@ const _addUser = async (dispatch, getState, authenticatedUserData, userType) => 
             userToken: authenticatedUserData.token,
             userAvatar: authenticatedUserData.photoURL,
             userId: authenticatedUserData.uid,
-            userType: userType
+            userType: userType,
+            authenticatedMethod: authenticatedUserData.authenticatedMethod,
+            isAuth: true,
         },
     })
+
+    const userDataStored = {
+        userType: userType,
+        userId: authenticatedUserData.uid,
+        authenticatedMethod: authenticatedUserData.authenticatedMethod,
+        isAuth: true,
+    }
+
+    localStorage.setItem("userData", JSON.stringify(userDataStored))
+
 }
 
 
 /**
  * @summary Receive the authenticated data from the login functions and dispatch them to the store
- * @param {String} loginMediaType The type of the media users use to login (eg: Google, Facebook...)
- * @param {String} userType The type of the users: SPU/ PPU
+ * @param {string} loginMediaType The type of the media users use to login (eg: Google, Facebook...)
+ * @param {string} userType The type of the users: SPU/ PPU
  */
 export const _onAuthentication = (loginMediaType, userType) => {
     return async (dispatch, getState) => {

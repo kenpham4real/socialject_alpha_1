@@ -1,26 +1,38 @@
 /*
-*Contributor: Long 19th August 2020
+*Contributor: Long 22nd September 2020
 *Component:
     In use:
-    *Main: ChooseType (the page)
-    *Navigation Bar: Header, display user menu and socialject menu
-    *CopyrightBar: Footer, display text, content is copyright
-    *SloganPanel: a horizontal panel with background image, displaying texts
-    *ProjectXSlide: slider over the X axis, containing project cards
+    *Main, Navigation Bar, SloganPanel, ProjectXSlide, CopyrightBar, 
     Not in use:
     *Filter bar: horizontal panel, containing 3 button to filter
     *IconButton: 32x32 container for image, used for the filter
-  *Data needed: (currently provided in this file already)
-    *projectData: an array of object, each is:
-      {
-      id: "text",
-      topic: "text",
-      name: "text",
-      url: text-link to an image,
-      }
+*Function:
+  Fetch data: import from "landingAction"
+    FetchCalling: to call the fetching action
+    FetchLanding: to fetch the data from Firebase into the landing page 
+  Hooks: 
+    useCallback, useEffect: To avoid re-fetching, but it still re-fetch anyway.
+    useDispatch: to pass into the action so that the action can dispatch data onto global store
+    useSelector: select data from global store to use
+*Data in this file: (currently provided in this file already)
+  *data needed: 
+    Concept: an array contain objects, each object is a project.
+    Source: global store, and before that, Firebase Cloud Firestore
+    Element: Project. Each project contain:
+      deadline: string,
+      description: string,
+      orgId: string
+      organizationAvatar: a link to an image. Still don't know why this isn't named "orgAvatar" for short
+      organizationName: string. Again, this should have been "orgName"
+      projectAvatar: a link to an image
+      projectId: a string
+      projectName: string
+  *data to pass:
+    projectId
+      pass to /projectInfo
 */
 
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./styles/ChooseTypeStyle.css";
 //General
@@ -40,10 +52,15 @@ const ChooseType = (props) => {
   const dispatch = useDispatch();
   const callback = useCallback;
   //Select data from the global state.
-  let data = [];
   const selectData = useSelector((state) => state.landingReducer.projectData);
-  if (selectData != undefined) data = selectData;
   //Use 2 hooks useEffect and useCallback to prevent re-render, but it still re-render anyway.
+  /**
+   * @summary A callback to fetch projects, then an useEffect to call it.
+   * @param (Function to fetch, current data, usedispatch, useCallback),
+   *        then (the callback function, useDispatch)
+   * @returns {void} (it pass the data into global store)
+   * @author Long Wibu
+   */
   const fetchCallback = landingAction.FetchCalling(
     landingAction.FetchLanding,
     selectData,
@@ -69,7 +86,7 @@ const ChooseType = (props) => {
 
       {/*Projects*/}
 
-      <ProjectSlide data={data} history={props.history}></ProjectSlide>
+      <ProjectSlide data={selectData} history={props.history}></ProjectSlide>
 
       {/*Copyright*/}
       <CopyrightBar></CopyrightBar>
