@@ -227,6 +227,10 @@ This is CSS file for ProjectInfoPage.js
   margin-top: 10px;
 }
 
+.progress-container-header-addActivityButton:hover{
+  cursor: pointer;
+}
+
 .progress-container-activity{
   list-style-type: none;
   margin: 0px;
