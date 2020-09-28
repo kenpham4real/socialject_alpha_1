@@ -7,7 +7,7 @@
 // Packages
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { testing_organization_id } from "../../../constants/testing-keys";
+import { v4 as uuid_v4 } from "uuid"
 import * as profileActions from "../../../store/actions/posting-project-user/profile/profileAction";
 
 //Styles
@@ -30,7 +30,6 @@ const FinishCreate = (props) => {
     email: Email,
     phoneNumber: PhoneNumber,
     facebook: Facebook,
-    orgId: `${testing_organization_id}`,
   };
 
   //Dispatch
@@ -73,9 +72,10 @@ const FinishCreate = (props) => {
 
   const _onFinish = () => {
     console.log("Creating profile");
+    const profileId = uuid_v4();
     dispatch(
       profileActions._createProfile_ppu(
-        total.orgId,
+        profileId,
         total.orgName,
         total.description,
         total.location,
@@ -84,9 +84,12 @@ const FinishCreate = (props) => {
         total.phoneNumber,
         total.facebook,
         total.imageFile,
-        total.image
       )
     );
+    props.history.push({
+      pathname: "/profile",
+      profileId: profileId
+    });
   };
 
   return (
@@ -130,9 +133,7 @@ const FinishCreate = (props) => {
             className="container-finish"
             onClick={() => {
               _onFinish();
-              props.history.push({
-                pathname: "/profile",
-              });
+              
             }}
           >
             <span> Finish </span>
