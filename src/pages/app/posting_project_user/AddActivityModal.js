@@ -27,6 +27,8 @@ import { ImagePreview } from "../../../components/app/ImagePreview";
 
 const AddActivityModal = (props) => {
 
+  const {projectId} = props.location.state;
+
   // Initialize the states
   const [activityName, setActivityName] = useState("");
   const [activityDescription, setActivityDescription] = useState("");
@@ -87,7 +89,15 @@ const AddActivityModal = (props) => {
    */
   const _onAddActivity = () => {
     console.log('activityDate', activityDate)
-    dispatch(_activityActions._addActivity_ppu(uuid_v4(), activityName, activityDescription,activityLocation, activityDate.toDateString(), activityImage))
+    dispatch(_activityActions._addActivity_ppu(
+      projectId,
+      uuid_v4(), 
+      activityName, 
+      activityDescription,
+      activityLocation, 
+      activityDate.toDateString(), 
+      activityImageFile
+    ))
     props.history.push('/projectInfo')
   }
 
