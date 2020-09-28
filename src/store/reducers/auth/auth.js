@@ -13,7 +13,7 @@ const initialState = {
         token:"",
         userType:"",
         authenticatedMethod: "",
-        isAuth: null
+        isAuth: false
     }
 }
 

@@ -15,7 +15,7 @@ import { _imageUploadHandler } from "../../../../helper/image/imageHandler";
 export const SET_PROJECT = "SET_PROJECT";
 export const SET_PROJECT_BASIC_INFO = "SET_PROJECT_BASIC_INFO";
 export const SET_PROJECT_RECRUIT_INFO = "SET_PROJECT_RECRUIT_INFO";
-export const ADD_PROJECT = "ADD_PROJECT";
+export const GET_FORM_SUBMISSION = "GET_FORM_SUBMISSION";
 
 /******************************** ACTIONS ********************************/
 
@@ -182,3 +182,37 @@ export const _createProject_ppu = (
     }
   };
 };
+
+
+export const _getFormSubmission = (orgId, projectId) => {
+  return async (dispatch, getState) => {
+
+    let formSubmission=[];
+
+    try {
+      await
+      firebase_db
+      .collection('organization')
+      .doc(`${orgId}`)
+      .collection('projects')
+      .doc(`${projectId}`)
+      .collection('formSubmission')
+      .get()
+      .then((query) =>{
+        query.forEach((doc) => {
+          formSubmission.push(doc.data())
+        })
+      })
+
+      console.log('formSubmission', formSubmission)
+
+      dispatch({
+        type: GET_FORM_SUBMISSION,
+        formSubmission: formSubmission
+      })
+
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}

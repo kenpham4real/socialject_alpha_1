@@ -26,14 +26,14 @@ import { FACEBOOK_LOGIN, GOOGLE_LOGIN } from '../../constants/auth';
  */
 const LoginPage = props => {
 
-    console.log('props', props);
-
     const userType = (props.location.state && props.location.state.userType) ? props.location.state.userType : "NO TYPE"
 
     const dispatch = useDispatch();
     const userData = useSelector(state => state.authReducer.userData);
 
-    console.log('userData', userData)
+    React.useEffect(() => {
+        if(userData.isAuth && userData.isAuth === true) props.history.push('/')
+    }, [userData])
 
     return(
         <div className="login-container">
@@ -43,7 +43,9 @@ const LoginPage = props => {
                     <div className="create-profile__buttons">
                         <button 
                             className="create-profile__buttons--google"
-                            onClick={() => dispatch(authActions._onAuthentication(GOOGLE_LOGIN, userType))}
+                            onClick={() => {
+                                dispatch(authActions._onAuthentication(GOOGLE_LOGIN, userType))
+                            }}
                         >
                             Login with Google
                         </button>
@@ -51,7 +53,9 @@ const LoginPage = props => {
                     <div className="create-profile__buttons">
                         <button 
                             className="create-profile__buttons--facebook"
-                            onClick={() => dispatch(authActions._onAuthentication(FACEBOOK_LOGIN, userType))}
+                            onClick={() => {
+                                dispatch(authActions._onAuthentication(FACEBOOK_LOGIN, userType))
+                            }}
                         >
                             Login with Facebook
                         </button>

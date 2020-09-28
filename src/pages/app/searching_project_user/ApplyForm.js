@@ -5,132 +5,137 @@
  */
 
  //Packages
- import React, {useState} from "react";
- import { useDispatch } from "react-redux";
- import { upDataForm } from "../../../store/actions/searching-project-user/project/project";
+ import React, {useState,useCallback} from "react";
+ import { useDispatch, useSelector } from "react-redux";
+ import { _onSubmitFormAnswers } from "../../../store/actions/searching-project-user/project/project";
+ import QuestionLabel from "../../../components/app/QuestionLabel";
+ import _loadProjects from "./ProjectInfoPage";
 
  //Styles
  import "./styles/ApplyFormStyles.css";
 
+ //Funtions
+import * as projectActions from "../../../store/actions/searching-project-user/project/projectAction";
 
- const ApplyForm = (props) => {
-    //Initialize the states
-    const [Name, setName] = useState("");
-    const [Email, setEmail] = useState("");
-    const [Message, setMessage] = useState("");
 
+const ApplyForm = (props) => {
+
+	const projectId = props.history.location.projectId;
     //Dispatch
     const dispatch = useDispatch();
 
-    const FormState ={
-        Name:Name,
-        Email:Email,
-        Message:Message,
-    }
-   
-    /**
-     * @summary Handle State of Name
-     * @param {string} Name
-     * @return {void}
-     */
-    const onChangeName=(Name) =>{
-        setName(Name);
-    }
-
-    
-    /**
-     * @summary Handle State of Email
-     * @param {string} Email
-     * @return {void}
-     */
-    const onChangeEmail=(Email) =>{
-        setEmail(Email);
-    }
+    // Global state
+	const projectsData = useSelector((state) => state.projectReducerSPU.projectsData);
 
 
-    /**
-     * @summary Handle State of Message
-     * @param {string} Message
-     * @return {void}
-     */
-    const onChangeMessage=(Message) =>{
-        setMessage(Message);
-    }
+    const _loadProjects = useCallback(async () => {
+        try {
+          dispatch(projectActions.FetchProjectInfo(dispatch, projectId));
+        } catch (error) {
+          console.log("error", error);
+        }
+      }, [dispatch]);
 
-    const submitForm =() =>{
-        console.log("Sumbit form succesful!");
-        dispatch(upDataForm(FormState.Name,FormState.Email,FormState.Message));
-    }
+
+	// Depending on the number of questions, we'll initialize the according number of states for the inputs
+	// Eg: If there're 2 questions, the answerInput will be initialized as an array of 2 objects, containing "question" and "answer" properties
+	const [answerInput, setAnswerInput] = useState(projectsData.projectDetail.questions.map((question) => {
+		return{
+			question: question,
+			answer: "",
+		}
+	}))
+
+
+	/**
+	 * @summary Dispatching the answers to firestore
+	 * @author Ke Pham
+	 */
+    const _onSubmitAnswers =() =>{
+		const orgId = projectsData.projectInfo.orgID;
+		const projectId = projectsData.projectInfo.projectId;
+		dispatch(_onSubmitFormAnswers(answerInput,orgId, projectId));   
+	}
+
+
+	/**
+	 * @summary Finding the position of the object containing the question in the answerInput
+	 * @param {string} question 
+	 * @returns {number} foundAnswerPosition - The position of the object containing the question parameter in the answerInput array
+	 * @author Ken Pham
+	 */
+	const _findAnswerPosition = (question) => {
+		let foundAnswerPosition;
+		let ref, questionRef;
+		for(const key in answerInput){
+			ref = answerInput[key];
+			questionRef = ref["question"]
+			if(question === questionRef) foundAnswerPosition = key
+		}
+		return foundAnswerPosition;
+	}
+	
+
+	/**
+	 * @summary Set the state of the answerInput
+	 * @param {string} input The answer input state
+	 * @param {string} question The static question included in the answerInput state
+	 */
+	const _onChangeAnswerInput = (input, question) => {
+
+		let newAnswerList = [...answerInput];
+
+		// Find the position of the answer input state
+		let inputPosition = _findAnswerPosition(question);
+		
+		// Change (aka update) the current answer in the newAnswerList to be the new one user is inputting 
+		newAnswerList[inputPosition]["answer"] = input;
+
+		// Set the new state
+		setAnswerInput(newAnswerList)
+
+	}
+
     return (
         <div className="page" >
-            <h1 className="h1">Project's Name</h1>
-            <p className="location">Location</p>
-            <div className="contact">
-                <form  className="contact-form" autocomplete="off">
-                    <div className="contact-form-group">
-                        <label 
-                            for="name" 
-                            className="contact-form-label"
-                        >
-                            Your Name
-                        </label>
-                        <input 
-                            id="name" 
-                            type="text" 
-                            className="contact-form-input" 
-                            value={Name}
-                            onChange={(Name)=> onChangeName(Name.target.value)}
-                        />
-                    </div>
-                    <div className="contact-form-group">
-                        <label 
-                            for="email" 
-                            className="contact-form-label"
-                        >
-                            Your Email
-                        </label>
-                        <input 
-                            id="email" 
-                            type="email" 
-                            className="contact-form-input"
-                            value={Email}
-                            onChange={(Email)=>onChangeEmail(Email.target.value)} 
-                        />
-                    </div>
-                        <div className="contact-form-group">
-                        <label 
-                            for="message" 
-                            className="contact-form-label"
-                        >
-                            Your Message
-                        </label>
-                        <textarea 
-                            name="message" 
-                            id="message" 
-                            className="contact-form-area" 
-                            placeholder="Type something if you want"
-                            value={Message}
-                            onChange={(Message)=>onChangeMessage(Message.target.value)}
-                        >
+            <h1 className="h1">{projectsData.projectInfo.projectName}</h1>
+            <p className="location">{projectsData.projectInfo.location}</p>
+            <ul>
+				<li>
+					{projectsData.projectDetail.questions.map((question) => {
 
-                        </textarea>
-                    </div>
-                    <button 
-                        type="submit" 
-                        className="contact-form-submit"
-                        onClick={() => {
-                            submitForm();
-                            props.history.push({
-                              pathname: "/projectInfo",
-                            });
-                          }}
-                    >
-                        Submit
-                    </button>
-                </form>
-</div>
+						const answerPosition = _findAnswerPosition(question);
+						const answer = answerInput[answerPosition]["answer"];
+
+						return(
+							<QuestionLabel
+								questionTitle={question}
+								answer={answer}
+								_onChangeAnswerInput={(answerText) => {
+									_onChangeAnswerInput(answerText, question)
+								}}
+							/>
+						)
+					})}
+				</li>
+			</ul>
+			<button 
+				type="submit" 
+				className="contact-form-submit"
+				onClick={() => {
+					_onSubmitAnswers();
+					_loadProjects();
+					props.history.push({
+						pathname: "/projectInfo",
+						answerInput,
+					});
+					}}
+			>
+				Submit
+			</button>
+            
         </div>
-        );
-    };
-  export default ApplyForm;
+	);
+};
+export default ApplyForm;
   
