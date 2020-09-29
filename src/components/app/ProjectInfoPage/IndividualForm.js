@@ -34,20 +34,23 @@ const AnswerCard = (props) => {
 const IndividualForm = (props) => {
   //These data are just example.
   const data = formData;
-  return (
-    <div className="individual-container">
-      <div className="individual-card">
-        <img src={imageURL} alt="Loading..." className="individual-avatar" />
-        <div className="individual-textcontainer">
-          <div className="individual-text title">Name: Long wibu</div>
-          <div className="individual-text">email: hahahhahha@gmail.com</div>
+  const userType = props.userType;
+  if (userType !== "STUDENT")
+    return (
+      <div className="individual-container">
+        <div className="individual-card">
+          <img src={imageURL} alt="Loading..." className="individual-avatar" />
+          <div className="individual-textcontainer">
+            <div className="individual-text title">Name: Long wibu</div>
+            <div className="individual-text">email: hahahhahha@gmail.com</div>
+          </div>
         </div>
+        {data.map((element) => (
+          <AnswerCard data={element} />
+        ))}
       </div>
-      {data.map((element) => (
-        <AnswerCard data={element} />
-      ))}
-    </div>
-  );
+    );
+  else return <div style={{ display: "none" }}></div>;
 };
 
 export default IndividualForm;

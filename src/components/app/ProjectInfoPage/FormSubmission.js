@@ -39,14 +39,17 @@ const FormSubmission = (props) => {
     { name: "Tien kun", email: "tranngoctien@gmail.com", avatar: imageURL },
     { name: "Imposter", email: "amongus@gmail.com", avatar: imageURL },
   ];
-  return (
-    <div className="formsub-container">
-      <div className="formsub-text title big"> Form Submissions</div>
-      {data.map((element) => (
-        <SubmissionCard data={element} />
-      ))}
-    </div>
-  );
+  const userType = props.userType;
+  if (userType !== "STUDENT")
+    return (
+      <div className="formsub-container">
+        <div className="formsub-text title big"> Form Submissions</div>
+        {data.map((element) => (
+          <SubmissionCard data={element} />
+        ))}
+      </div>
+    );
+  else return <div style={{ display: "none" }}></div>;
 };
 
 export default FormSubmission;

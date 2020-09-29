@@ -29,6 +29,9 @@ import IndividualForm from "../../../components/app/ProjectInfoPage/IndividualFo
 import * as projectActions from "../../../store/actions/searching-project-user/project/projectAction";
 import * as activityActions from "../../../store/actions/posting-project-user/activity/activity";
 
+const userType = window.localStorage.getItem("userType");
+console.log("User Type is:", userType);
+
 const ProjectInfoPage = (props) => {
   const projectId = props.history.location.projectId;
   console.log("Id pass from the previous page: ", projectId);
@@ -71,16 +74,15 @@ const ProjectInfoPage = (props) => {
   // }, [dispatch]);
 
   useEffect(() => {
-    _loadProjects()
-      .then(() => {
-        setIsFetchedRecruitInfo(true);
-        console.log("activities loaded successfully");
-      })
-      // .then(() => _loadProjectActivity())
-      // .then(() => {
-      //   setIsFetchedActivities(true);
-      //   console.log("activities loaded successfully");
-      // });
+    _loadProjects().then(() => {
+      setIsFetchedRecruitInfo(true);
+      console.log("activities loaded successfully");
+    });
+    // .then(() => _loadProjectActivity())
+    // .then(() => {
+    //   setIsFetchedActivities(true);
+    //   console.log("activities loaded successfully");
+    // });
   }, [dispatch, _loadProjects]);
 
   console.log("fetched projects", projectsData);
@@ -142,24 +144,26 @@ const ProjectInfoPage = (props) => {
    * @author Ken Pham, Dat Uchiha
    */
   const _project_apply_button = () => {
-    return (
-      <div className="applyButton">
-        <div className="applyNow">
-          <Link
-            className="Link"
-            to={{
-              pathname: "/applyform",
-              projectId,
-            }}
-          >
-            Apply Now{" "}
-          </Link>
+    if (userType == "STUDENT")
+      return (
+        <div className="applyButton">
+          <div className="applyNow">
+            <Link
+              className="Link"
+              to={{
+                pathname: "/applyform",
+                projectId,
+              }}
+            >
+              Apply Now{" "}
+            </Link>
+          </div>
+          <div className="dueDay">
+            Deadline: {projectsData.projectInfo.deadline}
+          </div>
         </div>
-        <div className="dueDay">
-          Deadline: {projectsData.projectInfo.deadline}
-        </div>
-      </div>
-    );
+      );
+    else return <div></div>;
   };
 
   /**
@@ -364,8 +368,8 @@ const ProjectInfoPage = (props) => {
         <div className="rightColumn">
           {_project_about_section()}
           {_project_progress_section()}
-          <FormSubmission />
-          <IndividualForm />
+          <FormSubmission userType={userType} />
+          <IndividualForm userType={userType} />
         </div>
       </div>
       <div className="footer">
