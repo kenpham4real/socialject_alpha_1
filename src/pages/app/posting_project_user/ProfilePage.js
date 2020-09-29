@@ -155,6 +155,7 @@ const ProfilePage = (props) => {
    */
   //Get the Id from history.location
   const profileId = props.history.location.profileId;
+  console.log('props', props)
   console.log("profile Id received is: ", profileId);
   //This will not fetch if there is no if passed into it.
   //Declare hooks as variables to be more flexible.

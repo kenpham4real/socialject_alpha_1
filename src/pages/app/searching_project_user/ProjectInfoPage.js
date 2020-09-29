@@ -306,12 +306,14 @@ const ProjectInfoPage = (props) => {
       <div className="progressContainer">
         <div className="progress-container--header">
           <h1 className="projectHeadings">Progress</h1>
-          <a
+          <div
             className="progress-container-header-addActivityButton"
-            href="/addActivity"
+            onClick={() => props.history.push('/addActivity', {
+              projectId: projectId
+            })}
           >
             Add an activity
-          </a>
+          </div>
         </div>
         <ul className="progress-container-activity">
           <a>{_project_activity_item}</a>

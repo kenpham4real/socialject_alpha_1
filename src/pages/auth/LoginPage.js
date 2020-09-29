@@ -32,7 +32,7 @@ const LoginPage = props => {
     const userData = useSelector(state => state.authReducer.userData);
 
     React.useEffect(() => {
-        if(userData.isAuth && userData.isAuth === true) props.history.push('/')
+        if(userData.isAuth && userData.isAuth === true) props.history.push("/")
     }, [userData])
 
     return(
