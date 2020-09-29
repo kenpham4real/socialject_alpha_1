@@ -12,7 +12,7 @@ import {firebase_storage} from '../../firebase-config'
 
 /**
  * @summary Upload the image to storage of Firebase and then return the downloadable URL of the image
- * @param {Object} imageFile An object containing the image's properties such as {name:...,type:img/png,...vv}
+ * @param {object} imageFile An object containing the image's properties such as {name:...,type:img/png,...vv}
  * @return {string} The image's downloadable url
  * @author TrNgTien, Ken Pham
  */
@@ -44,7 +44,7 @@ export const _imageUploadHandler = async (imageFile)=>{
 
 /**
  * @summary Read the image file and show it's preview
- * @param {Object} file The files property which locates in the target of the event passed from onChange
+ * @param {object} file The files property which locates in the target of the event passed from onChange
  * @param {function} setImage The callback function to set the state of the data of the image in order to preview (read) it
  * @param {function} setImageFile The callback function to set the state of the image file to it's properties
  * @author TrNgTien, Ken Pham

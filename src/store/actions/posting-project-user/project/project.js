@@ -1,4 +1,5 @@
 // Firebase database
+import firebase from 'firebase';
 import { firebase_db } from "../../../../firebase-config";
 
 // Constants
@@ -14,7 +15,7 @@ import { _imageUploadHandler } from "../../../../helper/image/imageHandler";
 export const SET_PROJECT = "SET_PROJECT";
 export const SET_PROJECT_BASIC_INFO = "SET_PROJECT_BASIC_INFO";
 export const SET_PROJECT_RECRUIT_INFO = "SET_PROJECT_RECRUIT_INFO";
-export const ADD_PROJECT = "ADD_PROJECT";
+export const GET_FORM_SUBMISSION = "GET_FORM_SUBMISSION";
 
 /******************************** ACTIONS ********************************/
 
@@ -114,9 +115,9 @@ export const _fetchProject_recruit_info_ppu = () => {
  * @param {string} description The description of the project
  * @param {string} location The location of of the project
  * @param {string} deadline The deadline of the project
- * @param {String[]} benefits The array string representing the benefits of the project
- * @param {String[]} requirements The array of string representing the requirements when applying the project
- * @param {Object} imageFIle The object file containing the properties of an image chosen from the PPU's local machine
+ * @param {string[]} benefits The array string representing the benefits of the project
+ * @param {string[]} requirements The array of string representing the requirements when applying the project
+ * @param {object} imageFIle The object file containing the properties of an image chosen from the PPU's local machine
  * @param {string} category The category string of the project
  */
 export const _createProject_ppu = (
@@ -127,17 +128,19 @@ export const _createProject_ppu = (
   benefits,
   requirements,
   imageFIle,
-  category = "General"
+  questions,
+  category = "General",
 ) => {
   return async (dispatch, getState) => {
-    const projectImageUrl = _imageUploadHandler(imageFIle);
+    const projectImageUrl = await _imageUploadHandler(imageFIle);
+    console.log('projectImageUrl', projectImageUrl)
     const projectRef = firebase_db
       .collection("public-projects")
       .doc(`${testing_project_id}`);
     const organizationRef = firebase_db
       .collection("organization")
       .doc(`${testing_organization_id}`);
-
+    console.log('questions are', questions)
     try {
       await projectRef.set({
         projectName: name,
@@ -166,9 +169,50 @@ export const _createProject_ppu = (
           category: category,
         });
 
+      await projectRef
+      .collection('recruit-info')
+      .doc(`${testing_project_id}`)
+      .update({
+        formQuestions: firebase.firestore.FieldValue.arrayUnion(questions)
+      })
+
       console.log("Create project successfully");
     } catch (error) {
       console.log("error", error);
     }
   };
 };
+
+
+export const _getFormSubmission = (orgId, projectId) => {
+  return async (dispatch, getState) => {
+
+    let formSubmission=[];
+
+    try {
+      await
+      firebase_db
+      .collection('organization')
+      .doc(`${orgId}`)
+      .collection('projects')
+      .doc(`${projectId}`)
+      .collection('formSubmission')
+      .get()
+      .then((query) =>{
+        query.forEach((doc) => {
+          formSubmission.push(doc.data())
+        })
+      })
+
+      console.log('formSubmission', formSubmission)
+
+      dispatch({
+        type: GET_FORM_SUBMISSION,
+        formSubmission: formSubmission
+      })
+
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}

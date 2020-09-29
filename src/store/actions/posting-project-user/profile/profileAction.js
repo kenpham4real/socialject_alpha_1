@@ -46,7 +46,7 @@ export async function FetchProject(dispatch, profileId) {
 
     await firebase_db
       .collection("organization")
-      .doc("1lrR6G5aoc0CuAaIrRN4")
+      .doc(profileId)
       .get()
       .then(function (doc) {
         filteredData.profileData = doc.data();
@@ -79,7 +79,7 @@ export const CREATE_PROFILE = "CREATE_PROFILE";
  * @param {string} email The email of the organization
  * @param {string} phoneNumber The phone number of the organization
  * @param {string} facebook The FB link of the organization
- * @param {Object} imageFile The image file object chosen from the local machine of the PPU whe creating profile
+ * @param {object} imageFile The image file object chosen from the local machine of the PPU whe creating profile
  */
 export const _createProfile_ppu = (
   orgId,
@@ -104,7 +104,7 @@ export const _createProfile_ppu = (
     try {
       await firebase_db
         .collection("organization")
-        .doc(`${testing_organization_id}`)
+        .doc(`${orgId}`)
         .set(
           {
             orgId: orgId,

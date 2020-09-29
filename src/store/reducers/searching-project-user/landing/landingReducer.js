@@ -18,7 +18,7 @@ export const landingReducer = (state = initialState, action) => {
       };
     default:
       return {
-        projectData: undefined,
+        projectData: [],
       };
   }
 };

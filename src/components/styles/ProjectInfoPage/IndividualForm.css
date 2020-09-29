@@ -1,0 +1,51 @@
+/*General stuff*/
+.individual-text {
+  font-size: 16px;
+  color: var(--shadow);
+  vertical-align: center;
+  overflow-x: auto;
+}
+.individual-text.title {
+  font-weight: 800;
+  color: var(--title);
+  background-color: var(--primary);
+  font-size: 20px;
+}
+
+/*The card*/
+.individual-card {
+  padding: 2%;
+}
+
+.individual-avatar {
+  display: inline-block;
+  margin-right: 5%;
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+  object-fit: cover;
+}
+
+.individual-textcontainer {
+  display: inline-block;
+}
+
+.individual-textcontainer.answer {
+  width: 40rem;
+  border-radius: 0.5rem;
+  padding: 10px;
+  background-color: var(--secondary);
+}
+
+/*The main component*/
+.individual-container {
+  display: grid;
+  filter: brightness(130%);
+  background-color: ivory;
+}
+
+.individual-text.big {
+  font-weight: 800;
+  font-size: 32px;
+  margin: 2%;
+}

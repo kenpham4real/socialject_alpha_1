@@ -1,3 +1,4 @@
+
 /**
  * @summary This file renders the Choose user type component
  * Main component: LoginPage
@@ -13,17 +14,28 @@ import * as userTypes from '../../constants/user-types'
 // Styles
 import './styles/ChoosingUser.css'
 
+/**
+ * @summary Rendering the page which users use to choose their user type
+ * @param {} props 
+ * @returns JSX Elements
+ */
 const ChoosingUser = props => {
 
-    const _onChooseSPU = () => {
+    /**
+     * @summary Navigate to the Login Page with the user type of SPU
+     */
+    const _onChooseStudentRole = () => {
         props.history.push('/login',{
-            userType: userTypes.IS_SPU
+            userType: userTypes.STUDENT
         });
     }
 
-    const _onChoosePPU = () => {
+    /**
+     * @summary Navigate to the Login Page with the user type of PPU
+     */
+    const _onChooseAdminRole = () => {
         props.history.push('/login',{
-            userType: userTypes.IS_PPU
+            userType: userTypes.ADMIN
         });
     }
 
@@ -35,13 +47,13 @@ const ChoosingUser = props => {
                     <div className="choose-user__buttons">
                         <button 
                             className="choose-user__buttons--button--spu"
-                            onClick={_onChooseSPU}
+                            onClick={_onChooseStudentRole}
                         >Student</button>
                     </div>
                     <div className="choose-user__buttons">
                         <button 
                             className="choose-user__buttons--button--ppu"
-                            onClick={_onChoosePPU}
+                            onClick={_onChooseAdminRole}
                         >Organization</button>
                     </div>
                 </div>

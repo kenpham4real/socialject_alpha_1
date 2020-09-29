@@ -1,7 +1,8 @@
 // Action types
 import {
   SET_PROJECT_RECRUIT_INFO,
-  SET_PROJECT_BASIC_INFO
+  SET_PROJECT_BASIC_INFO,
+  GET_FORM_SUBMISSION
 } from "../../../actions/posting-project-user/project/project";
 
 // Initialize the state
@@ -10,13 +11,14 @@ const initialState = {
   projects_recruit_info: {
     benefits: [],
     requirements: []
-  }
+  },
+  formSubmission: []
 };
 /**
  * @summary Handle the states of the projects (initialState above)
- * @param {Object} state
- * @param {Object} action
- * @returns {Object} new state
+ * @param {object} state
+ * @param {object} action
+ * @returns {object} new state
  * @author Ken Pham
  */
 export const projectReducer = (state = initialState, action) => {
@@ -34,6 +36,11 @@ export const projectReducer = (state = initialState, action) => {
           benefits: action.benefits,
           requirements: action.requirements
         }
+      }
+    case GET_FORM_SUBMISSION:
+      return{
+        ...state,
+        formSubmission: action.formSubmission
       }
     default:
       return state;

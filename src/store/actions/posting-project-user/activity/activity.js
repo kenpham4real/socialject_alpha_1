@@ -64,7 +64,7 @@ export const _fetchProjectActivity_ppu = () => {
  * @returns @async @function
  * @author Ken Pham
  */
-export const _addActivity_ppu = (activityId, activityName, activityDescription, activityLocation, activityDate, activityImage) => {
+export const _addActivity_ppu = (projectId, activityId, activityName, activityDescription, activityLocation, activityDate, activityImage) => {
 
     /**
      * @summary Asynchronous function calling the database to push the data
@@ -75,15 +75,16 @@ export const _addActivity_ppu = (activityId, activityName, activityDescription, 
      */
     return async (dispatch, getState) => {
 
+        const user = getState().authReducer.userData;
         const activityImageUrl = _imageUploadHandler(activityImage);
 
         try {
             await
             firebase_db
             .collection('public-projects')
-            .doc(`${testing_project_id}`)
+            .doc(`${user.uid}`)
             .collection('recruit-info')
-            .doc(`${testing_project_id}`)
+            .doc(`${projectId}`)
             .collection('progress')
             .doc(`${activityId}`)
             .set({
