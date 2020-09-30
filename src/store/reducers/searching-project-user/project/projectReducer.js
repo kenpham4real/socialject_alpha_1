@@ -4,7 +4,15 @@ import { PROJECT_DETAILS } from "../../../actions/searching-project-user/project
 
 //Initial state:
 const initialState = {
-  projectsData: {},
+  projectsData: {
+    projectInfo: {},
+    projectDetail: {
+      benefits: [],
+      requirements: [],
+      questions: [],
+    },
+    projectProgress: [],
+  },
   upDataForm: [],
 };
 
@@ -19,17 +27,7 @@ export const projectReducerSPU = (state = initialState, action) => {
         projectsData: action.payload,
       };
     default:
-      return {
-        projectsData: {
-          projectInfo: {},
-          projectDetail: {
-            benefits: [],
-            requirements: [],
-            questions: [],
-          },
-          projectProgress: [],
-        },
-      };
+      return state;
   }
 };
 

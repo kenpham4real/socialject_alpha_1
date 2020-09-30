@@ -71,16 +71,15 @@ const ProjectInfoPage = (props) => {
   // }, [dispatch]);
 
   useEffect(() => {
-    _loadProjects()
-      .then(() => {
-        setIsFetchedRecruitInfo(true);
-        console.log("activities loaded successfully");
-      })
-      // .then(() => _loadProjectActivity())
-      // .then(() => {
-      //   setIsFetchedActivities(true);
-      //   console.log("activities loaded successfully");
-      // });
+    _loadProjects().then(() => {
+      setIsFetchedRecruitInfo(true);
+      console.log("activities loaded successfully");
+    });
+    // .then(() => _loadProjectActivity())
+    // .then(() => {
+    //   setIsFetchedActivities(true);
+    //   console.log("activities loaded successfully");
+    // });
   }, [dispatch, _loadProjects]);
 
   console.log("fetched projects", projectsData);
@@ -122,7 +121,7 @@ const ProjectInfoPage = (props) => {
           onClick={() =>
             props.history.push({
               pathname: "/profile",
-              profileId: projectsData.projectInfo.orgID,
+              profileId: projectsData.projectInfo.orgId,
             })
           }
         />

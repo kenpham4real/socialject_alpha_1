@@ -65,6 +65,12 @@ export async function FetchProjectInfo(dispatch, projectId) {
       .get()
       .then(function (doc) {
         projectData.projectDetail = doc.data();
+        if (projectData.projectDetail == undefined)
+          projectData.projectDetail = {
+            benefits: [],
+            requirements: [],
+            questions: [],
+          };
         console.log("Document data - Details:", projectData.projectDetail);
       });
     //Data Progress
@@ -119,7 +125,7 @@ export const upDataForm = (FormState) => {
         .doc()
         .set(
           {
-            FormState
+            FormState,
           },
           { merge: true }
         );
@@ -128,7 +134,7 @@ export const upDataForm = (FormState) => {
       dispatch({
         type: UP_DATA_FORM,
         upDataForm: {
-          FormState
+          FormState,
         },
       });
     } catch (error) {
