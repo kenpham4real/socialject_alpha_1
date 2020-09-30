@@ -10,7 +10,8 @@ import { projectReducerSPU } from "./store/reducers/searching-project-user/proje
 import { activityReducer } from "./store/reducers/posting-project-user/activity/activity";
 import { landingReducer } from "./store/reducers/searching-project-user/landing/landingReducer";
 import { profileReducer } from "./store/reducers/posting-project-user/profile/profileReducer";
-import { authReducer } from './store/reducers/auth/auth'
+import { authReducer } from "./store/reducers/auth/auth";
+import { autoLoginReducer } from "./store/reducers/auth/autoLoginReducer";
 
 // Adding reducers here
 const rootReducer = combineReducers({
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
   activityReducer: activityReducer,
   landingReducer: landingReducer,
   profileReducer: profileReducer,
-  authReducer: authReducer
+  authReducer: authReducer,
+  autoLoginReducer: autoLoginReducer,
 });
 
 // Initialize Redux store

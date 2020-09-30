@@ -10,12 +10,15 @@
   *Data needed: (currently none)
 */
 
-import React, { Component } from "react";
+import React, { useEffect, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "../styles/NavigationBar.css";
 import IconButton from "./IconButton";
 import SJ from "../../assets/images/SJ.png";
 import arrow from "../../assets/images/arrow.png";
+
+import * as autoLoginAction from "../../store//actions/auth/autoLoginAction";
 
 function SearchBar(props) {
   return (
@@ -32,6 +35,19 @@ function SearchBar(props) {
 
 //Main
 function NavigationBar(props) {
+  //Get data from global store
+  const userData = useSelector((state) => state.autoLoginReducer.userData);
+  console.log("User Data selected: ", userData);
+  //Call the auto login function.
+  //Get Id
+  const userId = JSON.parse(localStorage.getItem("userData")).userId;
+  const dispatch = useDispatch();
+  console.log("User id in app is: ", userId);
+  //Call the function
+  const fetchUser = useCallback(() => {
+    autoLoginAction.FetchUser(dispatch, userId, userData);
+  });
+  useEffect(() => fetchUser(), []);
   return (
     <div className="navigationBar">
       {/*Menu Icon*/}
@@ -45,8 +61,8 @@ function NavigationBar(props) {
       {/*<SearchBar></SearchBar>*/}
       {/*Top right corner*/}
       <div className="user-bar">
-        <img alt="" className="icon avatar" src={SJ} />
-        <a className="banner-title">Username</a>
+        <img alt="" className="icon avatar" src={userData.userAvatar} />
+        <a className="banner-title">{userData.userName}</a>
         <img alt="" className="icon" src={arrow} />
       </div>
     </div>
