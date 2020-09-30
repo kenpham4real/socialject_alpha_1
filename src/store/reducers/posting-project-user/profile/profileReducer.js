@@ -55,7 +55,9 @@ export const profileReducer = (state = initialState, action) => {
         }
     default:
       return {
-        projectData: undefined,
+        projectData: {},
+        profileData: {},
+        projectArray: [],
       };
   }
 };

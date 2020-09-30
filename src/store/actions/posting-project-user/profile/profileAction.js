@@ -14,13 +14,6 @@ import { _imageUploadHandler } from "../../../../helper/image/imageHandler";
 export const PROJECT_FILTER = "FETCH_PROFILE";
 
 /******************************** ACTIONS ********************************/
-//The main function call this to activate the function of fetching data
-export function FetchCalling(action, data, dispatch, callback, id) {
-  console.log("Id when fetching is: ", id);
-  if (data == undefined) action(dispatch, id);
-  return callback(() => action(dispatch, id), [dispatch]);
-}
-
 //Filter the projects from the Firebase.
 export async function FetchProject(dispatch, profileId) {
   console.log("Fetching with filter is beginning with the Id: ", profileId);

@@ -48,7 +48,7 @@ const loremText =
 function OrgName(props) {
   return (
     <div className="profile-name-container">
-      <img className="profile-avatar" src={props.data.orgAvatar} />
+      <img className="profile-avatar" src={props.data.imageFile} />
       <div className="profile-block-container-small">
         <div className="profile--title">{props.data.orgName}</div>
         <div style={{ color: "gray" }}>
@@ -159,32 +159,27 @@ const ProfilePage = (props) => {
   //This will not fetch if there is no if passed into it.
   //Declare hooks as variables to be more flexible.
   const dispatch = useDispatch();
-  const callback = useCallback;
   //Select data from the global state.
-  let projectData = [];
-  let profileData = {};
-  const selectProject = useSelector(
-    (state) => state.profileReducer.projectArray
-  );
-  const selectProfile = useSelector(
-    (state) => state.profileReducer.profileData
-  );
-  if (selectProject != undefined) projectData = selectProject;
-  if (selectProfile != undefined) profileData = selectProfile;
+  const projectData = useSelector((state) => state.profileReducer.projectArray);
+  const profileData = useSelector((state) => state.profileReducer.profileData);
   //Use 2 hooks useEffect and useCallback to prevent re-render, but it still re-render anyway.
-  const fetchCallback = profileAction.FetchCalling(
+  /*const fetchCallback = profileAction.FetchCalling(
     profileAction.FetchProject,
     selectProject,
     dispatch,
     callback,
     profileId
+  );*/
+  const fetchCallback = useCallback(() =>
+    profileAction.FetchProject(dispatch, profileId)
   );
+
   useEffect(() => {
     fetchCallback();
-  }, [dispatch]);
+  }, []);
 
-  //For testing purpose.
-  console.log("Selected Data:", selectProject);
+  //For testing purpose
+  console.log("Selected Data:", projectData);
 
   return (
     <div className="profilePage">
