@@ -45,8 +45,9 @@ const loremText =
 
 //The button to add a project
 function AddProjectButton(props) {
-  const userType = props.userType;
-  if (userType !== "STUDENT")
+  //const userId = JSON.parse(localStorage.getItem("userData")).userId;
+  const userId = "1lrR6G5aoc0CuAaIrRN4";
+  if (props.userId == props.projectOwnerId)
     return (
       <a
         onClick={props._onNavigateToCreateProjectModal}

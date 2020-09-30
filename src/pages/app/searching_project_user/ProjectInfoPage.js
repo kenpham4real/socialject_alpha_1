@@ -29,8 +29,9 @@ import IndividualForm from "../../../components/app/ProjectInfoPage/IndividualFo
 import * as projectActions from "../../../store/actions/searching-project-user/project/projectAction";
 import * as activityActions from "../../../store/actions/posting-project-user/activity/activity";
 
-const userType = window.localStorage.getItem("userType");
-console.log("User Type is:", userType);
+//const userId = JSON.parse(localStorage.getItem("userData")).userId;
+const userId = "1lrR6G5aoc0CuAaIrRN4";
+console.log("User Id is: ", userId);
 
 const ProjectInfoPage = (props) => {
   const projectId = props.history.location.projectId;
@@ -144,7 +145,7 @@ const ProjectInfoPage = (props) => {
    * @author Ken Pham, Dat Uchiha
    */
   const _project_apply_button = () => {
-    if (userType == "STUDENT")
+    if (userId != projectsData.projectInfo.orgId)
       return (
         <div className="applyButton">
           <div className="applyNow">
@@ -368,8 +369,14 @@ const ProjectInfoPage = (props) => {
         <div className="rightColumn">
           {_project_about_section()}
           {_project_progress_section()}
-          <FormSubmission userType={userType} />
-          <IndividualForm userType={userType} />
+          <FormSubmission
+            userId={userId}
+            projectOwnerId={projectsData.projectInfo.orgId}
+          />
+          <IndividualForm
+            userId={userId}
+            projectOwnerId={projectsData.projectInfo.orgId}
+          />
         </div>
       </div>
       <div className="footer">

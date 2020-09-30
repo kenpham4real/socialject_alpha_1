@@ -5,7 +5,7 @@ import "../../styles/ProjectInfoPage/IndividualForm.css";
 const imageURL =
   "https://i.pinimg.com/originals/39/46/55/39465510117c36c2023b2d72cdcf05b3.jpg";
 
-const formData = [
+const exampleData = [
   { id: "1", question: "Your favorite pokemon?", answer: "Charizard" },
   { id: "2", question: "Your favorite 6 digit code?", answer: "177013" },
   {
@@ -16,15 +16,15 @@ const formData = [
 ];
 
 const AnswerCard = (props) => {
-  const data = props.data;
+  const cardData = props.cardData;
   return (
     <div className="individual-card">
       <div className="individual-textcontainer">
         <div className="individual-text title">
-          {data.id}. {data.question}
+          {cardData.id}. {cardData.question}
         </div>
         <div className="individual-textcontainer answer">
-          <div className="individual-text">{data.answer}</div>
+          <div className="individual-text">{cardData.answer}</div>
         </div>
       </div>
     </div>
@@ -33,9 +33,8 @@ const AnswerCard = (props) => {
 
 const IndividualForm = (props) => {
   //These data are just example.
-  const data = formData;
-  const userType = props.userType;
-  if (userType !== "STUDENT")
+  const formData = exampleData;
+  if (props.userId == props.projectOwnerId)
     return (
       <div className="individual-container">
         <div className="individual-card">
@@ -45,12 +44,12 @@ const IndividualForm = (props) => {
             <div className="individual-text">email: hahahhahha@gmail.com</div>
           </div>
         </div>
-        {data.map((element) => (
-          <AnswerCard data={element} />
+        {formData.map((element) => (
+          <AnswerCard cardData={element} />
         ))}
       </div>
     );
-  else return <div style={{ display: "none" }}></div>;
+  return <div style={{ display: "none" }}></div>;
 };
 
 export default IndividualForm;
