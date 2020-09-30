@@ -97,7 +97,7 @@ export const _createProfile_ppu = (
     try {
       await firebase_db
         .collection("organization")
-        .doc(`${testing_organization_id}`)
+        .doc(`${orgId}`)
         .set(
           {
             orgId: orgId,
