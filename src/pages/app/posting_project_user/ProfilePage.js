@@ -43,6 +43,21 @@ const imageURL =
 const loremText =
   "Khi Beyond Birthday lấy mạng nạn nhân thứ ba của mình, hắn định làm một thử nghiệm—để xem có cách nào làm một con người chết vì xuất huyết trong mà không cần phải hủy hoại một bộ phận cơ thể nào hay không. Cụ thể, hắn cho nạn nhân chìm vào trạng thái vô thức bằng thuốc mê; ...";
 
+//The button to add a project
+function AddProjectButton(props) {
+  //const userId = JSON.parse(localStorage.getItem("userData")).userId;
+  const userId = "1lrR6G5aoc0CuAaIrRN4";
+  if (props.userId == props.projectOwnerId)
+    return (
+      <a
+        onClick={props._onNavigateToCreateProjectModal}
+        className="profile-button"
+      >
+        Add a project
+      </a>
+    );
+  else return <div style={{ display: "none" }}></div>;
+}
 //UI component, displaying name, avatar, location, category, university, description, email, phone.
 //Oh, also it has a button to navigate to /createPostModal
 function OrgName(props) {
@@ -56,12 +71,13 @@ function OrgName(props) {
           {props.data.university}
         </div>
         <div>{props.data.description}</div>
-        <a
+        {/*<a
           onClick={props._onNavigateToCreateProjectModal}
           className="profile-button"
         >
           Add a project
-        </a>
+        </a>*/}
+        <AddProjectButton userType={props.userType} />
       </div>
 
       <a className="profile-block-container-smaller">
@@ -137,6 +153,8 @@ function OrgHistory(props) {
 
 //Main component, calling the fetching action and display all UI component.
 const ProfilePage = (props) => {
+  const userType = localStorage.getItem("userType");
+  console.log("User Type is:", userType);
   /**
    * @summary Navigate to the create project modal
    * @function
@@ -191,6 +209,7 @@ const ProfilePage = (props) => {
       <OrgName
         _onNavigateToCreateProjectModal={_onNavigateToCreateProjectModalHandler}
         data={profileData}
+        userType={userType}
       />
 
       {/*Org. Vision*/}

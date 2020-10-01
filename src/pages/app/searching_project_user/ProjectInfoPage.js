@@ -29,6 +29,10 @@ import IndividualForm from "../../../components/app/ProjectInfoPage/IndividualFo
 import * as projectActions from "../../../store/actions/searching-project-user/project/projectAction";
 import * as activityActions from "../../../store/actions/posting-project-user/activity/activity";
 
+//const userId = JSON.parse(localStorage.getItem("userData")).userId;
+const userId = "1lrR6G5aoc0CuAaIrRN4";
+console.log("User Id is: ", userId);
+
 const ProjectInfoPage = (props) => {
   const projectId = props.history.location.projectId;
   console.log("Id pass from the previous page: ", projectId);
@@ -141,24 +145,26 @@ const ProjectInfoPage = (props) => {
    * @author Ken Pham, Dat Uchiha
    */
   const _project_apply_button = () => {
-    return (
-      <div className="applyButton">
-        <div className="applyNow">
-          <Link
-            className="Link"
-            to={{
-              pathname: "/applyform",
-              projectId,
-            }}
-          >
-            Apply Now{" "}
-          </Link>
+    if (userId != projectsData.projectInfo.orgId)
+      return (
+        <div className="applyButton">
+          <div className="applyNow">
+            <Link
+              className="Link"
+              to={{
+                pathname: "/applyform",
+                projectId,
+              }}
+            >
+              Apply Now{" "}
+            </Link>
+          </div>
+          <div className="dueDay">
+            Deadline: {projectsData.projectInfo.deadline}
+          </div>
         </div>
-        <div className="dueDay">
-          Deadline: {projectsData.projectInfo.deadline}
-        </div>
-      </div>
-    );
+      );
+    else return <div></div>;
   };
 
   /**
@@ -365,8 +371,14 @@ const ProjectInfoPage = (props) => {
         <div className="rightColumn">
           {_project_about_section()}
           {_project_progress_section()}
-          <FormSubmission />
-          <IndividualForm />
+          <FormSubmission
+            userId={userId}
+            projectOwnerId={projectsData.projectInfo.orgId}
+          />
+          <IndividualForm
+            userId={userId}
+            projectOwnerId={projectsData.projectInfo.orgId}
+          />
         </div>
       </div>
       <div className="footer">
