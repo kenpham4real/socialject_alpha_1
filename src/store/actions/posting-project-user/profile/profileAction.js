@@ -74,6 +74,7 @@ export const CREATE_PROFILE = "CREATE_PROFILE";
  * @summary Send the profile data the PPU want to create to firestore
  * @param {string} orgId The id of the organization
  * @param {string} orgName The name of the organization
+ * @param {string} category The category of the organization
  * @param {string} description The description of the organization
  * @param {string} location The location of the organization
  * @param {string} university The university of the organization
@@ -85,6 +86,7 @@ export const CREATE_PROFILE = "CREATE_PROFILE";
 export const _createProfile_ppu = (
   orgId,
   orgName,
+  category,
   description,
   location,
   university,
@@ -109,6 +111,7 @@ export const _createProfile_ppu = (
         .set({
           orgId: orgId,
           orgName: orgName,
+          category:category,
           description: description,
           location: location,
           university: university,
@@ -132,6 +135,7 @@ export const _createProfile_ppu = (
         orgProfile: {
           orgId: orgId,
           orgName: orgName,
+          category:category,
           description: description,
           location: location,
           university: university,

@@ -24,6 +24,7 @@ const FinishCreate = (props) => {
   //Handle state of 3 screen
   const organizationProperties = {
     orgName: props.location.organizationName,
+    category: props.location.category,
     description: props.location.description,
     location: props.location.location.selectedOption.label,
     university: props.location.university,
@@ -80,6 +81,7 @@ const FinishCreate = (props) => {
         organization.uid,
         organizationId,
         organizationProperties.orgName,
+        organizationProperties.category,
         organizationProperties.description,
         organizationProperties.location,
         organizationProperties.university,

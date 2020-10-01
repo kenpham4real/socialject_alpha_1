@@ -6,7 +6,6 @@
 */
 
 import React, { Component, useState } from "react";
-// author: Long; import useSelector from react-redux;
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuid_v4 } from "uuid";
 

@@ -12,10 +12,12 @@ import React, { useState} from "react";
 import "./styles/RegistrationStyles.css";
 
 
+ 
 const Registration = (props) => {
 
 	//Initialize the states
 	const [organizationName, setOrganizationName]=useState("");
+	const [category,setCategory]=useState("");
 	const [description,setDescription]=useState("");
 	
 
@@ -27,6 +29,17 @@ const Registration = (props) => {
 	const _onChangeOrganizationName = (name) => {
 		setOrganizationName(name);
 	}
+
+	/**
+	 * @summary Handle the state of category
+	 * @param {string} category
+	 * @returns {void} 
+	 */
+	const _onChangeCategory = (category) => {
+		setCategory(category);
+	}
+	
+
 	/**
 	 * @summary Handle the state of description
 	 * @param {string} description
@@ -36,7 +49,8 @@ const Registration = (props) => {
 		setDescription(description);
 	}
 
-	
+	console.log("props",props.history)
+
 	return (
 		<div className="page" >
 			<div className="container-registration">
@@ -51,6 +65,13 @@ const Registration = (props) => {
 						placeholder= "Organization's name *" 
 						value={organizationName}
 						onChange={(name)=> _onChangeOrganizationName(name.target.value)}
+					/>
+					<input
+						className='input-text-registration'
+						type= 'text'
+						placeholder= "Category *" 
+						value={category}
+						onChange={(category)=> _onChangeCategory(category.target.value)}
 					/>
 					<textarea 
 						className='input-text-registration description'
@@ -68,6 +89,7 @@ const Registration = (props) => {
 							({ 	
 								pathname:'/beautifyProfile',
 								organizationName,
+								category,
 								description,
 							})
 						}
