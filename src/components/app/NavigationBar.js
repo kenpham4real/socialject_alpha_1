@@ -43,17 +43,20 @@ function NavigationBar(props) {
   //Declare hooks
   const dispatch = useDispatch();
   //Get data from global store
-  const userData = useSelector((state) => state.autoLoginReducer.userData);
-  console.log("User Data selected: ", userData);
+  const user = useSelector((state) => state.autoLoginReducer.userData);
+  console.log("User Data selected: ", user);
   //Decide the path to push base on the userData
   let path = "";
-  if (userData.userType == ADMIN) path = "/profile";
+  if (user.userType == ADMIN) path = "/profile";
   //Get Id from local storage
-  const userId = JSON.parse(localStorage.getItem("userData")).userId;
-  console.log("User id in app is: ", userId);
+  //Get the user data from local storage, if there is no data, 'user_localStorage' will be 'null'
+  const user_localStorage = JSON.parse(localStorage.getItem("userData"));
+  let userId = null;
+  if (user_localStorage != null) userId = user_localStorage.userId; //if there is an user data, get userId from that.
+  console.log("User id in app is: ", userId); //For testing
   //Call the function of auto-login using useCallback and useEffect
   const fetchUser = useCallback(() => {
-    autoLoginAction.FetchUser(dispatch, userId, userData);
+    autoLoginAction.FetchUser(dispatch, userId, user);
   });
   useEffect(() => fetchUser(), []);
   return (
@@ -73,11 +76,11 @@ function NavigationBar(props) {
           className="link"
           to={{
             pathname: path,
-            profileId: userData.userId,
+            profileId: user.userId,
           }}
         >
-          <img alt="" className="icon avatar" src={userData.userAvatar} />
-          <p className="banner-title">{userData.userName}</p>
+          <img alt="" className="icon avatar" src={user.userAvatar} />
+          <p className="banner-title">{user.userName}</p>
         </Link>
         <img alt="" className="icon" src={arrow} />
       </div>
