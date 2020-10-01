@@ -6,7 +6,7 @@
 */
 
 import React, { Component, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import {v4 as uuid_v4} from 'uuid'
 
 // Styles
