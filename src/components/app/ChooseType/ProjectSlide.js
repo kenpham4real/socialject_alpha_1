@@ -5,9 +5,13 @@ function ProjectSlide(props) {
   const Data = props.data;
   const history = props.history;
   console.log("Data in slide is: ", Data);
-  function handleClick(id) {
+  function handleClick(projectId, orgId) {
     console.log("Button clicked.");
-    history.push({ pathname: "/projectInfo", projectId: id });
+    history.push({
+      pathname: "/projectInfo",
+      projectId: projectId,
+      orgId: orgId,
+    });
   }
   return (
     <div>
@@ -17,7 +21,7 @@ function ProjectSlide(props) {
           <div class="project-card">
             <button
               className="project-container-button"
-              onClick={() => handleClick(Data.projectId)}
+              onClick={() => handleClick(Data.projectId, Data.orgId)}
             >
               <img class="project-image" src={Data.projectAvatar} />
               <img class="project-icon" src={Data.organizationAvatar} />

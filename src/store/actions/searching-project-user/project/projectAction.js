@@ -38,7 +38,7 @@ export const PROJECT_DETAILS = "PROJECT_DETAILS";
 
 //Fetch the data from the Firebase.
 export async function FetchProjectInfo(dispatch, projectId) {
-  console.log("Fetching project info is beginning.");
+  // console.log("Fetching project info is beginning.");
   let count = 0;
   let projectData = {
     projectInfo: {},
@@ -119,7 +119,7 @@ export const upDataForm = (FormState) => {
         .doc()
         .set(
           {
-            FormState
+            FormState,
           },
           { merge: true }
         );
@@ -128,7 +128,7 @@ export const upDataForm = (FormState) => {
       dispatch({
         type: UP_DATA_FORM,
         upDataForm: {
-          FormState
+          FormState,
         },
       });
     } catch (error) {

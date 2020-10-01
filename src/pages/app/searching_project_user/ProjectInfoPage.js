@@ -28,10 +28,11 @@ import IndividualForm from "../../../components/app/ProjectInfoPage/IndividualFo
 // Functions
 import * as projectActions from "../../../store/actions/searching-project-user/project/projectAction";
 import * as activityActions from "../../../store/actions/posting-project-user/activity/activity";
+import { _getFormSubmission } from "../../../store/actions/posting-project-user/project/project";
 
 const ProjectInfoPage = (props) => {
+  console.log("Props", props);
   const projectId = props.history.location.projectId;
-  console.log("Id pass from the previous page: ", projectId);
 
   // useDispatch() from react-redux
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ const ProjectInfoPage = (props) => {
     (state) => state.projectReducerSPU.projectsData
   );
 
+  const projectFormData = useSelector((state) => state.projectReducer);
   //let activities = useSelector((state) => state.activityReducer.activities);
   const activities = projectsData.projectProgress;
   /**
@@ -57,6 +59,9 @@ const ProjectInfoPage = (props) => {
   const _loadProjects = useCallback(async () => {
     try {
       dispatch(projectActions.FetchProjectInfo(dispatch, projectId));
+      dispatch(
+        _getFormSubmission(props.location.orgId, props.location.projectId)
+      );
     } catch (error) {
       console.log("error", error);
     }
@@ -71,21 +76,20 @@ const ProjectInfoPage = (props) => {
   // }, [dispatch]);
 
   useEffect(() => {
-    _loadProjects()
-      .then(() => {
-        setIsFetchedRecruitInfo(true);
-        console.log("activities loaded successfully");
-      })
-      // .then(() => _loadProjectActivity())
-      // .then(() => {
-      //   setIsFetchedActivities(true);
-      //   console.log("activities loaded successfully");
-      // });
+    _loadProjects().then(() => {
+      setIsFetchedRecruitInfo(true);
+      console.log("activities loaded successfully");
+    });
+    // .then(() => _loadProjectActivity())
+    // .then(() => {
+    //   setIsFetchedActivities(true);
+    //   console.log("activities loaded successfully");
+    // });
   }, [dispatch, _loadProjects]);
 
   console.log("fetched projects", projectsData);
   console.log("fetched activities", activities);
-
+  console.log("Form submission", projectFormData);
   /********************************* Small UI components *********************************/
   /**
    * @summary Render the tags of the project
@@ -308,9 +312,11 @@ const ProjectInfoPage = (props) => {
           <h1 className="projectHeadings">Progress</h1>
           <div
             className="progress-container-header-addActivityButton"
-            onClick={() => props.history.push('/addActivity', {
-              projectId: projectId
-            })}
+            onClick={() =>
+              props.history.push("/addActivity", {
+                projectId: projectId,
+              })
+            }
           >
             Add an activity
           </div>
@@ -324,6 +330,64 @@ const ProjectInfoPage = (props) => {
   };
 
   /********************************* MAIN Component: ProjectInfoPage *********************************/
+  const imageURL =
+    "https://i.pinimg.com/originals/39/46/55/39465510117c36c2023b2d72cdcf05b3.jpg";
+  const exampleFormSubmissionData = [
+    //Example data for Form Submission
+    {
+      name: "Ken Pham",
+      email: "kanekiken@gmail.com",
+      avatar: imageURL,
+      answers: ["KEN love u pacpac", "game de vl", "ui gioi oi tuong the nao"],
+    },
+    {
+      name: "Long Wibu",
+      email: "longthewibulord@gmail.com",
+      avatar: imageURL,
+      answers: ["LONG love u pacpac", "game de vl", "ui gioi oi tuong the nao"],
+    },
+    {
+      name: "Long Artist",
+      email: "chillisaucery@gmail.com",
+      avatar: imageURL,
+      answers: [
+        "LONG ARTIST u pacpac",
+        "game de vl",
+        "ui gioi oi tuong the nao",
+      ],
+    },
+    {
+      name: "Dat Uchiha",
+      email: "uchihasasudat@gmail.com",
+      avatar: imageURL,
+      answers: [
+        " DAT   love u pacpac",
+        "game de vl",
+        "ui gioi oi tuong the nao",
+      ],
+    },
+    {
+      name: "Tien kun",
+      email: "tranngoctien@gmail.com",
+      avatar: imageURL,
+      answers: [
+        " TIEN   love u pacpac",
+        "game de vl",
+        "ui gioi oi tuong the nao",
+      ],
+    },
+    {
+      name: "Imposter",
+      email: "amongus@gmail.com",
+      avatar: imageURL,
+      answers: [
+        " IMPOSTER love u pacpac",
+        "game de vl",
+        "ui gioi oi tuong the nao",
+      ],
+    },
+  ];
+
   return (
     <div className="projectInfoPage">
       <div>
@@ -366,8 +430,11 @@ const ProjectInfoPage = (props) => {
         <div className="rightColumn">
           {_project_about_section()}
           {_project_progress_section()}
-          <FormSubmission />
-          <IndividualForm />
+          <FormSubmission
+            data={exampleFormSubmissionData}
+            onClick={console.log("Handle Clicked")}
+          />
+          <IndividualForm data={exampleFormSubmissionData} />
         </div>
       </div>
       <div className="footer">
