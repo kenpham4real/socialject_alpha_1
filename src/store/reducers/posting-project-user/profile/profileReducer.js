@@ -1,9 +1,8 @@
 import {
   SET_ORGANIZATION_PROFILE,
   CREATE_PROFILE,
+  FETCH_PROFILE
 } from '../../../actions/posting-project-user/profile/profileAction';
-// Firebase database
-import { PROJECT_FILTER } from "../../../actions/posting-project-user/profile/profileAction";
 
 //Initial state:
 const initialState = {
@@ -15,7 +14,7 @@ const initialState = {
 //Save the data onto global store
 export const profileReducer = (state = initialState, action) => {
   switch (action.type) {
-    case PROJECT_FILTER:
+    case FETCH_PROFILE:
       let count = 0;
       let arrayToPush = [];
       console.log("Project filtered payload: ", action.payload.projectArray);
@@ -32,11 +31,6 @@ export const profileReducer = (state = initialState, action) => {
       });
       console.log("Array to push is:", arrayToPush);
 
-      /*if (temporary[count].orgId != tempId) {
-          temporary.splice(count, 1);
-          count--;
-        }*/
-
       return {
         ...state,
         profileData: action.payload.profileData,
@@ -45,7 +39,7 @@ export const profileReducer = (state = initialState, action) => {
       case CREATE_PROFILE:
         return({
             ...state,
-            createProfile: action.finishCreate,
+            profileData: action.orgProfile,
         })
       case SET_ORGANIZATION_PROFILE:
         return{
