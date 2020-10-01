@@ -1,7 +1,6 @@
 //Packages
-import React, { useState} from "react";
+import React, { Component, useState} from "react";
 import Select from "react-select";
-import { IoMdImage } from "react-icons/io";
 
 
 //Styles
@@ -18,7 +17,6 @@ const options = [
   { id: "hai_phong", value: "hai phong", label: "Hai Phong" },
   { id: "da_nang", value: "da nang", label: "Da Nang" },
 ];
-
    
 
 
@@ -29,9 +27,10 @@ const BeautifyProfile = (props) => {
   const [university, setUniversity]= useState("");
   const [image, setImage]= useState(require("../../../assets/images/blank-profile.png"));
   const [imageFile,setImageFile]=useState("");
- 
+
 
   const organizationName = props.location.organizationName;
+  const category=props.location.category;
   const description=props.location.description;
   /**
    * @summary Handle Select
@@ -54,9 +53,8 @@ const BeautifyProfile = (props) => {
 	const _onChangeUniversity=(university)=>{
     setUniversity(university);
   }
-     
+  
 
-   
   return (
     <div className="page">
       <div className="container-BeautifyProfile">
@@ -65,7 +63,6 @@ const BeautifyProfile = (props) => {
           <p className="description-BeautifyFrofile">
             Polish your page with additional information
           </p>
-          
         </div>
         <div className="view-text-input-beautifyProfile">
           <Select
@@ -92,15 +89,17 @@ const BeautifyProfile = (props) => {
         <div>
           <button
             className="container-continue"
-            onClick={() => props.history.push({ 	
+            onClick={() =>{
+              props.history.push({ 	
                   pathname:'/finishCreate',
                   organizationName,
+                  category,
                   description,
                   university,
                   location,
                   image,
                   imageFile,
-              })
+              })}
             }
           >
             <span> Next </span>
