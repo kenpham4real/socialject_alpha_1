@@ -6,7 +6,7 @@
 
 // Packages
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuid_v4 } from "uuid"
 import * as profileActions from "../../../store/actions/posting-project-user/profile/profileAction";
 
@@ -19,8 +19,10 @@ const FinishCreate = (props) => {
   const [PhoneNumber, setPhoneNumber] = useState("");
   const [Facebook, setFacebook] = useState("");
 
+  const organization = useSelector(state => state.authReducer.userData);
+
   //Handle state of 3 screen
-  const total = {
+  const organizationProperties = {
     orgName: props.location.organizationName,
     description: props.location.description,
     location: props.location.location.selectedOption.label,
@@ -72,23 +74,24 @@ const FinishCreate = (props) => {
 
   const _onFinish = () => {
     console.log("Creating profile");
-    const profileId = uuid_v4();
+    const organizationId = uuid_v4();
     dispatch(
       profileActions._createProfile_ppu(
-        profileId,
-        total.orgName,
-        total.description,
-        total.location,
-        total.university,
-        total.email,
-        total.phoneNumber,
-        total.facebook,
-        total.imageFile,
+        organization.uid,
+        organizationId,
+        organizationProperties.orgName,
+        organizationProperties.description,
+        organizationProperties.location,
+        organizationProperties.university,
+        organizationProperties.email,
+        organizationProperties.phoneNumber,
+        organizationProperties.facebook,
+        organizationProperties.imageFile,
       )
     );
     props.history.push({
       pathname: "/profile",
-      profileId: profileId
+      profileId: organizationId
     });
   };
 

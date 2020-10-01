@@ -7,7 +7,9 @@
 
 import React, { Component, useState } from "react";
 import { useDispatch } from "react-redux";
+import {v4 as uuid_v4} from 'uuid'
 
+// Styles
 import "./styles/CreatePostModal_3.css";
 
 // Actions
@@ -18,6 +20,7 @@ import {ImagePreview} from '../../../components/app/ImagePreview'
 
 const CreatePostModal_3 = (props) => {
   const dispatch = useDispatch();
+  const organization = useSelector(state => state.authReducer.userData);
 
   //Initialize the state
   const [projectBenefitArray, setProjectBenefitArray] = useState([]);
@@ -128,6 +131,8 @@ const CreatePostModal_3 = (props) => {
           () =>
             dispatch(
               projectActions._createProject_ppu(
+                organization.uid,
+                uuid_v4(),
                 projectName,
                 projectDescription,
                 projectLocation,
