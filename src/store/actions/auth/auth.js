@@ -1,7 +1,7 @@
 
 // Firebase
 import firebase from 'firebase';
-import {firebase_auth, firebase_db} from '../../../firebase-config'
+import {firebaseApp, analytics, firebase_auth, firebase_db} from '../../../firebase-config'
 
 // Constants: Login medias
 import {GOOGLE_LOGIN, FACEBOOK_LOGIN} from '../../../constants/auth'
@@ -124,10 +124,12 @@ const _addUser = async (dispatch, getState, authenticatedUserData, userType) => 
     const uid = authenticatedUserData.uid;
 
     // Push the authenticated data of the user to firestore
+
+    const collectionRef = userType == "STUDENT" ? 'student' : 'organization';
     try {
         await
         firebase_db
-        .collection('student')
+        .collection(collectionRef)
         .doc(`${uid}`)
         .set({
             userEmail: authenticatedUserData.email,
@@ -163,7 +165,14 @@ const _addUser = async (dispatch, getState, authenticatedUserData, userType) => 
         isAuth: true,
     }
 
-    localStorage.setItem("userData", JSON.stringify(userDataStored))
+    analytics.logEvent('login',{
+        method: userDataStored.authenticatedMethod,
+    });
+    analytics.logEvent('page_view',{
+        page_title: 'Login',
+        page_location: '/login',
+        page_path: '/login',
+    });
 
 }
 
