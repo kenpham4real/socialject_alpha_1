@@ -15,7 +15,7 @@
  *      (+) Push Data of Application Form to Firebase
  */
 // Firebase database
-import { firebase_db } from "../../../../firebase-config";
+import { firebase_db, analytics } from "../../../../firebase-config";
 
 // Constants
 import {
@@ -38,7 +38,7 @@ export const PROJECT_DETAILS = "PROJECT_DETAILS";
 
 //Fetch the data from the Firebase.
 export async function FetchProjectInfo(dispatch, projectId) {
-  console.log("Fetching project info is beginning.");
+  console.log("Fetching project info is beginning with projectId: ", projectId);
   let count = 0;
   let projectData = {
     projectInfo: {},
@@ -94,6 +94,15 @@ export async function FetchProjectInfo(dispatch, projectId) {
       type: PROJECT_DETAILS,
       payload: projectData,
     });
+
+    analytics.logEvent('page_view', {
+      page_location: 'ProjectInfoPage',
+      page_title: 'ProjectInfoPage',
+      page_path: `/projectInfoPage/${projectId}`,
+      category: `${projectData.projectInfo.category}`
+    });
+    
+
   } catch (error) {
     console.log("error", error);
   }

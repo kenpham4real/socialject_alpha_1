@@ -1,5 +1,5 @@
 // Firebase database
-import {firebase_db, firebase_storage} from '../../../../firebase-config'
+import {firebase_db, firebase_storage, analytics} from '../../../../firebase-config'
 
 // Constants
 import {testing_project_id, testing_activity_id} from '../../../../constants/testing-keys'
@@ -109,6 +109,17 @@ export const _addActivity_ppu = (projectId, activityId, activityName, activityDe
                     activityImage: activityImageUrl
                 }
             })
+
+            analytics.logEvent('page_view', {
+                page_location: 'AddActivity',
+                page_path: '/addActivity',
+                page_title: 'AddActivity'
+            });
+
+            analytics.logEvent('select_item', {
+                items: ['Add activity button']
+            });
+            
             
         } catch (error) {
             console.log('Error', error);
