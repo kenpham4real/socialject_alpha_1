@@ -121,6 +121,8 @@ export const _fetchProject_recruit_info_ppu = () => {
  * @param {string} category The category string of the project
  */
 export const _createProject_ppu = (
+  orgId,
+  projectId,
   name,
   description,
   location,
@@ -136,10 +138,10 @@ export const _createProject_ppu = (
     console.log("projectImageUrl", projectImageUrl);
     const projectRef = firebase_db
       .collection("public-projects")
-      .doc(`${testing_project_id}`);
+      .doc(`${projectId}`);
     const organizationRef = firebase_db
       .collection("organization")
-      .doc(`${testing_organization_id}`);
+      .doc(`${orgId}`);
     console.log("questions are", questions);
     try {
       await projectRef.set({
@@ -184,9 +186,9 @@ export const _createProject_ppu = (
 };
 
 export const _getFormSubmission = (orgId, projectId) => {
-  console.log("GETTING FORM SUBMISSION...");
-
   return async (dispatch, getState) => {
+    console.log("GETTING FORM SUBMISSION");
+
     let formSubmission = [];
 
     try {
@@ -198,10 +200,15 @@ export const _getFormSubmission = (orgId, projectId) => {
         .collection("formSubmission")
         .get()
         .then((query) => {
-          console.log("query in get form submission", query);
+          console.log("query.docs(): ", query.docs);
+          let tmpDoc;
+
           query.forEach((doc) => {
+            console.log("doc of form submission", doc);
             formSubmission.push(doc.data());
+            tmpDoc = doc;
           });
+          console.log("added form submission data with doc", tmpDoc);
         });
 
       console.log("formSubmission", formSubmission);

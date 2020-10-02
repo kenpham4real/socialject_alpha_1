@@ -7,17 +7,21 @@
 
 import React, { Component, useState } from "react";
 import { useDispatch } from "react-redux";
+import { v4 as uuid_v4 } from "uuid";
+import { useSelector } from "react-redux";
 
+// Styles
 import "./styles/CreatePostModal_3.css";
 
 // Actions
 import * as projectActions from "../../../store/actions/posting-project-user/project/project";
 
 // Components
-import {ImagePreview} from '../../../components/app/ImagePreview'
+import { ImagePreview } from "../../../components/app/ImagePreview";
 
 const CreatePostModal_3 = (props) => {
   const dispatch = useDispatch();
+  const organization = useSelector((state) => state.authReducer.userData);
 
   //Initialize the state
   const [projectBenefitArray, setProjectBenefitArray] = useState([]);
@@ -48,7 +52,7 @@ const CreatePostModal_3 = (props) => {
     projectDescription,
     projectLocation,
     projectDeadline,
-    question
+    question,
   } = props.location;
 
   return (
@@ -128,6 +132,8 @@ const CreatePostModal_3 = (props) => {
           () =>
             dispatch(
               projectActions._createProject_ppu(
+                organization.uid,
+                uuid_v4(),
                 projectName,
                 projectDescription,
                 projectLocation,
@@ -136,7 +142,7 @@ const CreatePostModal_3 = (props) => {
                 projectRequirementArray[projectRequirementArray.length - 1],
                 projectImageFile,
                 question,
-                "Something",
+                "Something"
               )
             )
         }

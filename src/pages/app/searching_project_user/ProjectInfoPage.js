@@ -33,6 +33,8 @@ import { _getFormSubmission } from "../../../store/actions/posting-project-user/
 const ProjectInfoPage = (props) => {
   console.log("Props", props);
   const projectId = props.history.location.projectId;
+  console.log("Id pass from the previous page: ", projectId);
+  console.log("props in ProjectInfoPage", props);
 
   // useDispatch() from react-redux
   const dispatch = useDispatch();
@@ -47,7 +49,8 @@ const ProjectInfoPage = (props) => {
     (state) => state.projectReducerSPU.projectsData
   );
 
-  const projectFormData = useSelector((state) => state.projectReducer);
+  console.log("projectsData", projectsData);
+
   //let activities = useSelector((state) => state.activityReducer.activities);
   const activities = projectsData.projectProgress;
   /**
@@ -58,6 +61,12 @@ const ProjectInfoPage = (props) => {
    */
   const _loadProjects = useCallback(async () => {
     try {
+      dispatch(
+        _getFormSubmission(
+          projectsData.projectInfo.orgId,
+          projectsData.projectInfo.projectId
+        )
+      );
       dispatch(projectActions.FetchProjectInfo(dispatch, projectId));
       dispatch(
         _getFormSubmission(props.location.orgId, props.location.projectId)
@@ -67,29 +76,16 @@ const ProjectInfoPage = (props) => {
     }
   }, [dispatch]);
 
-  // const _loadProjectActivity = useCallback(async () => {
-  //   try {
-  //     dispatch(activityActions._fetchProjectActivity_ppu());
-  //   } catch (error) {
-  //     console.log("error", error);
-  //   }
-  // }, [dispatch]);
-
   useEffect(() => {
     _loadProjects().then(() => {
       setIsFetchedRecruitInfo(true);
       console.log("activities loaded successfully");
     });
-    // .then(() => _loadProjectActivity())
-    // .then(() => {
-    //   setIsFetchedActivities(true);
-    //   console.log("activities loaded successfully");
-    // });
   }, [dispatch, _loadProjects]);
 
   console.log("fetched projects", projectsData);
   console.log("fetched activities", activities);
-  console.log("Form submission", projectFormData);
+
   /********************************* Small UI components *********************************/
   /**
    * @summary Render the tags of the project
