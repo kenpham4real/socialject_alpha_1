@@ -64,9 +64,12 @@ function NavigationBar(props) {
       {/*Menu Icon*/}
 
       {/*Title*/}
-      <Link className="link" to="/">
-        <img alt="" className="icon avatar" src={SJ} />
-        <p className="banner-title">SOCIALJECT</p>
+
+      <Link className="SocialJect" to="/">
+        {/*<img alt="" className="icon avatar" src={SJ} />*/}
+        <p className="banner-title" style={{ fontSize: "30px" }}>
+          SOCIALJECT
+        </p>
       </Link>
       {/*Search Bar*/}
       {/*<SearchBar></SearchBar>*/}

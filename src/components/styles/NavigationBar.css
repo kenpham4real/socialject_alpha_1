@@ -7,24 +7,30 @@
 .navigationBar {
   font-family: "Inter";
   color: #2d2e38;
-  padding: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-  display: flexbox;
+  padding: 10px;
+  padding-left: 80px;
+  padding-right: 34.5px;
   position: sticky;
-  top: 0;
   z-index: 1;
   background-color: white;
   border: 1px solid var(--secondary);
   overflow: hidden;
+  vertical-align: middle;
+}
+
+.navigationBar .SocialJect {
+  display: inline-block;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-decoration: none;
 }
 
 .navigationBar .banner-title {
-  display: inline;
+  display: inline-flex;
+  position: relative;
   margin-left: 2px;
   margin-right: 2px;
-  vertical-align: middle;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
   color: var(--title);
   background-color: var(--primary);
@@ -49,6 +55,8 @@
   text-decoration: none;
   background-color: none;
   border: none;
+  vertical-align: middle;
+  align-self: center;
 }
 
 /*General*/
@@ -67,16 +75,21 @@
 }
 
 .navigationBar .user-bar {
+  display: inline-flex;
   vertical-align: middle;
   margin: 2px;
   float: right;
-  display: inline-flex;
+}
+
+.navigationBar .user-bar .icon {
+  align-self: center;
 }
 
 .navigationBar .icon.avatar {
   vertical-align: middle;
-  border-radius: 16px;
-  width: 32px;
+  border-radius: 23px;
+  width: 46px;
+  height: 46px;
   object-fit: cover;
 }
 
