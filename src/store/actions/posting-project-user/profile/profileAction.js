@@ -97,6 +97,16 @@ export const _createProfile_ppu = (
    */
   return async (dispatch, getState) => {
     const imageUrl = await _imageUploadHandler(imageFile);
+    console.log("check",{orgId,
+      orgName,
+      category,
+      description,
+      location,
+      university,
+      email,
+      phoneNumber,
+      facebook,
+      imageFile})
     try {
       await firebase_db
         .collection("organization")
@@ -111,7 +121,7 @@ export const _createProfile_ppu = (
           email: email,
           phoneNumber: phoneNumber,
           facebook: facebook,
-          imageFile: imageUrl,
+          orgAvatar: imageUrl,
         }, {
           merge: true
         });
