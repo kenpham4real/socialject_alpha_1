@@ -109,6 +109,7 @@ const AddActivityModal = (props) => {
       activityName, 
       activityDescription,
       activityLocation, 
+      activitycategory,
       activityDate.toDateString(), 
       activityImageFile
     ))
