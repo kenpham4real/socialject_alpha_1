@@ -33,7 +33,7 @@ const AddActivityModal = (props) => {
   const [activityName, setActivityName] = useState("");
   const [activityDescription, setActivityDescription] = useState("");
   const [activityLocation, setActivityLocation] = useState("");
-  const [activityDate, setActivityDate] = useState(new Date());
+  const [activityDate, setActivityDate] = useState("Deadline");
   const [showCalendar, setShowCalendar] = useState(false);
   const [activityImage, setActivityImage] = useState(null)
   const [activityImageFile, setActivityImageFile] = useState(false);
@@ -135,7 +135,7 @@ const AddActivityModal = (props) => {
           />
         </div>
         <button className="boxModal-date" onClick={_showCalendar} >
-          Choose Date
+          {activityDate}
         </button>
         {showCalendar && 
           <Calendar
