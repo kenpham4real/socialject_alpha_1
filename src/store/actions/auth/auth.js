@@ -113,9 +113,17 @@ const _addUser = async (
 
   // Push the authenticated data of the user to firestore
 
-  const collectionRef = userType == "STUDENT" ? "student" : "organization";
+  // Define the reference of the user
+  const collectionRef = userType == "STUDENT" 
+    ? firebase_db.collection("student").doc(`${uid}`)
+    : firebase_db.collection("organization").doc(`${uid}`).collection('authenticated-profile').doc(`${uid}`);
+
+  // Additional reference of the organization
+  const organizationCollectionRef = firebase_db.collection("organization").doc(`${uid}`);
+
   try {
-    await firebase_db.collection(collectionRef).doc(`${uid}`).set({
+    // Set the authenticated data
+    await collectionRef.set({
       userEmail: authenticatedUserData.email,
       userName: authenticatedUserData.displayName,
       userAvatar: authenticatedUserData.photoURL,
@@ -123,6 +131,12 @@ const _addUser = async (
       userType: userType,
       authenticatedMethod: authenticatedUserData.authenticatedMethod,
     });
+
+    // Set the userType to the organization ref
+    await organizationCollectionRef.set({
+      userType: userType
+    }, {merge: true})
+
   } catch (error) {
     console.error(error);
   }

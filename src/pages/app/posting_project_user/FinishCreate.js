@@ -19,8 +19,8 @@ const FinishCreate = (props) => {
   const [PhoneNumber, setPhoneNumber] = useState("");
   const [Facebook, setFacebook] = useState("");
 
-  const organization = useSelector(state => state.authReducer.userData);
-
+  const organization = JSON.parse(localStorage.getItem('userData'));
+  
   //Handle state of 3 screen
   const organizationProperties = {
     orgName: props.location.organizationName,
@@ -74,12 +74,9 @@ const FinishCreate = (props) => {
    */
 
   const _onFinish = () => {
-    console.log("Creating profile");
-    const organizationId = uuid_v4();
     dispatch(
       profileActions._createProfile_ppu(
-        organization.uid,
-        organizationId,
+        organization.userId,
         organizationProperties.orgName,
         organizationProperties.category,
         organizationProperties.description,
@@ -93,7 +90,7 @@ const FinishCreate = (props) => {
     );
     props.history.push({
       pathname: "/profile",
-      profileId: organizationId
+      profileId: organization.userId,
     });
   };
 
