@@ -141,7 +141,7 @@ function OrgHistory(props) {
           <a
             className="project-activity-list--component"
             href="/projectInfo/project_1"
-            onClick={() => props.history.push("/projectInfo/project_1")}
+            onClick={() => props.history.push("/projectInfo")}
           >
             {project_item}
           </a>
