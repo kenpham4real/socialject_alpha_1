@@ -98,6 +98,7 @@ const AddActivityModal = (props) => {
    * @param {string} activityName
    * @param {string} activityDescription
    * @param {string} activityLocation
+   * @param {string} activitycategory
    * @param {string} activityDate
    * @returns {void}
    */
