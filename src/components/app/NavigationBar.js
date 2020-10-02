@@ -10,13 +10,20 @@
   *Data needed: (currently none)
 */
 
-import React, { Component } from "react";
+import React, { useEffect, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "../styles/NavigationBar.css";
 import IconButton from "./IconButton";
 import SJ from "../../assets/images/SJ.png";
 import arrow from "../../assets/images/arrow.png";
 
+import * as autoLoginAction from "../../store//actions/auth/autoLoginAction";
+
+//constant
+import { ADMIN } from "../../constants/user-types";
+
+/*
 function SearchBar(props) {
   return (
     <a className="search-container">
@@ -29,9 +36,29 @@ function SearchBar(props) {
     </a>
   );
 }
+*/
 
 //Main
 function NavigationBar(props) {
+  //Declare hooks
+  const dispatch = useDispatch();
+  //Get data from global store
+  const user = useSelector((state) => state.autoLoginReducer.userData);
+  console.log("User Data selected: ", user);
+  //Decide the path to push base on the userData
+  let path = "";
+  if (user.userType == ADMIN) path = "/profile";
+  //Get Id from local storage
+  //Get the user data from local storage, if there is no data, 'user_localStorage' will be 'null'
+  const user_localStorage = JSON.parse(localStorage.getItem("userData"));
+  let userId = null;
+  if (user_localStorage != null) userId = user_localStorage.userId; //if there is an user data, get userId from that.
+  console.log("User id in app is: ", userId); //For testing
+  //Call the function of auto-login using useCallback and useEffect
+  const fetchUser = useCallback(() => {
+    autoLoginAction.FetchUser(dispatch, userId, user);
+  });
+  useEffect(() => fetchUser(), []);
   return (
     <div className="navigationBar">
       {/*Menu Icon*/}
@@ -45,8 +72,16 @@ function NavigationBar(props) {
       {/*<SearchBar></SearchBar>*/}
       {/*Top right corner*/}
       <div className="user-bar">
-        <img alt="" className="icon avatar" src={SJ} />
-        <a className="banner-title">Username</a>
+        <Link
+          className="link"
+          to={{
+            pathname: path,
+            profileId: user.userId,
+          }}
+        >
+          <img alt="" className="icon avatar" src={user.userAvatar} />
+          <p className="banner-title">{user.userName}</p>
+        </Link>
         <img alt="" className="icon" src={arrow} />
       </div>
     </div>

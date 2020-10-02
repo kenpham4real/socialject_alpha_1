@@ -1,5 +1,5 @@
 // Firebase database
-import { firebaseApp, firebase_db } from "../../../../firebase-config";
+import { firebaseApp, firebase_db, analytics } from "../../../../firebase-config";
 
 // Constants
 import {
@@ -10,8 +10,9 @@ import {
 // Helper
 import { _imageUploadHandler } from "../../../../helper/image/imageHandler";
 
+
 // Export the actions.
-export const PROJECT_FILTER = "FETCH_PROFILE";
+export const FETCH_PROFILE = "FETCH_PROFILE";
 
 /******************************** ACTIONS ********************************/
 //The main function call this to activate the function of fetching data
@@ -55,7 +56,7 @@ export async function FetchProject(dispatch, profileId) {
 
     // dispatch helps us store the changed state/ data into the reducers
     dispatch({
-      type: PROJECT_FILTER,
+      type: FETCH_PROFILE,
       payload: filteredData,
     });
   } catch (error) {
@@ -73,6 +74,7 @@ export const CREATE_PROFILE = "CREATE_PROFILE";
  * @summary Send the profile data the PPU want to create to firestore
  * @param {string} orgId The id of the organization
  * @param {string} orgName The name of the organization
+ * @param {string} category The category of the organization
  * @param {string} description The description of the organization
  * @param {string} location The location of the organization
  * @param {string} university The university of the organization
@@ -84,6 +86,7 @@ export const CREATE_PROFILE = "CREATE_PROFILE";
 export const _createProfile_ppu = (
   orgId,
   orgName,
+  category,
   description,
   location,
   university,
@@ -105,27 +108,34 @@ export const _createProfile_ppu = (
       await firebase_db
         .collection("organization")
         .doc(`${orgId}`)
-        .set(
-          {
-            orgId: orgId,
-            orgName: orgName,
-            description: description,
-            location: location,
-            university: university,
-            email: email,
-            phoneNumber: phoneNumber,
-            facebook: facebook,
-            imageFile: imageUrl,
-          },
-          { merge: true }
-        );
+        .set({
+          orgId: orgId,
+          orgName: orgName,
+          category:category,
+          description: description,
+          location: location,
+          university: university,
+          email: email,
+          phoneNumber: phoneNumber,
+          facebook: facebook,
+          imageFile: imageUrl,
+        }, {
+          merge: true
+        });
       console.log("Create profile successfully");
+
+      analytics.logEvent('page_view', {
+        page_location: 'FinishCreate',
+        page_path: `/finishCreate/${orgId}`,
+        page_title: 'FinishCreate'
+      })
 
       dispatch({
         type: CREATE_PROFILE,
-        finishCreate: {
+        orgProfile: {
           orgId: orgId,
           orgName: orgName,
+          category:category,
           description: description,
           location: location,
           university: university,

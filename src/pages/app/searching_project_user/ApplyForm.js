@@ -20,7 +20,7 @@ import * as projectActions from "../../../store/actions/searching-project-user/p
 
 const ApplyForm = (props) => {
 
-	const projectId = props.history.location.projectId;
+	// const projectId = props.history.location.projectId;
     //Dispatch
     const dispatch = useDispatch();
 
@@ -28,13 +28,13 @@ const ApplyForm = (props) => {
 	const projectsData = useSelector((state) => state.projectReducerSPU.projectsData);
 
 
-    const _loadProjects = useCallback(async () => {
-        try {
-          dispatch(projectActions.FetchProjectInfo(dispatch, projectId));
-        } catch (error) {
-          console.log("error", error);
-        }
-      }, [dispatch]);
+    // const _loadProjects = useCallback(async () => {
+    //     try {
+    //       dispatch(projectActions.FetchProjectInfo(dispatch, projectId));
+    //     } catch (error) {
+    //       console.log("error", error);
+    //     }
+    //   }, [dispatch]);
 
 
 	// Depending on the number of questions, we'll initialize the according number of states for the inputs
@@ -49,7 +49,7 @@ const ApplyForm = (props) => {
 
 	/**
 	 * @summary Dispatching the answers to firestore
-	 * @author Ke Pham
+	 * @author Ken Pham
 	 */
     const _onSubmitAnswers =() =>{
 		const orgId = projectsData.projectInfo.orgID;
@@ -124,8 +124,8 @@ const ApplyForm = (props) => {
 				className="contact-form-submit"
 				onClick={() => {
 					_onSubmitAnswers();
-					_loadProjects();
-					props.history.push({
+					// _loadProjects();
+					props.history.goBack({
 						pathname: "/projectInfo",
 						answerInput,
 					});
