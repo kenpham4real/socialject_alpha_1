@@ -68,7 +68,6 @@ const ProjectInfoPage = (props) => {
   }, [dispatch]);
 
   useEffect(() => {
-
       _loadProjects()
       .then(() => {
         setIsFetchedRecruitInfo(true);
@@ -116,7 +115,7 @@ const ProjectInfoPage = (props) => {
           onClick={() =>
             props.history.push({
               pathname: "/profile",
-              profileId: projectsData.projectInfo.orgID,
+              profileId: projectsData.projectInfo.orgId,
             })
           }
         />
