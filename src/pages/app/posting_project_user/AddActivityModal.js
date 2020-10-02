@@ -1,5 +1,7 @@
 /*
-*Contributor: Đạt 4th september 2020
+*Contributor: 
+  Đạt 4th september 2020
+  Tiến 2nd October 2020
 *Function: Project Registeration (render page for PPU to create their project)
 
 */
@@ -9,6 +11,7 @@ import React, { useState, useReducer } from "react";
 import { useDispatch } from "react-redux";
 import {v4 as uuid_v4} from 'uuid';
 import Calendar from "react-calendar";
+import { FcCalendar } from "react-icons/fc";
 
 // Styles
 import "./styles/CreatePostModal.css";
@@ -33,6 +36,7 @@ const AddActivityModal = (props) => {
   const [activityName, setActivityName] = useState("");
   const [activityDescription, setActivityDescription] = useState("");
   const [activityLocation, setActivityLocation] = useState("");
+  const [activitycategory,setActivityCategory] =useState("");
   const [activityDate, setActivityDate] = useState(new Date());
   const [showCalendar, setShowCalendar] = useState(false);
   const [activityImage, setActivityImage] = useState(null)
@@ -66,6 +70,16 @@ const AddActivityModal = (props) => {
    */
   const _onChangeActivityLocation = (location) => {
     setActivityLocation(location);
+  }
+
+  
+  /**
+   * @summary Handle the state of activity category
+   * @param {string} category
+   * @returns {void}
+   */
+  const _onChangeActivityCategory= (category) =>{
+    setActivityCategory(category);
   }
 
   /**
@@ -134,9 +148,28 @@ const AddActivityModal = (props) => {
             onChange={(location) => _onChangeActivityLocation(location.target.value)}
           />
         </div>
-        <button className="boxModal-date" onClick={_showCalendar} >
-          Choose Date
-        </button>
+        <div
+          className="boxModal"
+        >
+        <input 
+            type="text" 
+            placeholder="Category *"
+            value={activitycategory}
+            onChange={(category) => _onChangeActivityCategory(category.target.value)}
+          />
+        </div>
+        <div
+          className="container-box-calendar"
+        >
+          <p>Deadline *</p>
+          <FcCalendar
+            className="boxModal-date" 
+            onClick={_showCalendar} 
+          >
+            Choose Date
+          </FcCalendar>
+        </div>
+        
         {showCalendar && 
           <Calendar
             view='month'
@@ -147,16 +180,13 @@ const AddActivityModal = (props) => {
           />
         }
       </div>
-      <ImagePreview
-        setImage={setActivityImage}
-        setImageFile={setActivityImageFile}
-        image={activityImage}
-      />
-      <button 
+     
+      <div
+        className="button-style"
         onClick={_onAddActivity}
       >
         Add
-      </button>
+      </div>
     </div>
   );
 };
