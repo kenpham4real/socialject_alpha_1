@@ -31,7 +31,8 @@ import * as activityActions from "../../../store/actions/posting-project-user/ac
 import {_getFormSubmission} from '../../../store/actions/posting-project-user/project/project'
 
 //const userId = JSON.parse(localStorage.getItem("userData")).userId;
-const userId = "1lrR6G5aoc0CuAaIrRN4";
+let userId = JSON.parse(localStorage.getItem("userData"));
+if (userId != null) userId = userId.userId;
 console.log("User Id is: ", userId);
 
 const ProjectInfoPage = (props) => {
@@ -139,6 +140,8 @@ const ProjectInfoPage = (props) => {
    * @author Ken Pham, Dat Uchiha
    */
   const _project_apply_button = () => {
+    console.log("User Id in the button is: ", userId);
+    console.log("Project owner's Id: ", projectsData.projectInfo.orgId);
     if (userId != projectsData.projectInfo.orgId)
       return (
         <div className="applyButton">
