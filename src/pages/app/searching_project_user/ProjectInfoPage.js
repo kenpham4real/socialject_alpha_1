@@ -30,7 +30,8 @@ import * as projectActions from "../../../store/actions/searching-project-user/p
 import * as activityActions from "../../../store/actions/posting-project-user/activity/activity";
 
 //const userId = JSON.parse(localStorage.getItem("userData")).userId;
-const userId = "1lrR6G5aoc0CuAaIrRN4";
+let userId = JSON.parse(localStorage.getItem("userData"));
+if (userId != null) userId = userId.userId;
 console.log("User Id is: ", userId);
 
 const ProjectInfoPage = (props) => {
@@ -125,7 +126,7 @@ const ProjectInfoPage = (props) => {
           onClick={() =>
             props.history.push({
               pathname: "/profile",
-              profileId: projectsData.projectInfo.orgID,
+              profileId: projectsData.projectInfo.orgId,
             })
           }
         />
@@ -145,6 +146,8 @@ const ProjectInfoPage = (props) => {
    * @author Ken Pham, Dat Uchiha
    */
   const _project_apply_button = () => {
+    console.log("User Id in the button is: ", userId);
+    console.log("Project owner's Id: ", projectsData.projectInfo.orgId);
     if (userId != projectsData.projectInfo.orgId)
       return (
         <div className="applyButton">
