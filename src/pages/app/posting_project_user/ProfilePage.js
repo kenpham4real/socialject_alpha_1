@@ -45,9 +45,9 @@ const loremText =
 
 //The button to add a project
 function AddProjectButton(props) {
-  //const userId = JSON.parse(localStorage.getItem("userData")).userId;
-  const userId = "1lrR6G5aoc0CuAaIrRN4";
-  if (props.userId == props.projectOwnerId)
+  let userId = JSON.parse(localStorage.getItem("userData"));
+  if (userId != null) userId = userId.userId;
+  if (userId == props.projectOwnerId)
     return (
       <a
         onClick={props._onNavigateToCreateProjectModal}
@@ -77,7 +77,7 @@ function OrgName(props) {
         >
           Add a project
         </a>*/}
-        <AddProjectButton userType={props.userType} />
+        <AddProjectButton projectOwnerId={props.projectOwnerId} />
       </div>
 
       <a className="profile-block-container-smaller">
@@ -141,7 +141,7 @@ function OrgHistory(props) {
           <a
             className="project-activity-list--component"
             href="/projectInfo/project_1"
-            onClick={() => props.history.push("/projectInfo")}
+            onClick={() => props.history.push("/projectInfo/project_1")}
           >
             {project_item}
           </a>
@@ -153,8 +153,6 @@ function OrgHistory(props) {
 
 //Main component, calling the fetching action and display all UI component.
 const ProfilePage = (props) => {
-  const userType = localStorage.getItem("userType");
-  console.log("User Type is:", userType);
   /**
    * @summary Navigate to the create project modal
    * @function
@@ -209,7 +207,7 @@ const ProfilePage = (props) => {
       <OrgName
         _onNavigateToCreateProjectModal={_onNavigateToCreateProjectModalHandler}
         data={profileData}
-        userType={userType}
+        projectOwnerId={profileId}
       />
 
       {/*Org. Vision*/}

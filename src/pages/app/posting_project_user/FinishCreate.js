@@ -19,8 +19,9 @@ const FinishCreate = (props) => {
   const [PhoneNumber, setPhoneNumber] = useState("");
   const [Facebook, setFacebook] = useState("");
 
-  const organization = JSON.parse(localStorage.getItem('userData'));
-  
+  // const organization = useSelector(state => state.authReducer.userData);
+  const organization = localStorage.getItem("userData");
+  console.log("org",organization)
   //Handle state of 3 screen
   const organizationProperties = {
     orgName: props.location.organizationName,
