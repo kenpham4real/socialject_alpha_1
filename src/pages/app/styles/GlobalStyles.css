@@ -32,7 +32,7 @@
 
     /*TITLE_1 -- LIGHT*/
     --global-title-1-light-font-weight:normal;
-    --global-title-1-light-color:black;
+    --global-title-1-light-color:#666666;
     --global-title-1-light-size:20px;
 
     /*TITLE_2*/
@@ -40,6 +40,10 @@
     --global-title-2-color:black;
     --global-title-2-size:18px;
 
+    /*TITLE_2 -- LIGHT*/
+    --global-title-light-2-font-weight:bold;
+    --global-title-light-2-color:#666666;
+    --global-title-light-2-size:18px;
 
     /*TITLE_3*/
     --global-title-3-font-weight:bold;
