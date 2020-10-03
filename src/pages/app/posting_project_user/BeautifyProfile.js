@@ -65,29 +65,35 @@ const BeautifyProfile = (props) => {
           </p>
         </div>
         <div className="view-text-input-beautifyProfile">
-          <Select
-            className="select"
-            placeholder="Location *"
-            options={options}
-            value={location.selectedOption}
-            onChange={handleChange}
-          />
-          <input
-            className="input-text-beautifyProfile"
-            type="text"
-            placeholder="School/University"
-            value={university}
-            onChange={(uni)=> _onChangeUniversity(uni.target.value)}
-          />
-          <ImagePreview
-            setImage={setImage}
-            setImageFile={setImageFile}
-            image={image}
-          />
+          <form>
+            <Select
+              className="select"
+              name="select"
+              placeholder="Location *"
+              required="required"
+              options={options}
+              value={location.selectedOption}
+              onChange={handleChange}
+            />
+            <input
+              className="input-text-beautifyProfile"
+              name="School/universiy"
+              type="text"
+              placeholder="School/University"
+              required=" required"
+              value={university}
+              onChange={(uni)=> _onChangeUniversity(uni.target.value)}
+            /> 
+            <ImagePreview
+              setImage={setImage}
+              setImageFile={setImageFile}
+              image={image}
+            />
+          </form>
         </div>
       
         <div>
-          <button
+          <div
             className="container-continue"
             onClick={() =>{
               props.history.push({ 	
@@ -103,7 +109,7 @@ const BeautifyProfile = (props) => {
             }
           >
             <span> Next </span>
-          </button>
+          </div>
         </div>
       </div>
     </div>
