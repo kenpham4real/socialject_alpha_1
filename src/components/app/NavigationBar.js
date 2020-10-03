@@ -80,7 +80,7 @@ function NavigationBar(props) {
           className="link"
           to={{
             pathname: path,
-            profileId: user.userId,
+            profileId: userId,
           }}
         >
           <img alt="" className="icon avatar" src={user.userAvatar} />
