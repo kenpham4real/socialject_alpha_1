@@ -1,5 +1,12 @@
+/*
+* Contributor:
+  *Ken Pham ..... handle upload preview Image
+  *TrNgTien 3rd October edited UI
+*Main function: Import preview image
+ */
+
 import React from 'react';
-import { IoMdImages } from "react-icons/io";
+import { FcCompactCamera } from "react-icons/fc";
 
 // Styles
 import '../styles/ImagePreview.css'
@@ -16,15 +23,28 @@ export const ImagePreview = props => {
               alt=""
               src={props.image}
             />
-            <input
-              className="import-file"
-              alt="hi"
-              type="file" 
-              name="image" 
-              capture='camera'
-              accept="image/x-png,image/gif,image/jpeg"
-              onChange={(img) => _previewImageHandler(img.target.files, props.setImage, props.setImageFile)}
-            />
+            <label
+              className="label"
+            >
+              <input
+                className="import-file"
+                alt="hi"
+                type="file" 
+                name="image" 
+                capture='camera'
+                accept="image/x-png,image/gif,image/jpeg"
+                onChange={(img) => _previewImageHandler(img.target.files, props.setImage, props.setImageFile)}
+              />
+              <FcCompactCamera
+                className="icon-img"
+              />
+              <span
+                className="p"
+              >
+                Choose your picture
+              </span>
+            </label>
+            
         </div>
     )
 }
