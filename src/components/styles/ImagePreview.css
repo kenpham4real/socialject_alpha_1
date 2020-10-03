@@ -11,9 +11,10 @@
     margin-top:20px;
 }
 .avatar-text{
-    font-weight: var(--global-title-1-light-font-weight);
-    font-size:var(--global-title-1-light-size);
+    font-weight: var(--global-sub-title-light-font-weigh);
+    font-size:var(--global-sub-title-light-size);
     font-family: var(--global-font-family);
+    color: var(--global-sub-title-light-color);
     margin-left: 10px;
 }
 .image-holder{

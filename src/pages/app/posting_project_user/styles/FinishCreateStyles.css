@@ -14,9 +14,9 @@
     font-family: var(--global-font-family)
 } 
 .description-FinishCreate{
-    font-size: var(--global-title-1-light-size);
     margin-top:10px;
-    color:var(--global-title-light-color);
+    font-size: var(--global-title-1-light-size);
+    color:var(--global-title-1-light-color);
     font-family: var(--global-font-family);
     font-weight:var(--global-title-1-light-font-weight);
 }
@@ -33,10 +33,11 @@
     margin-top:10px;
     margin-right: 30px;
     height: 50px;
-    font-size:20px;
-    border:var( --global-border-color);
-    border-radius: var(--global-border-radius);
     width: 330px;
+    font-size:var(--global-sub-title-light-size);
+    border:var(--global-border-color);
+    border-radius: var(--global-border-radius);
+    color:var(--global-sub-title-light-color) ;
 }
 .container-continue{
     height: var(--global--submit-button-height);
