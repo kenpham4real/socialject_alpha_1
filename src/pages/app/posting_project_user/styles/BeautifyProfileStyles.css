@@ -47,34 +47,9 @@
     outline: none;
     border:var(--global-border-color);
 }
-.avatar-box{
-    border:var(--global-border-color);
-    border-radius: var(--global-border-radius);
-    height: 300px;
-    width:335px;
-    margin-top:20px;
-    margin-bottom:10px;
-    display: grid;
-}
-.avatar-text{
-    font-weight: var(--global-font-weight);
-    font-size:20px;
-    margin-left: 10px;
-    margin-bottom: 10px;
-}
-
 .import-file{
     /* display: none; */
     margin-left:105px;
-}
-.add-avatar{
-    margin-left:100px;
-    margin-top: 5px;
-    background-color: black;
-    border-radius: var(--global-border-radius);
-    color: white;
-    height: 50px;
-    width: 100px;
 }
 .container-continue{
     width:340px;
