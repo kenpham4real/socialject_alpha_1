@@ -25,7 +25,7 @@ const BeautifyProfile = (props) => {
   //Intialize the states
   const [location, setLocation]= useState("");
   const [university, setUniversity]= useState("");
-  const [image, setImage]= useState(require("../../../assets/images/blank-profile.png"));
+  const [image, setImage]= useState();
   const [imageFile,setImageFile]=useState("");
 
 
