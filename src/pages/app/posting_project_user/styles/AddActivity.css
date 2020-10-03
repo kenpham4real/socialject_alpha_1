@@ -1,0 +1,88 @@
+@import "../../../app/styles/GlobalStyles.css";
+
+.add-activity-container{
+    font-family: var(--global-font-family);
+    background-color: var(--global-page-background-color);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.add-activity--form-container{
+    /* border: 1px solid red; */
+    display: grid;
+    padding-top: 10vh;
+    padding-left: 100px;
+    grid-auto-rows: minmax(max-content, 59px);
+    /* grid-template-columns: minmax(auto, 94px) 92%;*/
+    /* grid-column-start: 2; */
+    /* height: 100vh; */
+}
+
+.add-activity--title {
+    /* border: 1px solid yellow; */
+    font-size:var(--global-headline-1-size);
+    color: var(--global-headline-2-color);
+    font-weight: var(--global-headline-2-font-weight);
+    letter-spacing: -0.022em;
+}
+  
+.add-activity--subtitle{
+    /* border: 1px solid blue; */
+    font-size: var(--global-title-1-light-size);
+    color: var(--global-title-light-color);
+    letter-spacing: -0.022em;
+    max-width: 328px;
+    /* or 167% */
+  }
+  
+.add-activity--content > div{
+    border-radius: var(--global-border-radius);
+    
+}
+
+
+.add-activity--input > input {
+    border: var(--global-border-color);
+    width: var(--global--form-input-width);
+    height: var(--global--form-input-height);
+    -webkit-transition: 0.5s;
+    transition: 0.1s;
+    outline: none;
+}
+
+.add-activity--input > input:focus{
+    border: var(--global-border-color__focus);
+}
+
+.add-activity--input{
+    margin-top: 20px;
+}
+
+.add-activity--input > ::placeholder{
+    font-size: var(--global-sub-title-light-size);
+    color: var(--global-sub-title-light-color);
+    font-weight: normal;
+}
+
+.activity-calendar{
+    margin-bottom: 20px;
+}
+
+.add-activity--calendar--icon{
+    position: absolute;
+    margin-left: 300px;
+    margin-top: 23px;
+}
+
+.add-activity--add__button{
+    height: var(--global--continue-button-height);
+    background-color: var(--global-primary-color);
+    font-size: var(--global-title-3-size);
+    font-weight: var(--global-title-3-font-weight);
+    border-radius: var(--global-border-radius);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 335px;
+    cursor: pointer;
+}
