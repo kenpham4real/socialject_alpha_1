@@ -40,9 +40,9 @@
 }
 .p{
     font-family: var(--global-font-family);
-    margin-top: -12px;
+    margin-top: 3px;
     white-space: nowrap;
     height: 10px;
     cursor: pointer;
-    margin-left: -10px;
+    margin-left: 4px;
 }
