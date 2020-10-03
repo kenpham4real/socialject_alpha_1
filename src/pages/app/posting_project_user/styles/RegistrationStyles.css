@@ -1,3 +1,4 @@
+@import "../../styles/GlobalStyles.css";
 .page{
     display: grid;
 }
@@ -33,7 +34,7 @@
     height: 50px;
     font-size:20px;
     border:2px solid black;
-    border-radius: 5px;
+    border-radius: var(--global-border-radius);
     width: 330px; 
 }
 .input-text-registration.description{
@@ -50,4 +51,15 @@
 .container-continue{
     width:340px;
     cursor: pointer;
+    color: #ffffff;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-top: 20px;
+    border-radius: var(--global-border-radius);
+    text-align: center;
+    font-weight: 500;
+    white-space: nowrap;
+    letter-spacing: 1px;
+    background-color: #2FAD58;
+    box-shadow:0 10px 30px 0 var( --global-accent-1-color);
 }
