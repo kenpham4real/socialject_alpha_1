@@ -1,18 +1,15 @@
-:root {
-  --primary: #e1e4d2;
-  --secondary: #7c78bb;
-  --title: #2d2e38;
+* {
+  font-family: "Time New Roman";
 }
 
 .navigationBar {
-  font-family: "Inter";
-  color: #2d2e38;
+  color: var(--global-headline-1-color);
   padding: 10px;
-  padding-left: 80px;
-  padding-right: 34.5px;
+  padding-left: 5%;
+  padding-right: 2%;
   position: sticky;
   z-index: 1;
-  background-color: white;
+  background-color: var(--global-page-background-color);
   border: 1px solid var(--secondary);
   overflow: hidden;
   vertical-align: middle;
@@ -26,14 +23,14 @@
 }
 
 .navigationBar .banner-title {
-  display: inline-flex;
-  position: relative;
+  display: inline-block;
+  vertical-align: middle;
   margin-left: 2px;
   margin-right: 2px;
   font-size: 20px;
   font-weight: bold;
   color: var(--title);
-  background-color: var(--primary);
+  background-color: var(--global-page-background-color);
   border: none;
   border-radius: 0.4rem;
   text-decoration: none; /*remove link underline*/
