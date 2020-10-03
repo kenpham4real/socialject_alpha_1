@@ -1,70 +1,68 @@
+@import "../../styles/GlobalStyles.css";
+/* 
+*Tien with global styles
+*3rd October 2020
+*/
 .page{
     display: grid;
 }
 .container-BeautifyProfile{
     display: grid;
-    margin-top:50px;
+    margin-top:30px;
     margin-left: 100px;
 }
 .my-header-BeautifyProfile{
     margin-top:50px;
-    font-weight: bold;
-    font-size: 30px;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: var(--global-headline-1-font-weight);
+    font-size: var(--global-headline-1-size);
+    font-family: var(--global-font-family)
 }
 .description-BeautifyFrofile{
-    font-size: 20px;
-    margin-top:20px;
+    font-size: var(--global-title-1-light-size);
+    margin-top:10px;
+    color:var(--global-title-light-color);
+    font-family: var(--global-font-family);
+    font-weight:var(--global-title-1-light-font-weight);
 }
 .view-text-input-beautifyProfile{
     margin-left:0px;
     margin-right:20px;
     margin-bottom:20px;
-    margin-top:10px;
+    margin-top:20px;
     display: grid;
 }
 .input-text-beautifyProfile{
     margin-right:20px;
-    margin-bottom:20px;
+    margin-bottom:10px;
     margin-top:20px;
     height: 50px;
     font-size:20px;
-    border:2px solid black;
-    border-radius: 5px;
-    font-size:20px;
+    border:var(--global-border-color);
+    border-radius:var(--global-border-radius);
     width:330px;
 }
 .select{
     width: 340px;
-    border:2px solid black;
-    border-radius: 7px;
+    border-radius: var(--global-border-radius);
+    outline: none;
+    border:var(--global-border-color);
 }
 .avatar-box{
-    border:2px solid black;
-    border-radius: 5px;
+    border:var(--global-border-color);
+    border-radius: var(--global-border-radius);
     height: 300px;
     width:335px;
     margin-top:20px;
-    margin-bottom:20px;
-    background-color: rgb(22, 206, 181);
+    margin-bottom:10px;
     display: grid;
 }
 .avatar-text{
-    font-weight: bold;
+    font-weight: var(--global-font-weight);
     font-size:20px;
     margin-left: 10px;
     margin-bottom: 10px;
 }
-.image-holder{
-    justify-items: center;
-    margin-left: 90px;
-    margin-top:10px;
-    width:150px;
-    height:150px;
-    border:3px solid black;
-    border-radius: 10px;
-    object-fit: cover;
-}
+
 .import-file{
     /* display: none; */
     margin-left:105px;
@@ -73,7 +71,7 @@
     margin-left:100px;
     margin-top: 5px;
     background-color: black;
-    border-radius: 10px;
+    border-radius: var(--global-border-radius);
     color: white;
     height: 50px;
     width: 100px;
@@ -81,4 +79,7 @@
 .container-continue{
     width:340px;
     cursor: pointer;
+}
+#input> ::placeholder{
+    font-family: var(--global-font-family);
 }
