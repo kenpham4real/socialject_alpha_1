@@ -30,9 +30,21 @@
 }
 
 .profile-avatar {
+  /*
+   
+
+  height: 13vw;
+  width: 13vw;
+  border-radius: 7.5vw;
+
+  height: 28vh;
+  width: 28vh;
+  border-radius: 14vh;
+  */
   height: 175px;
   width: 175px;
   border-radius: 87.5px;
+
   object-fit: cover;
 }
 
@@ -44,11 +56,14 @@
 .profile-button {
   display: inline-block;
   /*Size and border*/
-  width: 170px;
-  height: 30px;
+  /*width: 13.2vw;*/
+
   border: none;
   border-radius: 3px;
   /*Spacing*/
+  padding: 3vw;
+  padding-top: 0;
+  padding-bottom: 0;
   margin: 5px;
   /*coloring*/
   color: var(--title);
@@ -84,14 +99,13 @@
 
 /*Container*/
 .profile-name-container {
-  display: inline-flex;
+  display: flex;
   /*margin*/
   margin-bottom: 5%;
   /*padding*/
   padding: 25px;
-  padding-left: 5.8437%;
-  padding-right: 5%;
-  width: 89.19%;
+  padding-left: 5.8437vw;
+  padding-right: 5vw;
   /*color*/
   background-color: white;
   /*children adjusting*/
@@ -108,8 +122,8 @@
   margin-right: 23%;
   /*padding*/
   padding: 20px;
-  padding-left: 81px;
-  padding-right: 51px;
+  padding-left: 5.9vw;
+  padding-right: 3.9vw;
   /*size*/
   width: 46%;
   /*color*/
@@ -126,7 +140,6 @@
   /*padding*/
   padding: none;
   /*size*/
-  width: 73.046%;
   /*color*/
   background-color: var(--primary);
   /*text adjusting*/
@@ -145,9 +158,9 @@
 }
 
 .profile-block-container-smaller {
+  max-width: 15vw;
   margin: none;
   margin-top: 1%;
-  width: 20%;
   word-wrap: break-word;
   text-align: justify;
   filter: brightness(80%);
