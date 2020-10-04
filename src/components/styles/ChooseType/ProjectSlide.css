@@ -8,7 +8,7 @@
   padding-bottom: 0;
   align-items: center;
   justify-content: space-around;
-  background-color: #e5e5e5;
+  background-color: var(--global-page-background-color);
 }
 
 .project-card {
@@ -22,7 +22,7 @@
   text-align: left;
   box-sizing: border-box;
   background-color: white;
-  box-shadow: 2px 2px 2px rgb(130, 133, 143);
+
   cursor: pointer;
 }
 
