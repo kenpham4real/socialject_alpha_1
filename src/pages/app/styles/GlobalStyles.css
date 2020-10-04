@@ -81,7 +81,7 @@
     --global-subtitles-color:#666666;
     --global-smaller-subtitles-color:#A6A6A6;
     --global-page-background-color:#F4F4F4;
-    --global-border-color:1.5px solid #828282;
+    --global-border-color: 2px solid #DEE1E6;
 
 
     /*ACCENTS*/
@@ -135,5 +135,5 @@
      /************************************ FORMS, INPUTS ************************************/
      --global--form-input-width: 330px;
      --global--form-input-height: 60px;
-     --global-border-color__focus: 1.5px solid rgba(47,173,88,.5);
+     --global-border-color__focus: 2px solid rgba(47,173,88,.5);
 }
