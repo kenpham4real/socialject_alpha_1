@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import {v4 as uuid_v4} from 'uuid';
 import Calendar from "react-calendar";
 import { FcCalendar } from "react-icons/fc";
+import Select from 'react-select'
 
 // Styles
 import "./styles/AddActivity.css";
@@ -21,7 +22,7 @@ import 'react-calendar/dist/Calendar.css';
 import * as _activityActions from '../../../store/actions/posting-project-user/activity/activity';
 
 // Constants
-import {testing_project_id} from '../../../constants/testing-keys'
+import {LOCATIONS} from '../../../constants/location'
 
 // Helper
 import {_previewImageHandler} from '../../../helper/image/imageHandler'
@@ -29,11 +30,13 @@ import {_previewImageHandler} from '../../../helper/image/imageHandler'
 // Components
 import FeedbackImage from '../../../components/FeedbackImage'
 import { ImagePreview } from "../../../components/app/ImagePreview";
+import { selectInputStyles } from "../../../constants/SelectInputStyle";
+import { FormInput } from "../../../components/app/Form/FormInput";
 
 
 const AddActivityModal = (props) => {
 
-  const {projectId} = props.location.state;
+  const {projectId} = props.location.state.projectId ? props.location.state : "";
 
   // Initialize the states
   const [activityName, setActivityName] = useState("");
@@ -114,6 +117,7 @@ const AddActivityModal = (props) => {
     setShowCalendar(prevState => !prevState)
   }
 
+
   return (
     <div className="add-activity-container">
       <div className="add-activity--form-container">
@@ -127,30 +131,46 @@ const AddActivityModal = (props) => {
         </div>
         <div className="add-activity--content">
           <div className="add-activity--input activity-name">
-            <input 
-              type="text" 
-              placeholder="Activity Name*"
-              value={activityName}
-              onChange={(name) => _onChangeActivityName(name.target.value)}
+            <FormInput
+              formInputLabel="Activity name"
+              formInputPlaceholder="Finish funding"
+              formInputValue={activityName}
+              _formInputOnchangeText={setActivityName}
             />
           </div>
           <div className="add-activity--input activity-description">
-            <input 
-              type="text" 
-              placeholder="Description *"
-              value={activityDescription}
-              onChange={(description) => _onChangeActivityDescription(description.target.value)}
+            
+            <FormInput
+              formInputLabel="Description"
+              formInputPlaceholder="Describe your activity"
+              formInputValue={activityDescription}
+              _formInputOnchangeText={setActivityDescription}
             />
           </div>
           <div className="add-activity--input activity-location">
-            <input 
-              type="text" 
-              placeholder="Location *"
-              value={activityLocation}
-              onChange={(location) => _onChangeActivityLocation(location.target.value)}
+            <p>Location</p>
+            <Select
+              className="add-activity--input__select-button"
+              name="select"
+              placeholder="Choose"
+              required="required"
+              options={LOCATIONS}
+              value={activityLocation.selectedOption}
+              onChange={setActivityLocation}
+              styles={selectInputStyles}
+              theme={theme => ({
+                ...theme,
+                borderRadius: 0,
+                colors: {
+                  ...theme.colors,
+                  primary25: 'rgba(47,173,88,0.5)', 
+                  primary: 'rgba(47,173,88,1)',
+                },
+              })}
             />
           </div>
           <div className="add-activity--avatar-preview">
+            <p>Avatar</p>
             <ImagePreview
               setImage={setActivityImage}
               setImageFile={setActivityImageFile}
@@ -161,10 +181,12 @@ const AddActivityModal = (props) => {
             <i>
               <FcCalendar size={23} onClick={_showCalendar} className="add-activity--calendar--icon" />
             </i>
-            <input
-              placeholder={activityDate.toDateString()}
-              onChange={(date) => _onChangeActivityDate(date.target.value)}
-              type='text'
+            
+            <FormInput
+              formInputLabel="Deadline"
+              formInputPlaceholder={activityDate.toDateString()}
+              formInputValue={activityDate.toDateString()}
+              _formInputOnchangeText={setActivityDate}
             />
 
           </div>
