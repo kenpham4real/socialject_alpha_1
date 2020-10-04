@@ -28,7 +28,7 @@ import IndividualForm from "../../../components/app/ProjectInfoPage/IndividualFo
 // Functions
 import * as projectActions from "../../../store/actions/searching-project-user/project/projectAction";
 import * as activityActions from "../../../store/actions/posting-project-user/activity/activity";
-import {_getFormSubmission} from '../../../store/actions/posting-project-user/project/project'
+import { _getFormSubmission } from "../../../store/actions/posting-project-user/project/project";
 
 //const userId = JSON.parse(localStorage.getItem("userData")).userId;
 let userId = JSON.parse(localStorage.getItem("userData"));
@@ -38,7 +38,7 @@ console.log("User Id is: ", userId);
 const ProjectInfoPage = (props) => {
   const projectId = props.history.location.projectId;
   console.log("Id pass from the previous page: ", projectId);
-  console.log('props in ProjectInfoPage', props)
+  console.log("props in ProjectInfoPage", props);
 
   // useDispatch() from react-redux
   const dispatch = useDispatch();
@@ -53,7 +53,7 @@ const ProjectInfoPage = (props) => {
     (state) => state.projectReducerSPU.projectsData
   );
 
-  console.log('projectsData', projectsData)
+  console.log("projectsData", projectsData);
 
   //let activities = useSelector((state) => state.activityReducer.activities);
   const activities = projectsData.projectProgress;
@@ -65,7 +65,12 @@ const ProjectInfoPage = (props) => {
    */
   const _loadProjects = useCallback(async () => {
     try {
-      dispatch(_getFormSubmission(projectsData.projectInfo.orgId, projectsData.projectInfo.projectId));
+      dispatch(
+        _getFormSubmission(
+          projectsData.projectInfo.orgId,
+          projectsData.projectInfo.projectId
+        )
+      );
       dispatch(projectActions.FetchProjectInfo(dispatch, projectId));
     } catch (error) {
       console.log("error", error);
@@ -73,12 +78,10 @@ const ProjectInfoPage = (props) => {
   }, [dispatch]);
 
   useEffect(() => {
-      _loadProjects()
-      .then(() => {
-        setIsFetchedRecruitInfo(true);
-        console.log("activities loaded successfully");
-      })
-
+    _loadProjects().then(() => {
+      setIsFetchedRecruitInfo(true);
+      console.log("activities loaded successfully");
+    });
   }, [dispatch, _loadProjects]);
 
   console.log("fetched projects", projectsData);
@@ -304,11 +307,29 @@ const ProjectInfoPage = (props) => {
    * @author Ken Pham, Dat Uchiha
    */
   const _project_progress_section = () => {
+    let ifDisplay = "inline-block";
+    if (userId != projectsData.projectInfo.orgId) ifDisplay = "none";
+    const AddActivityButton = () => {
+      return (
+        <div
+          className="progress-container-header-addActivityButton"
+          onClick={() =>
+            props.history.push("/addActivity", {
+              projectId: projectId,
+            })
+          }
+          style={{ display: ifDisplay }}
+        >
+          Add an activity
+        </div>
+      );
+    };
     return (
       <div className="progressContainer">
         <div className="progress-container--header">
           <h1 className="projectHeadings">Progress</h1>
-          <div
+          {/*
+            <div
             className="progress-container-header-addActivityButton"
             onClick={() => props.history.push('/addActivity', {
               projectId: projectId
@@ -316,6 +337,8 @@ const ProjectInfoPage = (props) => {
           >
             Add an activity
           </div>
+          */}
+          <AddActivityButton />
         </div>
         <ul className="progress-container-activity">
           <a>{_project_activity_item}</a>
