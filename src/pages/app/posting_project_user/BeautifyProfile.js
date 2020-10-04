@@ -9,16 +9,8 @@ import "./styles/BeautifyProfileStyles.css";
 // Helper
 import {_previewImageHandler} from '../../../../src/helper/image/imageHandler'
 import { ImagePreview } from "../../../components/app/ImagePreview";
-
-//Select
-const options = [
-  { id: "ha_noi", value: "ha noi", label: "Ha Noi" },
-  { id: "ho_chi_minh", value: "ho chi minh", label: "Ho Chi Minh" },
-  { id: "hai_phong", value: "hai phong", label: "Hai Phong" },
-  { id: "da_nang", value: "da nang", label: "Da Nang" },
-];
-   
-
+import { LOCATIONS } from "../../../constants/location";
+import { selectInputStyles } from "../../../constants/SelectInputStyle";
 
 const BeautifyProfile = (props) => {
 
@@ -71,9 +63,19 @@ const BeautifyProfile = (props) => {
               name="select"
               placeholder="Location *"
               required="required"
-              options={options}
+              options={LOCATIONS}
               value={location.selectedOption}
               onChange={handleChange}
+              styles={selectInputStyles}
+              theme={theme => ({
+                ...theme,
+                borderRadius: 0,
+                colors: {
+                  ...theme.colors,
+                  primary25: 'rgba(47,173,88,0.5)', 
+                  primary: 'rgba(47,173,88,1)',
+                },
+              })}
             />
             <input
               className="input-text-beautifyProfile"

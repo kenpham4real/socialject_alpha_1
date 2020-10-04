@@ -47,7 +47,7 @@
     width: 338px;
     outline: none;
     border-radius: var(--global-border-radius);
-    border:var(--global-border-color);
+    /* border:var(--global-border-color); */
 }
 .import-file{
     /* display: none; */
