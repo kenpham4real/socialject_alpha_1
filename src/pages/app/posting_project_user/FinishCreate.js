@@ -6,8 +6,7 @@
 
 // Packages
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { v4 as uuid_v4 } from "uuid"
+import { useDispatch} from "react-redux";
 import * as profileActions from "../../../store/actions/posting-project-user/profile/profileAction";
 
 //Styles
@@ -20,7 +19,8 @@ const FinishCreate = (props) => {
   const [Facebook, setFacebook] = useState("");
 
   // const organization = useSelector(state => state.authReducer.userData);
-  const organization = localStorage.getItem("userData");
+  const organization = JSON.parse(localStorage.getItem("userData"));
+  console.log("orgid",organization.userId)
   console.log("org",organization)
   //Handle state of 3 screen
   const organizationProperties = {
@@ -115,7 +115,7 @@ const FinishCreate = (props) => {
           />
           <input
             className="input-text-FinishCreate"
-            type="text"
+            type="tel"
             placeholder="Phone number"
             value={PhoneNumber}
             onChange={(PhoneNumber) =>
