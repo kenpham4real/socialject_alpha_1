@@ -12,6 +12,10 @@ import * as profileActions from "../../../store/actions/posting-project-user/pro
 //Styles
 import "./styles/FinishCreateStyles.css";
 
+//Components
+import { FormInput } from "../../../components/app/Form/FormInput";
+
+
 const FinishCreate = (props) => {
   //Initialize the states
   const [Email, setEmail] = useState("");
@@ -20,8 +24,7 @@ const FinishCreate = (props) => {
 
   // const organization = useSelector(state => state.authReducer.userData);
   const organization = JSON.parse(localStorage.getItem("userData"));
-  console.log("orgid",organization.userId)
-  console.log("org",organization)
+  
   //Handle state of 3 screen
   const organizationProperties = {
     orgName: props.location.organizationName,
@@ -106,29 +109,27 @@ const FinishCreate = (props) => {
           </p>
         </div>
         <div className="view-text-input-FinishCreate">
-          <input
+          <FormInput
+						formInputLabel="Email"
+						formInputPlaceholder="Your Email?" 
+						formInputValue={Email}
+						_formInputOnchangeText={setEmail}
             className="input-text-FinishCreate"
-            type="text"
-            placeholder="Email * "
-            value={Email}
-            onChange={(Email) => _onChangeEmail(Email.target.value)}
           />
-          <input
-            className="input-text-FinishCreate"
-            type="tel"
-            placeholder="Phone number"
-            value={PhoneNumber}
-            onChange={(PhoneNumber) =>
-              _onChangePhoneNumber(PhoneNumber.target.value)
-            }
-          ></input>
-          <input
-            className="input-text-FinishCreate"
-            type="text"
-            placeholder="Facebook"
-            value={Facebook}
-            onChange={(Facebook) => _onChangeFacebook(Facebook.target.value)}
-          ></input>
+
+          <FormInput
+              formInputLabel="PhoneNumber"
+              formInputPlaceholder="Your Phone number?" 
+              formInputValue={PhoneNumber}
+              _formInputOnchangeText={setPhoneNumber}
+              className="input-text-FinishCreate"
+          />
+          <FormInput
+              formInputLabel="Facebook"
+              formInputPlaceholder="Your Facebook?" 
+              formInputValue={Facebook}
+              _formInputOnchangeText={setFacebook}
+          />
         </div>
 
         <div>

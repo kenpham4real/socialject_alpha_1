@@ -12,10 +12,11 @@
     margin-left: 100px;
 }
 .my-header-BeautifyProfile{
+    color: var(--global-primary-color);
     margin-top:50px;
     font-weight: var(--global-headline-1-font-weight);
     font-size: var(--global-headline-1-size);
-    font-family: var(--global-font-family)
+    font-family: var(--global-font-family);
 }
 .description-BeautifyFrofile{
     margin-top:10px;
