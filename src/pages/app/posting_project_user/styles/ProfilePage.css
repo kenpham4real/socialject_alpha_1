@@ -10,18 +10,18 @@
 
 .profilePage {
   color: var(--title);
-  background-color: var(--secondary);
+  background-color: var(--global-page-background-color);
   border-radius: none;
   vertical-align: middle;
-  font-family: "Inter";
 }
 
 /*Component*/
 .profile--title {
   color: var(--title);
-  font-size: 150%;
+  font-size: 20px;
   font-weight: bold;
   margin: 1%;
+  margin-left: 0;
 }
 
 .project-activity-list {
@@ -35,9 +35,9 @@
 }
 
 .profile-avatar {
-  height: 150px;
-  width: 150px;
-  border-radius: 75px;
+  height: 175px;
+  width: 175px;
+  border-radius: 87.5px;
   object-fit: cover;
 }
 
@@ -59,7 +59,6 @@
   color: var(--title);
   background-color: var(--secondary);
   /*text*/
-  font-family: "Inter";
   font-size: 16px;
   text-align: center;
   text-decoration: none;
@@ -86,8 +85,8 @@
   /*margin*/
   margin-bottom: 5%;
   /*padding*/
-  padding: 20px;
-  padding-left: 5%;
+  padding: 25px;
+  padding-left: 5.8437%;
   padding-right: 5%;
   /*size*/
   width: 90%;
@@ -95,7 +94,6 @@
   background-color: var(--primary);
   /*children adjusting*/
   text-align: justify;
-  vertical-align: middle;
 }
 
 .profile-block-container {
@@ -104,16 +102,16 @@
   border-radius: 10px;
   /*margin*/
   margin-top: 1%;
-  margin-left: 15%;
-  margin-right: 15%;
+  margin-left: 23%;
+  margin-right: 23%;
   /*padding*/
   padding: 2%;
   padding-left: 5%;
   padding-right: 5%;
   /*size*/
-  width: 60%;
+  width: 46%;
   /*color*/
-  background-color: var(--primary);
+  background-color: white;
   /*text adjusting*/
   text-align: justify;
 }
@@ -126,11 +124,22 @@
   /*padding*/
   padding: none;
   /*size*/
-  width: 60%;
+  width: 73.046%;
   /*color*/
   background-color: var(--primary);
   /*text adjusting*/
+  font-size: 16px;
+  line-height: 1.5rem;
   text-align: justify;
+}
+
+.profile-description {
+  position: relative;
+  overflow: hidden;
+  display: -webkit-box;
+  max-width: inherit;
+  -webkit-line-clamp: 3; /* number of lines to show */
+  -webkit-box-orient: vertical;
 }
 
 .profile-block-container-smaller {
