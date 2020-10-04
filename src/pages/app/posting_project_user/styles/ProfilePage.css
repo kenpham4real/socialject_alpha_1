@@ -1,15 +1,9 @@
 /* All the style for Choose Type Page (Screen 03) goes here */
 
-/* colours */
-:root {
-  --primary: #fdfff4;
-  --secondary: #9fa8b6;
-  --shadow: rgb(67, 67, 83);
-  --title: #11131b;
-}
-
 .profilePage {
-  color: var(--title);
+  margin: none;
+  color: var(--global-normal-text-color);
+  font-family: var(--global-font-family);
   background-color: var(--global-page-background-color);
   border-radius: none;
   vertical-align: middle;
@@ -17,7 +11,8 @@
 
 /*Component*/
 .profile--title {
-  color: var(--title);
+  display: inline-block;
+  color: var(--global-normal-text-color);
   font-size: 20px;
   font-weight: bold;
   margin: 1%;
@@ -42,37 +37,45 @@
 }
 
 .profile-link {
-  color: var(--title);
+  color: var(--global-normal-text-color);
   text-decoration: none;
 }
 
 .profile-button {
   display: inline-block;
   /*Size and border*/
-  width: 150px;
+  width: 170px;
+  height: 30px;
   border: none;
-  border-radius: 5px;
+  border-radius: 3px;
   /*Spacing*/
   margin: 5px;
-  padding: 5px;
   /*coloring*/
   color: var(--title);
-  background-color: var(--secondary);
+  background-color: var(--global-primary-color);
   /*text*/
-  font-size: 16px;
+  line-height: 30px;
+  font-weight: bold;
+  align-items: center;
+  font-size: 14px;
   text-align: center;
   text-decoration: none;
-  font-weight: 500;
   /*Animation*/
   cursor: pointer;
+}
+
+.profile-button.right {
+  margin: none;
+  padding: none;
+  background-color: inherit;
+  float: right;
 }
 
 .profile-button:active {
   opacity: 0.5;
 }
 .profile-button:hover {
-  color: var(--primary);
-  background-color: rgb(51, 79, 117);
+  filter: brightness(130%);
   transition: 0.3s;
 }
 .profile-button:not(:hover) {
@@ -88,10 +91,9 @@
   padding: 25px;
   padding-left: 5.8437%;
   padding-right: 5%;
-  /*size*/
-  width: 90%;
+  width: 89.19%;
   /*color*/
-  background-color: var(--primary);
+  background-color: white;
   /*children adjusting*/
   text-align: justify;
 }
@@ -99,15 +101,15 @@
 .profile-block-container {
   display: grid;
   /*border*/
-  border-radius: 10px;
+  border-radius: 3px;
   /*margin*/
   margin-top: 1%;
   margin-left: 23%;
   margin-right: 23%;
   /*padding*/
-  padding: 2%;
-  padding-left: 5%;
-  padding-right: 5%;
+  padding: 20px;
+  padding-left: 81px;
+  padding-right: 51px;
   /*size*/
   width: 46%;
   /*color*/

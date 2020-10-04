@@ -127,7 +127,12 @@ function OrgHistory(props) {
 
   return (
     <div className="profile-block-container">
-      <div className="profile--title">Projects</div>
+      <div style={{ marginBottom: "5px" }}>
+        <p className="profile--title">Projects</p>
+        <div className="profile-button right">
+          <AddProjectButton projectOwnerId={props.projectOwnerId} />
+        </div>
+      </div>
       {/*
       <a
         onClick={props._onNavigateToCreateProjectModal}
@@ -213,7 +218,7 @@ const ProfilePage = (props) => {
       <OrgVision data={profileData}></OrgVision>
 
       {/*Org. History*/}
-      <OrgHistory data={projectData}></OrgHistory>
+      <OrgHistory data={projectData} projectOwnerId={profileId}></OrgHistory>
       {/*Copyright*/}
       <CopyrightBar></CopyrightBar>
 
