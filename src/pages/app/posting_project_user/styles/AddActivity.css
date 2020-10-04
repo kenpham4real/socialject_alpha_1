@@ -21,7 +21,7 @@
 .add-activity--title {
     /* border: 1px solid yellow; */
     font-size:var(--global-headline-1-size);
-    color: var(--global-headline-2-color);
+    color: var(--global-primary-color);
     font-weight: var(--global-headline-2-font-weight);
     letter-spacing: -0.022em;
 }
@@ -36,33 +36,32 @@
   }
   
 .add-activity--content > div{
-    border-radius: var(--global-border-radius);
+    margin-top: 20px;
     
 }
 
+.add-activity--content > div > p{
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: #666666;
+    margin-top: 20px;
+}
 
-.add-activity--input > input {
+/* .add-activity--input > input {
+    border-radius: var(--global-border-radius);
     border: var(--global-border-color);
     width: var(--global--form-input-width);
     height: var(--global--form-input-height);
     -webkit-transition: 0.5s;
     transition: 0.1s;
     outline: none;
+    padding-left: 10px;
 }
 
 .add-activity--input > input:focus{
     border: var(--global-border-color__focus);
-}
+} */
 
-.add-activity--input{
-    margin-top: 20px;
-}
-
-.add-activity--input > ::placeholder{
-    font-size: var(--global-sub-title-light-size);
-    color: var(--global-sub-title-light-color);
-    font-weight: normal;
-}
 
 .activity-calendar{
     margin-bottom: 20px;
@@ -71,7 +70,7 @@
 .add-activity--calendar--icon{
     position: absolute;
     margin-left: 300px;
-    margin-top: 23px;
+    margin-top: 43px;
 }
 
 .add-activity--add__button{
@@ -85,4 +84,9 @@
     align-items: center;
     width: 335px;
     cursor: pointer;
+    color: white;
+}
+
+.add-activity--input__select-button{
+    width: 345px;
 }
