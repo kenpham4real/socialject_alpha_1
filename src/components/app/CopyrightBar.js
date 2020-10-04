@@ -9,8 +9,14 @@ function CopyrightBar(props) {
       <div className="copyright-container">
         {/*Copyright*/}
         <p className="copyright-text">Copyrighted by ...</p>
-        {/*Top right corner*/}
-        <p className="copyright-text right">SocialJect </p>
+        {/*Right corner*/}
+        <div>
+          <div className="copyright-text right"> SocialJect </div>
+          <img
+            className="copyright-icon"
+            src={require("../../assets/images/SJ.png")}
+          />
+        </div>
       </div>
     </div>
   );
