@@ -4,6 +4,6 @@
   color: var(--title);
   border-radius: none;
   vertical-align: middle;
-  font-family: "Inter";
+  font-family: var(--global-font-family);
   background-color: var(--global-page-background-color);
 }

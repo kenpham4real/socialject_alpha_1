@@ -11,28 +11,36 @@
   background-color: var(--global-page-background-color);
 }
 
-.project-card {
+.project-card-container {
   display: inline-block;
+  box-shadow: 0px 2px 2px var(--global-smaller-subtitles-color);
   margin: 10px;
+  margin-bottom: 25px;
   width: 250px;
   height: 370px;
-  cursor: pointer;
   border-radius: 3px;
-  border: none;
-  text-align: left;
-  box-sizing: border-box;
   background-color: white;
+}
 
+.project-card-container:hover {
+  transform: scale(1.1);
+  filter: brightness(125%);
+  transition: 0.2s;
+}
+
+.project-card-container:not(:hover) {
+  transition: 0.2s;
+}
+
+.project-card {
+  display: block;
+  width: 250px;
+  height: 370px;
   cursor: pointer;
 }
 
 .project-card:hover {
-  z-index: 1;
-  cursor: pointer;
-  transform: scale(1.4);
-  background-color: rgb(164, 162, 179);
   box-shadow: 0 0 0 1000px rgba(45, 44, 48, 0.24);
-  filter: brightness(150%);
   transition: 0.2s;
 }
 
@@ -89,9 +97,10 @@
 .project-text.description {
   -webkit-line-clamp: 2; /* number of lines to show */
 }
+/*
 .project-text.description:hover {
   display: -webkit-box;
-  -webkit-line-clamp: 10; /* number of lines to show */
+  -webkit-line-clamp: 10; 
   -webkit-box-orient: vertical;
   width: 100%;
   left: -12.5%;
@@ -105,7 +114,7 @@
 .project-text.description:not(:hover) {
   transition: 0.2s;
 }
-
+*/
 .project-text.title {
   font-size: 20px;
   color: var(--title);

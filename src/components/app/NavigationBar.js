@@ -86,7 +86,7 @@ function NavigationBar(props) {
           <img alt="" className="icon avatar" src={user.userAvatar} />
           <p className="banner-title">{user.userName}</p>
         </Link>
-        <img alt="" className="icon" src={arrow} />
+        {/*<img alt="" className="icon" src={arrow} />*/}
       </div>
     </div>
   );
