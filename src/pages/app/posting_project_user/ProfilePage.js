@@ -22,6 +22,7 @@
 
 import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 // Styles
 import "./styles/ProfilePage.css";
@@ -49,12 +50,9 @@ function AddProjectButton(props) {
   if (userId != null) userId = userId.userId;
   if (userId == props.projectOwnerId)
     return (
-      <a
-        onClick={props._onNavigateToCreateProjectModal}
-        className="profile-button"
-      >
+      <Link to="/createPostModal" className="profile-button">
         Add a project
-      </a>
+      </Link>
     );
   else return <div style={{ display: "none" }}></div>;
 }
@@ -63,14 +61,16 @@ function AddProjectButton(props) {
 function OrgName(props) {
   return (
     <div className="profile-name-container">
-      <img className="profile-avatar" src={props.data.imageFile} />
+      <img className="profile-avatar" src={props.data.orgAvatar} />
       <div className="profile-block-container-small">
         <div className="profile--title">{props.data.orgName}</div>
-        <div style={{ color: "gray" }}>
+        <div style={{ color: "gray", fontSize: "18px" }}>
           {props.data.location} / {props.data.category} /{" "}
           {props.data.university}
         </div>
-        <div>{props.data.description}</div>
+        <div className="profile-description" style={{ fontSize: "15px" }}>
+          {props.data.description}
+        </div>
         {/*<a
           onClick={props._onNavigateToCreateProjectModal}
           className="profile-button"
@@ -80,10 +80,10 @@ function OrgName(props) {
         <AddProjectButton projectOwnerId={props.projectOwnerId} />
       </div>
 
-      <a className="profile-block-container-smaller">
+      <div className="profile-block-container-smaller">
         <div>Email: {props.data.email}</div>
         <div>Phone: {props.data.phoneNumber}</div>
-      </a>
+      </div>
     </div>
   );
 }
@@ -111,17 +111,17 @@ function OrgHistory(props) {
    * @author Ken Pham, Long Avenger
    */
   const project_item = data.map((element) => {
+    console.log("Project Id in profile page: ", element.projectId);
     return (
-      <li>
-        <ProjectActivity
-          key={element.orgId}
-          project_activity_avatar={element.projectAvatar}
-          project_activity_name={element.projectName}
-          project_activity_date={element.deadline}
-          project_activity_location="Ho Chi Minh"
-          project_activity_description={element.description}
-        />
-      </li>
+      <ProjectActivity
+        key={element.orgId}
+        project_activity_avatar={element.projectAvatar}
+        project_activity_name={element.projectName}
+        project_activity_date={element.deadline}
+        project_activity_location="Ho Chi Minh"
+        project_activity_description={element.description}
+        projectId={element.projectId}
+      ></ProjectActivity>
     );
   });
 
@@ -136,16 +136,15 @@ function OrgHistory(props) {
         Add a project
       </a>
       */}
-      <div>
-        <ul className="project-activity-list">
-          <a
+      <div className="project-activity-list">
+        {project_item}
+        {/*<a
             className="project-activity-list--component"
             href="/projectInfo/project_1"
             onClick={() => props.history.push("/projectInfo/project_1")}
           >
             {project_item}
-          </a>
-        </ul>
+          </a>*/}
       </div>
     </div>
   );
