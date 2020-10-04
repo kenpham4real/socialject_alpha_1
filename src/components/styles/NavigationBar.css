@@ -5,7 +5,6 @@
   padding-right: 2%;
   position: sticky;
   z-index: 1;
-
   background-color: var(--global-page-background-color);
   border: 1px solid var(--secondary);
   overflow: hidden;
@@ -28,8 +27,7 @@
   margin-right: 2px;
   font-size: 20px;
   font-weight: bold;
-  color: var(--title);
-
+  color: var(--global-headline-1-color);
   background-color: var(--global-page-background-color);
   border: none;
   border-radius: 0.4rem;
@@ -37,7 +35,7 @@
 }
 
 .navigationBar .banner-title:hover {
-  color: var(--secondary);
+  color: var(--global-accent-1-color);
   transition: 0.2s;
   cursor: pointer;
 }
