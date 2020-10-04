@@ -132,15 +132,15 @@ const FinishCreate = (props) => {
         </div>
 
         <div>
-          <button
-            className="container-finish"
+          <div
+            className="container-continue"
             onClick={() => {
               _onFinish();
               
             }}
           >
             <span> Finish </span>
-          </button>
+          </div>
         </div>
       </div>
     </div>

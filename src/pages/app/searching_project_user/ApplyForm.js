@@ -27,16 +27,6 @@ const ApplyForm = (props) => {
     // Global state
 	const projectsData = useSelector((state) => state.projectReducerSPU.projectsData);
 
-
-    // const _loadProjects = useCallback(async () => {
-    //     try {
-    //       dispatch(projectActions.FetchProjectInfo(dispatch, projectId));
-    //     } catch (error) {
-    //       console.log("error", error);
-    //     }
-    //   }, [dispatch]);
-
-
 	// Depending on the number of questions, we'll initialize the according number of states for the inputs
 	// Eg: If there're 2 questions, the answerInput will be initialized as an array of 2 objects, containing "question" and "answer" properties
 	const [answerInput, setAnswerInput] = useState(projectsData.projectDetail.questions.map((question) => {
@@ -119,12 +109,10 @@ const ApplyForm = (props) => {
 					})}
 				</li>
 			</ul>
-			<button 
-				type="submit" 
+			<div
 				className="contact-form-submit"
 				onClick={() => {
 					_onSubmitAnswers();
-					// _loadProjects();
 					props.history.goBack({
 						pathname: "/projectInfo",
 						answerInput,
@@ -132,7 +120,7 @@ const ApplyForm = (props) => {
 					}}
 			>
 				Submit
-			</button>
+			</div>
             
         </div>
 	);
