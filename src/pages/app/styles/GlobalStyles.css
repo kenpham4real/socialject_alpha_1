@@ -135,5 +135,5 @@
      /************************************ FORMS, INPUTS ************************************/
      --global--form-input-width: 330px;
      --global--form-input-height: 60px;
-     --global-border-color__focus: 2px solid rgba(47,173,88,.5);
+     --global-border-color__focus: 2px solid rgba(47,173,88,1);
 }
