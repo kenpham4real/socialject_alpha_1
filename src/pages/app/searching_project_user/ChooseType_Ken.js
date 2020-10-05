@@ -45,10 +45,10 @@ import ProjectSlide from "../../../components/app/ChooseType/ProjectSlide.js";
 
 //Data
 import * as landingAction from "../../../store/actions/searching-project-user/landing/landingAction";
-import * as autoLoginAction from '../../../store/actions/auth/autoLoginAction'
+import * as autoLoginAction from "../../../store/actions/auth/autoLoginAction";
 import NavigationBar_Ken from "../../../components/app/NavigationBar_Ken";
 
-import {ADMIN, STUDENT} from '../../../constants/user-types'
+import { ADMIN, STUDENT } from "../../../constants/user-types";
 
 //Main function
 const ChooseType = (props) => {
@@ -57,8 +57,6 @@ const ChooseType = (props) => {
   const callback = useCallback;
   //Select data from the global state.
   const selectData = useSelector((state) => state.landingReducer.projectData);
-  
-  
 
   //Use 2 hooks useEffect and useCallback to prevent re-render, but it still re-render anyway.
   /**
@@ -82,14 +80,13 @@ const ChooseType = (props) => {
   console.log("Selected Data:", selectData);
 
   const _pathOfUser = (userData) => {
-    return userData.userType === ADMIN ? "/profile" : null
-  }
+    return userData.userType === ADMIN ? "/profile" : null;
+  };
 
   return (
     <div className="chooseTypePage">
       {/*Navigation Bar*/}
-      <NavigationBar_Ken 
-      />
+      <NavigationBar_Ken />
 
       {/*Slogan Panel*/}
       <SloganPanel background={imageURL}></SloganPanel>

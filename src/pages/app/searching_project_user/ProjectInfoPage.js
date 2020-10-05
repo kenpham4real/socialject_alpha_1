@@ -31,10 +31,8 @@ import * as activityActions from "../../../store/actions/posting-project-user/ac
 // import {_getFormSubmission} from '../../../store/actions/posting-project-user/project/project'
 import NavigationBar_Ken from "../../../components/app/NavigationBar_Ken";
 
-
-
 const ProjectInfoPage = (props) => {
-  console.log('PROJECT_INFO_PAGE');
+  console.log("PROJECT_INFO_PAGE");
 
   const projectId = props.history.location.projectId;
   const orgId = props.history.location.orgId;
@@ -74,19 +72,17 @@ const ProjectInfoPage = (props) => {
   }, [dispatch]);
 
   useEffect(() => {
-      _loadProjects()
-      .then(() => {
-        setIsFetchedRecruitInfo(true);
-      })
-
+    _loadProjects().then(() => {
+      setIsFetchedRecruitInfo(true);
+    });
   }, [dispatch, _loadProjects, isFetchedRecruitInfo]);
 
   console.log("fetched projects", projectsData);
 
   const _onViewStudentAnswer = (applicantInfo) => {
-    console.log(applicantInfo)
-    setApplicant(applicantInfo)
-  }
+    console.log(applicantInfo);
+    setApplicant(applicantInfo);
+  };
 
   /********************************* Small UI components *********************************/
   /**
@@ -132,7 +128,7 @@ const ProjectInfoPage = (props) => {
         <div className="organizationName">
           {projectsData.projectInfo.projectName}{" "}
         </div>
-        <button>Follow</button>
+        {/* <button>Follow</button>    //Follow Functionality has not been developed */}
       </div>
     );
   };
@@ -148,7 +144,15 @@ const ProjectInfoPage = (props) => {
     console.log("Project owner's Id: ", projectsData.projectInfo.orgId);
     if (userId != projectsData.projectInfo.orgId)
       return (
-        <div className="applyButton">
+        <div
+          className="applyButton"
+          onClick={() =>
+            props.history.push({
+              pathname: "/applyform",
+              projectId: projectId,
+            })
+          }
+        >
           <div className="applyNow">
             <Link
               className="Link"
@@ -160,12 +164,19 @@ const ProjectInfoPage = (props) => {
               Apply Now{" "}
             </Link>
           </div>
-          <div className="dueDay">
-            Deadline: {projectsData.projectInfo.deadline}
-          </div>
         </div>
       );
     else return <div></div>;
+  };
+
+  const _project_due_day = () => {
+    return (
+      <div className="dueDay">
+        <span>{projectsData.projectInfo.deadline}</span>
+        <br />
+        <span className="deadlineTittle">Deadline</span>
+      </div>
+    );
   };
 
   /**
@@ -176,7 +187,7 @@ const ProjectInfoPage = (props) => {
    */
   const _project_avatar = () => {
     return (
-      <div>
+      <div className="projectPictureContainer">
         <img
           className="projectPicture"
           src={projectsData.projectInfo.projectAvatar}
@@ -195,7 +206,8 @@ const ProjectInfoPage = (props) => {
   const _project_joined_users = () => {
     return (
       <div className="joinedUsers">
-        <span>Maybe some random number</span> has joined
+        <span>100</span>
+        <br /> has joined
       </div>
     );
   };
@@ -240,7 +252,9 @@ const ProjectInfoPage = (props) => {
           {isFetchedRecruitInfo &&
             isFetchedRecruitInfo &&
             projectsData.projectDetail.benefits.map((benefit) => (
-              <ListedItems title={benefit} />
+              <li>
+                <ListedItems title={benefit} />
+              </li>
             ))}
         </ul>
       </div>
@@ -258,10 +272,14 @@ const ProjectInfoPage = (props) => {
     return (
       <div className="requirementContaner">
         <h1 className="projectHeadings">Requirements</h1>
-        {isFetchedRecruitInfo &&
-          projectsData.projectDetail.requirements.map((requirement) => (
-            <ListedItems title={requirement} />
-          ))}
+        <ul>
+          {isFetchedRecruitInfo &&
+            projectsData.projectDetail.requirements.map((requirement) => (
+              <li>
+                <ListedItems title={requirement} />
+              </li>
+            ))}
+        </ul>
       </div>
     );
   };
@@ -479,12 +497,11 @@ const ProjectInfoPage = (props) => {
   //   },
   // ];
 
-
   /********************************* MAIN Component: ProjectInfoPage *********************************/
   return (
     <div className="projectInfoPage">
       <div>
-      {/* <NavigationBar /> */}
+        {/* <NavigationBar /> */}
         <NavigationBar_Ken />
       </div>
 
@@ -493,27 +510,29 @@ const ProjectInfoPage = (props) => {
 
         {/*'generalInfo' division*/}
         <div className="generalInfoComponents">
-          {_project_tags()}
+          {/* {_project_tags()} */}
           <div className="projectName">
             {projectsData.projectInfo.projectName}
           </div>
           <div className="location">{projectsData.projectInfo.location}</div>
           {_organization_info()}
 
-          {_project_apply_button()}
-
           {_project_joined_users()}
+          {_project_due_day()}
+
+          {_project_apply_button()}
         </div>
 
         {/*'projectPicture' division*/}
         {_project_avatar()}
       </div>
 
-      <div className="content">
+      <div className="projectInfoContent">
         <div className="leftColumn">
           {_project_held_by_section()}
           {_project_benefit_section()}
           {_project_requirement_section()}
+
           {/* <div className="teamContainer">
             <h1 className="projectHeadings">Team</h1>
             <ListedItems />
@@ -548,9 +567,8 @@ const ProjectInfoPage = (props) => {
           </Modal>
         </div>
       </div>
-      <div className="footer">
-        <CopyrightBar />
-      </div>
+
+      <CopyrightBar />
     </div>
   );
 };

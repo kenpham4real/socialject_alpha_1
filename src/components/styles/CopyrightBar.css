@@ -1,7 +1,7 @@
 /*Bottom*/
 
 .line {
-  margin-top: 10%;
+  margin-top: 50px;
   margin-left: 10%;
   margin-right: 10%;
   border-bottom: 1px solid var(--global-subtitles-color);
