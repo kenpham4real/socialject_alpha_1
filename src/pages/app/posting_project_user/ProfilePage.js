@@ -31,6 +31,7 @@ import "./styles/ProfilePage.css";
 import NavigationBar from "../../../components/app/NavigationBar.js";
 import CopyrightBar from "../../../components/app/CopyrightBar.js";
 import ProjectActivity from "../../../components/app/ProjectInfoPage/ProjectActivity";
+import NavigationBar_Ken from '../../../components/app/NavigationBar_Ken'
 
 // Constants
 import { testing_project_id } from "../../../constants/testing-keys";
@@ -46,11 +47,13 @@ const loremText =
 
 //The button to add a project
 function AddProjectButton(props) {
-  let userId = JSON.parse(localStorage.getItem("userData"));
-  if (userId != null) userId = userId.userId;
+  let userId;
+  let user = JSON.parse(localStorage.getItem("userData"));	
+  if (user != null) userId = user.userId;
+
   if (userId == props.projectOwnerId)
     return (
-      <Link to="/createPostModal" className="profile-button">
+      <Link to={`/profile/createPostModal/${userId}`} className="profile-button">
         Add a project
       </Link>
     );
@@ -157,6 +160,9 @@ function OrgHistory(props) {
 
 //Main component, calling the fetching action and display all UI component.
 const ProfilePage = (props) => {
+
+  const organization = useSelector(state => state.autoLoginReducer.userData);
+
   /**
    * @summary Navigate to the create project modal
    * @function
@@ -205,7 +211,7 @@ const ProfilePage = (props) => {
   return (
     <div className="profilePage">
       {/*Navigation Bar*/}
-      <NavigationBar></NavigationBar>
+      <NavigationBar_Ken/>
 
       {/*Org. Name Panel*/}
       <OrgName
