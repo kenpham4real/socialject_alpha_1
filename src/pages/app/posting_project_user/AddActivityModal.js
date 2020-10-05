@@ -201,7 +201,11 @@ const AddActivityModal = (props) => {
           </div>
           <div className="add-activity--input activity-calendar">
             <i>
-              <FcCalendar size={23} onClick={_showCalendar} className="add-activity--calendar--icon" />
+              <FcCalendar size={23} onClick={ ()=>{
+                _showCalendar();
+                localStorage.setItem("AddActivity",JSON.stringify(dataAddActivity));
+              }} 
+              className="add-activity--calendar--icon" />
             </i>
             
             <FormInput
@@ -230,12 +234,8 @@ const AddActivityModal = (props) => {
           <div 
             className="add-activity--add__button" 
             onClick={()=>{
-              /*
-                *When PPUs click on Add Activity we will save the states they filled to LocalStorage
-                *So I need @kenpham4real handle the key "AddActivity" when users finish the authentication, 
-                  They will delete the key "AddActivity" in LocalStorage!!
-              */
-              localStorage.setItem("AddActivity",JSON.stringify(dataAddActivity));
+                //When PPUs click on Add Activity they will delete the key "AddActivity" in LocalStorage!!
+             localStorage.removeItem("AddActivity")
               _onAddActivity();
             }
              
