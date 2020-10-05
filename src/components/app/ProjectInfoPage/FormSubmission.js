@@ -29,7 +29,7 @@ const FormSubmission = (props) => {
         {props.isFetchedRecruitInfo && props.formSubmissions.map((formSubmission) => (
           <SubmissionCard
             applicantInfo={formSubmission}
-            onModalOpening={() => props.onModalOpening(formSubmissionData)}
+            // onModalOpening={() => props.onModalOpening(formSubmissionData)}
           />
         ))}
       </div>
