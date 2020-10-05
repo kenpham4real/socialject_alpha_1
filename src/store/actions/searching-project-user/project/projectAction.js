@@ -5,7 +5,8 @@
  *
  *
  *    (+) Long 22 Sept
- *
+ * 
+ * 	  (+) Ken Oct 3rd
  *
  * Main Fucntion:
  *   Sub-function:
@@ -34,76 +35,114 @@ import {
 
 /************Fetch Data*********/
 // Export the actions.
-export const PROJECT_DETAILS = "PROJECT_DETAILS";
+export const SET_PROJECT_RECRUIT_INFO = "SET_PROJECT_RECRUIT_INFO";
 
-//Fetch the data from the Firebase.
-export async function FetchProjectInfo(dispatch, projectId) {
-  console.log("Fetching project info is beginning with projectId: ", projectId);
-  let count = 0;
-  let projectData = {
-    projectInfo: {},
-    projectDetail: {},
-    projectProgress: [],
-  };
-  try {
-    // Retrieve the data from Firestore Cloud database
-    //Data Basic Info
-    await firebase_db
-      .collection("public-projects")
-      .doc(projectId)
-      .get()
-      .then(function (doc) {
-        projectData.projectInfo = doc.data();
-        console.log("Document data - Info:", projectData.projectInfo);
-      });
-    //Data Recruit Info
-    await firebase_db
-      .collection("public-projects")
-      .doc(projectId)
-      .collection("recruit-info")
-      .doc(projectId)
-      .get()
-      .then(function (doc) {
-        projectData.projectDetail = doc.data();
-        if (projectData.projectDetail == undefined)
-          projectData.projectDetail = {
-            benefits: [],
-            requirements: [],
-            questions: [],
-          };
-        console.log("Document data - Details:", projectData.projectDetail);
-      });
-    //Data Progress
-    await firebase_db
-      .collection("public-projects")
-      .doc(projectId)
-      .collection("recruit-info")
-      .doc(projectId)
-      .collection("progress")
-      .get()
-      .then(function (querySnapshot) {
-        querySnapshot.forEach(function (doc) {
-          projectData.projectProgress[count] = doc.data();
-          count++;
-        });
-        console.log("Document data - progress:", projectData.projectProgress);
-      });
+/**
+ * @summary Fetch the recruit info of the project
+ * @param {string} orgId The id of the chosen organization
+ * @param {string} projectId The id of the chosen project
+ * @returns {function} An async function to call the database and dispatch the data to global store
+ */
+export function _getProjectInfo(orgId, projectId) {
 
-    // dispatch helps us store the changed state/ data into the reducers
-    dispatch({
-      type: PROJECT_DETAILS,
-      payload: projectData,
-    });
+ 	 return async (dispatch, getState) => {
+		console.log("Fetching project info is beginning with projectId: ", projectId);
+		let count = 0;
+		let projectData = {
+			projectInfo: {},
+			projectDetail: {},
+			projectProgress: [],
+			formSubmission:[]
+		};
+		try {
 
-    analytics.logEvent("page_view", {
-      page_location: "ProjectInfoPage",
-      page_title: "ProjectInfoPage",
-      page_path: `/projectInfoPage/${projectId}`,
-      category: `${projectData.projectInfo.category}`,
-    });
-  } catch (error) {
-    console.log("error", error);
-  }
+			// Basic info of the project
+			await firebase_db
+				.collection("public-projects")
+				.doc(projectId)
+				.get()
+				.then(function (doc) {
+					projectData.projectInfo = doc.data();
+					console.log("Document data - Info:", projectData.projectInfo);
+				});
+
+			//Project Recruit Info
+			await firebase_db
+				.collection("public-projects")
+				.doc(projectId)
+				.collection("recruit-info")
+				.doc(projectId)
+				.get()
+				.then(function (doc) {
+					projectData.projectDetail = doc.data();
+					if (projectData.projectDetail == undefined){
+						projectData.projectDetail = {
+							benefits: [],
+							requirements: [],
+							questions: [],
+						};
+					}
+					console.log("Document data - Details:", projectData.projectDetail);
+				});
+
+			//Project Progress
+			await firebase_db
+				.collection("public-projects")
+				.doc(projectId)
+				.collection("recruit-info")
+				.doc(projectId)
+				.collection("progress")
+				.get()
+				.then(function (querySnapshot) {
+					querySnapshot.forEach(function (doc) {
+						projectData.projectProgress[count] = doc.data();
+						count++;
+					});
+					console.log("Document data - progress:", projectData.projectProgress);
+				});
+				
+			// Form submission
+			await 
+			firebase_db
+			.collection('organization')
+			.doc(`${orgId}`)
+			.collection('projects')
+			.doc(`${projectId}`)
+			.collection('formSubmission')
+			.get()
+			.then((query) =>{
+				console.log('query.docs(): ', query.docs);
+				let tmpDoc;
+				
+				query.forEach((doc) => {
+					console.log('doc of form submission', doc);
+					projectData.formSubmission.push(doc.data())
+					tmpDoc = doc;
+				})
+				console.log('added form submission data with doc', tmpDoc)
+			})
+		
+			console.log('formSubmission',projectData.formSubmission)
+
+			dispatch({
+				type: SET_PROJECT_RECRUIT_INFO,
+				payload: projectData,
+			});
+
+			// Analytics
+			analytics.logEvent('page_view', {
+				page_location: 'ProjectInfoPage',
+				page_title: 'ProjectInfoPage',
+				page_path: `/projectInfoPage/${projectId}`,
+				category: `${projectData.projectInfo.category}`
+			});
+		
+
+		} catch (error) {
+			console.log("error", error);
+		}
+	}
+  
 }
 
 /************Push Data**************/

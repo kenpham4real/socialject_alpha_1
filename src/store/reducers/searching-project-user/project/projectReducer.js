@@ -1,6 +1,8 @@
+// projectReducer.js
+
 // Firebase database
 
-import { PROJECT_DETAILS } from "../../../actions/searching-project-user/project/projectAction";
+import { SET_PROJECT_RECRUIT_INFO } from "../../../actions/searching-project-user/project/projectAction";
 
 //Initial state:
 const initialState = {
@@ -14,13 +16,14 @@ const initialState = {
     projectProgress: [],
   },
   upDataForm: [],
+
 };
 
 /******************************** REDUCER ********************************/
 //Save the data onto global store
 export const projectReducerSPU = (state = initialState, action) => {
   switch (action.type) {
-    case PROJECT_DETAILS:
+    case SET_PROJECT_RECRUIT_INFO:
       console.log("Project array payload: ", action.payload);
       return {
         ...state,
@@ -30,3 +33,4 @@ export const projectReducerSPU = (state = initialState, action) => {
       return state;
   }
 };
+
