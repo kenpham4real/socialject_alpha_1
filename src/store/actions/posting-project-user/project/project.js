@@ -189,6 +189,8 @@ export const _getFormSubmission = (orgId, projectId) => {
   return async (dispatch, getState) => {
     console.log("GETTING FORM SUBMISSION");
 
+    console.log("GETTING FORM SUBMISSION");
+
     let formSubmission = [];
 
     try {

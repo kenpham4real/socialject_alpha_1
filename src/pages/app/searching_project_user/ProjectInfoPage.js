@@ -13,7 +13,7 @@
 import React, { useEffect, useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
+import Modal from "react-modal";
 // Styles
 import "./styles/ProjectInfoPage.css";
 
@@ -30,6 +30,10 @@ import * as projectActions from "../../../store/actions/searching-project-user/p
 import * as activityActions from "../../../store/actions/posting-project-user/activity/activity";
 import { _getFormSubmission } from "../../../store/actions/posting-project-user/project/project";
 
+//const userId = JSON.parse(localStorage.getItem("userData")).userId;
+const userId = "1lrR6G5aoc0CuAaIrRN4";
+console.log("User Id is: ", userId);
+
 const ProjectInfoPage = (props) => {
   console.log("Props", props);
   const projectId = props.history.location.projectId;
@@ -40,7 +44,14 @@ const ProjectInfoPage = (props) => {
   const dispatch = useDispatch();
   const [isFetchedRecruitInfo, setIsFetchedRecruitInfo] = useState(false);
   const [isFetchedActivities, setIsFetchedActivities] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formStudentId, setFormStudentId] = useState({
+    name: "",
 
+    email: "",
+    avatar: "",
+    answers: [],
+  });
   // Retrieve the projects state from the reducer
   // state.projectReducer --> From App.js
   // .projects --> From reducer
@@ -122,7 +133,7 @@ const ProjectInfoPage = (props) => {
           onClick={() =>
             props.history.push({
               pathname: "/profile",
-              profileId: projectsData.projectInfo.orgID,
+              profileId: projectsData.projectInfo.orgId,
             })
           }
         />
@@ -142,24 +153,26 @@ const ProjectInfoPage = (props) => {
    * @author Ken Pham, Dat Uchiha
    */
   const _project_apply_button = () => {
-    return (
-      <div className="applyButton">
-        <div className="applyNow">
-          <Link
-            className="Link"
-            to={{
-              pathname: "/applyform",
-              projectId,
-            }}
-          >
-            Apply Now{" "}
-          </Link>
+    if (userId != projectsData.projectInfo.orgId)
+      return (
+        <div className="applyButton">
+          <div className="applyNow">
+            <Link
+              className="Link"
+              to={{
+                pathname: "/applyform",
+                projectId,
+              }}
+            >
+              Apply Now{" "}
+            </Link>
+          </div>
+          <div className="dueDay">
+            Deadline: {projectsData.projectInfo.deadline}
+          </div>
         </div>
-        <div className="dueDay">
-          Deadline: {projectsData.projectInfo.deadline}
-        </div>
-      </div>
-    );
+      );
+    else return <div></div>;
   };
 
   /**
@@ -325,6 +338,21 @@ const ProjectInfoPage = (props) => {
     );
   };
 
+  const _handle_modal_open = (StudentId) => {
+    setIsModalOpen(true);
+    const { name, email, avatar, answers } = StudentId;
+    setFormStudentId((prevState) => ({
+      ...prevState,
+      name: name,
+      email: email,
+      avatar: avatar,
+      answers: answers,
+    }));
+    console.log("Student ID", StudentId);
+    console.log("Modal Student Id", formStudentId);
+  };
+  console.log("Modal Student Id", formStudentId);
+  const _close_modal_handler = () => setIsModalOpen(false);
   /********************************* MAIN Component: ProjectInfoPage *********************************/
   const imageURL =
     "https://i.pinimg.com/originals/39/46/55/39465510117c36c2023b2d72cdcf05b3.jpg";
@@ -332,54 +360,108 @@ const ProjectInfoPage = (props) => {
     //Example data for Form Submission
     {
       name: "Ken Pham",
+
       email: "kanekiken@gmail.com",
       avatar: imageURL,
-      answers: ["KEN love u pacpac", "game de vl", "ui gioi oi tuong the nao"],
+      answers: [
+        {
+          id: "1",
+          question: "Your favorite pokemon?",
+          answer: " KEN Charizard",
+        },
+        { id: "2", question: "Your favorite 6 digit code?", answer: "177013" },
+        {
+          id: "3",
+          question: "Your favorite type of girl?",
+        },
+      ],
     },
     {
       name: "Long Wibu",
       email: "longthewibulord@gmail.com",
       avatar: imageURL,
-      answers: ["LONG love u pacpac", "game de vl", "ui gioi oi tuong the nao"],
+      answers: [
+        {
+          id: "1",
+          question: "Your favorite pokemon?",
+          answer: " LONGGGGGGGG WWIBUUUUU Charizard",
+        },
+        { id: "2", question: "Your favorite 6 digit code?", answer: "177013" },
+        {
+          id: "3",
+          question: "Your favorite type of girl?",
+        },
+      ],
     },
     {
       name: "Long Artist",
       email: "chillisaucery@gmail.com",
       avatar: imageURL,
       answers: [
-        "LONG ARTIST u pacpac",
-        "game de vl",
-        "ui gioi oi tuong the nao",
+        {
+          id: "1",
+          question: "Your favorite pokemon?",
+          answer: "LONGGGGG ARTISTTTTTTT Charizard",
+        },
+        { id: "2", question: "Your favorite 6 digit code?", answer: "177013" },
+        {
+          id: "3",
+          question: "Your favorite type of girl?",
+        },
       ],
     },
     {
       name: "Dat Uchiha",
+
       email: "uchihasasudat@gmail.com",
       avatar: imageURL,
       answers: [
-        " DAT   love u pacpac",
-        "game de vl",
-        "ui gioi oi tuong the nao",
+        {
+          id: "1",
+          question: "Your favorite pokemon?",
+          answer: "DAT DEP TRAI Charizard",
+        },
+        { id: "2", question: "Your favorite 6 digit code?", answer: "177013" },
+        {
+          id: "3",
+          question: "Your favorite type of girl?",
+        },
       ],
     },
     {
       name: "Tien kun",
+
       email: "tranngoctien@gmail.com",
       avatar: imageURL,
       answers: [
-        " TIEN   love u pacpac",
-        "game de vl",
-        "ui gioi oi tuong the nao",
+        {
+          id: "1",
+          question: "Your favorite pokemon?",
+          answer: "TIEN KUN   Charizard",
+        },
+        { id: "2", question: "Your favorite 6 digit code?", answer: "177013" },
+        {
+          id: "3",
+          question: "Your favorite type of girl?",
+        },
       ],
     },
     {
       name: "Imposter",
+
       email: "amongus@gmail.com",
       avatar: imageURL,
       answers: [
-        " IMPOSTER love u pacpac",
-        "game de vl",
-        "ui gioi oi tuong the nao",
+        {
+          id: "1",
+          question: "Your favorite pokemon?",
+          answer: "IMPOSTER     Charizard",
+        },
+        { id: "2", question: "Your favorite 6 digit code?", answer: "177013" },
+        {
+          id: "3",
+          question: "Your favorite type of girl?",
+        },
       ],
     },
   ];
@@ -427,10 +509,19 @@ const ProjectInfoPage = (props) => {
           {_project_about_section()}
           {_project_progress_section()}
           <FormSubmission
-            data={exampleFormSubmissionData}
-            onClick={console.log("Handle Clicked")}
+            userId={userId}
+            projectOwnerId={projectsData.projectInfo.orgId}
+            formData={exampleFormSubmissionData}
+            onModalOpening={(props) => _handle_modal_open(props)}
           />
-          <IndividualForm data={exampleFormSubmissionData} />
+          <Modal isOpen={isModalOpen}>
+            <IndividualForm
+              userId={userId}
+              projectOwnerId={projectsData.projectInfo.orgId}
+              formData={formStudentId}
+              onModalClosing={_close_modal_handler}
+            />
+          </Modal>
         </div>
       </div>
       <div className="footer">

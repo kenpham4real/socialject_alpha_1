@@ -7,7 +7,7 @@
 // Packages
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { v4 as uuid_v4 } from "uuid"
+import { v4 as uuid_v4 } from "uuid";
 import * as profileActions from "../../../store/actions/posting-project-user/profile/profileAction";
 
 //Styles
@@ -19,11 +19,13 @@ const FinishCreate = (props) => {
   const [PhoneNumber, setPhoneNumber] = useState("");
   const [Facebook, setFacebook] = useState("");
 
-  const organization = useSelector(state => state.authReducer.userData);
-
+  // const organization = useSelector(state => state.authReducer.userData);
+  const organization = localStorage.getItem("userData");
+  console.log("org", organization);
   //Handle state of 3 screen
   const organizationProperties = {
     orgName: props.location.organizationName,
+    category: props.location.category,
     description: props.location.description,
     location: props.location.location.selectedOption.label,
     university: props.location.university,
@@ -73,25 +75,23 @@ const FinishCreate = (props) => {
    */
 
   const _onFinish = () => {
-    console.log("Creating profile");
-    const organizationId = uuid_v4();
     dispatch(
       profileActions._createProfile_ppu(
-        organization.uid,
-        organizationId,
+        organization.userId,
         organizationProperties.orgName,
+        organizationProperties.category,
         organizationProperties.description,
         organizationProperties.location,
         organizationProperties.university,
         organizationProperties.email,
         organizationProperties.phoneNumber,
         organizationProperties.facebook,
-        organizationProperties.imageFile,
+        organizationProperties.imageFile
       )
     );
     props.history.push({
       pathname: "/profile",
-      profileId: organizationId
+      profileId: organization.userId,
     });
   };
 
@@ -136,7 +136,6 @@ const FinishCreate = (props) => {
             className="container-finish"
             onClick={() => {
               _onFinish();
-              
             }}
           >
             <span> Finish </span>

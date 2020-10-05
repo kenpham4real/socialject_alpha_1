@@ -2,16 +2,19 @@ import React from "react";
 import "../../styles/ChooseType/ProjectSlide.css";
 
 function ProjectSlide(props) {
+  //get needed data from props
   const Data = props.data;
   const history = props.history;
   console.log("Data in slide is: ", Data);
-  function handleClick(projectId, orgId) {
+  function handleClick(id) {
     console.log("Button clicked.");
-    history.push({
-      pathname: "/projectInfo",
-      projectId: projectId,
-      orgId: orgId,
-    });
+    const userId = JSON.parse(localStorage.getItem("userData"));
+    if (userId == null) {
+      //if there the user didn't login yet, then push them into /choosingUser
+      history.push({ pathname: "/choosingUser" });
+      sessionStorage.setItem("projectId", id);
+    } //if they logged in, then flow is normal
+    else history.push({ pathname: "/projectInfo", projectId: id });
   }
   return (
     <div>
@@ -21,7 +24,7 @@ function ProjectSlide(props) {
           <div class="project-card">
             <button
               className="project-container-button"
-              onClick={() => handleClick(Data.projectId, Data.orgId)}
+              onClick={() => handleClick(Data.projectId)}
             >
               <img class="project-image" src={Data.projectAvatar} />
               <img class="project-icon" src={Data.organizationAvatar} />

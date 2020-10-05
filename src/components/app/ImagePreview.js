@@ -1,4 +1,5 @@
 import React from 'react';
+import { IoMdImages } from "react-icons/io";
 
 // Styles
 import '../styles/ImagePreview.css'
@@ -23,7 +24,6 @@ export const ImagePreview = props => {
               capture='camera'
               accept="image/x-png,image/gif,image/jpeg"
               onChange={(img) => _previewImageHandler(img.target.files, props.setImage, props.setImageFile)}
-         
             />
         </div>
     )

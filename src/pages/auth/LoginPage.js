@@ -35,8 +35,16 @@ const LoginPage = (props) => {
 
   React.useEffect(() => {
     if (userData.isAuth && userData.isAuth === true) {
-      props.history.push("/");
-      window.location.reload(false);
+      const projectId = sessionStorage.getItem("projectId");
+      if (projectId != null) {
+        //user have just logged in once, now redirect them to the projectInfo page
+        props.history.push({ pathname: "/projectInfo", projectId: projectId });
+        sessionStorage.removeItem("projectId");
+      } else {
+        // the user logged in 2 or more times already, so the flow is normal
+        props.history.push("/");
+        window.location.reload(false);
+      }
     }
   }, [userData]);
 
