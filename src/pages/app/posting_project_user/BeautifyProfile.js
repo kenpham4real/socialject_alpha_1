@@ -14,16 +14,42 @@ import { selectInputStyles } from "../../../constants/SelectInputStyle";
 
 const BeautifyProfile = (props) => {
 
+	//Get the data from LocalStorage
+  const _getBeautifyData=JSON.parse(localStorage.getItem("Beautify"));
+
+
+  /*
+	*Make 1 state of this is null to make the browser run without error
+	*pass the state of localStorage to initialize state then we can keep the states when press back button's browser
+	*/
+  let uni=null;
+	if(_getBeautifyData!=null) 
+	{
+		uni=_getBeautifyData.university
+  }
+
+
   //Intialize the states
   const [location, setLocation]= useState("");
-  const [university, setUniversity]= useState("");
+  const [university, setUniversity]= useState(uni);
   const [image, setImage]= useState();
   const [imageFile,setImageFile]=useState("");
-
+  
 
   const organizationName = props.location.organizationName;
   const category=props.location.category;
   const description=props.location.description;
+  
+  
+  const dataBeautify={
+    organizationName,
+    category,
+    description,
+    university,
+    location,
+  }
+
+
   /**
    * @summary Handle Select
    * @param {string} location
@@ -58,11 +84,11 @@ const BeautifyProfile = (props) => {
         </div>
         <div className="view-text-input-beautifyProfile">
           <form>
+            <p className="avatar-text">Organization's location?</p>
             <Select
               className="select"
               name="select"
               placeholder="Location *"
-              required="required"
               options={LOCATIONS}
               value={location.selectedOption}
               onChange={handleChange}
@@ -77,15 +103,16 @@ const BeautifyProfile = (props) => {
                 },
               })}
             />
+            <p className="avatar-text">School/University</p>
             <input
               className="input-text-beautifyProfile"
               name="School/universiy"
               type="text"
               placeholder="School/University"
-              required=" required"
               value={university}
-              onChange={(uni)=> _onChangeUniversity(uni.target.value)}
+              onChange={(university)=> _onChangeUniversity(university.target.value)}
             /> 
+            <p className="avatar-text"> Avatar </p>
             <ImagePreview
               setImage={setImage}
               setImageFile={setImageFile}
@@ -98,7 +125,9 @@ const BeautifyProfile = (props) => {
           <div
             className="container-continue"
             onClick={() =>{
-              props.history.push({ 	
+              //save the states input to LocalStorage when onClick 
+                localStorage.setItem("Beautify",JSON.stringify(dataBeautify));
+                props.history.push({ 	
                   pathname:'/finishCreate',
                   organizationName,
                   category,
@@ -107,8 +136,11 @@ const BeautifyProfile = (props) => {
                   location,
                   image,
                   imageFile,
-              })}
+              });
+            
+          }
             }
+              
           >
             <span> Next </span>
           </div>

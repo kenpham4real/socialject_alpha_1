@@ -17,20 +17,35 @@ import { FormInput } from "../../../components/app/Form/FormInput";
 
 
 const FinishCreate = (props) => {
+
+
   //Initialize the states
   const [Email, setEmail] = useState("");
   const [PhoneNumber, setPhoneNumber] = useState("");
   const [Facebook, setFacebook] = useState("");
 
-  // const organization = useSelector(state => state.authReducer.userData);
-  const organization = JSON.parse(localStorage.getItem("userData"));
   
+  //Get the data from LocalStorage
+  const organization = JSON.parse(localStorage.getItem("userData"));
+
+  
+  /* 
+    *If users didn't choose the location, they still can press the button next without error
+    *They can comeback and choose again
+  */
+  let locationLabel="";
+  if (props.location.location.selectedOption!=undefined)
+    {
+      locationLabel = props.location.location.selectedOption.label;
+    }
+   
+
   //Handle state of 3 screen
   const organizationProperties = {
     orgName: props.location.organizationName,
     category: props.location.category,
     description: props.location.description,
-    location: props.location.location.selectedOption.label,
+    location: locationLabel,
     university: props.location.university,
     image: props.location.image,
     imageFile: props.location.imageFile,
@@ -136,6 +151,9 @@ const FinishCreate = (props) => {
           <div
             className="container-continue"
             onClick={() => {
+              //when PPUs click finish the states they inputed will be delete and push everything they filled to Firebase
+              localStorage.removeItem("Registration");
+              localStorage.removeItem("Beautify")
               _onFinish();
             }}
           >
