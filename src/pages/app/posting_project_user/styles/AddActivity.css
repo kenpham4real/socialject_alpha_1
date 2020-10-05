@@ -71,6 +71,7 @@
     position: absolute;
     margin-left: 300px;
     margin-top: 43px;
+    cursor: pointer;
 }
 
 .add-activity--add__button{
