@@ -46,10 +46,11 @@ function NavigationBar_Ken(props) {
     const user = useSelector((state) => state.autoLoginReducer.userData);
     const user_localStorage = JSON.parse(localStorage.getItem("userData"));
 
-    const userId = user_localStorage !== null ? user_localStorage.userId : "";
+    let userId = null;
+    if (user_localStorage != null) userId = user_localStorage.userId; 
     
     const fetchUser = useCallback(() => {
-        autoLoginAction.FetchUser(dispatch, userId, user, user_localStorage.userType);
+        autoLoginAction.FetchUser(dispatch, userId, user);
     }, [dispatch]);
 
     useEffect(() => {
