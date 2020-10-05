@@ -38,6 +38,7 @@
   width: 250px;
   height: 370px;
   cursor: pointer;
+  background-color: white;
 }
 
 .project-card:hover {
@@ -95,6 +96,8 @@
   -webkit-box-orient: vertical;
 }
 
+
+
 .project-text.description {
   -webkit-line-clamp: 2; /* number of lines to show */
 }
@@ -117,8 +120,19 @@
 }
 */
 .project-text.title {
-  font-size: 20px;
-  color: var(--title);
+  font-size: var(--global-title-1-size);
+  font-weight: 600;
+}
+
+.project-text.orgName {
+  font-size: var(--global-sub-title-light-size);
+  color: var(--global-sub-title-light-color);
+}
+
+.project-text.deadline{
+  font-size: var(--global-sub-title-light-size);
+  color: var(--global-sub-title-light-color);
+  margin-top: 30px;
 }
 
 .button.project {
