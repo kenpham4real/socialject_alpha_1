@@ -119,7 +119,7 @@ const ProjectInfoPage = (props) => {
       <div className="organizationNameandPicture">
         <img
           className="projectLogo"
-          src={projectsData.projectInfo.organizationAvatar}
+          src={projectsData.projectInfo.orgAvatar}
           alt="orgLogo"
           onClick={() =>
             props.history.push({
@@ -212,7 +212,7 @@ const ProjectInfoPage = (props) => {
         <h1 className="projectHeadings"> Held by</h1>
         <img
           className="projectLogo"
-          src={projectsData.projectInfo.organizationAvatar}
+          src={projectsData.projectInfo.orgAvatar}
           alt="orgLogo"
         />
         <span>
