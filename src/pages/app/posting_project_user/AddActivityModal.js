@@ -36,17 +36,39 @@ import { FormInput } from "../../../components/app/Form/FormInput";
 
 const AddActivityModal = (props) => {
 
+  //Get the data from LocalStorage
+	const _getAddActivityData =JSON.parse(localStorage.getItem ("AddActivity"));
+
+
+  /*
+	*Make 2 states of this is null to make the browser run without error
+	*pass the state of localStorage to initialize state then we can keep the states when press back button's browser
+	*/
+  let des=null;
+  let name=null;
+	if(_getAddActivityData!=null) 
+	{
+    name=_getAddActivityData.activityName;
+    des=_getAddActivityData.activityDescription;
+  }
+
   const {projectId} = props.location.state.projectId ? props.location.state : "";
 
   // Initialize the states
-  const [activityName, setActivityName] = useState("");
-  const [activityDescription, setActivityDescription] = useState("");
+  const [activityName, setActivityName] = useState(name);
+  const [activityDescription, setActivityDescription] = useState(des);
   const [activityLocation, setActivityLocation] = useState("");
   const [activityCategory,setActivityCategory] =useState("");
   const [activityDate, setActivityDate] = useState(new Date());
   const [showCalendar, setShowCalendar] = useState(false);
   const [activityImage, setActivityImage] = useState(null)
   const [activityImageFile, setActivityImageFile] = useState(false);
+
+
+  const dataAddActivity={
+    activityName,
+    activityDescription,
+  }
 
   // Dispatch 
   const dispatch = useDispatch();
@@ -207,7 +229,17 @@ const AddActivityModal = (props) => {
         >
           <div 
             className="add-activity--add__button" 
-            onClick={_onAddActivity}>
+            onClick={()=>{
+              /*
+                *When PPUs click on Add Activity we will save the states they filled to LocalStorage
+                *So I need @kenpham4real handle the key "AddActivity" when users finish the authentication, 
+                  They will delete the key "AddActivity" in LocalStorage!!
+              */
+              localStorage.setItem("AddActivity",JSON.stringify(dataAddActivity));
+              _onAddActivity();
+            }
+             
+            }>
             Add
           </div>
         </div>

@@ -3,12 +3,12 @@ import { ADMIN } from "../../../constants/user-types";
 import { firebase_db } from "../../../firebase-config";
 // Export the actions.
 export const FETCH_USER = "FETCH_USER";
-export async function FetchUser(dispatch, userId, userData) {
+export async function FetchUser(dispatch, userId, userData, userType) {
   // let userData = currentData;
   // if (userData.userId == undefined) {
     let fetchedUserData;
     console.log("User fetching beginning with the Id: ", userId);
-    const collectionRef = userData.userType === ADMIN ? "organization" : "student";
+    const collectionRef = userType === ADMIN ? "organization" : "student";
     try {
       // Retrieve the data from Firestore Cloud database
       await firebase_db

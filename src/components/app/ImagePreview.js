@@ -17,7 +17,6 @@ import {_previewImageHandler} from '../../helper/image/imageHandler'
 export const ImagePreview = props => {
     return(
         <div className="avatar-box">
-            <p className="avatar-text"> Avatar * </p>
             <img
               className="image-holder"
               alt=""

@@ -26,9 +26,9 @@ function ProjectSlide(props) {
             <img class="project-icon" src={Data.orgAvatar} />
             <div class="project-text-container">
               <p class="project-text title"> {Data.projectName} </p>
-              <p class="project-text ">Organization: {Data.orgName}</p>
-              <p class="project-text ">Deadline: {Data.deadline}</p>
-              <p class="project-text description">{Data.description}</p>
+              <p class="project-text orgName">by {Data.orgName}</p>
+              <p class="project-text deadline">Deadline: {Data.deadline}</p>
+              {/* <p class="project-text description">{Data.description}</p> */}
             </div>
           </div>
         ))}

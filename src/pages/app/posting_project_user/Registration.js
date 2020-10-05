@@ -5,29 +5,55 @@
 */
 
 // Packages
-import React, { useState} from "react";
+import React, { useState,useEffect} from "react";
 
 
 //Styles
 import "./styles/RegistrationStyles.css";
 
+//Components
+import { FormInput } from "../../../components/app/Form/FormInput";
+
 
  
 const Registration = (props) => {
 
-	//Initialize the states
-	const [organizationName, setOrganizationName]=useState("");
-	const [category,setCategory]=useState("");
-	const [description,setDescription]=useState("");
-	
+	//Get the data from LocalStorage
+	const _getRegistrationData =JSON.parse(localStorage.getItem ("Registration"));
+	/*
+	*Make 3 states of this is null to make the browser run without error
+	*pass the state of localStorage to initialize state then we can keep the states when press back button's browser
+	*/
+	let orgName =null;
+	let cate =null;
+	let des = null;
+	if(_getRegistrationData!=null) 
+	{
+		orgName=_getRegistrationData.organizationName
+		cate=_getRegistrationData.category
+		des= _getRegistrationData.description
+	}
 
+	
+	//Initialize the states
+	const [organizationName, setOrganizationName]=useState(orgName);
+	const [category,setCategory]=useState(cate);
+	const [description,setDescription]=useState(des);
+
+	
+	const dataRegistration={
+		organizationName,
+		category,
+		description,
+	}
+	
 	/**
 	 * @summary Handle the state of organiztion's name
 	 * @param {string} name
 	 * @returns {void} 
 	 */
 	const _onChangeOrganizationName = (name) => {
-		setOrganizationName(name);
+		setOrganizationName(organizationName);
 	}
 
 	/**
@@ -48,8 +74,7 @@ const Registration = (props) => {
 	const _onChangeDescription = (description) => {
 		setDescription(description);
 	}
-
-	console.log("props",props.history)
+	
 
 	return (
 		<div className="page" >
@@ -60,28 +85,25 @@ const Registration = (props) => {
 				</div>
 				<form>
 				<div className = "view-text-input-registration" >
-					<input 
-						className='input-text-registration'
-						required=" required"
-						type= "text"
-						placeholder= "Organization's name *" 
-						value={organizationName}
-						onChange={(name)=> _onChangeOrganizationName(name.target.value)}
+					<FormInput
+						formInputLabel="Organization's name"
+						formInputPlaceholder="What is your organization's name?" 
+						formInputValue={organizationName}
+						_formInputOnchangeText={setOrganizationName}
 					/>
-					<input
-						className='input-text-registration'
-						type= "text"
-						required=" required"
-						placeholder= "Category *" 
-						value={category}
-						onChange={(category)=> _onChangeCategory(category.target.value)}
+
+					<FormInput
+						formInputLabel="Category"
+						formInputPlaceholder="What is your organization's category?" 
+						formInputValue={category}
+						_formInputOnchangeText={setCategory}
 					/>
-					<textarea 
-						className='input-text-registration description'
-						type="text"
-						placeholder= "Description" 
-						value={description}
-						onChange={(description) => _onChangeDescription(description.target.value)} 
+
+					<FormInput
+						formInputLabel="Description"
+						formInputPlaceholder="Describe about your organization!"
+						formInputValue={description}
+						_formInputOnchangeText={setDescription} 
 					/>
 				</div>
 				</form>
@@ -89,13 +111,20 @@ const Registration = (props) => {
 					<div
 						className="container-continue" 
 						onClick =
-						{()=> props.history.push
+						{()=> 
+							{
+								//save the states input to LocalStorage when onClick 
+								localStorage.setItem("Registration",JSON.stringify(dataRegistration));
+								props.history.push
 							({ 	
+								
 								pathname:'/beautifyProfile',
 								organizationName,
 								category,
 								description,
 							})
+							}
+							
 						}
 					>
 						Continue 

@@ -45,12 +45,13 @@ function NavigationBar_Ken(props) {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.autoLoginReducer.userData);
     const user_localStorage = JSON.parse(localStorage.getItem("userData"));
+    const user_localStorage_userType = localStorage.getItem('userType');
 
     let userId = null;
     if (user_localStorage != null) userId = user_localStorage.userId; 
     
     const fetchUser = useCallback(() => {
-        autoLoginAction.FetchUser(dispatch, userId, user);
+        autoLoginAction.FetchUser(dispatch, userId, user, user_localStorage_userType);
     }, [dispatch]);
 
     useEffect(() => {
@@ -78,6 +79,7 @@ function NavigationBar_Ken(props) {
       {/*Top right corner*/}
       <div className="user-bar">
         <Link
+          
           className="link"
           to={{
             pathname: user.userType === ADMIN ? "/profile" : "",

@@ -80,7 +80,7 @@
     /*GREY_SHADES*/
     --global-subtitles-color:#666666;
     --global-smaller-subtitles-color:#A6A6A6;
-    --global-page-background-color:#F4F4F4;
+    --global-page-background-color:#F5F5F5;
     --global-border-color: 2px solid #DEE1E6;
 
 
@@ -109,6 +109,7 @@
      --global--organization--avatar__project__info__small-view-size: 42px;
      --global--organization--avatar__project__small__big-view-size: 70px;
      --global--user--avatar-size: 46px;
+     --global--user--avatar__profile--page-view-size: 175px;
 
      /* BUTTONS */
 
@@ -136,4 +137,6 @@
      --global--form-input-width: 330px;
      --global--form-input-height: 40px;
      --global-border-color__focus: 2px solid rgba(47,173,88,1);
+
+     /**/
 }
