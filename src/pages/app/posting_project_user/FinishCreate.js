@@ -141,7 +141,7 @@ const FinishCreate = (props) => {
           />
           <FormInput
               formInputLabel="Facebook"
-              formInputPlaceholder="Your Facebook?" 
+              formInputPlaceholder="facebook.com/YouAreAmazing" 
               formInputValue={Facebook}
               _formInputOnchangeText={setFacebook}
           />
