@@ -497,7 +497,7 @@ const ProjectInfoPage = (props) => {
           <div className="projectName">
             {projectsData.projectInfo.projectName}
           </div>
-          <div className="location">Home</div>
+          <div className="location">{projectsData.projectInfo.location}</div>
           {_organization_info()}
 
           {_project_apply_button()}
