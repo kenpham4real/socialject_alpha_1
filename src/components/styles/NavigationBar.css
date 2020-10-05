@@ -1,40 +1,41 @@
-:root {
-  --primary: #e1e4d2;
-  --secondary: #7c78bb;
-  --title: #2d2e38;
-}
-
 .navigationBar {
-  font-family: "Inter";
-  color: #2d2e38;
-  padding: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-  display: flexbox;
+  color: var(--global-headline-1-color);
+  padding: 10px;
+  padding-left: 5%;
+  padding-right: 2%;
   position: sticky;
-  top: 0;
   z-index: 1;
-  background-color: white;
+  background-color: var(--global-page-background-color);
   border: 1px solid var(--secondary);
   overflow: hidden;
+  vertical-align: middle;
+}
+
+.navigationBar .SocialJect {
+  display: inline-block;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-decoration: none;
 }
 
 .navigationBar .banner-title {
-  display: inline;
+  display: inline-block;
+  vertical-align: middle;
   margin-left: 2px;
   margin-right: 2px;
-  vertical-align: middle;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
-  color: var(--title);
-  background-color: var(--primary);
+  color: var(--global-headline-1-color);
+  background-color: var(--global-page-background-color);
   border: none;
   border-radius: 0.4rem;
   text-decoration: none; /*remove link underline*/
 }
 
 .navigationBar .banner-title:hover {
-  color: var(--secondary);
+  color: var(--global-accent-1-color);
   transition: 0.2s;
   cursor: pointer;
 }
@@ -49,6 +50,8 @@
   text-decoration: none;
   background-color: none;
   border: none;
+  vertical-align: middle;
+  align-self: center;
 }
 
 /*General*/
@@ -67,21 +70,26 @@
 }
 
 .navigationBar .user-bar {
+  display: inline-flex;
   vertical-align: middle;
   margin: 2px;
   float: right;
-  display: inline-flex;
+}
+
+.navigationBar .user-bar .icon {
+  align-self: center;
 }
 
 .navigationBar .icon.avatar {
   vertical-align: middle;
-  border-radius: 16px;
-  width: 32px;
+  border-radius: 23px;
+  width: 46px;
+  height: 46px;
   object-fit: cover;
 }
 
 .navigationBar .icon.avatar:hover {
-  filter: brightness(150%);
+  filter: brightness(130%);
   transition: 0.2s;
 }
 

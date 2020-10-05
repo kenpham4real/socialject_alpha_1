@@ -1,5 +1,5 @@
 //Packages
-import React, { Component, useState} from "react";
+import React, { useState} from "react";
 import Select from "react-select";
 
 
@@ -9,23 +9,15 @@ import "./styles/BeautifyProfileStyles.css";
 // Helper
 import {_previewImageHandler} from '../../../../src/helper/image/imageHandler'
 import { ImagePreview } from "../../../components/app/ImagePreview";
-
-//Select
-const options = [
-  { id: "ha_noi", value: "ha noi", label: "Ha Noi" },
-  { id: "ho_chi_minh", value: "ho chi minh", label: "Ho Chi Minh" },
-  { id: "hai_phong", value: "hai phong", label: "Hai Phong" },
-  { id: "da_nang", value: "da nang", label: "Da Nang" },
-];
-   
-
+import { LOCATIONS } from "../../../constants/location";
+import { selectInputStyles } from "../../../constants/SelectInputStyle";
 
 const BeautifyProfile = (props) => {
 
   //Intialize the states
   const [location, setLocation]= useState("");
   const [university, setUniversity]= useState("");
-  const [image, setImage]= useState(require("../../../assets/images/blank-profile.png"));
+  const [image, setImage]= useState();
   const [imageFile,setImageFile]=useState("");
 
 
@@ -65,29 +57,45 @@ const BeautifyProfile = (props) => {
           </p>
         </div>
         <div className="view-text-input-beautifyProfile">
-          <Select
-            className="select"
-            placeholder="Location *"
-            options={options}
-            value={location.selectedOption}
-            onChange={handleChange}
-          />
-          <input
-            className="input-text-beautifyProfile"
-            type="text"
-            placeholder="School/University"
-            value={university}
-            onChange={(uni)=> _onChangeUniversity(uni.target.value)}
-          />
-          <ImagePreview
-            setImage={setImage}
-            setImageFile={setImageFile}
-            image={image}
-          />
+          <form>
+            <Select
+              className="select"
+              name="select"
+              placeholder="Location *"
+              required="required"
+              options={LOCATIONS}
+              value={location.selectedOption}
+              onChange={handleChange}
+              styles={selectInputStyles}
+              theme={theme => ({
+                ...theme,
+                borderRadius: 0,
+                colors: {
+                  ...theme.colors,
+                  primary25: 'rgba(47,173,88,0.5)', 
+                  primary: 'rgba(47,173,88,1)',
+                },
+              })}
+            />
+            <input
+              className="input-text-beautifyProfile"
+              name="School/universiy"
+              type="text"
+              placeholder="School/University"
+              required=" required"
+              value={university}
+              onChange={(uni)=> _onChangeUniversity(uni.target.value)}
+            /> 
+            <ImagePreview
+              setImage={setImage}
+              setImageFile={setImageFile}
+              image={image}
+            />
+          </form>
         </div>
       
         <div>
-          <button
+          <div
             className="container-continue"
             onClick={() =>{
               props.history.push({ 	
@@ -103,7 +111,7 @@ const BeautifyProfile = (props) => {
             }
           >
             <span> Next </span>
-          </button>
+          </div>
         </div>
       </div>
     </div>

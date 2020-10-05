@@ -14,6 +14,7 @@ import React, { useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "../styles/NavigationBar.css";
+import "../../pages/app/styles/GlobalStyles.css";
 import IconButton from "./IconButton";
 import SJ from "../../assets/images/SJ.png";
 import arrow from "../../assets/images/arrow.png";
@@ -64,9 +65,12 @@ function NavigationBar(props) {
       {/*Menu Icon*/}
 
       {/*Title*/}
-      <Link className="link" to="/">
-        <img alt="" className="icon avatar" src={SJ} />
-        <p className="banner-title">SOCIALJECT</p>
+
+      <Link className="SocialJect" to="/">
+        {/*<img alt="" className="icon avatar" src={SJ} />*/}
+        <p className="banner-title" style={{ fontSize: "30px" }}>
+          SOCIALJECT
+        </p>
       </Link>
       {/*Search Bar*/}
       {/*<SearchBar></SearchBar>*/}
@@ -76,13 +80,13 @@ function NavigationBar(props) {
           className="link"
           to={{
             pathname: path,
-            profileId: user.userId,
+            profileId: userId,
           }}
         >
           <img alt="" className="icon avatar" src={user.userAvatar} />
           <p className="banner-title">{user.userName}</p>
         </Link>
-        <img alt="" className="icon" src={arrow} />
+        {/*<img alt="" className="icon" src={arrow} />*/}
       </div>
     </div>
   );

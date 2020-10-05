@@ -1,5 +1,7 @@
 /*
-*Contributor: Đạt 4th september 2020
+*Contributor: 
+  Đạt 4th september 2020
+  Tiến 2nd October 2020
 *Function: Project Registeration (render page for PPU to create their project)
 
 */
@@ -9,30 +11,38 @@ import React, { useState, useReducer } from "react";
 import { useDispatch } from "react-redux";
 import {v4 as uuid_v4} from 'uuid';
 import Calendar from "react-calendar";
+import { FcCalendar } from "react-icons/fc";
+import Select from 'react-select'
 
 // Styles
-import "./styles/CreatePostModal.css";
+import "./styles/AddActivity.css";
 import 'react-calendar/dist/Calendar.css';
 
 // Actions
 import * as _activityActions from '../../../store/actions/posting-project-user/activity/activity';
 
 // Constants
-import {testing_project_id} from '../../../constants/testing-keys'
+import {LOCATIONS} from '../../../constants/location'
 
 // Helper
 import {_previewImageHandler} from '../../../helper/image/imageHandler'
+
+// Components
+import FeedbackImage from '../../../components/FeedbackImage'
 import { ImagePreview } from "../../../components/app/ImagePreview";
+import { selectInputStyles } from "../../../constants/SelectInputStyle";
+import { FormInput } from "../../../components/app/Form/FormInput";
 
 
 const AddActivityModal = (props) => {
 
-  const {projectId} = props.location.state;
+  const {projectId} = props.location.state.projectId ? props.location.state : "";
 
   // Initialize the states
   const [activityName, setActivityName] = useState("");
   const [activityDescription, setActivityDescription] = useState("");
   const [activityLocation, setActivityLocation] = useState("");
+  const [activityCategory,setActivityCategory] =useState("");
   const [activityDate, setActivityDate] = useState(new Date());
   const [showCalendar, setShowCalendar] = useState(false);
   const [activityImage, setActivityImage] = useState(null)
@@ -84,6 +94,7 @@ const AddActivityModal = (props) => {
    * @param {string} activityName
    * @param {string} activityDescription
    * @param {string} activityLocation
+   * @param {string} activityCategory
    * @param {string} activityDate
    * @returns {void}
    */
@@ -95,6 +106,7 @@ const AddActivityModal = (props) => {
       activityName, 
       activityDescription,
       activityLocation, 
+      activityCategory,
       activityDate.toDateString(), 
       activityImageFile
     ))
@@ -105,58 +117,102 @@ const AddActivityModal = (props) => {
     setShowCalendar(prevState => !prevState)
   }
 
+
   return (
-    <div id="createPostModal_2">
-      <h1>Start with the basics</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      <div className="modalContent">
-        <div className="boxModal">
-          <input 
-            type="text" 
-            placeholder="Activity Name*"
-            value={activityName}
-            onChange={(name) => _onChangeActivityName(name.target.value)}
-          />
+    <div className="add-activity-container">
+      <div className="add-activity--form-container">
+        <div className="add-activity-titles">
+          <p className="add-activity--title">
+            Create your activity
+          </p>
+          <p className="add-activity--subtitle">
+            What are you going to do?
+          </p>
         </div>
-        <div className="descriptionBoxModal">
-          <input 
-            type="text" 
-            placeholder="Description *"
-            value={activityDescription}
-            onChange={(description) => _onChangeActivityDescription(description.target.value)}
-          />
+        <div className="add-activity--content">
+          <div className="add-activity--input activity-name">
+            <FormInput
+              formInputLabel="Activity name"
+              formInputPlaceholder="Finish funding"
+              formInputValue={activityName}
+              _formInputOnchangeText={setActivityName}
+            />
+          </div>
+          <div className="add-activity--input activity-description">
+            
+            <FormInput
+              formInputLabel="Description"
+              formInputPlaceholder="Describe your activity"
+              formInputValue={activityDescription}
+              _formInputOnchangeText={setActivityDescription}
+            />
+          </div>
+          <div className="add-activity--input activity-location">
+            <p>Location</p>
+            <Select
+              className="add-activity--input__select-button"
+              name="select"
+              placeholder="Choose"
+              required="required"
+              options={LOCATIONS}
+              value={activityLocation.selectedOption}
+              onChange={setActivityLocation}
+              styles={selectInputStyles}
+              theme={theme => ({
+                ...theme,
+                borderRadius: 0,
+                colors: {
+                  ...theme.colors,
+                  primary25: 'rgba(47,173,88,0.5)', 
+                  primary: 'rgba(47,173,88,1)',
+                },
+              })}
+            />
+          </div>
+          <div className="add-activity--avatar-preview">
+            <p>Avatar</p>
+            <ImagePreview
+              setImage={setActivityImage}
+              setImageFile={setActivityImageFile}
+              image={activityImage}
+            />
+          </div>
+          <div className="add-activity--input activity-calendar">
+            <i>
+              <FcCalendar size={23} onClick={_showCalendar} className="add-activity--calendar--icon" />
+            </i>
+            
+            <FormInput
+              formInputLabel="Deadline"
+              formInputPlaceholder={activityDate.toDateString()}
+              formInputValue={activityDate.toDateString()}
+              _formInputOnchangeText={setActivityDate}
+            />
+
+          </div>
+          {showCalendar && 
+            <Calendar
+              view='month'
+              value={activityDate}
+              onClickDay={_onChangeActivityDate}
+              activeStartDate={activityDate}
+              onDrillUp={() => console.log('drilled')}
+            />
+          }
+          
         </div>
-        <div className="boxModal">
-          <input 
-            type="text" 
-            placeholder="Location *"
-            value={activityLocation}
-            onChange={(location) => _onChangeActivityLocation(location.target.value)}
-          />
+        
+        <div
+          className="add-activity--add"
+        >
+          <div 
+            className="add-activity--add__button" 
+            onClick={_onAddActivity}>
+            Add
+          </div>
         </div>
-        <button className="boxModal-date" onClick={_showCalendar} >
-          Choose Date
-        </button>
-        {showCalendar && 
-          <Calendar
-            view='month'
-            value={activityDate}
-            onClickDay={_onChangeActivityDate}
-            activeStartDate={activityDate}
-            onDrillUp={() => console.log('drilled')}
-          />
-        }
       </div>
-      <ImagePreview
-        setImage={setActivityImage}
-        setImageFile={setActivityImageFile}
-        image={activityImage}
-      />
-      <button 
-        onClick={_onAddActivity}
-      >
-        Add
-      </button>
+      <FeedbackImage className="add-activity--feedback-container" />
     </div>
   );
 };

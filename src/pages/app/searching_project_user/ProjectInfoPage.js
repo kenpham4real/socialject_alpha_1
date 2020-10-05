@@ -31,7 +31,8 @@ import * as activityActions from "../../../store/actions/posting-project-user/ac
 import { _getFormSubmission } from "../../../store/actions/posting-project-user/project/project";
 
 //const userId = JSON.parse(localStorage.getItem("userData")).userId;
-const userId = "1lrR6G5aoc0CuAaIrRN4";
+let userId = JSON.parse(localStorage.getItem("userData"));
+if (userId != null) userId = userId.userId;
 console.log("User Id is: ", userId);
 
 const ProjectInfoPage = (props) => {
@@ -153,6 +154,8 @@ const ProjectInfoPage = (props) => {
    * @author Ken Pham, Dat Uchiha
    */
   const _project_apply_button = () => {
+    console.log("User Id in the button is: ", userId);
+    console.log("Project owner's Id: ", projectsData.projectInfo.orgId);
     if (userId != projectsData.projectInfo.orgId)
       return (
         <div className="applyButton">
@@ -315,11 +318,29 @@ const ProjectInfoPage = (props) => {
    * @author Ken Pham, Dat Uchiha
    */
   const _project_progress_section = () => {
+    let ifDisplay = "inline-block";
+    if (userId != projectsData.projectInfo.orgId) ifDisplay = "none";
+    const AddActivityButton = () => {
+      return (
+        <div
+          className="progress-container-header-addActivityButton"
+          onClick={() =>
+            props.history.push("/addActivity", {
+              projectId: projectId,
+            })
+          }
+          style={{ display: ifDisplay }}
+        >
+          Add an activity
+        </div>
+      );
+    };
     return (
       <div className="progressContainer">
         <div className="progress-container--header">
           <h1 className="projectHeadings">Progress</h1>
-          <div
+          {/*
+            <div
             className="progress-container-header-addActivityButton"
             onClick={() =>
               props.history.push("/addActivity", {
@@ -329,6 +350,8 @@ const ProjectInfoPage = (props) => {
           >
             Add an activity
           </div>
+          */}
+          <AddActivityButton />
         </div>
         <ul className="progress-container-activity">
           <a>{_project_activity_item}</a>

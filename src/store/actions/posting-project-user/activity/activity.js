@@ -60,11 +60,12 @@ export const _fetchProjectActivity_ppu = () => {
  * @param {string} activityName 
  * @param {string} activityDescription 
  * @param {string} activityLocation 
+ * @param {string} activitycategory
  * @param {string} activityDate 
  * @returns @async @function
  * @author Ken Pham
  */
-export const _addActivity_ppu = (projectId, activityId, activityName, activityDescription, activityLocation, activityDate, activityImage) => {
+export const _addActivity_ppu = (projectId, activityId, activityName, activityDescription, activityLocation,activitycategory, activityDate, activityImage) => {
 
     /**
      * @summary Asynchronous function calling the database to push the data
@@ -92,6 +93,7 @@ export const _addActivity_ppu = (projectId, activityId, activityName, activityDe
                 activityName: activityName,
                 activityDescription: activityDescription,
                 activityLocation: activityLocation,
+                activitycategory: activitycategory,
                 activityDate: activityDate,
                 activityImage: activityImageUrl
             })
@@ -105,6 +107,7 @@ export const _addActivity_ppu = (projectId, activityId, activityName, activityDe
                     activityName: activityName,
                     activityDescription: activityDescription,
                     activityLocation: activityLocation,
+                    activitycategory:activitycategory,
                     activityDate: activityDate,
                     activityImage: activityImageUrl
                 }

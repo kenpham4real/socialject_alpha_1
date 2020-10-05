@@ -22,6 +22,7 @@
 
 import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 // Styles
 import "./styles/ProfilePage.css";
@@ -45,16 +46,13 @@ const loremText =
 
 //The button to add a project
 function AddProjectButton(props) {
-  //const userId = JSON.parse(localStorage.getItem("userData")).userId;
-  const userId = "1lrR6G5aoc0CuAaIrRN4";
-  if (props.userId == props.projectOwnerId)
+  let userId = JSON.parse(localStorage.getItem("userData"));
+  if (userId != null) userId = userId.userId;
+  if (userId == props.projectOwnerId)
     return (
-      <a
-        onClick={props._onNavigateToCreateProjectModal}
-        className="profile-button"
-      >
+      <Link to="/createPostModal" className="profile-button">
         Add a project
-      </a>
+      </Link>
     );
   else return <div style={{ display: "none" }}></div>;
 }
@@ -63,27 +61,29 @@ function AddProjectButton(props) {
 function OrgName(props) {
   return (
     <div className="profile-name-container">
-      <img className="profile-avatar" src={props.data.imageFile} />
+      <img className="profile-avatar" src={props.data.orgAvatar} />
       <div className="profile-block-container-small">
         <div className="profile--title">{props.data.orgName}</div>
-        <div style={{ color: "gray" }}>
+        <div style={{ color: "gray", fontSize: "18px" }}>
           {props.data.location} / {props.data.category} /{" "}
           {props.data.university}
         </div>
-        <div>{props.data.description}</div>
+        <div className="profile-description" style={{ fontSize: "15px" }}>
+          {props.data.description}
+        </div>
         {/*<a
           onClick={props._onNavigateToCreateProjectModal}
           className="profile-button"
         >
           Add a project
         </a>*/}
-        <AddProjectButton userType={props.userType} />
+        <AddProjectButton projectOwnerId={props.projectOwnerId} />
       </div>
 
-      <a className="profile-block-container-smaller">
+      <div className="profile-block-container-smaller">
         <div>Email: {props.data.email}</div>
         <div>Phone: {props.data.phoneNumber}</div>
-      </a>
+      </div>
     </div>
   );
 }
@@ -111,23 +111,28 @@ function OrgHistory(props) {
    * @author Ken Pham, Long Avenger
    */
   const project_item = data.map((element) => {
+    console.log("Project Id in profile page: ", element.projectId);
     return (
-      <li>
-        <ProjectActivity
-          key={element.orgId}
-          project_activity_avatar={element.projectAvatar}
-          project_activity_name={element.projectName}
-          project_activity_date={element.deadline}
-          project_activity_location="Ho Chi Minh"
-          project_activity_description={element.description}
-        />
-      </li>
+      <ProjectActivity
+        key={element.orgId}
+        project_activity_avatar={element.projectAvatar}
+        project_activity_name={element.projectName}
+        project_activity_date={element.deadline}
+        project_activity_location="Ho Chi Minh"
+        project_activity_description={element.description}
+        projectId={element.projectId}
+      ></ProjectActivity>
     );
   });
 
   return (
     <div className="profile-block-container">
-      <div className="profile--title">Projects</div>
+      <div style={{ marginBottom: "5px" }}>
+        <p className="profile--title">Projects</p>
+        <div className="profile-button right">
+          <AddProjectButton projectOwnerId={props.projectOwnerId} />
+        </div>
+      </div>
       {/*
       <a
         onClick={props._onNavigateToCreateProjectModal}
@@ -136,16 +141,15 @@ function OrgHistory(props) {
         Add a project
       </a>
       */}
-      <div>
-        <ul className="project-activity-list">
-          <a
+      <div className="project-activity-list">
+        {project_item}
+        {/*<a
             className="project-activity-list--component"
             href="/projectInfo/project_1"
             onClick={() => props.history.push("/projectInfo/project_1")}
           >
             {project_item}
-          </a>
-        </ul>
+          </a>*/}
       </div>
     </div>
   );
@@ -153,8 +157,6 @@ function OrgHistory(props) {
 
 //Main component, calling the fetching action and display all UI component.
 const ProfilePage = (props) => {
-  const userType = localStorage.getItem("userType");
-  console.log("User Type is:", userType);
   /**
    * @summary Navigate to the create project modal
    * @function
@@ -173,7 +175,7 @@ const ProfilePage = (props) => {
    */
   //Get the Id from history.location
   const profileId = props.history.location.profileId;
-  console.log('props', props)
+  console.log("props", props);
   console.log("profile Id received is: ", profileId);
   //This will not fetch if there is no if passed into it.
   //Declare hooks as variables to be more flexible.
@@ -195,7 +197,7 @@ const ProfilePage = (props) => {
 
   useEffect(() => {
     fetchCallback();
-  }, []);
+  }, [profileId]);
 
   //For testing purpose
   console.log("Selected Data:", projectData);
@@ -209,14 +211,14 @@ const ProfilePage = (props) => {
       <OrgName
         _onNavigateToCreateProjectModal={_onNavigateToCreateProjectModalHandler}
         data={profileData}
-        userType={userType}
+        projectOwnerId={profileId}
       />
 
       {/*Org. Vision*/}
       <OrgVision data={profileData}></OrgVision>
 
       {/*Org. History*/}
-      <OrgHistory data={projectData}></OrgHistory>
+      <OrgHistory data={projectData} projectOwnerId={profileId}></OrgHistory>
       {/*Copyright*/}
       <CopyrightBar></CopyrightBar>
 

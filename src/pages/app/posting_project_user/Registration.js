@@ -58,31 +58,35 @@ const Registration = (props) => {
 					<h1 className='my-header-registration'> Start with the basics </h1>
 					<p className='description-registration'>  Tell people about your organiztion  </p>
 				</div>
+				<form>
 				<div className = "view-text-input-registration" >
 					<input 
 						className='input-text-registration'
-						type= 'text'
+						required=" required"
+						type= "text"
 						placeholder= "Organization's name *" 
 						value={organizationName}
 						onChange={(name)=> _onChangeOrganizationName(name.target.value)}
 					/>
 					<input
 						className='input-text-registration'
-						type= 'text'
+						type= "text"
+						required=" required"
 						placeholder= "Category *" 
 						value={category}
 						onChange={(category)=> _onChangeCategory(category.target.value)}
 					/>
 					<textarea 
 						className='input-text-registration description'
-						type='text'
+						type="text"
 						placeholder= "Description" 
 						value={description}
 						onChange={(description) => _onChangeDescription(description.target.value)} 
 					/>
 				</div>
+				</form>
 				<div>
-					<button 
+					<div
 						className="container-continue" 
 						onClick =
 						{()=> props.history.push
@@ -94,8 +98,8 @@ const Registration = (props) => {
 							})
 						}
 					>
-						<span> Continue </span>
-					</button>
+						Continue 
+					</div>
 					
 				</div>
 			</div>
