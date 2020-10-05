@@ -8,34 +8,27 @@ function ProjectSlide(props) {
   console.log("Data in slide is: ", Data);
   function handleClick(id) {
     console.log("Button clicked.");
-    const userId = JSON.parse(localStorage.getItem("userData"));
-    if (userId == null) {
+    const user = JSON.parse(localStorage.getItem("userData"));
+    if (user == null) {
       //if there the user didn't login yet, then push them into /choosingUser
       history.push({ pathname: "/choosingUser" });
       sessionStorage.setItem("projectId", id);
     } //if they logged in, then flow is normal
-    else history.push({ pathname: "/projectInfo", projectId: id });
+    else history.push({ pathname: "/projectInfo", projectId: id, orgId: user.userId });
   }
   return (
     <div>
       <div class="project-container">
         {/*Render the list*/}
         {Data.map((Data) => (
-          <div className="project-card-container">
-            <div
-              className="project-card"
-              onClick={() => handleClick(Data.projectId)}
-            >
-              <img className="project-image" src={Data.projectAvatar} />
-              <img className="project-icon" src={Data.organizationAvatar} />
-              <div className="project-text-container">
-                <p className="project-text title"> {Data.projectName} </p>
-                <p className="project-text ">
-                  Organization: {Data.organizationName}
-                </p>
-                <p className="project-text ">Deadline: {Data.deadline}</p>
-                <p className="project-text description">{Data.description}</p>
-              </div>
+          <div class="project-card" onClick={() => handleClick(Data.projectId)}>
+            <img class="project-image" src={Data.projectAvatar} />
+            <img class="project-icon" src={Data.orgAvatar} />
+            <div class="project-text-container">
+              <p class="project-text title"> {Data.projectName} </p>
+              <p class="project-text ">Organization: {Data.orgName}</p>
+              <p class="project-text ">Deadline: {Data.deadline}</p>
+              <p class="project-text description">{Data.description}</p>
             </div>
           </div>
         ))}
