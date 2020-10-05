@@ -129,7 +129,6 @@ const FinishCreate = (props) => {
 						formInputPlaceholder="Your Email?" 
 						formInputValue={Email}
 						_formInputOnchangeText={setEmail}
-            className="input-text-FinishCreate"
           />
 
           <FormInput
@@ -137,7 +136,6 @@ const FinishCreate = (props) => {
               formInputPlaceholder="Your Phone number?" 
               formInputValue={PhoneNumber}
               _formInputOnchangeText={setPhoneNumber}
-              className="input-text-FinishCreate"
           />
           <FormInput
               formInputLabel="Facebook"

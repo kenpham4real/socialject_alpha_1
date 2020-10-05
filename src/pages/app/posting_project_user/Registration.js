@@ -90,21 +90,18 @@ const Registration = (props) => {
 						formInputPlaceholder="What is your organization's name?" 
 						formInputValue={organizationName}
 						_formInputOnchangeText={setOrganizationName}
-						className='input-text-registration'
 					/>
 
 					<FormInput
 						formInputLabel="Category"
 						formInputPlaceholder="What is your organization's category?" 
-						className='input-text-registration'
 						formInputValue={category}
 						_formInputOnchangeText={setCategory}
 					/>
 
 					<FormInput
 						formInputLabel="Description"
-						formInputPlaceholder="Describe about your organization!" 
-						className='input-text-registration'
+						formInputPlaceholder="Describe about your organization!"
 						formInputValue={description}
 						_formInputOnchangeText={setDescription} 
 					/>
