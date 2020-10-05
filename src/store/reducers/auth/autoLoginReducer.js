@@ -16,7 +16,7 @@ export const autoLoginReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_USER:
       console.log("User data dispatched:", action.payload);
-      if (action.payload != undefined) // bro =.= just a min
+      if (action.payload) // bro =.= just a min
         return {
           ...state,
           userData: action.payload,
