@@ -16,7 +16,6 @@ const initialState = {
     projectProgress: [],
   },
   upDataForm: [],
-
 };
 
 /******************************** REDUCER ********************************/
@@ -24,13 +23,18 @@ const initialState = {
 export const projectReducerSPU = (state = initialState, action) => {
   switch (action.type) {
     case SET_PROJECT_RECRUIT_INFO:
-      console.log("Project array payload: ", action.payload);
+      const project = action.payload;
+      console.log("Project array payload: ", project);
+      if (!project.projectDetail.benefits) project.projectDetail.benefits = [];
+      if (!project.projectDetail.requirements)
+        project.projectDetail.requirements = [];
+      if (!project.projectDetail.questions)
+        project.projectDetail.questions = [];
       return {
         ...state,
-        projectsData: action.payload,
+        projectsData: project,
       };
     default:
       return state;
   }
 };
-
