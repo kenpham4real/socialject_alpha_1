@@ -41,26 +41,46 @@ function SearchBar(props) {
 
 //Main
 function NavigationBar_Ken(props) {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.autoLoginReducer.userData);
+  const user_localStorage = JSON.parse(localStorage.getItem("userData"));
+  const user_localStorage_userType = localStorage.getItem("userType");
 
-    const dispatch = useDispatch();
-    const user = useSelector((state) => state.autoLoginReducer.userData);
-    const user_localStorage = JSON.parse(localStorage.getItem("userData"));
-    const user_localStorage_userType = localStorage.getItem('userType');
+  let userId = null;
+  if (user_localStorage != null) userId = user_localStorage.userId;
 
-    let userId = null;
-    if (user_localStorage != null) userId = user_localStorage.userId; 
-    
-    const fetchUser = useCallback(() => {
-        autoLoginAction.FetchUser(dispatch, userId, user, user_localStorage_userType);
-    }, [dispatch]);
+  const fetchUser = useCallback(() => {
+    autoLoginAction.FetchUser(
+      dispatch,
+      userId,
+      user,
+      user_localStorage_userType
+    );
+  }, [dispatch]);
 
-    useEffect(() => {
-        fetchUser()
-    }, [dispatch, fetchUser])
+  useEffect(() => {
+    fetchUser();
+  }, [dispatch, fetchUser]);
 
-    console.log("User Data selected: ", user);
+  console.log("User Data selected: ", user);
 
-
+  const CreateProfile = (props) => {
+    let ifDisplay = "inline";
+    if (user.userType != ADMIN) ifDisplay = "none";
+    return (
+      <div style={{ display: ifDisplay }}>
+        <Link
+          className="create"
+          to={{
+            pathname: user.userType === ADMIN ? "/registration" : "",
+            profileId: user.userType === ADMIN ? user.orgId : user.userId,
+          }}
+        >
+          <p className="p-create">Create your profile</p>
+        </Link>
+      </div>
+    );
+  };
 
   return (
     <div className="navigationBar">
@@ -78,21 +98,8 @@ function NavigationBar_Ken(props) {
       {/*<SearchBar></SearchBar>*/}
       {/*Top right corner*/}
       <div className="user-bar">
+        <CreateProfile></CreateProfile>
         <Link
-          className="create"
-          to={{
-            pathname: user.userType === ADMIN ? "/registration" : "",
-            profileId: user.userType === ADMIN ? user.orgId : user.userId,
-          }}
-        >
-          <p 
-            className="p-create"
-          >
-            Create your profile
-          </p>
-          </Link>
-        <Link
-          
           className="link"
           to={{
             pathname: user.userType === ADMIN ? "/profile" : "",
