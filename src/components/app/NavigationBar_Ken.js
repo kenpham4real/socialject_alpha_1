@@ -79,6 +79,19 @@ function NavigationBar_Ken(props) {
       {/*Top right corner*/}
       <div className="user-bar">
         <Link
+          className="create"
+          to={{
+            pathname: user.userType === ADMIN ? "/registration" : "",
+            profileId: user.userType === ADMIN ? user.orgId : user.userId,
+          }}
+        >
+          <p 
+            className="p-create"
+          >
+            Create your profile
+          </p>
+          </Link>
+        <Link
           
           className="link"
           to={{

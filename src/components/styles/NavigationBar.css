@@ -44,6 +44,24 @@
   transition: 0.2s;
 }
 
+.create{
+  color: black;
+  text-decoration: none;
+  align-self: center;
+  font-family: var(--global-font-family);
+  font-weight: var(--global-headline-1-font-weight);
+  display: flex;
+  margin-right: 20px;
+  background-color: var(--global-primary-color);
+  border-radius:5rem;
+  padding-bottom: 20px;
+  padding-top: 10px;
+  padding-left:15px ;
+  padding-right: 6px;
+  height: 20px;
+  width: 150px;
+}
+
 .navigationBar .link {
   margin: none;
   padding: none;
