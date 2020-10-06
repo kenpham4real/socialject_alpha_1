@@ -226,6 +226,12 @@ const ProjectInfoPage = (props) => {
           className="projectLogo"
           src={projectsData.projectInfo.orgAvatar}
           alt="orgLogo"
+          onClick={() =>
+            props.history.push({
+              pathname: userId ? "/profile" : "",
+              profileId: projectsData.projectInfo.orgId,
+            })
+          }
         />
         <span>
           <p className="organizationName">
@@ -233,7 +239,7 @@ const ProjectInfoPage = (props) => {
           </p>
           <p>{projectsData.projectInfo.description}</p>
         </span>
-        <div className="viewAllButton">View all</div>
+        {/* <div className="viewAllButton">View all</div> */}
       </div>
     );
   };
@@ -295,7 +301,7 @@ const ProjectInfoPage = (props) => {
       <div className="aboutContainer">
         <h1 className="projectHeadings">About</h1>
         <div>{projectsData.projectInfo.description}</div>
-        <div className="viewAllButton">View all</div>
+        {/* <div className="viewAllButton">View all</div> */}
       </div>
     );
   };
@@ -364,7 +370,7 @@ const ProjectInfoPage = (props) => {
         <ul className="progress-container-activity">
           <a>{_project_activity_item}</a>
         </ul>
-        <div className="viewAllButton">View all</div>
+        {/* <div className="viewAllButton">View all</div> */}
       </div>
     );
   };
