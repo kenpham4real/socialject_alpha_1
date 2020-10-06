@@ -89,7 +89,7 @@ function NavigationBar_Ken(props) {
           <img alt="" className="icon avatar" src={user.orgAvatar} />
           <p className="banner-title">{user.orgName}</p>
         </Link>
-        <img alt="" className="icon" src={arrow} />
+        {/* <img alt="" className="icon" src={arrow} /> */}
       </div>
     </div>
   );

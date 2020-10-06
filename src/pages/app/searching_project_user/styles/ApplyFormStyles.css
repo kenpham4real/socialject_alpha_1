@@ -16,12 +16,14 @@
     font-weight: var(--global-headline-1-font-weight);
     font-size: 30px;
     font-family: var(--global-font-family);
+    color:var(--global-primary-color);
 }
 .location{
     font-size: var(--global-headline-2-light-size);
-    margin-bottom:10px;
-    margin-top: -10px;
+    margin-top: -20px;
     color: var(--global-headline-2-light-color) ;
+    font-family: var(--global-font-family);
+    font-weight:var(--global-title-1-light-font-weight);
 }
  .contact {
     max-width: 45rem;
@@ -40,7 +42,8 @@
     display: inline-block;
     margin-bottom: 1rem;
     font-weight: 500;
-    
+    margin-top: 20px;
+    font-family: var(--global-font-family);
     }
     .contact-form-input,
     .contact-form-area {
