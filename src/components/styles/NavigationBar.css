@@ -6,7 +6,7 @@
   position: sticky;
   z-index: 1;
   background-color: var(--global-page-background-color);
-  border: 1px solid var(--secondary);
+  border: 1px solid var(--global-smaller-subtitles-color);
   overflow: hidden;
   vertical-align: middle;
 }
@@ -25,9 +25,9 @@
   vertical-align: middle;
   margin-left: 2px;
   margin-right: 2px;
-  font-size: 20px;
-  font-weight: bold;
-  color: var(--global-headline-1-color);
+  font-size: var(--global-title-1-size);
+  font-weight: var(--global-title-1-font-weight);
+  color: var(--global-title-1-color);
   background-color: var(--global-page-background-color);
   border: none;
   border-radius: 0.4rem;
@@ -56,6 +56,7 @@
 
 /*General*/
 /*Search Input*/
+/*
 .navigationBar .search-container {
   display: inline-block;
   width: 70%;
@@ -63,11 +64,12 @@
 
 .navigationBar .search-container .search-input {
   vertical-align: middle;
-  font-size: 18px;
+  font-size: var(--global-title-2-size);
   height: 28px;
   width: 80%;
   background-color: #d4dbe6;
 }
+*/
 
 .navigationBar .user-bar {
   display: inline-flex;
@@ -82,10 +84,11 @@
 
 .navigationBar .icon.avatar {
   vertical-align: middle;
-  border-radius: 23px;
-  width: 46px;
-  height: 46px;
+  border-radius: var(--global--user--avatar-size);
+  width: var(--global--user--avatar-size);
+  height: var(--global--user--avatar-size);
   object-fit: cover;
+  border: 1px solid black;
 }
 
 .navigationBar .icon.avatar:hover {

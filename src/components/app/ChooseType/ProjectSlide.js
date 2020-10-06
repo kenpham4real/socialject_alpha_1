@@ -14,25 +14,33 @@ function ProjectSlide(props) {
       history.push({ pathname: "/choosingUser" });
       sessionStorage.setItem("projectId", id);
     } //if they logged in, then flow is normal
-    else history.push({ pathname: "/projectInfo", projectId: id, orgId: user.userId });
+    else
+      history.push({
+        pathname: "/projectInfo",
+        projectId: id,
+        orgId: user.userId,
+      });
   }
   return (
-    <div>
-      <div class="project-container">
-        {/*Render the list*/}
-        {Data.map((Data) => (
-          <div class="project-card" onClick={() => handleClick(Data.projectId)}>
-            <img class="project-image" src={Data.projectAvatar} />
-            <img class="project-icon" src={Data.orgAvatar} />
-            <div class="project-text-container">
-              <p class="project-text title"> {Data.projectName} </p>
-              <p class="project-text orgName">by {Data.orgName}</p>
-              <p class="project-text deadline">Deadline: {Data.deadline}</p>
+    <div className="project-container">
+      {/*Render the list*/}
+      {Data.map((Data) => (
+        <div className="project-card-container">
+          <div
+            className="project-card"
+            onClick={() => handleClick(Data.projectId)}
+          >
+            <img className="project-image" src={Data.projectAvatar} />
+            <img className="project-icon" src={Data.orgAvatar} />
+            <div className="project-text-container">
+              <p className="project-text title"> {Data.projectName} </p>
+              <p className="project-text orgName">by {Data.orgName}</p>
+              <p className="project-text deadline">Deadline: {Data.deadline}</p>
               {/* <p class="project-text description">{Data.description}</p> */}
             </div>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 }

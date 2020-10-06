@@ -12,9 +12,9 @@
 /*Component*/
 .profile--title {
   display: inline-block;
-  color: var(--global-normal-text-color);
-  font-size: 20px;
-  font-weight: bold;
+  color: var(--global-title-1-color);
+  font-size: var(--global-title-1-size);
+  font-weight: var(--global-title-1-font-weight);
   margin: 1%;
   margin-left: 0;
 }
@@ -31,8 +31,6 @@
 
 .profile-avatar {
   /*
-   
-
   height: 13vw;
   width: 13vw;
   border-radius: 7.5vw;
@@ -41,11 +39,11 @@
   width: 28vh;
   border-radius: 14vh;
   */
-  height: 175px;
-  width: 175px;
-  border-radius: 87.5px;
-
+  height: var(--global--user--avatar__profile--page-view-size);
+  width: var(--global--user--avatar__profile--page-view-size);
+  border-radius: var(--global--user--avatar__profile--page-view-size);
   object-fit: cover;
+  border: 1px solid black;
 }
 
 .profile-link {
@@ -57,9 +55,8 @@
   display: inline-block;
   /*Size and border*/
   /*width: 13.2vw;*/
-
   border: none;
-  border-radius: 3px;
+  border-radius: var(--global-border-radius);
   /*Spacing*/
   padding: 3vw;
   padding-top: 0;
@@ -69,10 +66,10 @@
   color: var(--title);
   background-color: var(--global-primary-color);
   /*text*/
-  line-height: 30px;
+  line-height: var(--global--add__project__activity-button-height);
   font-weight: bold;
   align-items: center;
-  font-size: 14px;
+  font-size: var(--global--add__project__activity-button-font-size);
   text-align: center;
   text-decoration: none;
   /*Animation*/
@@ -104,7 +101,7 @@
   margin-bottom: 5%;
   /*padding*/
   padding: 25px;
-  padding-left: 5.8437vw;
+  padding-left: 6vw;
   padding-right: 5vw;
   /*color*/
   background-color: white;
@@ -115,7 +112,7 @@
 .profile-block-container {
   display: grid;
   /*border*/
-  border-radius: 3px;
+  border-radius: var(--global-border-radius);
   /*margin*/
   margin-top: 1%;
   margin-left: 23%;
@@ -140,8 +137,6 @@
   /*padding*/
   padding: none;
   /*size*/
-  /*color*/
-  background-color: var(--primary);
   /*text adjusting*/
   font-size: 16px;
   line-height: 1.5rem;
@@ -163,6 +158,5 @@
   margin-top: 1%;
   word-wrap: break-word;
   text-align: justify;
-  filter: brightness(80%);
-  color: var(--secondary);
+  color: var(--global-normal-text-color);
 }

@@ -1,7 +1,7 @@
 /* All the style for Choose Type Page (Screen 03) goes here */
 
 .chooseTypePage {
-  color: var(--title);
+  color: var(--global-normal-text-color);
   border-radius: none;
   vertical-align: middle;
   font-family: var(--global-font-family);
