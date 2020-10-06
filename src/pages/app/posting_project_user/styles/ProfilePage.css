@@ -137,6 +137,9 @@
   /*padding*/
   padding: none;
   /*size*/
+  width: 100%;
+  /* width: 100% is to fix the bug: child components of the name banner can float to wrong places when
+  the description isn't long enough.*/
   /*text adjusting*/
   font-size: 16px;
   line-height: 1.5rem;
