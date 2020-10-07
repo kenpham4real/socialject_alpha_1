@@ -5,14 +5,14 @@
 
 */
 
-import React, { useState, useReducer } from "react";
+import React, { useState } from "react";
 import "./styles/CreatePostModal_2.css";
 
 const CreatePostModal_2 = (props) => {
  
-  //Initialize the state
-  const [projectQuestionArray, setProjectQuestionArray] = useState("");
-  const [projectQuestion, setProjectQuestion] = useState("");
+  // //Initialize the state
+  // const [projectQuestionArray, setProjectQuestionArray] = useState("");
+  // const [projectQuestion, setProjectQuestion] = useState("");
   const [inputList, setInputList] = useState([""]);
   
 
@@ -20,14 +20,14 @@ const CreatePostModal_2 = (props) => {
   console.log("props",props);
 
 
-  const _onChangeAddProjectQuestion = (question) => {
-    setProjectQuestion(question);
+  // const _onChangeAddProjectQuestion = (question) => {
+  //   setProjectQuestion(question);
 
 
-    setProjectQuestionArray((projectQuestionArray) =>
-      projectQuestionArray.concat(question)
-    );
-  };
+  //   setProjectQuestionArray((projectQuestionArray) =>
+  //     projectQuestionArray.concat(question)
+  //   );
+  // };
 
 
   const Input = () => {
@@ -63,7 +63,7 @@ const CreatePostModal_2 = (props) => {
   
 
 
-  console.log("projects",projectQuestionArray);
+  // console.log("projects",projectQuestionArray);
 
 
   const _onChangeHandleContinue = () => {
@@ -73,8 +73,8 @@ const CreatePostModal_2 = (props) => {
       projectDescription: props.location.state.projectDescription,
       projectLocation: props.location.state.projectLocation,
       projectDeadline: props.location.state.projectDeadline,
-      projectQuestionArray:
-      projectQuestionArray[projectQuestionArray.length - 1],
+      // projectQuestionArray:
+      // projectQuestionArray[projectQuestionArray.length - 1],
     });
   };
 

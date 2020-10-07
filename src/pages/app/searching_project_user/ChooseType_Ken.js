@@ -56,7 +56,7 @@ import NavigationBar from "../../../components/app/NavigationBar_Ken";
 const ChooseType = (props) => {
   //Declare hooks as variables to be more flexible.
   const dispatch = useDispatch();
-  const callback = useCallback;
+  //const callback = useCallback;
   //Select data from the global state.
   const selectData = useSelector((state) => state.landingReducer.projectData);
 

@@ -5,7 +5,7 @@
 
 */
 
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuid_v4 } from "uuid";
 
