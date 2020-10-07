@@ -1,3 +1,5 @@
+//Fixer: Long
+
 /**
  * Contributors: Đạt, Ken
  * Main Component:
@@ -18,7 +20,7 @@ import Modal from "react-modal";
 import "./styles/ProjectInfoPage.css";
 
 // COmponents
-import NavigationBar from "../../../components/app/NavigationBar.js";
+//import NavigationBar from "../../../components/app/NavigationBar.js";
 import ListedItems from "../../../components/app/ProjectInfoPage/ListedItems.js";
 import ProjectActivity from "../../../components/app/ProjectInfoPage/ProjectActivity.js";
 import CopyrightBar from "../../../components/app/CopyrightBar.js";
@@ -27,9 +29,11 @@ import IndividualForm from "../../../components/app/ProjectInfoPage/IndividualFo
 
 // Functions
 import * as projectActions from "../../../store/actions/searching-project-user/project/projectAction";
-import * as activityActions from "../../../store/actions/posting-project-user/activity/activity";
+//import * as activityActions from "../../../store/actions/posting-project-user/activity/activity";
 // import {_getFormSubmission} from '../../../store/actions/posting-project-user/project/project'
-import NavigationBar_Ken from "../../../components/app/NavigationBar_Ken";
+import NavigationBar from "../../../components/app/NavigationBar_Ken";
+//Long: Import NavigationBar (not NavigationBar_Ken) like above is to avoid warning. Changed the name 
+//in that file as well.
 
 const ProjectInfoPage = (props) => {
   console.log("PROJECT_INFO_PAGE");
@@ -38,8 +42,8 @@ const ProjectInfoPage = (props) => {
   const orgId = props.history.location.orgId;
   const dispatch = useDispatch();
   const [isFetchedRecruitInfo, setIsFetchedRecruitInfo] = useState(false);
-  const [isFetchedActivities, setIsFetchedActivities] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  //const [isFetchedActivities, setIsFetchedActivities] = useState(false);
+  const [isModalOpen /*setIsModalOpen*/] = useState(false);
   const [applicant, setApplicant] = useState({});
   // const [formStudentId, setFormStudentId] = useState({
   //   name: "",
@@ -91,18 +95,18 @@ const ProjectInfoPage = (props) => {
    * @returns JSX Components
    * @author Ken Pham, Dat Uchiha
    */
-  const _project_tags = () => {
-    return (
-      <div className="tags">
-        <a href="">Explore</a> <span> </span>
-        <a href="">Language</a> <span> </span>
-        <a href="" className="currentTags">
-          Tags
-        </a>{" "}
-        <span> </span>
-      </div>
-    );
-  };
+  // const _project_tags = () => {
+  //   return (
+  //     <div className="tags">
+  //       <a href="">Explore</a> <span> </span>
+  //       <a href="">Language</a> <span> </span>
+  //       <a href="" className="currentTags">
+  //         Tags
+  //       </a>{" "}
+  //       <span> </span>
+  //     </div>
+  //   );
+  // };
 
   /**
    * @summary Render the info of organization, including name, avatar and the follow button
@@ -142,7 +146,7 @@ const ProjectInfoPage = (props) => {
   const _project_apply_button = () => {
     console.log("User Id in the button is: ", userId);
     console.log("Project owner's Id: ", projectsData.projectInfo.orgId);
-    if (userId != projectsData.projectInfo.orgId)
+    if (userId !== projectsData.projectInfo.orgId)
       return (
         <div
           className="applyButton"
@@ -333,7 +337,7 @@ const ProjectInfoPage = (props) => {
    */
   const _project_progress_section = () => {
     let ifDisplay = "inline-block";
-    if (userId != projectsData.projectInfo.orgId) ifDisplay = "none";
+    if (userId !== projectsData.projectInfo.orgId) ifDisplay = "none";
     const AddActivityButton = () => {
       return (
         <div
@@ -368,7 +372,8 @@ const ProjectInfoPage = (props) => {
           <AddActivityButton />
         </div>
         <ul className="progress-container-activity">
-          <a>{_project_activity_item}</a>
+          {/*The href below is to remove warnings */}
+          <a href="javascript:;">{_project_activity_item}</a>
         </ul>
         {/* <div className="viewAllButton">View all</div> */}
       </div>
@@ -507,8 +512,8 @@ const ProjectInfoPage = (props) => {
   return (
     <div className="projectInfoPage">
       <div>
-        {/* <NavigationBar /> */}
-        <NavigationBar_Ken />
+        {/* <NavigationBar_Ken />*/}
+        <NavigationBar />
       </div>
 
       <div className="generalInfoBoard">

@@ -2,10 +2,10 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // SPU Pages
-import ExplorePage from "../pages/app/searching_project_user/ExplorePage";
+//import ExplorePage from "../pages/app/searching_project_user/ExplorePage";
 
 import ProjectInfoPage from "../pages/app/searching_project_user/ProjectInfoPage";
-import ChooseType from "../pages/app/searching_project_user/ChooseType";
+//import ChooseType from "../pages/app/searching_project_user/ChooseType";
 import ChooseType_Ken from "../pages/app/searching_project_user/ChooseType_Ken";
 
 // PPU Pages
@@ -41,7 +41,7 @@ const MainRoute = () => {
         <Route path="/createPostModal_2" component={CreatePostModal_2} />
         <Route path="/createPostModal_3" component={CreatePostModal_3} />
         <Route path="/addActivity" component={AddActivityModal} />
-        <Route path="/applyForm" component={ApplyForm}/>
+        <Route path="/applyForm" component={ApplyForm} />
         <Route exact path="/profilePage_test" component={ProfilePage_example} />
         <Route path="/choosingUser" component={ChoosingUser} />
         <Route path="/login" component={LoginPage} />
