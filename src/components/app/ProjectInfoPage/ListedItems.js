@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "../../styles/ProjectInfoPage/ListedItems.css";
 const ListedItems = (props) => {
   return (

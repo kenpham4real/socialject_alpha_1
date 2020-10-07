@@ -36,20 +36,20 @@ import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./styles/ChooseTypeStyle.css";
 //General
-import NavigationBar from "../../../components/app/NavigationBar.js";
+// import NavigationBar from "../../../components/app/NavigationBar.js";
 import CopyrightBar from "../../../components/app/CopyrightBar.js";
-import IconButton from "../../../components/app/IconButton.js";
+// import IconButton from "../../../components/app/IconButton.js";
 //Specific
 import SloganPanel from "../../../components/app/ChooseType/SloganPanel.js";
 import ProjectSlide from "../../../components/app/ChooseType/ProjectSlide.js";
 
 //Data
 import * as landingAction from "../../../store/actions/searching-project-user/landing/landingAction";
-import * as autoLoginAction from "../../../store/actions/auth/autoLoginAction";
+// import * as autoLoginAction from "../../../store/actions/auth/autoLoginAction";
 import NavigationBar_Ken from "../../../components/app/NavigationBar_Ken";
 
-import { ADMIN, STUDENT } from "../../../constants/user-types";
-
+import { ADMIN } from "../../../constants/user-types";
+// import{ STUDENT} from "../../../constants/user-types";
 //Main function
 const ChooseType = (props) => {
   //Declare hooks as variables to be more flexible.

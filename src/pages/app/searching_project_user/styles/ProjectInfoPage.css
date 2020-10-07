@@ -1,10 +1,11 @@
+@import "../../styles/GlobalStyles.css";
 /*
 This is CSS file for ProjectInfoPage.js
 */
 
 /*GENERAL ATTRIBUTES OF THE PAGE*/
 .projectInfoPage {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-family: var(--global-font-family);
 }
 
 /*SPECIFIC ATTRIBUTES */
@@ -254,8 +255,8 @@ This is CSS file for ProjectInfoPage.js
 }
 
 .progress-container--header {
-  display: flex;
-  justify-content: start;
+  display: flex-start;
+  /* justify-content: start; */
 }
 
 .progress-container-header-addActivityButton {

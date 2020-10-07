@@ -1,8 +1,6 @@
 // Actions
 import { AUTHENTICATE } from "../../actions/auth/auth";
 
-// Models
-import { User } from "../../../models/user";
 
 const initialState = {
     userData: {

@@ -7,7 +7,7 @@
 */
 
 // Packages
-import React, { useState, useReducer } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import {v4 as uuid_v4} from 'uuid';
 import Calendar from "react-calendar";
@@ -25,7 +25,7 @@ import * as _activityActions from '../../../store/actions/posting-project-user/a
 import {LOCATIONS} from '../../../constants/location'
 
 // Helper
-import {_previewImageHandler} from '../../../helper/image/imageHandler'
+// import {_previewImageHandler} from '../../../helper/image/imageHandler'
 
 // Components
 import FeedbackImage from '../../../components/FeedbackImage'
@@ -58,7 +58,7 @@ const AddActivityModal = (props) => {
   const [activityName, setActivityName] = useState(name);
   const [activityDescription, setActivityDescription] = useState(des);
   const [activityLocation, setActivityLocation] = useState("");
-  const [activityCategory,setActivityCategory] =useState("");
+  const [activityCategory] =useState("");
   const [activityDate, setActivityDate] = useState(new Date());
   const [showCalendar, setShowCalendar] = useState(false);
   const [activityImage, setActivityImage] = useState(null)
@@ -78,27 +78,27 @@ const AddActivityModal = (props) => {
    * @param {string} name
    * @returns {void} 
    */
-  const _onChangeActivityName = (name) => {
-    setActivityName(name);
-  }
+  // const _onChangeActivityName = (name) => {
+  //   setActivityName(name);
+  // }
 
-  /**
-   * @summary Handle the state of activity description
-   * @param {string} description
-   * @returns {void}
-   */
-  const _onChangeActivityDescription = (description) => {
-    setActivityDescription(description);
-  }
+  // /**
+  //  * @summary Handle the state of activity description
+  //  * @param {string} description
+  //  * @returns {void}
+  //  */
+  // const _onChangeActivityDescription = (description) => {
+  //   setActivityDescription(description);
+  // }
 
-  /**
-   * @summary Handle the state of activity location
-   * @param {string} location
-   * @returns {void}
-   */
-  const _onChangeActivityLocation = (location) => {
-    setActivityLocation(location);
-  }
+  // /**
+  //  * @summary Handle the state of activity location
+  //  * @param {string} location
+  //  * @returns {void}
+  //  */
+  // const _onChangeActivityLocation = (location) => {
+  //   setActivityLocation(location);
+  // }
 
   /**
    * @summary Handle the state of activity date

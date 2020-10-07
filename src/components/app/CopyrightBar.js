@@ -13,6 +13,7 @@ function CopyrightBar(props) {
         <div>
           <div className="copyright-text right"> SocialJect </div>
           <img
+            alt=""
             className="copyright-icon"
             src={require("../../assets/images/SJ.png")}
           />
