@@ -2,7 +2,7 @@ import React from "react";
 import "../../styles/ChooseType/SloganPanel.css";
 
 function SloganPanel(props) {
-  const background = props.background;
+  //const background = props.background;
   return (
     <div className="slogan">
       <div className="slogan-title">Your connection to social contribution</div>
