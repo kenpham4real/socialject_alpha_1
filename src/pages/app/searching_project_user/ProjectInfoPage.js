@@ -39,7 +39,7 @@ const ProjectInfoPage = (props) => {
   const dispatch = useDispatch();
   const [isFetchedRecruitInfo, setIsFetchedRecruitInfo] = useState(false);
   // const [isFetchedActivities, setIsFetchedActivities] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen] = useState(false);
   const [applicant, setApplicant] = useState({});
   // const [formStudentId, setFormStudentId] = useState({
   //   name: "",
@@ -143,7 +143,7 @@ const ProjectInfoPage = (props) => {
   const _project_apply_button = () => {
     console.log("User Id in the button is: ", userId);
     console.log("Project owner's Id: ", projectsData.projectInfo.orgId);
-    if (userId != projectsData.projectInfo.orgId)
+    if (userId !== projectsData.projectInfo.orgId)
       return (
         <div
           className="applyButton"
