@@ -38,7 +38,7 @@ const ProjectInfoPage = (props) => {
   const orgId = props.history.location.orgId;
   const dispatch = useDispatch();
   const [isFetchedRecruitInfo, setIsFetchedRecruitInfo] = useState(false);
-  const [isFetchedActivities, setIsFetchedActivities] = useState(false);
+  // const [isFetchedActivities, setIsFetchedActivities] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [applicant, setApplicant] = useState({});
   // const [formStudentId, setFormStudentId] = useState({
@@ -70,7 +70,7 @@ const ProjectInfoPage = (props) => {
     } catch (error) {
       console.log("error", error);
     }
-  }, [dispatch]);
+  }, [dispatch, orgId, projectId]);
 
   useEffect(() => {
     _loadProjects().then(() => {
@@ -92,18 +92,18 @@ const ProjectInfoPage = (props) => {
    * @returns JSX Components
    * @author Ken Pham, Dat Uchiha
    */
-  const _project_tags = () => {
-    return (
-      <div className="tags">
-        <a href="">Explore</a> <span> </span>
-        <a href="">Language</a> <span> </span>
-        <a href="" className="currentTags">
-          Tags
-        </a>{" "}
-        <span> </span>
-      </div>
-    );
-  };
+  // const _project_tags = () => {
+  //   return (
+  //     <div className="tags">
+  //       <a href="">Explore</a> <span> </span>
+  //       <a href="">Language</a> <span> </span>
+  //       <a href="" className="currentTags">
+  //         Tags
+  //       </a>{" "}
+  //       <span> </span>
+  //     </div>
+  //   );
+  // };
 
   /**
    * @summary Render the info of organization, including name, avatar and the follow button
