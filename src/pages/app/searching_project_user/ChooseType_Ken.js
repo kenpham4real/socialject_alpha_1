@@ -34,7 +34,7 @@
       pass to /projectInfo
 */
 
-import React, { useCallback, useEffect } from "react";
+import React, { /*useCallback,*/ useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./styles/ChooseTypeStyle.css";
 //General

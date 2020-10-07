@@ -118,7 +118,7 @@ const _addUser = async (
 
   // Define the reference of the user
   const collectionRef =
-    userType == "STUDENT"
+    userType === "STUDENT"
       ? firebase_db.collection("student").doc(`${uid}`)
       : firebase_db.collection("organization").doc(`${uid}`);
 

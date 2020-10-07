@@ -73,6 +73,7 @@ const ProjectInfoPage = (props) => {
     } catch (error) {
       console.log("error", error);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   useEffect(() => {
@@ -373,7 +374,8 @@ const ProjectInfoPage = (props) => {
         </div>
         <ul className="progress-container-activity">
           {/*The href below is to remove warnings */}
-          <a href="javascript:;">{_project_activity_item}</a>
+          <p>{_project_activity_item}</p>
+          {/* need to solve later */}
         </ul>
         {/* <div className="viewAllButton">View all</div> */}
       </div>

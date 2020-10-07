@@ -197,7 +197,7 @@ const ProfilePage = (props) => {
   );*/
   const fetchCallback = useCallback(
     () => profileAction.FetchProject(dispatch, profileId),
-    []
+    [dispatch, profileId]
   );
 
   useEffect(() => {
