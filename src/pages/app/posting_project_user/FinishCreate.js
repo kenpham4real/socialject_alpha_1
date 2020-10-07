@@ -34,7 +34,7 @@ const FinishCreate = (props) => {
     *They can comeback and choose again
   */
   let locationLabel="";
-  if (props.location.location.selectedOption!=undefined)
+  if (props.location.location.selectedOption!==undefined)
     {
       locationLabel = props.location.location.selectedOption.label;
     }
@@ -62,27 +62,27 @@ const FinishCreate = (props) => {
    * @param {string} Email
    * @return {void}
    */
-  const _onChangeEmail = (Email) => {
-    setEmail(Email);
-  };
+  // const _onChangeEmail = (Email) => {
+  //   setEmail(Email);
+  // };
 
-  /**
-   * @summary Handle the state of description
-   * @param {string} PhoneNumber
-   * @return {void}
-   */
-  const _onChangePhoneNumber = (PhoneNumber) => {
-    setPhoneNumber(PhoneNumber);
-  };
+  // /**
+  //  * @summary Handle the state of description
+  //  * @param {string} PhoneNumber
+  //  * @return {void}
+  //  */
+  // const _onChangePhoneNumber = (PhoneNumber) => {
+  //   setPhoneNumber(PhoneNumber);
+  // };
 
-  /**
-   * @summary Handle the state of Facebook
-   * @param {string} facebook
-   * @return {void}
-   */
-  const _onChangeFacebook = (Facebook) => {
-    setFacebook(Facebook);
-  };
+  // /**
+  //  * @summary Handle the state of Facebook
+  //  * @param {string} facebook
+  //  * @return {void}
+  //  */
+  // const _onChangeFacebook = (Facebook) => {
+  //   setFacebook(Facebook);
+  // };
 
   /**
    * @summary Trigger the Registration action

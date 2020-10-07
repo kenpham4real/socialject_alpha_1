@@ -8,8 +8,8 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // Firebase
-import firebase from "firebase";
-import { firebase_auth } from "../../firebase-config";
+// import firebase from "firebase";
+// import { firebase_auth } from "../../firebase-config";
 
 // Styles
 import "./styles/LoginPage.css";
@@ -17,8 +17,8 @@ import FeedbackImage from "../../components/FeedbackImage";
 
 // Actions
 import * as authActions from "../../store/actions/auth/auth";
-import { FACEBOOK_LOGIN, GOOGLE_LOGIN } from "../../constants/auth";
-
+import { GOOGLE_LOGIN } from "../../constants/auth";
+// import { FACEBOOK_LOGIN} from "../../constants/auth";
 /**
  * @summary Rendering the page users use to login
  * @param {} props
@@ -46,7 +46,7 @@ const LoginPage = (props) => {
         window.location.reload(false);
       }
     }
-  }, [userData]);
+  }, [props.history, userData]);
 
   return (
     <div className="login-container">

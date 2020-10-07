@@ -21,9 +21,10 @@ export const profileReducer = (state = initialState, action) => {
       console.log("Profile data fetched: ", action.payload.profileData);
       const tempId = action.payload.profileData.orgId;
       console.log("Temp Id: ", tempId);
+      // eslint-disable-next-line array-callback-return
       action.payload.projectArray.map((tempo) => {
         console.log("Project has the Id: ", tempo.orgId);
-        if (tempo.orgId == tempId) {
+        if (tempo.orgId === tempId) {
           console.log("Saved");
           arrayToPush[count] = tempo;
           count++;

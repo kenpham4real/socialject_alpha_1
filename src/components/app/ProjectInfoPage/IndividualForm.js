@@ -1,5 +1,5 @@
 import React from "react";
-import Modal from "react-modal";
+// import Modal from "react-modal";
 import "../../styles/ProjectInfoPage/IndividualForm.css";
 
 const AnswerCard = (props) => {

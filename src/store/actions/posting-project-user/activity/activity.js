@@ -1,11 +1,14 @@
 // Firebase database
-import {firebase_db, firebase_storage, analytics} from '../../../../firebase-config'
+import {firebase_db,  analytics} from '../../../../firebase-config';
+// import {firebase_storage} from '../../../../firebase-config';
+
 
 // Constants
-import {testing_project_id, testing_activity_id} from '../../../../constants/testing-keys'
+import {testing_project_id} from '../../../../constants/testing-keys';
+// import {testing_activity_id} from '../../../../constants/testing-keys';
 
 // Classes and models
-import {Activity} from '../../../../models/activity'
+// import {Activity} from '../../../../models/activity'
 
 // Helper
 import {_imageUploadHandler} from '../../../../helper/image/imageHandler'
