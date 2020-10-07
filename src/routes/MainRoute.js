@@ -2,10 +2,10 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // SPU Pages
-import ExplorePage from "../pages/app/searching_project_user/ExplorePage";
+// import ExplorePage from "../pages/app/searching_project_user/ExplorePage";
 
 import ProjectInfoPage from "../pages/app/searching_project_user/ProjectInfoPage";
-import ChooseType from "../pages/app/searching_project_user/ChooseType";
+// import ChooseType from "../pages/app/searching_project_user/ChooseType";
 import ChooseType_Ken from "../pages/app/searching_project_user/ChooseType_Ken";
 
 // PPU Pages

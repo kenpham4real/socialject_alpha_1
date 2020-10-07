@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /*
 *Contributor: Long 19th August 2020
 *Component:
@@ -58,6 +59,7 @@ function NavigationBar_Ken(props) {
     );
   }, [dispatch]);
 
+
   useEffect(() => {
     fetchUser();
   }, [dispatch, fetchUser]);
@@ -66,7 +68,7 @@ function NavigationBar_Ken(props) {
 
   const CreateProfile = (props) => {
     let ifDisplay = "inline";
-    if (user.userType != ADMIN) ifDisplay = "none";
+    if (user.userType !== ADMIN) ifDisplay = "none";
     return (
       <div style={{ display: ifDisplay }}>
         <Link

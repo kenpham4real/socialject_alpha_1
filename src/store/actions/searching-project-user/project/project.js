@@ -17,8 +17,6 @@
 // Firebase database
 import { firebase_db } from "../../../../firebase-config";
 
-// Constants
-import { testing_organization_id,  testing_submission_form} from '../../../../constants/testing-keys';
 
 
 /******************************** ACTIONS ********************************/
@@ -32,7 +30,7 @@ export const FETCH_LANDING = "FETCH_LANDING";
 
 //The main function call this to activate the function of fetching data
 export function FetchCalling(action, data, dispatch, callback) {
-  if (data == undefined) action(dispatch);
+  if (data === undefined) action(dispatch);
   return callback(() => action(dispatch), [dispatch]);
 }
 

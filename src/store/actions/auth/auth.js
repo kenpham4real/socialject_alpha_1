@@ -1,7 +1,7 @@
 // Firebase
 import firebase from "firebase";
 import {
-  firebaseApp,
+  // firebaseApp,
   analytics,
   firebase_auth,
   firebase_db,
@@ -117,7 +117,7 @@ const _addUser = async (
   // Push the authenticated data of the user to firestore
 
   // Define the reference of the user
-  const collectionRef = userType == "STUDENT" 
+  const collectionRef = userType === "STUDENT" 
     ? firebase_db.collection("student").doc(`${uid}`)
     : firebase_db.collection("organization").doc(`${uid}`);
 

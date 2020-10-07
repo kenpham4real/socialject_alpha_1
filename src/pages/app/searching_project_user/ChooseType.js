@@ -38,7 +38,7 @@ import "./styles/ChooseTypeStyle.css";
 //General
 import NavigationBar from "../../../components/app/NavigationBar.js";
 import CopyrightBar from "../../../components/app/CopyrightBar.js";
-import IconButton from "../../../components/app/IconButton.js";
+// import IconButton from "../../../components/app/IconButton.js";
 //Specific
 import SloganPanel from "../../../components/app/ChooseType/SloganPanel.js";
 import ProjectSlide from "../../../components/app/ChooseType/ProjectSlide.js";
