@@ -1,13 +1,13 @@
 // Firebase database
 import {
-  firebaseApp,
+  // firebaseApp,
   firebase_db,
   analytics,
 } from "../../../../firebase-config";
 
 // Constants
 import {
-  testing_project_id,
+  // testing_project_id,
   testing_organization_id,
 } from "../../../../constants/testing-keys";
 
