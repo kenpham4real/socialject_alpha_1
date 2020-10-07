@@ -1,16 +1,45 @@
 /*Bottom*/
 
+.line {
+  margin-top: 50px;
+  margin-left: 10%;
+  margin-right: 10%;
+  border-bottom: 1px solid var(--global-subtitles-color);
+}
+
 .copyright-container {
-  margin-top: 5%;
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 3%;
+  padding-top: 3%;
 }
 
 .copyright-text {
-  font-family: "Inter";
-  font-size: 25px;
+  display: inline;
+  font-size: 2.9vw;
+  line-height: 46px;
+  vertical-align: middle;
   color: var(--shadow);
 }
 
 .copyright-text.right {
-  font-family: "Inter";
   float: right;
+  margin-left: 10px;
+}
+
+.copyright-icon {
+  vertical-align: middle;
+  border-radius: 23px;
+  width: 46px;
+  height: 46px;
+  object-fit: cover;
+}
+
+.copyright-icon:hover {
+  filter: brightness(130%);
+  transition: 0.2s;
+}
+
+.copyright-icon:not(:hover) {
+  transition: 0.2s;
 }

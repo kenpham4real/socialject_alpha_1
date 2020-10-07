@@ -1,184 +1,515 @@
-import React, { useEffect, useCallback } from "react";
-import {useDispatch, useSelector} from 'react-redux'
+/**
+ * Contributors: Đạt, Ken
+ * Main Component:
+ * ProjectInfoPage{
+ *  _loadProjectst() => Fetch the projects from Firestore
+ *  _project_tags() => Render the tag of the project
+ *  _organizationInfo() => Render the info of organization, including name, avatar and the follow button
+ *  _project_apply_button() => Render the apply button for the project
+ *  _
+ * }
+ */
 
+import React, { useEffect, useCallback, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import Modal from "react-modal";
 // Styles
 import "./styles/ProjectInfoPage.css";
 
 // COmponents
-import NavigationBar from "../../../components/app/NavigationBar.js";
+// import NavigationBar from "../../../components/app/NavigationBar.js";
 import ListedItems from "../../../components/app/ProjectInfoPage/ListedItems.js";
 import ProjectActivity from "../../../components/app/ProjectInfoPage/ProjectActivity.js";
 import CopyrightBar from "../../../components/app/CopyrightBar.js";
+import FormSubmission from "../../../components/app/ProjectInfoPage/FormSubmission";
+import IndividualForm from "../../../components/app/ProjectInfoPage/IndividualForm";
 
 // Functions
-import * as projectActions from "../../../store/actions/posting-project-user/project/project.js";
-
+import * as projectActions from "../../../store/actions/searching-project-user/project/projectAction";
+// import * as activityActions from "../../../store/actions/posting-project-user/activity/activity";
+// import {_getFormSubmission} from '../../../store/actions/posting-project-user/project/project'
+import NAVIGATION_BAR_KEN from "../../../components/app/NavigationBar_Ken";
 
 const ProjectInfoPage = (props) => {
+  console.log("PROJECT_INFO_PAGE");
 
-  // Retrieve the projects state from the reducer
-  // state.projectReducer --> From App.js
-  // .projects --> From reducer
-  const projectData = useSelector(state => state.projectReducer.projects);
+  const projectId = props.history.location.projectId;
+  const orgId = props.history.location.orgId;
+  const dispatch = useDispatch();
+  const [isFetchedRecruitInfo, setIsFetchedRecruitInfo] = useState(false);
+  // const [isFetchedActivities, setIsFetchedActivities] = useState(false);
+  const [isModalOpen] = useState(false);
+  const [applicant, setApplicant] = useState({});
+  // const [formStudentId, setFormStudentId] = useState({
+  //   name: "",
 
-  // useDispatch() from react-redux
-  const dispatch = useDispatch()
+  //   email: "",
+  //   avatar: "",
+  //   answers: [],
 
-  // A callback to fetch projects
-  const _loadProjects = useCallback( async () => {
+  // });
+
+  const projectsData = useSelector(
+    (state) => state.projectReducerSPU.projectsData
+  );
+
+  const user = JSON.parse(localStorage.getItem("userData"));
+  const userId = user !== null ? user.userId : "";
+
+  const activities = projectsData.projectProgress;
+  /**
+   * @summary A callback to fetch projects
+   * @param {void}
+   * @returns {function} @callback
+   * @author Ken Pham
+   */
+  const _loadProjects = useCallback(async () => {
     try {
-      dispatch(projectActions.fetchProject_recruitInfo_ppu())
-
+      dispatch(projectActions._getProjectInfo(orgId, projectId));
     } catch (error) {
-      console.log('error', error)
+      console.log("error", error);
     }
-  }, [dispatch]) 
+  }, [dispatch, orgId, projectId]);
 
-  // Fetch projects when PPU enters the page
   useEffect(() => {
-    _loadProjects()
-    .then(() => console.log('projects loaded successfully'))
-  }, [dispatch, _loadProjects])
+    _loadProjects().then(() => {
+      setIsFetchedRecruitInfo(true);
+    });
+  }, [dispatch, _loadProjects, isFetchedRecruitInfo]);
 
+  console.log("fetched projects", projectsData);
 
-  // Render the tags of the project
-  const _project_tags = () => {
-    return(
-      <div className="tags">
-        <a href="">Explore</a> <span> </span>
-        <a href="">Language</a> <span> </span>
-        <a href="" className="currentTags">
-          Tags
-        </a>{" "}
-        <span> </span>
-      </div>
-    )
-  }
-  
-  // Render the info of organization, including name, avatar and the follow button
+  const _onViewStudentAnswer = (applicantInfo) => {
+    console.log(applicantInfo);
+    setApplicant(applicantInfo);
+  };
+
+  /********************************* Small UI components *********************************/
+  /**
+   * @summary Render the tags of the project
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
+  // const _project_tags = () => {
+  //   return (
+  //     <div className="tags">
+  //       <a href="">Explore</a> <span> </span>
+  //       <a href="">Language</a> <span> </span>
+  //       <a href="" className="currentTags">
+  //         Tags
+  //       </a>{" "}
+  //       <span> </span>
+  //     </div>
+  //   );
+  // };
+
+  /**
+   * @summary Render the info of organization, including name, avatar and the follow button
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
   const _organization_info = () => {
-    return(
+    return (
       <div className="organizationNameandPicture">
         <img
           className="projectLogo"
-          src="https://w7.pngwing.com/pngs/1003/487/png-transparent-github-pages-random-icons-white-logo-monochrome.png"
+          src={projectsData.projectInfo.orgAvatar}
           alt="orgLogo"
+          onClick={() =>
+            props.history.push({
+              pathname: userId ? "/profile" : "",
+              profileId: projectsData.projectInfo.orgId,
+            })
+          }
         />
-        <div className="organizationName">Organization's Name </div>
-        <button>Follow</button>
-      </div>
-    )
-  }
 
-  // Render the apply button for the project
+        <div className="organizationName">
+          {projectsData.projectInfo.projectName}{" "}
+        </div>
+        {/* <button>Follow</button>    //Follow Functionality has not been developed */}
+      </div>
+    );
+  };
+
+  /**
+   * @summary Render the apply button for the project
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
   const _project_apply_button = () => {
-    return(
-      <div className="applyButton">
-        <div className="applyNow">Apply Now</div>
-        <div className="dueDay">Ends {projectData.deadline}</div>
-      </div>
-    )
-  }
+    console.log("User Id in the button is: ", userId);
+    console.log("Project owner's Id: ", projectsData.projectInfo.orgId);
+    if (userId !== projectsData.projectInfo.orgId)
+      return (
+        <div
+          className="applyButton"
+          onClick={() =>
+            props.history.push({
+              pathname: "/applyform",
+              projectId: projectId,
+            })
+          }
+        >
+          <div className="applyNow">
+            <Link
+              className="Link"
+              to={{
+                pathname: "/applyform",
+                projectId,
+              }}
+            >
+              Apply Now{" "}
+            </Link>
+          </div>
+        </div>
+      );
+    else return <div></div>;
+  };
 
-  // Render the avatar of the project
+  const _project_due_day = () => {
+    return (
+      <div className="dueDay">
+        <span>{projectsData.projectInfo.deadline}</span>
+        <br />
+        <span className="deadlineTittle">Deadline</span>
+      </div>
+    );
+  };
+
+  /**
+   * @summary Render the avatar of the project
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
   const _project_avatar = () => {
-    return(
-      <div>
+    return (
+      <div className="projectPictureContainer">
         <img
           className="projectPicture"
-          src="https://scontent-xsp1-1.xx.fbcdn.net/v/t1.0-9/10514712_1441620719449458_2919014509954445678_n.jpg?_nc_cat=103&_nc_sid=110474&_nc_ohc=S_vl00GT_9sAX9yvuwq&_nc_ht=scontent-xsp1-1.xx&oh=a0b2a92958685faec2cc28775a437903&oe=5F69B421"
+          src={projectsData.projectInfo.projectAvatar}
           alt="projectPicture"
         />
       </div>
-    )
-  }
+    );
+  };
 
-  // Render the showing-joined-user-number div
+  /**
+   * @summary Render the showing-joined-user-number div
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
   const _project_joined_users = () => {
-    return(
-      <div class="joinedUsers">
-        <span>100, 000</span> has joined
+    return (
+      <div className="joinedUsers">
+        <span>100</span>
+        <br /> has joined
       </div>
-    )
-  }
-  
-  // Render the held-by section of the project
+    );
+  };
+
+  /**
+   * @summary Render the held-by section of the project
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
   const _project_held_by_section = () => {
-    return(
+    return (
       <div className="heldByContainer">
         <h1 className="projectHeadings"> Held by</h1>
         <img
           className="projectLogo"
-          src="https://w7.pngwing.com/pngs/1003/487/png-transparent-github-pages-random-icons-white-logo-monochrome.png"
+          src={projectsData.projectInfo.orgAvatar}
           alt="orgLogo"
+          onClick={() =>
+            props.history.push({
+              pathname: userId ? "/profile" : "",
+              profileId: projectsData.projectInfo.orgId,
+            })
+          }
         />
         <span>
-          <p className="organizationName">Organization's Name</p>
-          <p>
-            This paragraph will be the section “About” in the Profile of the
-            Organization.
+          <p className="organizationName">
+            {projectsData.projectInfo.projectName}
           </p>
+          <p>{projectsData.projectInfo.description}</p>
         </span>
-        <div className="viewAllButton">View all</div>
+        {/* <div className="viewAllButton">View all</div> */}
       </div>
-    )
-  }
+    );
+  };
 
-  // Render the benefits section
+  /**
+   * @summary Render the benefits section
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
   const _project_benefit_section = () => {
-    return(
+    return (
       <div className="benefitContainer">
         <h1 className="projectHeadings">Benefit</h1>
-        <ListedItems />
-        <ListedItems />
-        <ListedItems />
+        <ul>
+          {isFetchedRecruitInfo &&
+            isFetchedRecruitInfo &&
+            projectsData.projectDetail.benefits.map((benefit) => (
+              <li>
+                <ListedItems title={benefit} />
+              </li>
+            ))}
+        </ul>
       </div>
-    )
-  }
+      //Somthing is wrong in this section, detail:"benefits". That makes the page broken
+    );
+  };
 
-  // Render the requirements section
+  /**
+   * @summary Render the requirements section
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
   const _project_requirement_section = () => {
-    return(
-      <div className="requirementsContaner">
+    return (
+      <div className="requirementContaner">
         <h1 className="projectHeadings">Requirements</h1>
-        <ListedItems />
-        <ListedItems />
-        <ListedItems />
+        <ul>
+          {isFetchedRecruitInfo &&
+            projectsData.projectDetail.requirements.map((requirement) => (
+              <li>
+                <ListedItems title={requirement} />
+              </li>
+            ))}
+        </ul>
       </div>
-    )
-  }
+    );
+  };
 
-  // Render the about section of the project
+  /**
+   * @summary Render the about section of the project
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
   const _project_about_section = () => {
-    return(
+    return (
       <div className="aboutContainer">
         <h1 className="projectHeadings">About</h1>
-        <div>{projectData.description}</div>
-        <div className="viewAllButton">View all</div>
+        <div>{projectsData.projectInfo.description}</div>
+        {/* <div className="viewAllButton">View all</div> */}
       </div>
-    )
-  }
+    );
+  };
 
-  // Render the progress section of the project
+  /**
+   * @summary Render the activities
+   * @param {void}
+   * @returns JSX
+   * @author Ken Pham
+   */
+  const _project_activity_item = activities.map((activity) => {
+    return (
+      <ProjectActivity
+        key={activity.activityId}
+        project_activity_avatar={null}
+        project_activity_name={activity.activityName}
+        project_activity_date={activity.activityDate}
+        project_activity_location={activity.activityLocation}
+        project_activity_description={activity.activityDescription}
+      />
+    );
+  });
+
+  /**
+   * @summary Render the progress section of the project
+   * @param {void}
+   * @returns JSX Components
+   * @author Ken Pham, Dat Uchiha
+   */
   const _project_progress_section = () => {
-    return(
+    let ifDisplay = "inline-block";
+    if (userId !== projectsData.projectInfo.orgId) ifDisplay = "none";
+    const AddActivityButton = () => {
+      return (
+        <div
+          className="progress-container-header-addActivityButton"
+          onClick={() =>
+            props.history.push("/addActivity", {
+              projectId: projectId,
+            })
+          }
+          style={{ display: ifDisplay }}
+        >
+          Add an activity
+        </div>
+      );
+    };
+    return (
       <div className="progressContainer">
         <div className="progress-container--header">
           <h1 className="projectHeadings">Progress</h1>
-          <a className="progress-container-header-addActivityButton" href="/addActivity">Add an activity</a>
+          {/*
+            <div
+            className="progress-container-header-addActivityButton"
+            onClick={() =>
+              props.history.push("/addActivity", {
+                projectId: projectId,
+              })
+            }
+          >
+            Add an activity
+          </div>
+          */}
+          <AddActivityButton />
         </div>
-        <ProjectActivity />
-        <ProjectActivity />
-        <ProjectActivity />
-        <div className="viewAllButton">View all</div>
+        <ul className="progress-container-activity">
+          <p>{_project_activity_item}</p>
+        </ul>
+        {/* <div className="viewAllButton">View all</div> */}
       </div>
-    )
-  }
+    );
+  };
 
+  // const _handle_modal_open = (StudentId) => {
+  //   setIsModalOpen(true);
+  //   const { name, email, avatar, answers } = StudentId;
+  //   setFormStudentId((prevState) => ({
+  //     ...prevState,
+  //     name: name,
+  //     email: email,
+  //     avatar: avatar,
+  //     answers: answers,
+  //   }));
+  //   console.log("Student ID", StudentId);
+  //   console.log("Modal Student Id", formStudentId);
+  // };
+  // console.log("Modal Student Id", formStudentId);
+  // const _close_modal_handler = () => setIsModalOpen(false);
+  // /********************************* MAIN Component: ProjectInfoPage *********************************/
+  // const imageURL =
+  //   "https://i.pinimg.com/originals/39/46/55/39465510117c36c2023b2d72cdcf05b3.jpg";
+  // const exampleFormSubmissionData = [
+  //   //Example data for Form Submission
+  //   {
+  //     name: "Ken Pham",
+
+  //     email: "kanekiken@gmail.com",
+  //     avatar: imageURL,
+  //     answers: [
+  //       {
+  //         id: "1",
+  //         question: "Your favorite pokemon?",
+  //         answer: " KEN Charizard",
+  //       },
+  //       { id: "2", question: "Your favorite 6 digit code?", answer: "177013" },
+  //       {
+  //         id: "3",
+  //         question: "Your favorite type of girl?",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     name: "Long Wibu",
+  //     email: "longthewibulord@gmail.com",
+  //     avatar: imageURL,
+  //     answers: [
+  //       {
+  //         id: "1",
+  //         question: "Your favorite pokemon?",
+  //         answer: " LONGGGGGGGG WWIBUUUUU Charizard",
+  //       },
+  //       { id: "2", question: "Your favorite 6 digit code?", answer: "177013" },
+  //       {
+  //         id: "3",
+  //         question: "Your favorite type of girl?",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     name: "Long Artist",
+  //     email: "chillisaucery@gmail.com",
+  //     avatar: imageURL,
+  //     answers: [
+  //       {
+  //         id: "1",
+  //         question: "Your favorite pokemon?",
+  //         answer: "LONGGGGG ARTISTTTTTTT Charizard",
+  //       },
+  //       { id: "2", question: "Your favorite 6 digit code?", answer: "177013" },
+  //       {
+  //         id: "3",
+  //         question: "Your favorite type of girl?",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     name: "Dat Uchiha",
+
+  //     email: "uchihasasudat@gmail.com",
+  //     avatar: imageURL,
+  //     answers: [
+  //       {
+  //         id: "1",
+  //         question: "Your favorite pokemon?",
+  //         answer: "DAT DEP TRAI Charizard",
+  //       },
+  //       { id: "2", question: "Your favorite 6 digit code?", answer: "177013" },
+  //       {
+  //         id: "3",
+  //         question: "Your favorite type of girl?",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     name: "Tien kun",
+
+  //     email: "tranngoctien@gmail.com",
+  //     avatar: imageURL,
+  //     answers: [
+  //       {
+  //         id: "1",
+  //         question: "Your favorite pokemon?",
+  //         answer: "TIEN KUN   Charizard",
+  //       },
+  //       { id: "2", question: "Your favorite 6 digit code?", answer: "177013" },
+  //       {
+  //         id: "3",
+  //         question: "Your favorite type of girl?",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     name: "Imposter",
+
+  //     email: "amongus@gmail.com",
+  //     avatar: imageURL,
+  //     answers: [
+  //       {
+  //         id: "1",
+  //         question: "Your favorite pokemon?",
+  //         answer: "IMPOSTER     Charizard",
+  //       },
+  //       { id: "2", question: "Your favorite 6 digit code?", answer: "177013" },
+  //       {
+  //         id: "3",
+  //         question: "Your favorite type of girl?",
+  //       },
+  //     ],
+  //   },
+  // ];
+
+  /********************************* MAIN Component: ProjectInfoPage *********************************/
   return (
     <div className="projectInfoPage">
       <div>
-        <NavigationBar />
+        {/* <NavigationBar /> */}
+        <NAVIGATION_BAR_KEN/>
       </div>
 
       <div className="generalInfoBoard">
@@ -186,26 +517,29 @@ const ProjectInfoPage = (props) => {
 
         {/*'generalInfo' division*/}
         <div className="generalInfoComponents">
-          {_project_tags()}
-          <div className="projectName">{projectData.projectName}</div>
-          <div className="location">{projectData.projectLocation}</div>
+          {/* {_project_tags()} */}
+          <div className="projectName">
+            {projectsData.projectInfo.projectName}
+          </div>
+          <div className="location">{projectsData.projectInfo.location}</div>
           {_organization_info()}
 
-          {_project_apply_button()}
-
           {_project_joined_users()}
+          {_project_due_day()}
+
+          {_project_apply_button()}
         </div>
 
         {/*'projectPicture' division*/}
         {_project_avatar()}
-        
       </div>
 
-      <div className="content">
+      <div className="projectInfoContent">
         <div className="leftColumn">
           {_project_held_by_section()}
           {_project_benefit_section()}
           {_project_requirement_section()}
+
           {/* <div className="teamContainer">
             <h1 className="projectHeadings">Team</h1>
             <ListedItems />
@@ -216,11 +550,32 @@ const ProjectInfoPage = (props) => {
         <div className="rightColumn">
           {_project_about_section()}
           {_project_progress_section()}
+          <FormSubmission
+            userId={userId}
+            projectOwnerId={projectsData.projectInfo.orgId}
+            // formData={exampleFormSubmissionData}
+            // onModalOpening={(props) => _handle_modal_open(props)}
+            isFetchedRecruitInfo={isFetchedRecruitInfo}
+            formSubmissions={projectsData.formSubmission}
+            _onViewStudentAnswer={_onViewStudentAnswer}
+          />
+          <Modal isOpen={isModalOpen}>
+            <IndividualForm
+              userId={userId}
+              projectOwnerId={projectsData.projectInfo.orgId}
+              // formData={formStudentId}
+              // onModalClosing={_close_modal_handler}
+              isFetchedRecruitInfo={isFetchedRecruitInfo}
+              allAnswers={applicant.answers}
+              studentName={applicant.studentName}
+              studentEmail={applicant.studentEmail}
+              studentAvatar={applicant.studentAvatar}
+            />
+          </Modal>
         </div>
       </div>
-      <div className="footer">
-        <CopyrightBar />
-      </div>
+
+      <CopyrightBar />
     </div>
   );
 };

@@ -1,3 +1,4 @@
+@import "../../styles/GlobalStyles.css";
 .page{
     display: grid;
 }
@@ -7,34 +8,40 @@
     margin-left: 100px;
 }
 .my-header-FinishCreate{
+    color: var(--global-primary-color);
     margin-top:50px;
-    font-weight: bold;
-    font-size: 30px;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: var(--global-headline-1-font-weight);
+    font-size: var(--global-headline-1-size);
+    font-family: var(--global-font-family);
 } 
 .description-FinishCreate{
-    font-size: 20px;
-    margin-top:20px;
+    margin-top:10px;
+    font-size: var(--global-title-1-light-size);
+    color:var(--global-title-1-light-color);
+    font-family: var(--global-font-family);
+    font-weight:var(--global-title-1-light-font-weight);
 }
 .view-text-input-FinishCreate{
-    margin-left:50px;
+    margin-left:0px;
     margin-right:20px;
-    margin-bottom:20px;
+    margin-bottom:0px;
     margin-top:10px;
     display: grid;
 }
-.input-text-FinishCreate{
-    margin-left:-50px;
-    margin-bottom:20px;
-    margin-top:10px;
-    margin-right: 30px;
-    height: 50px;
-    font-size:20px;
-    border:2px solid black;
-    border-radius: 5px;
-    width: 330px;
-}
-.container-finish{
-    width:340px;
+.container-continue{
+    height: var(--global--submit-button-height);
+    line-height: 40px;
     cursor: pointer;
+    color: black;
+    font-family: var(--global-font-family);
+    margin-top: 20px;
+    border-radius: var(--global-border-radius);
+    text-align: center;
+    font-weight: 700;
+    white-space: nowrap;
+    letter-spacing: -2.2%;
+    font-size: var(--global--submit-button-font-size);
+    background-color: #2FAD58;
+    box-shadow:0 10px 30px 0 var( --global-accent-1-color);
+    position: absolute;
 }

@@ -1,102 +1,131 @@
-import React from "react";
+/*
+*Contributor: Long 22nd September 2020
+*Component:
+    In use:
+    *Main, Navigation Bar, SloganPanel, ProjectXSlide, CopyrightBar, 
+    Not in use:
+    *Filter bar: horizontal panel, containing 3 button to filter
+    *IconButton: 32x32 container for image, used for the filter
+*Function:
+  Fetch data: import from "landingAction"
+    FetchCalling: to call the fetching action
+    FetchLanding: to fetch the data from Firebase into the landing page 
+  Hooks: 
+    useCallback, useEffect: To avoid re-fetching, but it still re-fetch anyway.
+    useDispatch: to pass into the action so that the action can dispatch data onto global store
+    useSelector: select data from global store to use
+*Data in this file: (currently provided in this file already)
+  *data needed: 
+    Concept: an array contain objects, each object is a project.
+    Source: global store, and before that, Firebase Cloud Firestore
+    Element: Project. Each project contain:
+      deadline: string,
+      description: string,
+      orgId: string
+      organizationAvatar: a link to an image. Still don't know why this isn't named "orgAvatar" for short
+      organizationName: string. Again, this should have been "orgName"
+      projectAvatar: a link to an image
+      projectId: a string
+      projectName: string
+  *data to pass:
+    projectId
+      pass to /projectInfo
+*/
+
+import React, { useCallback, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./styles/ChooseTypeStyle.css";
+//General
 import NavigationBar from "../../../components/app/NavigationBar.js";
 import CopyrightBar from "../../../components/app/CopyrightBar.js";
+// import IconButton from "../../../components/app/IconButton.js";
+//Specific
 import SloganPanel from "../../../components/app/ChooseType/SloganPanel.js";
 import ProjectSlide from "../../../components/app/ChooseType/ProjectSlide.js";
 
-  /*
-const langData = [
-  { name: "Engrisk" },
-  { name: "Vietnamese" },
-  { name: "Spanish" },
-];
-*/
-const imageURL =
-  "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/11a82051-faf5-408c-91e6-0f6a31cad763/ddu9pqh-cca306ee-b699-44c6-b4ef-d089ca6e3a24.jpg/v1/fill/w_1920,h_1201,q_75,strp/witch_with_eyes_of_emerald_by_luuhienlong201_ddu9pqh-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMTFhODIwNTEtZmFmNS00MDhjLTkxZTYtMGY2YTMxY2FkNzYzXC9kZHU5cHFoLWNjYTMwNmVlLWI2OTktNDRjNi1iNGVmLWQwODljYTZlM2EyNC5qcGciLCJoZWlnaHQiOiI8PTEyMDEiLCJ3aWR0aCI6Ijw9MTkyMCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS53YXRlcm1hcmsiXSwid21rIjp7InBhdGgiOiJcL3dtXC8xMWE4MjA1MS1mYWY1LTQwOGMtOTFlNi0wZjZhMzFjYWQ3NjNcL2x1dWhpZW5sb25nMjAxLTQucG5nIiwib3BhY2l0eSI6OTUsInByb3BvcnRpb25zIjowLjQ1LCJncmF2aXR5IjoiY2VudGVyIn19.H9m-NjiXbxdxAeMEe2Ru8aksBpeHuEE6FEKrQML6lCw";
+//Data
+import * as landingAction from "../../../store/actions/searching-project-user/landing/landingAction";
 
-const progressData = [
-  {
-    id: "1",
-    topic: "Charity",
-    name: "Project name1",
-    url: imageURL,
-  },
-  {
-    id: "2",
-    topic: "Charity",
-    name: "Project name2",
-    url: imageURL,
-  },
-  {
-    id: "3",
-    topic: "Charity",
-    name: "Project name3",
-    url: imageURL,
-  },
-  {
-    id: "4",
-    topic: "Drawing",
-    name: "Project name4",
-    url: imageURL,
-  },
-  {
-    id: "5",
-    topic: "Drawing",
-    name: "Project name5",
-    url: imageURL,
-  },
-  {
-    id: "6",
-    topic: "Charity",
-    name: "Project name6",
-    url: imageURL,
-  },
-  {
-    id: "7",
-    topic: "Drawing",
-    name: "Project name7",
-    url: imageURL,
-  },
-  {
-    id: "8",
-    topic: "Education",
-    name: "Project name8",
-    url: imageURL,
-  },
-];
-
+//Main function
 const ChooseType = (props) => {
+  //Declare hooks as variables to be more flexible.
+  const dispatch = useDispatch();
+  const callback = useCallback;
+  //Select data from the global state.
+  const selectData = useSelector((state) => state.landingReducer.projectData);
+  //Use 2 hooks useEffect and useCallback to prevent re-render, but it still re-render anyway.
+  /**
+   * @summary A callback to fetch projects, then an useEffect to call it.
+   * @param (Function to fetch, current data, usedispatch, useCallback),
+   *        then (the callback function, useDispatch)
+   * @returns {void} (it pass the data into global store)
+   * @author Long Wibu
+   */
+  const fetchCallback = landingAction.FetchCalling(
+    landingAction.FetchLanding,
+    selectData,
+    dispatch,
+    callback
+  );
+  useEffect(() => {
+    fetchCallback();
+  }, [dispatch]);
+
+  //For testing purpose.
+  console.log("Selected Data:", selectData);
+
   return (
     <div className="chooseTypePage">
       {/*Navigation Bar*/}
       <NavigationBar></NavigationBar>
 
       {/*Slogan Panel*/}
-      <SloganPanel></SloganPanel>
+      <SloganPanel background={imageURL}></SloganPanel>
 
-      {/*
-      <div className="card-panel filter">
-        <a className="filter-title">Filter by: </a>
-        
-        {filterData.map((filterData) => (
-          <div className="button filter">
-            <a>{filterData.name}</a>
-            <IconButton source="https://static.thenounproject.com/png/551749-200.png"></IconButton>
-          </div>
-        ))}
-      </div>
-      */}
+      {/*Filter (NA now)*/}
 
       {/*Projects*/}
-      <ProjectSlide Data={progressData} title="Charity"></ProjectSlide>
-      <ProjectSlide Data={progressData} title="Education"></ProjectSlide>
-      <ProjectSlide Data={progressData} title="Drawing"></ProjectSlide>
 
+      <ProjectSlide data={selectData} history={props.history}></ProjectSlide>
+
+      {/*Copyright*/}
       <CopyrightBar></CopyrightBar>
+
       {/* End of code */}
     </div>
   );
 };
 
 export default ChooseType;
+
+const imageURL =
+  "https://c4.wallpaperflare.com/wallpaper/963/733/213/anime-girls-ghost-blade-wlop-wallpaper-preview.jpg";
+
+/*
+const langData = [
+  { name: "Engrisk" },
+  { name: "Vietnamese" },
+  { name: "Spanish" },
+];
+
+const filterData = [
+  { name: "Location" },
+  { name: "Progress" },
+  { name: "Popularity" },
+];
+
+function FilterBar(props) {
+  return (
+    <div class="card-panel filter">
+      <a class="filter-title">Filter by: </a>
+
+      {filterData.map((filterData) => (
+        <div class="button filter">
+          <a>{filterData.name}</a>
+          <IconButton source="https://static.thenounproject.com/png/551749-200.png"></IconButton>
+        </div>
+      ))}
+    </div>
+  );
+}
+*/

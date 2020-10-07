@@ -3,11 +3,22 @@ import "../styles/CopyrightBar.css";
 
 function CopyrightBar(props) {
   return (
-    <div className="copyright-container">
-      {/*Copyright*/}
-      <a href="www.facebook.com" className="copyright-text"> Copyrighted by ...</a>
-      {/*Top right corner*/}
-      <a href="www.facebook.com" className="copyright-text right">SocialJect </a>
+    <div>
+      <div className="line"></div>
+
+      <div className="copyright-container">
+        {/*Copyright*/}
+        <p className="copyright-text">Copyrighted by ...</p>
+        {/*Right corner*/}
+        <div>
+          <div className="copyright-text right"> SocialJect </div>
+          <img
+            alt=""
+            className="copyright-icon"
+            src={require("../../assets/images/SJ.png")}
+          />
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,69 +1,63 @@
+@import "../../styles/GlobalStyles.css";
+/* 
+*Tien with global styles
+*3rd October 2020
+*/
 .page{
     display: grid;
 }
 .container-BeautifyProfile{
     display: grid;
-    margin-top:50px;
+    margin-top:30px;
     margin-left: 100px;
 }
 .my-header-BeautifyProfile{
+    color: var(--global-primary-color);
     margin-top:50px;
-    font-weight: bold;
-    font-size: 30px;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: var(--global-headline-1-font-weight);
+    font-size: var(--global-headline-1-size);
+    font-family: var(--global-font-family);
 }
 .description-BeautifyFrofile{
-    font-size: 20px;
-    margin-top:20px;
+    margin-top:10px;
+    font-size: var(--global-title-1-light-size);
+    color:var(--global-title-1-light-color);
+    font-family: var(--global-font-family);
+    font-weight:var(--global-title-1-light-font-weight);
 }
 .view-text-input-beautifyProfile{
     margin-left:0px;
     margin-right:20px;
     margin-bottom:20px;
-    margin-top:10px;
+    margin-top:20px;
     display: grid;
 }
 .input-text-beautifyProfile{
     margin-right:20px;
-    margin-bottom:20px;
+    margin-bottom:10px;
     margin-top:20px;
     height: 50px;
-    font-size:20px;
-    border:2px solid black;
-    border-radius: 5px;
-    font-size:20px;
-    width:330px
-
+    font-size:var(--global-sub-title-light-size);
+    border:var(--global-border-color);
+    font-family: var(--global-font-family);
+    color:var(--global-sub-title-light-color) ;
+    width:330px;
+    border-radius: var(--global-border-radius) ;
 }
 .select{
-    width: 340px;
-    border:2px solid black;
-    border-radius: 7px;
+    width: 338px;
+    outline: none;
+    border-radius: var(--global-border-radius);
+    /* border:var(--global-border-color); */
 }
-.avatar-box{
-    border:2px solid black;
-    border-radius: 5px;
-    height: 200px;
-    width:335px;
-    margin-top:20px;
-    margin-bottom:20px;
-}
-.avatar-text{
-    font-weight: bold;
-    font-size:20px;
-    margin-left: 10px;
-}
-.image{
-    height: 100px;
-    justify-items: center;
-    position: relative;
-    margin-left: 135px;
-    margin-top:50px;
-    width:50px;
-    height:50px;
-    cursor: pointer;
+.import-file{
+    /* display: none; */
+    margin-left:105px;
 }
 .container-continue{
     width:340px;
     cursor: pointer;
+}
+#input> ::placeholder{
+    font-family: var(--global-font-family);
 }

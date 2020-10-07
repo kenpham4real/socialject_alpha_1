@@ -1,6 +1,6 @@
 .projectActivity {
   display: flex;
-  margin-top: 20px;
+  text-align: justify;
 }
 .activityInfo {
   flex: 7;
@@ -9,30 +9,63 @@
 }
 .activityPicture {
   height: 52px;
-  width: 70px;
-  border: 1px solid black;
-  box-sizing: border-box;
+  width: 52px;
   border-radius: 3px;
-  flex: 1;
+  object-fit: cover;
+  /*flex: 1;*/
 }
 
 .activityName {
   font-style: normal;
   font-weight: bold;
+  line-height: 1.5rem;
   font-size: 13px;
   letter-spacing: -0.022em;
   color: black;
 }
-.activityTime, .activityLocation {
+.activityTime,
+.activityLocation {
   font-style: normal;
   font-weight: normal;
+  line-height: 1.5rem;
   font-size: 13px;
-
   letter-spacing: -0.022em;
-
   color: #848484;
 }
 
-.activityDescription{
+.activityDescription {
   color: black;
+  line-height: 1.5rem;
+  font-size: 13px;
+  text-align: justify;
+  /*wrap text*/
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
+.activityContainerButton {
+  display: grid;
+  align-content: flex;
+  background-color: inherit;
+  border: 1px gray;
+  padding: 0;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.activityContainerButton:hover {
+  filter: brightness(120%);
+  transition: 0.2s;
+}
+
+.activityContainerButton:not(:hover) {
+  transition: 0.2s;
+}
+
+.activityLink {
+  text-decoration: none;
+  display: flex;
 }
