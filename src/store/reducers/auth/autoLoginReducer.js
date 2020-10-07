@@ -17,10 +17,11 @@ export const autoLoginReducer = (state = initialState, action) => {
     case FETCH_USER:
       const user = action.payload;
       console.log("User data dispatched:", user);
-      if (!user.orgName) {
-        user.orgName = user.userName;
-        user.orgAvatar = user.userAvatar;
-      }
+      if (user)
+        if (!user.orgName) {
+          user.orgName = user.userName;
+          user.orgAvatar = user.userAvatar;
+        }
       if (action.payload)
         // bro =.= just a min
         return {
