@@ -18,7 +18,7 @@ import Modal from "react-modal";
 import "./styles/ProjectInfoPage.css";
 
 // COmponents
-import NavigationBar from "../../../components/app/NavigationBar.js";
+// import NavigationBar from "../../../components/app/NavigationBar.js";
 import ListedItems from "../../../components/app/ProjectInfoPage/ListedItems.js";
 import ProjectActivity from "../../../components/app/ProjectInfoPage/ProjectActivity.js";
 import CopyrightBar from "../../../components/app/CopyrightBar.js";
@@ -27,9 +27,9 @@ import IndividualForm from "../../../components/app/ProjectInfoPage/IndividualFo
 
 // Functions
 import * as projectActions from "../../../store/actions/searching-project-user/project/projectAction";
-import * as activityActions from "../../../store/actions/posting-project-user/activity/activity";
+// import * as activityActions from "../../../store/actions/posting-project-user/activity/activity";
 // import {_getFormSubmission} from '../../../store/actions/posting-project-user/project/project'
-import NavigationBar_Ken from "../../../components/app/NavigationBar_Ken";
+import NAVIGATION_BAR_KEN from "../../../components/app/NavigationBar_Ken";
 
 const ProjectInfoPage = (props) => {
   console.log("PROJECT_INFO_PAGE");
@@ -47,6 +47,7 @@ const ProjectInfoPage = (props) => {
   //   email: "",
   //   avatar: "",
   //   answers: [],
+
   // });
 
   const projectsData = useSelector(
@@ -333,7 +334,7 @@ const ProjectInfoPage = (props) => {
    */
   const _project_progress_section = () => {
     let ifDisplay = "inline-block";
-    if (userId != projectsData.projectInfo.orgId) ifDisplay = "none";
+    if (userId !== projectsData.projectInfo.orgId) ifDisplay = "none";
     const AddActivityButton = () => {
       return (
         <div
@@ -368,7 +369,7 @@ const ProjectInfoPage = (props) => {
           <AddActivityButton />
         </div>
         <ul className="progress-container-activity">
-          <a>{_project_activity_item}</a>
+          <p>{_project_activity_item}</p>
         </ul>
         {/* <div className="viewAllButton">View all</div> */}
       </div>
@@ -508,7 +509,7 @@ const ProjectInfoPage = (props) => {
     <div className="projectInfoPage">
       <div>
         {/* <NavigationBar /> */}
-        <NavigationBar_Ken />
+        <NAVIGATION_BAR_KEN/>
       </div>
 
       <div className="generalInfoBoard">

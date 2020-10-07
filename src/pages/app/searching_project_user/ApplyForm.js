@@ -5,17 +5,17 @@
  */
 
  //Packages
- import React, {useState,useCallback} from "react";
+ import React, {useState} from "react";
  import { useDispatch, useSelector } from "react-redux";
  import { _onSubmitFormAnswers } from "../../../store/actions/searching-project-user/project/project";
  import QuestionLabel from "../../../components/app/QuestionLabel";
- import _loadProjects from "./ProjectInfoPage";
+//  import _loadProjects from "./ProjectInfoPage";
 
  //Styles
  import "./styles/ApplyFormStyles.css";
 
  //Funtions
-import * as projectActions from "../../../store/actions/searching-project-user/project/projectAction";
+// import * as projectActions from "../../../store/actions/searching-project-user/project/projectAction";
 
 
 const ApplyForm = (props) => {

@@ -7,7 +7,7 @@
 */
 
 // Packages
-import React, { useState, useReducer } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import {v4 as uuid_v4} from 'uuid';
 import Calendar from "react-calendar";
@@ -25,7 +25,6 @@ import * as _activityActions from '../../../store/actions/posting-project-user/a
 import {LOCATIONS} from '../../../constants/location'
 
 // Helper
-import {_previewImageHandler} from '../../../helper/image/imageHandler'
 
 // Components
 import FeedbackImage from '../../../components/FeedbackImage'
@@ -58,7 +57,6 @@ const AddActivityModal = (props) => {
   const [activityName, setActivityName] = useState(name);
   const [activityDescription, setActivityDescription] = useState(des);
   const [activityLocation, setActivityLocation] = useState("");
-  const [activityCategory,setActivityCategory] =useState("");
   const [activityDate, setActivityDate] = useState(new Date());
   const [showCalendar, setShowCalendar] = useState(false);
   const [activityImage, setActivityImage] = useState(null)
@@ -116,7 +114,6 @@ const AddActivityModal = (props) => {
    * @param {string} activityName
    * @param {string} activityDescription
    * @param {string} activityLocation
-   * @param {string} activityCategory
    * @param {string} activityDate
    * @returns {void}
    */
@@ -128,7 +125,6 @@ const AddActivityModal = (props) => {
       activityName, 
       activityDescription,
       activityLocation, 
-      activityCategory,
       activityDate.toDateString(), 
       activityImageFile
     ))
