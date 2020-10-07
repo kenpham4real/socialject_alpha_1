@@ -30,8 +30,8 @@ function ProjectSlide(props) {
             className="project-card"
             onClick={() => handleClick(Data.projectId)}
           >
-            <img className="project-image" src={Data.projectAvatar} />
-            <img className="project-icon" src={Data.orgAvatar} />
+            <img alt="" className="project-image" src={Data.projectAvatar} />
+            <img alt="" className="project-icon" src={Data.orgAvatar} />
             <div className="project-text-container">
               <p className="project-text title"> {Data.projectName} </p>
               <p className="project-text orgName">by {Data.orgName}</p>
