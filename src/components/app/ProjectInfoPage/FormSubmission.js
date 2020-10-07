@@ -30,12 +30,6 @@ const SubmissionCard = (props) => {
 };
 
 const FormSubmission = (props) => {
-<<<<<<< HEAD
-  console.log('props in form submission', props)
-  console.log('props.userId: ', props.userId, "vs props.projectOwnerId", props.projectOwnerId)
-  if (props.userId === props.projectOwnerId){
-
-=======
   console.log("props in form submission", props);
   console.log(
     "props.userId: ",
@@ -44,7 +38,6 @@ const FormSubmission = (props) => {
     props.projectOwnerId
   );
   if (props.userId === props.projectOwnerId) {
->>>>>>> bd0adc953ee8320b33cfd896458091d4131c4f35
     return (
       <div className="formsub-container">
         <div className="formsub-text title big"> Form Submissions</div>

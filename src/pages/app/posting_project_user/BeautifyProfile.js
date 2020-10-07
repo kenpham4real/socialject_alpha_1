@@ -6,10 +6,7 @@ import Select from "react-select";
 import "./styles/BeautifyProfileStyles.css";
 
 // Helper
-<<<<<<< HEAD
-=======
 //import {_previewImageHandler} from '../../../../src/helper/image/imageHandler'
->>>>>>> bd0adc953ee8320b33cfd896458091d4131c4f35
 import { ImagePreview } from "../../../components/app/ImagePreview";
 import { LOCATIONS } from "../../../constants/location";
 import { selectInputStyles } from "../../../constants/SelectInputStyle";

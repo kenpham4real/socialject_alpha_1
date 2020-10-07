@@ -7,11 +7,7 @@
 */
 
 // Packages
-<<<<<<< HEAD
-import React, { useState } from "react";
-=======
 import React, { useState /*, useReducer*/ } from "react";
->>>>>>> bd0adc953ee8320b33cfd896458091d4131c4f35
 import { useDispatch } from "react-redux";
 import { v4 as uuid_v4 } from "uuid";
 import Calendar from "react-calendar";
@@ -29,11 +25,7 @@ import * as _activityActions from "../../../store/actions/posting-project-user/a
 import { LOCATIONS } from "../../../constants/location";
 
 // Helper
-<<<<<<< HEAD
-// import {_previewImageHandler} from '../../../helper/image/imageHandler'
-=======
 //import {_previewImageHandler} from '../../../helper/image/imageHandler'
->>>>>>> bd0adc953ee8320b33cfd896458091d4131c4f35
 
 // Components
 import FeedbackImage from "../../../components/FeedbackImage";
@@ -64,11 +56,7 @@ const AddActivityModal = (props) => {
   const [activityName, setActivityName] = useState(name);
   const [activityDescription, setActivityDescription] = useState(des);
   const [activityLocation, setActivityLocation] = useState("");
-<<<<<<< HEAD
-  const [activityCategory] =useState("");
-=======
   const [activityCategory /*,setActivityCategory*/] = useState("");
->>>>>>> bd0adc953ee8320b33cfd896458091d4131c4f35
   const [activityDate, setActivityDate] = useState(new Date());
   const [showCalendar, setShowCalendar] = useState(false);
   const [activityImage, setActivityImage] = useState(null);
@@ -91,25 +79,6 @@ const AddActivityModal = (props) => {
   //   setActivityName(name);
   // }
 
-<<<<<<< HEAD
-  // /**
-  //  * @summary Handle the state of activity description
-  //  * @param {string} description
-  //  * @returns {void}
-  //  */
-  // const _onChangeActivityDescription = (description) => {
-  //   setActivityDescription(description);
-  // }
-
-  // /**
-  //  * @summary Handle the state of activity location
-  //  * @param {string} location
-  //  * @returns {void}
-  //  */
-  // const _onChangeActivityLocation = (location) => {
-  //   setActivityLocation(location);
-  // }
-=======
   /**
    * @summary Handle the state of activity description
    * @param {string} description
@@ -127,7 +96,6 @@ const AddActivityModal = (props) => {
   // const _onChangeActivityLocation = (location) => {
   //   setActivityLocation(location);
   // };
->>>>>>> bd0adc953ee8320b33cfd896458091d4131c4f35
 
   /**
    * @summary Handle the state of activity date
