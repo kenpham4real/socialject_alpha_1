@@ -1,7 +1,7 @@
 // Firebase
 import firebase from "firebase";
 import {
-  firebaseApp,
+  //firebaseApp,
   analytics,
   firebase_auth,
   firebase_db,
@@ -106,7 +106,7 @@ export const _onFacebookLogin = async () => {
  */
 const _addUser = async (
   dispatch,
-  getState,
+  /*getState,*/
   authenticatedUserData,
   userType
 ) => {
@@ -117,9 +117,10 @@ const _addUser = async (
   // Push the authenticated data of the user to firestore
 
   // Define the reference of the user
-  const collectionRef = userType == "STUDENT" 
-    ? firebase_db.collection("student").doc(`${uid}`)
-    : firebase_db.collection("organization").doc(`${uid}`);
+  const collectionRef =
+    userType == "STUDENT"
+      ? firebase_db.collection("student").doc(`${uid}`)
+      : firebase_db.collection("organization").doc(`${uid}`);
 
   const user = new User(
     authenticatedUserData.uid,
@@ -130,18 +131,16 @@ const _addUser = async (
     authenticatedUserData.displayName,
     authenticatedUserData.authenticatedMethod,
     isAuth
-  )
+  );
 
-  for(const key in user){
-    newUser[key] = user[key]
+  for (const key in user) {
+    newUser[key] = user[key];
   }
 
-  console.log('new user', newUser)
+  console.log("new user", newUser);
 
   try {
-    
-    await collectionRef.set(newUser,{merge: true})
-
+    await collectionRef.set(newUser, { merge: true });
   } catch (error) {
     console.error(error);
   }
@@ -149,7 +148,7 @@ const _addUser = async (
   // Dispatching the data to the global store
   dispatch({
     type: AUTHENTICATE,
-    authenticatedUser: newUser
+    authenticatedUser: newUser,
   });
 
   const userDataStored = {
