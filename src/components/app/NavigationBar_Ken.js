@@ -1,3 +1,5 @@
+//Fixer: Long
+
 /*
 *Contributor: Long 19th August 2020
 *Component:
@@ -15,10 +17,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "../styles/NavigationBar.css";
 import "../../pages/app/styles/GlobalStyles.css";
+/*
 import IconButton from "./IconButton";
 import SJ from "../../assets/images/SJ.png";
 import arrow from "../../assets/images/arrow.png";
-
+*/
 import * as autoLoginAction from "../../store//actions/auth/autoLoginAction";
 
 //constant
@@ -40,7 +43,7 @@ function SearchBar(props) {
 */
 
 //Main
-function NavigationBar_Ken(props) {
+function NavigationBar(props) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.autoLoginReducer.userData);
   const user_localStorage = JSON.parse(localStorage.getItem("userData"));
@@ -56,7 +59,7 @@ function NavigationBar_Ken(props) {
       user,
       user_localStorage_userType
     );
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     fetchUser();
@@ -66,7 +69,7 @@ function NavigationBar_Ken(props) {
 
   const CreateProfile = (props) => {
     let ifDisplay = "inline";
-    if (user.userType != ADMIN) ifDisplay = "none";
+    if (user.userType !== ADMIN) ifDisplay = "none";
     return (
       <div style={{ display: ifDisplay }}>
         <Link
@@ -115,4 +118,4 @@ function NavigationBar_Ken(props) {
   );
 }
 
-export default NavigationBar_Ken;
+export default NavigationBar;

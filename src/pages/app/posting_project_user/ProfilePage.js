@@ -1,3 +1,5 @@
+//Fixer: Long
+
 /* Contributor: Long 22nd September 2020
 // Component:
 //    In use:
@@ -28,22 +30,16 @@ import { Link } from "react-router-dom";
 import "./styles/ProfilePage.css";
 
 // Components
-import NavigationBar from "../../../components/app/NavigationBar.js";
+//import NavigationBar from "../../../components/app/NavigationBar.js";
 import CopyrightBar from "../../../components/app/CopyrightBar.js";
 import ProjectActivity from "../../../components/app/ProjectInfoPage/ProjectActivity";
 import NavigationBar_Ken from "../../../components/app/NavigationBar_Ken";
 
 // Constants
-import { testing_project_id } from "../../../constants/testing-keys";
+//import { testing_project_id } from "../../../constants/testing-keys";
 
 //Action
 import * as profileAction from "../../../store/actions/posting-project-user/profile/profileAction";
-
-const imageURL =
-  "https://c4.wallpaperflare.com/wallpaper/963/733/213/anime-girls-ghost-blade-wlop-wallpaper-preview.jpg";
-
-const loremText =
-  "Khi Beyond Birthday lấy mạng nạn nhân thứ ba của mình, hắn định làm một thử nghiệm—để xem có cách nào làm một con người chết vì xuất huyết trong mà không cần phải hủy hoại một bộ phận cơ thể nào hay không. Cụ thể, hắn cho nạn nhân chìm vào trạng thái vô thức bằng thuốc mê; ...";
 
 //The button to add a project
 function AddProjectButton(props) {
@@ -51,7 +47,7 @@ function AddProjectButton(props) {
   let user = JSON.parse(localStorage.getItem("userData"));
   if (user != null) userId = user.userId;
 
-  if (userId == props.projectOwnerId)
+  if (userId === props.projectOwnerId)
     return (
       <Link
         to={`/profile/createPostModal/${userId}`}
@@ -67,7 +63,7 @@ function AddProjectButton(props) {
 function OrgName(props) {
   return (
     <div className="profile-name-container">
-      <img className="profile-avatar" src={props.data.orgAvatar} />
+      <img alt="" className="profile-avatar" src={props.data.orgAvatar} />
       <div className="profile-block-container-small">
         <div className="profile--title">{props.data.orgName}</div>
         <div style={{ color: "gray", fontSize: "18px" }}>
@@ -163,7 +159,7 @@ function OrgHistory(props) {
 
 //Main component, calling the fetching action and display all UI component.
 const ProfilePage = (props) => {
-  const organization = useSelector((state) => state.autoLoginReducer.userData);
+  //const organization = useSelector((state) => state.autoLoginReducer.userData);
 
   /**
    * @summary Navigate to the create project modal
@@ -199,13 +195,14 @@ const ProfilePage = (props) => {
     callback,
     profileId
   );*/
-  const fetchCallback = useCallback(() =>
-    profileAction.FetchProject(dispatch, profileId)
+  const fetchCallback = useCallback(
+    () => profileAction.FetchProject(dispatch, profileId),
+    []
   );
 
   useEffect(() => {
     fetchCallback();
-  }, [profileId]);
+  }, [profileId, fetchCallback]);
 
   //For testing purpose
   console.log("Selected Data:", projectData);
