@@ -6,6 +6,7 @@ import ExplorePage from "../pages/app/searching_project_user/ExplorePage";
 
 import ProjectInfoPage from "../pages/app/searching_project_user/ProjectInfoPage";
 import ChooseType from "../pages/app/searching_project_user/ChooseType";
+import ChooseType_Ken from "../pages/app/searching_project_user/ChooseType_Ken";
 
 // PPU Pages
 import Registration from "../pages/app/posting_project_user/Registration";
@@ -30,6 +31,7 @@ const MainRoute = () => {
   return (
     <Router>
       <Switch>
+        {/* <Route path="/profile/createPostModal/:profileId" component={CreatePostModal} /> */}
         <Route path="/profile" component={ProfilePage} />
         <Route path="/beautifyProfile" component={BeautifyProfile} />
         <Route path="/projectInfo" component={ProjectInfoPage} />
@@ -43,7 +45,8 @@ const MainRoute = () => {
         <Route exact path="/profilePage_test" component={ProfilePage_example} />
         <Route path="/choosingUser" component={ChoosingUser} />
         <Route path="/login" component={LoginPage} />
-        <Route path="/" component={ChooseType} />
+        {/* <Route path="/" component={ChooseType} /> */}
+        <Route path="/" component={ChooseType_Ken} />
       </Switch>
     </Router>
   );

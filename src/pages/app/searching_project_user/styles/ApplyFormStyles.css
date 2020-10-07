@@ -1,98 +1,82 @@
+@import "../../styles/GlobalStyles.css";
 .page{
     margin:0px;
     margin-left: 50px;
+    
+}
+
+.page > ul {
+    list-style-type: none;
 }
 .h1{
     margin-top: 50px;
     margin-bottom: 20px;
     font-size: 30px;
     margin-top:50px;
-    font-weight: bold;
+    font-weight: var(--global-headline-1-font-weight);
     font-size: 30px;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: var(--global-font-family);
+    color:var(--global-primary-color);
 }
 .location{
-    font-size: 20px;
-    margin-bottom:10px;
-    margin-top: -10px;
-
+    font-size: var(--global-headline-2-light-size);
+    margin-top: -20px;
+    color: var(--global-headline-2-light-color) ;
+    font-family: var(--global-font-family);
+    font-weight:var(--global-title-1-light-font-weight);
 }
  .contact {
     max-width: 45rem;
     }
-    .contact-heading {
-    color: #4d49ba;
-    font-weight: bold;
-    font-size: 3rem;
-    margin-bottom: 2rem;
-    }
     .contact-notice {
     font-weight: 300;
     line-height: 1.6;
-    color: #7e95cc;
+    color: var(--global-secondary-color);
     margin-bottom: 3rem;
     }
     .contact-form-group {
     margin-bottom: 2rem;
     }
     .contact-form-label {
-    color: #7e95cc;
+    color: var(--global-secondary-color);
     display: inline-block;
     margin-bottom: 1rem;
     font-weight: 500;
-    
+    margin-top: 20px;
+    font-family: var(--global-font-family);
     }
     .contact-form-input,
     .contact-form-area {
-    color: #7e95cc;
+    color: var(--global-secondary-color);
     display: block;
     width: 100%;
     padding: 1.5rem;
     background-color: #f5f6fd;
-    border: 0;
+    border: var(--global-border-color);
     outline: none;
     resize: none;
     }
     .contact-form-input::-webkit-input-placeholder,
     .contact-form-area::-webkit-input-placeholder {
-    color: #5a6ec0;
+    color: var(--global-secondary-color);
     }
     .contact-form-input {
-    border-radius: 5rem;
-    }
-    .contact-form-area {
-    min-height: 160px;
-    border-radius: 2rem;
-    line-height: 1.6;
+    border-radius: var(--global-border-radius);
     }
     .contact-form-submit {
     color: white;
-    padding: 1.5rem;
-    width: 100%;
-    max-width: 25rem;
-    border-radius: 5rem;
-    border: 0;
-    outline: none;
+    padding-top: 1%;
+    width: var(--global--submit-button-width);
+    height: var(--global--submit-button-height);
+    font-size: var(--global--submit-button-font-size);
+    border-radius: var(--global-border-radius);
     cursor: pointer;
     text-align: center;
-    font-weight: 500;
     white-space: nowrap;
-    letter-spacing: 1px;
-    background-color: #7b78f8;
-    box-shadow: 0 10px 20px 0 rgba(123, 120, 248, 0.5);
-    margin-left: 170px;
+    letter-spacing: 3px;
+    background-color: var(--global-primary-color);
+    box-shadow:0 10px 30px 0 var( --global-accent-1-color);
+    margin-left: 300px;
     }
-    .contact-form-area::-webkit-scrollbar {
-    width: 5px;
-    }
-   
-    .contact-form-area::-webkit-scrollbar-track {
-    border-radius: 3rem;
-    background-color: #eee;
-    }
-   
-    .contact-form-area::-webkit-scrollbar-thumb {
-    border-radius: 3rem;
-    background-color: #7b78f8;
-    }
+    
     

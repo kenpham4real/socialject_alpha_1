@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import "../../styles/ProjectInfoPage/ListedItems.css";
-const ListedItems = props => {
-  
+const ListedItems = (props) => {
   return (
     <div className="bulletinItems">
-      <div className="bulletinMark" />
       <div>{props.title}</div>
     </div>
   );
-}
+};
 
 export default ListedItems;

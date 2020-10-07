@@ -1,5 +1,5 @@
 // Firebase database
-import firebase from 'firebase';
+import firebase from "firebase";
 import { firebase_db } from "../../../../firebase-config";
 
 // Constants
@@ -34,7 +34,7 @@ export const _fetchProject_basic_info_ppu = () => {
    */
   return async (dispatch, getState) => {
     let projectData;
-    console.log('Fetching basic info of projects')
+    console.log("Fetching basic info of projects");
     try {
       // Retrieve the data from Firestore Cloud database
       await firebase_db
@@ -77,7 +77,7 @@ export const _fetchProject_recruit_info_ppu = () => {
    */
   return async (dispatch, getState) => {
     let recruitInfo;
-    console.log('Fetching recruit info of projects')
+    console.log("Fetching recruit info of projects");
     try {
       await firebase_db
         .collection("public-projects")
@@ -131,18 +131,18 @@ export const _createProject_ppu = (
   requirements,
   imageFIle,
   questions,
-  category = "General",
+  category = "General"
 ) => {
   return async (dispatch, getState) => {
     const projectImageUrl = await _imageUploadHandler(imageFIle);
-    console.log('projectImageUrl', projectImageUrl)
+    console.log("projectImageUrl", projectImageUrl);
     const projectRef = firebase_db
       .collection("public-projects")
       .doc(`${projectId}`);
     const organizationRef = firebase_db
       .collection("organization")
       .doc(`${orgId}`);
-    console.log('questions are', questions)
+    console.log("questions are", questions);
     try {
       await projectRef.set({
         projectName: name,
@@ -172,11 +172,11 @@ export const _createProject_ppu = (
         });
 
       await projectRef
-      .collection('recruit-info')
-      .doc(`${testing_project_id}`)
-      .update({
-        formQuestions: firebase.firestore.FieldValue.arrayUnion(questions)
-      })
+        .collection("recruit-info")
+        .doc(`${testing_project_id}`)
+        .update({
+          formQuestions: firebase.firestore.FieldValue.arrayUnion(questions),
+        });
 
       console.log("Create project successfully");
     } catch (error) {
@@ -185,44 +185,42 @@ export const _createProject_ppu = (
   };
 };
 
-
 export const _getFormSubmission = (orgId, projectId) => {
   return async (dispatch, getState) => {
+    console.log("GETTING FORM SUBMISSION");
 
-    console.log('GETTING FORM SUBMISSION');
+    console.log("GETTING FORM SUBMISSION");
 
-    let formSubmission=[];
+    let formSubmission = [];
 
     try {
-      await
-      firebase_db
-      .collection('organization')
-      .doc(`${orgId}`)
-      .collection('projects')
-      .doc(`${projectId}`)
-      .collection('formSubmission')
-      .get()
-      .then((query) =>{
-        console.log('query.docs(): ', query.docs);
-        let tmpDoc;
-        
-        query.forEach((doc) => {
-          console.log('doc of form submission', doc);
-          formSubmission.push(doc.data())
-          tmpDoc = doc;
-        })
-        console.log('added form submission data with doc', tmpDoc)
-      })
+      await firebase_db
+        .collection("organization")
+        .doc(`${orgId}`)
+        .collection("projects")
+        .doc(`${projectId}`)
+        .collection("formSubmission")
+        .get()
+        .then((query) => {
+          console.log("query.docs(): ", query.docs);
+          let tmpDoc;
 
-      console.log('formSubmission', formSubmission)
+          query.forEach((doc) => {
+            console.log("doc of form submission", doc);
+            formSubmission.push(doc.data());
+            tmpDoc = doc;
+          });
+          console.log("added form submission data with doc", tmpDoc);
+        });
+
+      console.log("formSubmission", formSubmission);
 
       dispatch({
         type: GET_FORM_SUBMISSION,
-        formSubmission: formSubmission
-      })
-
+        formSubmission: formSubmission,
+      });
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
-}
+  };
+};

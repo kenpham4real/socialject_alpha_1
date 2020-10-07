@@ -1,5 +1,5 @@
 //Packages
-import React, { Component, useState} from "react";
+import React, { useState} from "react";
 import Select from "react-select";
 
 
@@ -9,29 +9,47 @@ import "./styles/BeautifyProfileStyles.css";
 // Helper
 import {_previewImageHandler} from '../../../../src/helper/image/imageHandler'
 import { ImagePreview } from "../../../components/app/ImagePreview";
-
-//Select
-const options = [
-  { id: "ha_noi", value: "ha noi", label: "Ha Noi" },
-  { id: "ho_chi_minh", value: "ho chi minh", label: "Ho Chi Minh" },
-  { id: "hai_phong", value: "hai phong", label: "Hai Phong" },
-  { id: "da_nang", value: "da nang", label: "Da Nang" },
-];
-   
-
+import { LOCATIONS } from "../../../constants/location";
+import { selectInputStyles } from "../../../constants/SelectInputStyle";
 
 const BeautifyProfile = (props) => {
 
+	//Get the data from LocalStorage
+  const _getBeautifyData=JSON.parse(localStorage.getItem("Beautify"));
+
+
+  /*
+	*Make 1 state of this is null to make the browser run without error
+	*pass the state of localStorage to initialize state then we can keep the states when press back button's browser
+	*/
+  let uni=null;
+	if(_getBeautifyData!=null) 
+	{
+		uni=_getBeautifyData.university
+  }
+
+
   //Intialize the states
   const [location, setLocation]= useState("");
-  const [university, setUniversity]= useState("");
-  const [image, setImage]= useState(require("../../../assets/images/blank-profile.png"));
+  const [university, setUniversity]= useState(uni);
+  const [image, setImage]= useState();
   const [imageFile,setImageFile]=useState("");
-
+  
 
   const organizationName = props.location.organizationName;
   const category=props.location.category;
   const description=props.location.description;
+  
+  
+  const dataBeautify={
+    organizationName,
+    category,
+    description,
+    university,
+    location,
+  }
+
+
   /**
    * @summary Handle Select
    * @param {string} location
@@ -65,32 +83,51 @@ const BeautifyProfile = (props) => {
           </p>
         </div>
         <div className="view-text-input-beautifyProfile">
-          <Select
-            className="select"
-            placeholder="Location *"
-            options={options}
-            value={location.selectedOption}
-            onChange={handleChange}
-          />
-          <input
-            className="input-text-beautifyProfile"
-            type="text"
-            placeholder="School/University"
-            value={university}
-            onChange={(uni)=> _onChangeUniversity(uni.target.value)}
-          />
-          <ImagePreview
-            setImage={setImage}
-            setImageFile={setImageFile}
-            image={image}
-          />
+          <form>
+            <p className="avatar-text">Organization's location?</p>
+            <Select
+              className="select"
+              name="select"
+              placeholder="Location *"
+              options={LOCATIONS}
+              value={location.selectedOption}
+              onChange={handleChange}
+              styles={selectInputStyles}
+              theme={theme => ({
+                ...theme,
+                borderRadius: 0,
+                colors: {
+                  ...theme.colors,
+                  primary25: 'rgba(47,173,88,0.5)', 
+                  primary: 'rgba(47,173,88,1)',
+                },
+              })}
+            />
+            <p className="avatar-text">School/University</p>
+            <input
+              className="input-text-beautifyProfile"
+              name="School/universiy"
+              type="text"
+              placeholder="School/University"
+              value={university}
+              onChange={(university)=> _onChangeUniversity(university.target.value)}
+            /> 
+            <p className="avatar-text"> Avatar </p>
+            <ImagePreview
+              setImage={setImage}
+              setImageFile={setImageFile}
+              image={image}
+            />
+          </form>
         </div>
       
         <div>
-          <button
+          <div
             className="container-continue"
             onClick={() =>{
-              props.history.push({ 	
+              //save the states input to LocalStorage when onClick 
+                localStorage.setItem("Beautify",JSON.stringify(dataBeautify));
+                props.history.push({ 	
                   pathname:'/finishCreate',
                   organizationName,
                   category,
@@ -99,11 +136,14 @@ const BeautifyProfile = (props) => {
                   location,
                   image,
                   imageFile,
-              })}
+              });
+            
+          }
             }
+              
           >
             <span> Next </span>
-          </button>
+          </div>
         </div>
       </div>
     </div>

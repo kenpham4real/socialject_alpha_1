@@ -1,24 +1,48 @@
+@import "../../pages/app/styles/GlobalStyles.css";
+/* 
+*Tien edited with global styles
+*3rd October 2020
+*/
 .avatar-box{
-    border:2px solid black;
-    border-radius: 5px;
-    height: 200px;
+    border:var(--global-border-color);
+    border-radius:var(--global-border-radius);
+    height: 300px;
     width:335px;
     margin-top:20px;
-    margin-bottom:20px;
-    background-color: rgb(22, 206, 181);
 }
 .avatar-text{
-    font-weight: bold;
-    font-size:20px;
+    font-weight: var(--global-sub-title-light-font-weigh);
+    font-size:var(--global-sub-title-light-size);
+    font-family: var(--global-font-family);
+    color: var(--global-sub-title-light-color);
     margin-left: 10px;
 }
 .image-holder{
     justify-items: center;
-    margin-left: 103px;
-    margin-top:10px;
-    width:120px;
-    height:120px;
-    border:3px solid black;
-    border-radius: 10px;
+    margin-left: 20px;
+    margin-top:45px;
+    width:290px;
+    height:200px;
+    border-radius: var(--global-border-radius);
     object-fit: cover;
+}
+.label{
+    display: flex;
+}
+.import-file{
+    display: none;
+}
+.icon-img{
+    width: 30px;
+    height: 30px;
+    margin-left: 80px;
+    cursor: pointer;
+}
+.p{
+    font-family: var(--global-font-family);
+    margin-top: 3px;
+    white-space: nowrap;
+    height: 10px;
+    cursor: pointer;
+    margin-left: 4px;
 }

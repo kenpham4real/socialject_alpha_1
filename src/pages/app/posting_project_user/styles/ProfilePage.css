@@ -1,27 +1,22 @@
 /* All the style for Choose Type Page (Screen 03) goes here */
 
-/* colours */
-:root {
-  --primary: #fdfff4;
-  --secondary: #9fa8b6;
-  --shadow: rgb(67, 67, 83);
-  --title: #11131b;
-}
-
 .profilePage {
-  color: var(--title);
-  background-color: var(--secondary);
+  margin: none;
+  color: var(--global-normal-text-color);
+  font-family: var(--global-font-family);
+  background-color: var(--global-page-background-color);
   border-radius: none;
   vertical-align: middle;
-  font-family: "Inter";
 }
 
 /*Component*/
 .profile--title {
-  color: var(--title);
-  font-size: 150%;
-  font-weight: bold;
+  display: inline-block;
+  color: var(--global-title-1-color);
+  font-size: var(--global-title-1-size);
+  font-weight: var(--global-title-1-font-weight);
   margin: 1%;
+  margin-left: 0;
 }
 
 .project-activity-list {
@@ -35,45 +30,64 @@
 }
 
 .profile-avatar {
-  height: 150px;
-  width: 150px;
-  border-radius: 75px;
+  /*
+  height: 13vw;
+  width: 13vw;
+  border-radius: 7.5vw;
+
+  height: 28vh;
+  width: 28vh;
+  border-radius: 14vh;
+  */
+  height: var(--global--user--avatar__profile--page-view-size);
+  width: var(--global--user--avatar__profile--page-view-size);
+  border-radius: var(--global--user--avatar__profile--page-view-size);
   object-fit: cover;
+  border: 1px solid black;
 }
 
 .profile-link {
-  color: var(--title);
+  color: var(--global-normal-text-color);
   text-decoration: none;
 }
 
 .profile-button {
   display: inline-block;
   /*Size and border*/
-  width: 150px;
+  /*width: 13.2vw;*/
   border: none;
-  border-radius: 5px;
+  border-radius: var(--global-border-radius);
   /*Spacing*/
+  padding: 3vw;
+  padding-top: 0;
+  padding-bottom: 0;
   margin: 5px;
-  padding: 5px;
   /*coloring*/
   color: var(--title);
-  background-color: var(--secondary);
+  background-color: var(--global-primary-color);
   /*text*/
-  font-family: "Inter";
-  font-size: 16px;
+  line-height: var(--global--add__project__activity-button-height);
+  font-weight: bold;
+  align-items: center;
+  font-size: var(--global--add__project__activity-button-font-size);
   text-align: center;
   text-decoration: none;
-  font-weight: 500;
   /*Animation*/
   cursor: pointer;
+}
+
+.profile-button.right {
+  margin: none;
+  padding: none;
+  background-color: inherit;
+  float: right;
 }
 
 .profile-button:active {
   opacity: 0.5;
 }
 .profile-button:hover {
-  color: var(--primary);
-  background-color: rgb(51, 79, 117);
+  filter: brightness(130%);
   transition: 0.3s;
 }
 .profile-button:not(:hover) {
@@ -82,38 +96,35 @@
 
 /*Container*/
 .profile-name-container {
-  display: inline-flex;
+  display: flex;
   /*margin*/
   margin-bottom: 5%;
   /*padding*/
-  padding: 20px;
-  padding-left: 5%;
-  padding-right: 5%;
-  /*size*/
-  width: 90%;
+  padding: 25px;
+  padding-left: 6vw;
+  padding-right: 5vw;
   /*color*/
-  background-color: var(--primary);
+  background-color: white;
   /*children adjusting*/
   text-align: justify;
-  vertical-align: middle;
 }
 
 .profile-block-container {
   display: grid;
   /*border*/
-  border-radius: 10px;
+  border-radius: var(--global-border-radius);
   /*margin*/
   margin-top: 1%;
-  margin-left: 15%;
-  margin-right: 15%;
+  margin-left: 23%;
+  margin-right: 23%;
   /*padding*/
-  padding: 2%;
-  padding-left: 5%;
-  padding-right: 5%;
+  padding: 20px;
+  padding-left: 5.9vw;
+  padding-right: 3.9vw;
   /*size*/
-  width: 60%;
+  width: 46%;
   /*color*/
-  background-color: var(--primary);
+  background-color: white;
   /*text adjusting*/
   text-align: justify;
 }
@@ -126,19 +137,29 @@
   /*padding*/
   padding: none;
   /*size*/
-  width: 60%;
-  /*color*/
-  background-color: var(--primary);
+  width: 100%;
+  /* width: 100% is to fix the bug: child components of the name banner can float to wrong places when
+  the description isn't long enough.*/
   /*text adjusting*/
+  font-size: 16px;
+  line-height: 1.5rem;
   text-align: justify;
 }
 
+.profile-description {
+  position: relative;
+  overflow: hidden;
+  display: -webkit-box;
+  max-width: inherit;
+  -webkit-line-clamp: 3; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
 .profile-block-container-smaller {
+  max-width: 15vw;
   margin: none;
   margin-top: 1%;
-  width: 20%;
   word-wrap: break-word;
   text-align: justify;
-  filter: brightness(80%);
-  color: var(--secondary);
+  color: var(--global-normal-text-color);
 }

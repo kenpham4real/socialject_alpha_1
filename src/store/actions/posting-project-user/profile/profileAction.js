@@ -1,5 +1,9 @@
 // Firebase database
-import { firebaseApp, firebase_db, analytics } from "../../../../firebase-config";
+import {
+  firebaseApp,
+  firebase_db,
+  analytics,
+} from "../../../../firebase-config";
 
 // Constants
 import {
@@ -9,7 +13,6 @@ import {
 
 // Helper
 import { _imageUploadHandler } from "../../../../helper/image/imageHandler";
-
 
 // Export the actions.
 export const FETCH_PROFILE = "FETCH_PROFILE";
@@ -97,7 +100,8 @@ export const _createProfile_ppu = (
    */
   return async (dispatch, getState) => {
     const imageUrl = await _imageUploadHandler(imageFile);
-    console.log("check",{orgId,
+    console.log("check", {
+      orgId,
       orgName,
       category,
       description,
@@ -106,15 +110,14 @@ export const _createProfile_ppu = (
       email,
       phoneNumber,
       facebook,
-      imageFile})
+      imageFile,
+    });
     try {
-      await firebase_db
-        .collection("organization")
-        .doc(`${orgId}`)
-        .set({
+      await firebase_db.collection("organization").doc(`${orgId}`).set(
+        {
           orgId: orgId,
           orgName: orgName,
-          category:category,
+          category: category,
           description: description,
           location: location,
           university: university,
@@ -122,23 +125,25 @@ export const _createProfile_ppu = (
           phoneNumber: phoneNumber,
           facebook: facebook,
           orgAvatar: imageUrl,
-        }, {
-          merge: true
-        });
+        },
+        {
+          merge: true,
+        }
+      );
       console.log("Create profile successfully");
 
-      analytics.logEvent('page_view', {
-        page_location: 'FinishCreate',
+      analytics.logEvent("page_view", {
+        page_location: "FinishCreate",
         page_path: `/finishCreate/${orgId}`,
-        page_title: 'FinishCreate'
-      })
+        page_title: "FinishCreate",
+      });
 
       dispatch({
         type: CREATE_PROFILE,
         orgProfile: {
           orgId: orgId,
           orgName: orgName,
-          category:category,
+          category: category,
           description: description,
           location: location,
           university: university,

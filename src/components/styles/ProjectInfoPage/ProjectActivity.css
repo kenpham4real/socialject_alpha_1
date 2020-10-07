@@ -8,10 +8,8 @@
   margin-right: 29px;
 }
 .activityPicture {
-  height: 5rem;
-  width: 5rem;
-  border: 1px solid black;
-  box-sizing: border-box;
+  height: 52px;
+  width: 52px;
   border-radius: 3px;
   object-fit: cover;
   /*flex: 1;*/
@@ -20,6 +18,7 @@
 .activityName {
   font-style: normal;
   font-weight: bold;
+  line-height: 1.5rem;
   font-size: 13px;
   letter-spacing: -0.022em;
   color: black;
@@ -28,15 +27,17 @@
 .activityLocation {
   font-style: normal;
   font-weight: normal;
+  line-height: 1.5rem;
   font-size: 13px;
-
   letter-spacing: -0.022em;
-
   color: #848484;
 }
 
 .activityDescription {
   color: black;
+  line-height: 1.5rem;
+  font-size: 13px;
+  text-align: justify;
   /*wrap text*/
   display: -webkit-box;
   overflow: hidden;
@@ -49,14 +50,14 @@
   display: grid;
   align-content: flex;
   background-color: inherit;
-  border: 2px gray;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
+  border: 1px gray;
+  padding: 0;
+  border-radius: 3px;
+  cursor: pointer;
 }
 
 .activityContainerButton:hover {
-  background-color: var(--primary);
-  filter: brightness(80%);
+  filter: brightness(120%);
   transition: 0.2s;
 }
 

@@ -26,7 +26,10 @@ const ProjectActivity = (props) => {
   //UI rendering
   return (
     <div>
-      <Link className="activityLink" to="/projectInfo">
+      <Link
+        className="activityLink"
+        to={{ pathname: "/projectInfo", projectId: props.projectId }}
+      >
         <button className="activityContainerButton" onClick={Navigate}>
           <div className="projectActivity">
             <img

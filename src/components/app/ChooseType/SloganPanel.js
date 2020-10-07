@@ -5,13 +5,11 @@ function SloganPanel(props) {
   const background = props.background;
   return (
     <div className="slogan">
-      <p href="www.facebook.com" style={{ color: "silver", display: "inline" }}>
-        Explore
+      <div className="slogan-title">Your connection to social contribution</div>
+      <p href="www.facebook.com" className="slogan-text">
+        Grow yourself, find great networks and contribute to society by joining
+        global projects
       </p>
-      <p href="www.facebook.com" style={{ color: "white", display: "inline" }}>
-        {">"}Language
-      </p>
-      <div className="slogan-title">Language</div>
     </div>
   );
 }

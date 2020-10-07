@@ -20,21 +20,10 @@ const initialState = {
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case AUTHENTICATE:
-
-        const authenticatedUser = new User(
-            action.userData.userId,
-            action.userData.userToken,
-            action.userData.userType,
-            action.userData.userEmail,
-            action.userData.userAvatar,
-            action.userData.userName,
-            action.userData.authenticatedMethod,
-            action.userData.isAuth
-        )
-
+        
         return{
             ...state,
-            userData: authenticatedUser
+            userData: action.authenticatedUser
         }
     default: return state
     }

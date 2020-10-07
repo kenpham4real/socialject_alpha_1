@@ -6,7 +6,7 @@ const initialState = {
     authenticatedMethod: "",
     userAvatar: "",
     userEmail: "",
-    userId: undefined,
+    userId: "",
     userName: "",
     userType: "",
   },
@@ -15,11 +15,19 @@ const initialState = {
 export const autoLoginReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_USER:
-      console.log("User data dispatched:", action.payload);
-      return {
-        ...state,
-        userData: action.payload,
-      };
+      const user = action.payload;
+      console.log("User data dispatched:", user);
+      if (!user.orgName) {
+        user.orgName = user.userName;
+        user.orgAvatar = user.userAvatar;
+      }
+      if (action.payload)
+        // bro =.= just a min
+        return {
+          ...state,
+          userData: action.payload,
+        };
+      else return state;
     default:
       return state;
   }

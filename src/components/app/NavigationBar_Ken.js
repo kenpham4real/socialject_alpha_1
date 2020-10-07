@@ -40,26 +40,48 @@ function SearchBar(props) {
 */
 
 //Main
-function NavigationBar(props) {
-  //Declare hooks
+function NavigationBar_Ken(props) {
   const dispatch = useDispatch();
-  //Get data from global store
   const user = useSelector((state) => state.autoLoginReducer.userData);
-  console.log("User Data selected: ", user);
-  //Decide the path to push base on the userData
-  let path = "";
-  if (user.userType == ADMIN) path = "/profile";
-  //Get Id from local storage
-  //Get the user data from local storage, if there is no data, 'user_localStorage' will be 'null'
   const user_localStorage = JSON.parse(localStorage.getItem("userData"));
+  const user_localStorage_userType = localStorage.getItem("userType");
+
   let userId = null;
-  if (user_localStorage != null) userId = user_localStorage.userId; //if there is an user data, get userId from that.
-  console.log("User id in app is: ", userId); //For testing
-  //Call the function of auto-login using useCallback and useEffect
+  if (user_localStorage != null) userId = user_localStorage.userId;
+
   const fetchUser = useCallback(() => {
-    autoLoginAction.FetchUser(dispatch, userId, user);
-  });
-  useEffect(() => fetchUser(), []);
+    autoLoginAction.FetchUser(
+      dispatch,
+      userId,
+      user,
+      user_localStorage_userType
+    );
+  }, [dispatch]);
+
+  useEffect(() => {
+    fetchUser();
+  }, [dispatch, fetchUser]);
+
+  console.log("User Data selected: ", user);
+
+  const CreateProfile = (props) => {
+    let ifDisplay = "inline";
+    if (user.userType != ADMIN) ifDisplay = "none";
+    return (
+      <div style={{ display: ifDisplay }}>
+        <Link
+          className="create"
+          to={{
+            pathname: user.userType === ADMIN ? "/registration" : "",
+            profileId: user.userType === ADMIN ? user.orgId : user.userId,
+          }}
+        >
+          <p className="p-create">Create your profile</p>
+        </Link>
+      </div>
+    );
+  };
+
   return (
     <div className="navigationBar">
       {/*Menu Icon*/}
@@ -76,20 +98,21 @@ function NavigationBar(props) {
       {/*<SearchBar></SearchBar>*/}
       {/*Top right corner*/}
       <div className="user-bar">
+        <CreateProfile></CreateProfile>
         <Link
           className="link"
           to={{
-            pathname: path,
-            profileId: userId,
+            pathname: user.userType === ADMIN ? "/profile" : "",
+            profileId: user.userType === ADMIN ? user.orgId : user.userId,
           }}
         >
-          <img alt="" className="icon avatar" src={user.userAvatar} />
-          <p className="banner-title">{user.userName}</p>
+          <img alt="" className="icon avatar" src={user.orgAvatar} />
+          <p className="banner-title">{user.orgName}</p>
         </Link>
-        {/*<img alt="" className="icon" src={arrow} />*/}
+        {/* <img alt="" className="icon" src={arrow} /> */}
       </div>
     </div>
   );
 }
 
-export default NavigationBar;
+export default NavigationBar_Ken;

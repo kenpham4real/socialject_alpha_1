@@ -64,7 +64,7 @@ const LoginPage = (props) => {
             </button>
           </div>
           <div className="create-profile__buttons">
-            <button
+            {/* <button
               className="create-profile__buttons--facebook"
               onClick={() => {
                 dispatch(
@@ -73,7 +73,7 @@ const LoginPage = (props) => {
               }}
             >
               Login with Facebook
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

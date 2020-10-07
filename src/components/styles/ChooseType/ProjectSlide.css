@@ -1,99 +1,134 @@
 /*Project display*/
+
 .project-container {
-  display: table;
-  margin-top: 1%;
-  align-items: center;
-  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 8.8386%;
+  padding-top: 9%;
+  padding-bottom: 0;
+  /*justify-content: space-around;*/
+  background-color: var(--global-page-background-color);
 }
 
-.project-container-button {
-  padding: none;
-  padding-bottom: 3rem;
-  margin: 1rem;
-  margin-top: 2rem;
-  margin-bottom: 3rem;
-  border: none;
-  border-radius: 0.5rem;
-  background-color: var(--primary);
-  box-shadow: 2px 2px 2px rgb(130, 133, 143);
-  cursor: pointer;
+.project-card-container {
+  display: inline-block;
+  box-shadow: 0px 2px 2px var(--global-smaller-subtitles-color);
+  margin: 10px;
+  margin-bottom: 25px;
+  width: var(--global--project__small-view-width);
+  height: 370px;
+  border-radius: var(--global-border-radius);
+  border: 1px solid black;
+  background-color: white;
 }
 
-.project-container-button:hover {
-  cursor: pointer;
-  background-color: rgb(134, 136, 153);
-  filter: brightness(150%);
-  transform: scale(1.1, 1.1);
-  position: relative;
+.project-card-container:hover {
+  transform: scale(1.1);
+  filter: brightness(125%);
+  background-color: var(--global-background-color);
   transition: 0.2s;
 }
 
-.project-container-button:not(:hover) {
+.project-card-container:not(:hover) {
   transition: 0.2s;
 }
 
 .project-card {
-  display: inline;
+  display: block;
+  width: var(--global--project__small-view-width);
+  height: 370px;
   cursor: pointer;
-  border-radius: 5px;
-  margin-left: 5px;
-  margin-right: 5px;
-  border: none;
-  text-align: left;
+  background-color: white;
 }
 
-.project-container-vertical {
-  display: flex;
-  overflow-x: auto;
-  padding-left: 20px;
+/*
+.project-card:hover {
+  box-shadow: 0 0 0 1000px rgba(45, 44, 48, 0.24);
+  transition: 0.2s;
 }
 
-.project-title {
-  width: auto;
-  padding-top: 10px;
-  padding-left: 20px;
-  margin-bottom: 1%;
-  font-size: 32px;
-  color: var(--shadow);
+.project-card:not(:hover) {
+  transition: 0.2s;
+  box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0);
 }
+*/
 
 .project-icon {
   display: grid;
-  width: 90px;
-  height: 90px;
+  width: var(--global--organization--avatar__project__info__big-view-size);
+  height: var(--global--organization--avatar__project__info__big-view-size);
   position: relative;
   object-fit: cover;
-  border-radius: 0.5rem;
+  border-radius: var(--global-border-radius);
   top: -30px;
-  left: 20px;
+  left: 25px;
 }
 
 .project-image {
-  width: 300px;
-  height: 200px;
-  border-radius: 0.5rem;
+  width: var(--global--project__small-view-width);
+  height: var(--global--project__small-view-height);
+  border-radius: var(--global-border-radius);
   object-fit: cover;
   cursor: pointer;
 }
 
 .project-text-container {
-  padding-left: 20px;
+  display: block;
+  padding-left: 25px;
+  padding-right: 25px;
+  height: var(--global--project__small-view-height);
 }
 
 .project-text {
-  width: 280px;
-  font-size: 20px;
+  position: relative;
+  top: -25px;
+  font-size: var(--global-normal-text-size);
   /*wrap text*/
   display: -webkit-box;
   overflow: hidden;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 2; /* number of lines to show */
+  text-align: justify;
+  -webkit-line-clamp: 1; /* number of lines to show */
   -webkit-box-orient: vertical;
 }
 
+.project-text.description {
+  -webkit-line-clamp: 2; /* number of lines to show */
+}
+/*
+.project-text.description:hover {
+  display: -webkit-box;
+  -webkit-line-clamp: 10; 
+  -webkit-box-orient: vertical;
+  width: 100%;
+  left: -12.5%;
+  padding-left: 12.5%;
+  padding-right: 12.5%;
+  border-radius: 3px;
+  background-color: rgb(164, 162, 179);
+  transition: 0.2s;
+}
+
+.project-text.description:not(:hover) {
+  transition: 0.2s;
+}
+*/
 .project-text.title {
-  font-size: 32px;
-  color: var(--title);
+  font-size: var(--global-title-1-size);
+  font-weight: 600;
+}
+
+.project-text.orgName {
+  font-size: var(--global-sub-title-light-size);
+  color: var(--global-sub-title-light-color);
+}
+
+.project-text.deadline {
+  font-size: var(--global-sub-title-light-size);
+  color: var(--global-sub-title-light-color);
+  /*margin-top: 30px;*/
+  margin-top: 3.5rem;
+  /*Easier to control, don't have to calculate the exact pixel. If in the future we change the size
+  of other components, adjusting the rem will be easier.*/
 }
 
 .button.project {

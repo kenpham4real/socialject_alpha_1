@@ -9,6 +9,7 @@ import {
 
 // Constants: Login medias
 import { GOOGLE_LOGIN, FACEBOOK_LOGIN } from "../../../constants/auth";
+import { User } from "../../../models/user";
 
 // Actions
 export const [LOG_IN, SIGN_UP, AUTHENTICATE] = [
@@ -110,32 +111,36 @@ const _addUser = async (
   userType
 ) => {
   const uid = authenticatedUserData.uid;
+  const isAuth = true;
+  let newUser = {};
 
   // Push the authenticated data of the user to firestore
 
   // Define the reference of the user
   const collectionRef = userType == "STUDENT" 
     ? firebase_db.collection("student").doc(`${uid}`)
-    : firebase_db.collection("organization").doc(`${uid}`).collection('authenticated-profile').doc(`${uid}`);
+    : firebase_db.collection("organization").doc(`${uid}`);
 
-  // Additional reference of the organization
-  const organizationCollectionRef = firebase_db.collection("organization").doc(`${uid}`);
+  const user = new User(
+    authenticatedUserData.uid,
+    authenticatedUserData.token,
+    userType,
+    authenticatedUserData.email,
+    authenticatedUserData.photoURL,
+    authenticatedUserData.displayName,
+    authenticatedUserData.authenticatedMethod,
+    isAuth
+  )
+
+  for(const key in user){
+    newUser[key] = user[key]
+  }
+
+  console.log('new user', newUser)
 
   try {
-    // Set the authenticated data
-    await collectionRef.set({
-      userEmail: authenticatedUserData.email,
-      userName: authenticatedUserData.displayName,
-      userAvatar: authenticatedUserData.photoURL,
-      userId: authenticatedUserData.uid,
-      userType: userType,
-      authenticatedMethod: authenticatedUserData.authenticatedMethod,
-    });
-
-    // Set the userType to the organization ref
-    await organizationCollectionRef.set({
-      userType: userType
-    }, {merge: true})
+    
+    await collectionRef.set(newUser,{merge: true})
 
   } catch (error) {
     console.error(error);
@@ -144,16 +149,7 @@ const _addUser = async (
   // Dispatching the data to the global store
   dispatch({
     type: AUTHENTICATE,
-    userData: {
-      userEmail: authenticatedUserData.email,
-      userName: authenticatedUserData.displayName,
-      userToken: authenticatedUserData.token,
-      userAvatar: authenticatedUserData.photoURL,
-      userId: authenticatedUserData.uid,
-      userType: userType,
-      authenticatedMethod: authenticatedUserData.authenticatedMethod,
-      isAuth: true,
-    },
+    authenticatedUser: newUser
   });
 
   const userDataStored = {
