@@ -16,9 +16,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "../styles/NavigationBar.css";
 import "../../pages/app/styles/GlobalStyles.css";
-import IconButton from "./IconButton";
-import SJ from "../../assets/images/SJ.png";
-import arrow from "../../assets/images/arrow.png";
+// import IconButton from "./IconButton";
+// import SJ from "../../assets/images/SJ.png";
+// import arrow from "../../assets/images/arrow.png";
 
 import * as autoLoginAction from "../../store//actions/auth/autoLoginAction";
 
@@ -41,7 +41,7 @@ function SearchBar(props) {
 */
 
 //Main
-function NavigationBar_Ken(props) {
+function NAVIGATION_BAR_KEN (props) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.autoLoginReducer.userData);
   const user_localStorage = JSON.parse(localStorage.getItem("userData"));
@@ -117,4 +117,4 @@ function NavigationBar_Ken(props) {
   );
 }
 
-export default NavigationBar_Ken;
+export default NAVIGATION_BAR_KEN;

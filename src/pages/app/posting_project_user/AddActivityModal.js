@@ -76,27 +76,27 @@ const AddActivityModal = (props) => {
    * @param {string} name
    * @returns {void} 
    */
-  const _onChangeActivityName = (name) => {
-    setActivityName(name);
-  }
+  // const _onChangeActivityName = (name) => {
+  //   setActivityName(name);
+  // }
 
-  /**
-   * @summary Handle the state of activity description
-   * @param {string} description
-   * @returns {void}
-   */
-  const _onChangeActivityDescription = (description) => {
-    setActivityDescription(description);
-  }
+  // /**
+  //  * @summary Handle the state of activity description
+  //  * @param {string} description
+  //  * @returns {void}
+  //  */
+  // const _onChangeActivityDescription = (description) => {
+  //   setActivityDescription(description);
+  // }
 
-  /**
-   * @summary Handle the state of activity location
-   * @param {string} location
-   * @returns {void}
-   */
-  const _onChangeActivityLocation = (location) => {
-    setActivityLocation(location);
-  }
+  // /**
+  //  * @summary Handle the state of activity location
+  //  * @param {string} location
+  //  * @returns {void}
+  //  */
+  // const _onChangeActivityLocation = (location) => {
+  //   setActivityLocation(location);
+  // }
 
   /**
    * @summary Handle the state of activity date

@@ -46,9 +46,9 @@ import ProjectSlide from "../../../components/app/ChooseType/ProjectSlide.js";
 //Data
 import * as landingAction from "../../../store/actions/searching-project-user/landing/landingAction";
 // import * as autoLoginAction from "../../../store/actions/auth/autoLoginAction";
-import NavigationBar_Ken from "../../../components/app/NavigationBar_Ken";
 
-import { ADMIN, STUDENT } from "../../../constants/user-types";
+// import { ADMIN, STUDENT } from "../../../constants/user-types";
+import NAVIGATION_BAR_KEN from "../../../components/app/NavigationBar_Ken";
 
 //Main function
 const ChooseType = (props) => {
@@ -74,19 +74,19 @@ const ChooseType = (props) => {
   );
   useEffect(() => {
     fetchCallback();
-  }, [dispatch]);
+  }, [dispatch, fetchCallback]);
 
   //For testing purpose.
   console.log("Selected Data:", selectData);
 
-  const _pathOfUser = (userData) => {
-    return userData.userType === ADMIN ? "/profile" : null;
-  };
+  // const _pathOfUser = (userData) => {
+  //   return userData.userType === ADMIN ? "/profile" : null;
+  // };
 
   return (
     <div className="chooseTypePage">
       {/*Navigation Bar*/}
-      <NavigationBar_Ken />
+      <NAVIGATION_BAR_KEN />
 
       {/*Slogan Panel*/}
       <SloganPanel background={imageURL}></SloganPanel>

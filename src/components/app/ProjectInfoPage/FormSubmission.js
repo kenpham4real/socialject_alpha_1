@@ -21,7 +21,7 @@ const SubmissionCard = (props) => {
 const FormSubmission = (props) => {
   console.log('props in form submission', props)
   console.log('props.userId: ', props.userId, "vs props.projectOwnerId", props.projectOwnerId)
-  if (props.userId == props.projectOwnerId){
+  if (props.userId === props.projectOwnerId){
 
     return (
       <div className="formsub-container">

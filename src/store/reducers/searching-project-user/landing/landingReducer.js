@@ -1,5 +1,5 @@
 // Firebase database
-import { FETCH_LANDING } from "../../../actions/searching-project-user/landing/landingAction";
+// import { FETCH_LANDING } from "../../../actions/searching-project-user/landing/landingAction";
 
 //Initial state:
 const initialState = {
