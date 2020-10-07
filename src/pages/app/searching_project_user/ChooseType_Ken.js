@@ -1,3 +1,5 @@
+//Fixer
+
 /*
 *Contributor: Long 22nd September 2020
 *Component:
@@ -36,19 +38,19 @@ import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./styles/ChooseTypeStyle.css";
 //General
-import NavigationBar from "../../../components/app/NavigationBar.js";
+//import NavigationBar from "../../../components/app/NavigationBar.js";
 import CopyrightBar from "../../../components/app/CopyrightBar.js";
-import IconButton from "../../../components/app/IconButton.js";
+//import IconButton from "../../../components/app/IconButton.js";
 //Specific
 import SloganPanel from "../../../components/app/ChooseType/SloganPanel.js";
 import ProjectSlide from "../../../components/app/ChooseType/ProjectSlide.js";
 
 //Data
 import * as landingAction from "../../../store/actions/searching-project-user/landing/landingAction";
-import * as autoLoginAction from "../../../store/actions/auth/autoLoginAction";
-import NavigationBar_Ken from "../../../components/app/NavigationBar_Ken";
+//import * as autoLoginAction from "../../../store/actions/auth/autoLoginAction";
+import NavigationBar from "../../../components/app/NavigationBar_Ken";
 
-import { ADMIN, STUDENT } from "../../../constants/user-types";
+//import { ADMIN, STUDENT } from "../../../constants/user-types";
 
 //Main function
 const ChooseType = (props) => {
@@ -66,27 +68,28 @@ const ChooseType = (props) => {
    * @returns {void} (it pass the data into global store)
    * @author Long Wibu
    */
-  const fetchCallback = landingAction.FetchCalling(
+  /*const fetchCallback = landingAction.FetchCalling(
     landingAction.FetchLanding,
     selectData,
     dispatch,
     callback
-  );
+  );*/
   useEffect(() => {
-    fetchCallback();
+    landingAction.FetchLanding(dispatch);
   }, [dispatch]);
 
   //For testing purpose.
   console.log("Selected Data:", selectData);
 
+  /*
   const _pathOfUser = (userData) => {
     return userData.userType === ADMIN ? "/profile" : null;
-  };
+  };*/
 
   return (
     <div className="chooseTypePage">
       {/*Navigation Bar*/}
-      <NavigationBar_Ken />
+      <NavigationBar />
 
       {/*Slogan Panel*/}
       <SloganPanel background={imageURL}></SloganPanel>
