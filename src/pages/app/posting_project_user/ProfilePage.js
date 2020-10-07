@@ -33,7 +33,7 @@ import "./styles/ProfilePage.css";
 //import NavigationBar from "../../../components/app/NavigationBar.js";
 import CopyrightBar from "../../../components/app/CopyrightBar.js";
 import ProjectActivity from "../../../components/app/ProjectInfoPage/ProjectActivity";
-import NavigationBar_Ken from "../../../components/app/NavigationBar_Ken";
+import  NavigationBar from "../../../components/app/NavigationBar_Ken";
 
 // Constants
 //import { testing_project_id } from "../../../constants/testing-keys";
@@ -210,7 +210,7 @@ const ProfilePage = (props) => {
   return (
     <div className="profilePage">
       {/*Navigation Bar*/}
-      <NavigationBar_Ken />
+      < NavigationBar />
 
       {/*Org. Name Panel*/}
       <OrgName

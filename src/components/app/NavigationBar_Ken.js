@@ -59,6 +59,7 @@ function NavigationBar(props) {
       user,
       user_localStorage_userType
     );
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
