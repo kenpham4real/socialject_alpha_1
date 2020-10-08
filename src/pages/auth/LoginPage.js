@@ -1,3 +1,5 @@
+//Fixer: Long
+
 /**
  * @summary This file renders the Login Page component
  * Main component: LoginPage
@@ -8,9 +10,10 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // Firebase
-// import firebase from "firebase";
-// import { firebase_auth } from "../../firebase-config";
-
+/*
+import firebase from "firebase";
+import { firebase_auth } from "../../firebase-config";
+*/
 // Styles
 import "./styles/LoginPage.css";
 import FeedbackImage from "../../components/FeedbackImage";
@@ -46,7 +49,7 @@ const LoginPage = (props) => {
         window.location.reload(false);
       }
     }
-  }, [props.history, userData]);
+  }, [userData, props.history]);
 
   return (
     <div className="login-container">

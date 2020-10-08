@@ -1,3 +1,5 @@
+//Fixer
+
 /*
 *Contributor: Long 22nd September 2020
 *Component:
@@ -32,7 +34,7 @@
       pass to /projectInfo
 */
 
-import React, { useCallback, useEffect } from "react";
+import React, { /*useCallback,*/ useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./styles/ChooseTypeStyle.css";
 //General
@@ -54,7 +56,7 @@ import NAVIGATION_BAR_KEN from "../../../components/app/NavigationBar_Ken";
 const ChooseType = (props) => {
   //Declare hooks as variables to be more flexible.
   const dispatch = useDispatch();
-  const callback = useCallback;
+  const callback = React.useCallback;
   //Select data from the global state.
   const selectData = useSelector((state) => state.landingReducer.projectData);
 
@@ -79,9 +81,10 @@ const ChooseType = (props) => {
   //For testing purpose.
   console.log("Selected Data:", selectData);
 
-  // const _pathOfUser = (userData) => {
-  //   return userData.userType === ADMIN ? "/profile" : null;
-  // };
+  /*
+  const _pathOfUser = (userData) => {
+    return userData.userType === ADMIN ? "/profile" : null;
+  };*/
 
   return (
     <div className="chooseTypePage">

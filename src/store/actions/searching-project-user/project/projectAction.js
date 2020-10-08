@@ -75,7 +75,7 @@ export function _getProjectInfo(orgId, projectId) {
 				.get()
 				.then(function (doc) {
 					projectData.projectDetail = doc.data();
-					if (projectData.projectDetail == undefined){
+					if (projectData.projectDetail === undefined){
 						projectData.projectDetail = {
 							benefits: [],
 							requirements: [],

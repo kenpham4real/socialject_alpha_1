@@ -1,3 +1,5 @@
+//Fixer: Long
+
 /* Contributor: Long 22nd September 2020
 // Component:
 //    In use:
@@ -38,12 +40,6 @@ import NAVIGATION_BAR_KEN from "../../../components/app/NavigationBar_Ken";
 
 //Action
 import * as profileAction from "../../../store/actions/posting-project-user/profile/profileAction";
-
-// const imageURL =
-//   "https://c4.wallpaperflare.com/wallpaper/963/733/213/anime-girls-ghost-blade-wlop-wallpaper-preview.jpg";
-
-// const loremText =
-//   "Khi Beyond Birthday lấy mạng nạn nhân thứ ba của mình, hắn định làm một thử nghiệm—để xem có cách nào làm một con người chết vì xuất huyết trong mà không cần phải hủy hoại một bộ phận cơ thể nào hay không. Cụ thể, hắn cho nạn nhân chìm vào trạng thái vô thức bằng thuốc mê; ...";
 
 //The button to add a project
 function AddProjectButton(props) {
@@ -199,14 +195,14 @@ const ProfilePage = (props) => {
     callback,
     profileId
   );*/
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const fetchCallback = useCallback(() =>
-    profileAction.FetchProject(dispatch, profileId)
+  const fetchCallback = useCallback(
+    () => profileAction.FetchProject(dispatch, profileId),
+    [dispatch, profileId]
   );
 
   useEffect(() => {
     fetchCallback();
-  }, [fetchCallback, profileId]);
+  }, [profileId, fetchCallback]);
 
   //For testing purpose
   console.log("Selected Data:", projectData);

@@ -39,5 +39,3 @@ const FormSubmission = (props) => {
 };
 
 export default FormSubmission;
-
-

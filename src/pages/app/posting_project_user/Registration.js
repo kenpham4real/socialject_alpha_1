@@ -47,34 +47,6 @@ const Registration = (props) => {
 		description,
 	}
 	
-	/**
-	 * @summary Handle the state of organiztion's name
-	 * @param {string} name
-	 * @returns {void} 
-	 */
-	// const _onChangeOrganizationName = (name) => {
-	// 	setOrganizationName(organizationName);
-	// }
-
-	// /**
-	//  * @summary Handle the state of category
-	//  * @param {string} category
-	//  * @returns {void} 
-	//  */
-	// const _onChangeCategory = (category) => {
-	// 	setCategory(category);
-	// }
-	
-
-	// /**
-	//  * @summary Handle the state of description
-	//  * @param {string} description
-	//  * @returns {void}
-	//  */
-	// const _onChangeDescription = (description) => {
-	// 	setDescription(description);
-	// }
-	
 
 	return (
 		<div className="page" >

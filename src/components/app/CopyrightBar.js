@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/CopyrightBar.css";
 
-function CopyrightBar(props) {
+function CopyrightBar() {
   return (
     <div>
       <div className="line"></div>

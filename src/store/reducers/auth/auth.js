@@ -5,26 +5,26 @@ import { AUTHENTICATE } from "../../actions/auth/auth";
 // import { User } from "../../../models/user";
 
 const initialState = {
-    userData: {
-        userName: "",
-        userEmail: "",
-        userAvatar: "",
-        uid: "",
-        token:"",
-        userType:"",
-        authenticatedMethod: "",
-        isAuth: false
-    }
-}
+  userData: {
+    userName: "",
+    userEmail: "",
+    userAvatar: "",
+    uid: "",
+    token: "",
+    userType: "",
+    authenticatedMethod: "",
+    isAuth: false,
+  },
+};
 
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case AUTHENTICATE:
-        
-        return{
-            ...state,
-            userData: action.authenticatedUser
-        }
-    default: return state
-    }
-}
+      return {
+        ...state,
+        userData: action.authenticatedUser,
+      };
+    default:
+      return state;
+  }
+};

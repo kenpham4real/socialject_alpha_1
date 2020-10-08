@@ -2,10 +2,10 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // SPU Pages
-// import ExplorePage from "../pages/app/searching_project_user/ExplorePage";
+//import ExplorePage from "../pages/app/searching_project_user/ExplorePage";
 
 import ProjectInfoPage from "../pages/app/searching_project_user/ProjectInfoPage";
-// import ChooseType from "../pages/app/searching_project_user/ChooseType";
+//import ChooseType from "../pages/app/searching_project_user/ChooseType";
 import ChooseType_Ken from "../pages/app/searching_project_user/ChooseType_Ken";
 
 // PPU Pages
@@ -18,7 +18,7 @@ import CreatePostModal_2 from "../pages/app/posting_project_user/CreatePostModal
 import CreatePostModal_3 from "../pages/app/posting_project_user/CreatePostModal_3";
 import AddActivityModal from "../pages/app/posting_project_user/AddActivityModal";
 
-import ProfilePage_example from "../pages/app/posting_project_user/ProfilePage_example.js";
+// import ProfilePage_example from "../pages/app/posting_project_user/ProfilePage_example.js";
 
 import LoginPage from "../pages/auth/LoginPage";
 import ChoosingUser from "../pages/auth/ChoosingUser";
@@ -41,8 +41,8 @@ const MainRoute = () => {
         <Route path="/createPostModal_2" component={CreatePostModal_2} />
         <Route path="/createPostModal_3" component={CreatePostModal_3} />
         <Route path="/addActivity" component={AddActivityModal} />
-        <Route path="/applyForm" component={ApplyForm}/>
-        <Route exact path="/profilePage_test" component={ProfilePage_example} />
+        <Route path="/applyForm" component={ApplyForm} />
+        {/* <Route exact path="/profilePage_test" component={ProfilePage_example} /> */}
         <Route path="/choosingUser" component={ChoosingUser} />
         <Route path="/login" component={LoginPage} />
         {/* <Route path="/" component={ChooseType} /> */}

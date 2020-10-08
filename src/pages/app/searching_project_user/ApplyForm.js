@@ -14,8 +14,6 @@
  //Styles
  import "./styles/ApplyFormStyles.css";
 
- //Funtions
-// import * as projectActions from "../../../store/actions/searching-project-user/project/projectAction";
 
 
 const ApplyForm = (props) => {

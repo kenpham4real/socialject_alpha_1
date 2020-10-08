@@ -1,39 +1,34 @@
 /**
  * Contributor:Tien,Long
- *  Day: 
+ *  Day:
  *    (+) Tien 20/9/2020
- * 
- * 
+ *
+ *
  *    (+) Long
- * 
- * 
+ *
+ *
  * Main Fucntion:
  *   Sub-function:
  *      (+) Fetch data from Firebase
- * 
- * 
+ *
+ *
  *      (+) Push Data of Application Form to Firebase
  */
 // Firebase database
 import { firebase_db } from "../../../../firebase-config";
 
 
-
 /******************************** ACTIONS ********************************/
 
-                    
-
-                    /************Fetch Data*********/
+/************Fetch Data*********/
 // Export the actions.
 export const FETCH_LANDING = "FETCH_LANDING";
 
-
 //The main function call this to activate the function of fetching data
 export function FetchCalling(action, data, dispatch, callback) {
-  if (data === undefined) action(dispatch);
+  if (!data) action(dispatch);
   return callback(() => action(dispatch), [dispatch]);
 }
-
 
 //Fetch the data from the Firebase.
 export async function FetchLanding(dispatch) {
@@ -66,11 +61,9 @@ export async function FetchLanding(dispatch) {
   }
 }
 
-
-                  /************Push Data**************/
+/************Push Data**************/
 //Export the actions.
 export const UP_DATA_FORM = "UP_DATA_FORM";
-
 
 /**
  * @summary Send the profile data the PPU want to create to firestore
@@ -87,13 +80,13 @@ export const _onSubmitFormAnswers = (answers, organizationId, projectId) => {
    */
   return async (dispatch, getState) => {
     const student = getState().authReducer.userData;
-    const{
+    const {
       userName: studentName,
       userEmail: studentEmail,
       uid: studentUID,
     } = student;
 
-    console.log('submitting form answers')
+    console.log("submitting form answers:, organization: ", organizationId, 'project: ', projectId);
     try {
       await firebase_db
         .collection("organization")
@@ -102,18 +95,15 @@ export const _onSubmitFormAnswers = (answers, organizationId, projectId) => {
         .doc(`${projectId}`)
         .collection("formSubmission")
         .doc(`${studentUID}`)
-        .set(
-          {
-            answers: answers,
-            studentInfo: {
-                studentName: studentName,
-                studentEmail: studentEmail,
-                studentUID: studentUID 
-            }
-          }
-        );
+        .set({
+          answers: answers,
+          studentInfo: {
+            studentName: studentName,
+            studentEmail: studentEmail,
+            studentUID: studentUID,
+          },
+        });
       console.log("Submit form successfully");
-
     } catch (error) {
       console.log("Error::", error);
     }

@@ -1,17 +1,19 @@
 // Firebase database
-import {firebase_db,  analytics} from '../../../../firebase-config';
-// import {firebase_storage} from '../../../../firebase-config';
-
+import {
+  firebase_db,
+  /*firebase_storage,*/ analytics,
+} from "../../../../firebase-config";
 
 // Constants
-import {testing_project_id} from '../../../../constants/testing-keys';
-// import {testing_activity_id} from '../../../../constants/testing-keys';
+import {
+  testing_project_id /*testing_activity_id*/,
+} from "../../../../constants/testing-keys";
 
 // Classes and models
-// import {Activity} from '../../../../models/activity'
+//import {Activity} from '../../../../models/activity'
 
 // Helper
-import {_imageUploadHandler} from '../../../../helper/image/imageHandler'
+import { _imageUploadHandler } from "../../../../helper/image/imageHandler";
 
 // Export all the action types
 export const ADD_ACTIVITY = "ADD_ACTIVITY";
@@ -21,114 +23,111 @@ export const SET_ACTIVITY = "SET_ACTIVITY";
 
 
 export const _fetchProjectActivity_ppu = () => {
+  return async (dispatch, getState) => {
+    let activityData = [];
+    console.log("Fetching data of project activities");
+    try {
+      await firebase_db
+        .collection("public-projects")
+        .doc(`${testing_project_id}`)
+        .collection("recruit-info")
+        .doc(`${testing_project_id}`)
+        .collection("progress")
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            activityData.push(doc.data());
+          });
+        });
 
-    return async (dispatch, getState) => {
-        let activityData = [];
-        console.log('Fetching data of project activities')
-        try {
-            await
-            firebase_db
-            .collection('public-projects')
-            .doc(`${testing_project_id}`)
-            .collection('recruit-info')
-            .doc(`${testing_project_id}`)
-            .collection('progress')
-            .get()
-            .then(
-                querySnapshot => {
-                    querySnapshot.forEach(
-                        (doc) => {
-                            activityData.push(doc.data())
-                        }
-                    )
-                }
-            )
-            
-            console.log('activity data', activityData)
+      console.log("activity data", activityData);
 
-            dispatch({
-                type: SET_ACTIVITY,
-                activityData: activityData
-            })
-    
-        } catch (error) {
-            console.log('error', error)
-        }
+      dispatch({
+        type: SET_ACTIVITY,
+        activityData: activityData,
+      });
+    } catch (error) {
+      console.log("error", error);
     }
-}
+  };
+};
 
 /**
  * @summary Add an activity to the progress board of the project for PPU
  * @param {string} activityId
- * @param {string} activityName 
- * @param {string} activityDescription 
- * @param {string} activityLocation 
+ * @param {string} activityName
+ * @param {string} activityDescription
+ * @param {string} activityLocation
  * @param {string} activitycategory
- * @param {string} activityDate 
+ * @param {string} activityDate
  * @returns @async @function
  * @author Ken Pham
  */
-export const _addActivity_ppu = (projectId, activityId, activityName, activityDescription, activityLocation,activitycategory, activityDate, activityImage) => {
+export const _addActivity_ppu = (
+  projectId,
+  activityId,
+  activityName,
+  activityDescription,
+  activityLocation,
+  activitycategory,
+  activityDate,
+  activityImage
+) => {
+  /**
+   * @summary Asynchronous function calling the database to push the data
+   * @param {function} dispatch => Function used to send the action type and data to the Redux reducer
+   * @param {function} getState => Function used to access the current state of the application
+   * @returns {void}
+   * @author Ken Pham
+   */
+  return async (dispatch, getState) => {
+    const user = getState().authReducer.userData;
+    const activityImageUrl = _imageUploadHandler(activityImage);
 
-    /**
-     * @summary Asynchronous function calling the database to push the data
-     * @param {function} dispatch => Function used to send the action type and data to the Redux reducer
-     * @param {function} getState => Function used to access the current state of the application
-     * @returns {void}
-     * @author Ken Pham
-     */
-    return async (dispatch, getState) => {
+    try {
+      await firebase_db
+        .collection("public-projects")
+        .doc(`${user.uid}`)
+        .collection("recruit-info")
+        .doc(`${projectId}`)
+        .collection("progress")
+        .doc(`${activityId}`)
+        .set({
+          activityId: activityId,
+          activityName: activityName,
+          activityDescription: activityDescription,
+          activityLocation: activityLocation,
+          activitycategory: activitycategory,
+          activityDate: activityDate,
+          activityImage: activityImageUrl,
+        });
 
-        const user = getState().authReducer.userData;
-        const activityImageUrl = _imageUploadHandler(activityImage);
+      console.log("Add activities successfully");
 
-        try {
-            await
-            firebase_db
-            .collection('public-projects')
-            .doc(`${user.uid}`)
-            .collection('recruit-info')
-            .doc(`${projectId}`)
-            .collection('progress')
-            .doc(`${activityId}`)
-            .set({
-                activityId: activityId,
-                activityName: activityName,
-                activityDescription: activityDescription,
-                activityLocation: activityLocation,
-                activitycategory: activitycategory,
-                activityDate: activityDate,
-                activityImage: activityImageUrl
-            })
+      dispatch({
+        type: ADD_ACTIVITY,
+        activityInfo: {
+          activityId: activityId,
+          activityName: activityName,
+          activityDescription: activityDescription,
+          activityLocation: activityLocation,
+          activitycategory: activitycategory,
+          activityDate: activityDate,
+          activityImage: activityImageUrl,
+        },
+      });
 
-            console.log('Add activities successfully');
+      analytics.logEvent("page_view", {
+        page_location: "AddActivity",
+        page_path: "/addActivity",
+        page_title: "AddActivity",
+      });
 
-            dispatch({
-                type: ADD_ACTIVITY,
-                activityInfo: {
-                    activityId: activityId,
-                    activityName: activityName,
-                    activityDescription: activityDescription,
-                    activityLocation: activityLocation,
-                    activitycategory:activitycategory,
-                    activityDate: activityDate,
-                    activityImage: activityImageUrl
-                }
-            })
-
-            analytics.logEvent('page_view', {
-                page_location: 'AddActivity',
-                page_path: '/addActivity',
-                page_title: 'AddActivity'
-            });
-
-            analytics.logEvent('select_item', {
-                items: ['Add activity button']
-            });
-            
-            
-        } catch (error) {
-            console.log('Error', error);
-        }
+      analytics.logEvent("select_item", {
+        items: ["Add activity button"],
+      });
+    } catch (error) {
+      console.log("Error", error);
     }
-}
+  };
+};

@@ -1,4 +1,6 @@
-// /*
+//
+//    Fixer: Long
+/*
 // *Contributor: Long 19th August 2020
 // *Component:
 //     In use:
@@ -10,13 +12,15 @@
 //   *Data needed: (currently none)
 // */
 
+// /*
 // import React, { useEffect, useCallback } from "react";
 // import { useDispatch, useSelector } from "react-redux";
 // import { Link } from "react-router-dom";
 // import "../styles/NavigationBar.css";
 // import "../../pages/app/styles/GlobalStyles.css";
-// // import SJ from "../../assets/images/SJ.png";
-// // import arrow from "../../assets/images/arrow.png";
+// import IconButton from "./IconButton";
+// import SJ from "../../assets/images/SJ.png";
+// import arrow from "../../assets/images/arrow.png";
 
 // import * as autoLoginAction from "../../store//actions/auth/autoLoginAction";
 

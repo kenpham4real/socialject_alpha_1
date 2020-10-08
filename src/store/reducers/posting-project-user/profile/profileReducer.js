@@ -1,8 +1,8 @@
 import {
   SET_ORGANIZATION_PROFILE,
   CREATE_PROFILE,
-  FETCH_PROFILE
-} from '../../../actions/posting-project-user/profile/profileAction';
+  FETCH_PROFILE,
+} from "../../../actions/posting-project-user/profile/profileAction";
 
 //Initial state:
 const initialState = {
@@ -29,6 +29,7 @@ export const profileReducer = (state = initialState, action) => {
           arrayToPush[count] = tempo;
           count++;
         }
+        return tempo;
       });
       console.log("Array to push is:", arrayToPush);
 
@@ -37,17 +38,17 @@ export const profileReducer = (state = initialState, action) => {
         profileData: action.payload.profileData,
         projectArray: arrayToPush,
       };
-      case CREATE_PROFILE:
-        return({
-            ...state,
-            profileData: action.orgProfile,
-        })
-      case SET_ORGANIZATION_PROFILE:
-        return{
-          ...state,
-          profileData: action.profileData,
-          projectData: action.profile_projectData
-        }
+    case CREATE_PROFILE:
+      return {
+        ...state,
+        profileData: action.orgProfile,
+      };
+    case SET_ORGANIZATION_PROFILE:
+      return {
+        ...state,
+        profileData: action.profileData,
+        projectData: action.profile_projectData,
+      };
     default:
       return {
         projectData: {},

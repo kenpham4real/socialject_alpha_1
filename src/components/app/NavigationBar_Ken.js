@@ -16,10 +16,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "../styles/NavigationBar.css";
 import "../../pages/app/styles/GlobalStyles.css";
-// import IconButton from "./IconButton";
-// import SJ from "../../assets/images/SJ.png";
-// import arrow from "../../assets/images/arrow.png";
-
+/*
+import IconButton from "./IconButton";
+import SJ from "../../assets/images/SJ.png";
+import arrow from "../../assets/images/arrow.png";
+*/
 import * as autoLoginAction from "../../store//actions/auth/autoLoginAction";
 
 //constant
@@ -57,7 +58,8 @@ function NAVIGATION_BAR_KEN (props) {
       user,
       user_localStorage_userType
     );
-  }, [dispatch]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
 
   useEffect(() => {
