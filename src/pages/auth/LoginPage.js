@@ -46,6 +46,7 @@ const LoginPage = (props) => {
         window.location.reload(false);
       }
     }
+    // Don't understand the reason to put the props.history here as dependency
   }, [props.history, userData]);
 
   return (
