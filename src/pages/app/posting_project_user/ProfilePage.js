@@ -54,7 +54,7 @@ function AddProjectButton(props) {
   if (userId === props.projectOwnerId)
     return (
       <Link
-        to={`/profile/createPostModal`}
+        to={`/createPostModal`}
         className="profile-button"
       >
         Add a project
