@@ -3,15 +3,15 @@ import React from "react";
 import "../../styles/ProjectInfoPage/IndividualForm.css";
 
 const AnswerCard = (props) => {
-  const studentSubmission = props.formData;
+  const studentAnswer = props.studentAnswer;
   return (
     <div className="individual-card">
       <div className="individual-textcontainer">
         <div className="individual-text title">
-          {studentSubmission.id}. {studentSubmission.question}
+          {studentAnswer.question}
         </div>
         <div className="individual-textcontainer answer">
-          <div className="individual-text">{studentSubmission.answer}</div>
+          <div className="individual-text">{studentAnswer.answer}</div>
         </div>
       </div>
     </div>
@@ -19,28 +19,28 @@ const AnswerCard = (props) => {
 };
 
 const IndividualForm = (props) => {
-  //These data are just example.
-  const studentSubmissions = props.formData;
-  const studentAnswers = props.formData.answers;
-  console.log("Form Data in Individual Form", studentSubmissions);
+  
+  const studentSubmission = props.studentSubmission;
+  const studentAnswers = studentSubmission.answers;
+  console.log("Form Data in Individual Form", studentSubmission);
   // if (props.userId == props.projectOwnerId)
   return (
     <div className="individual-container">
       <div className="individual-card">
         <img
-          src={props.formData.avatar}
+          src={studentSubmission.studentInfo.studentAvatar}
           alt="Loading..."
           className="individual-avatar"
         />
         <div className="individual-textcontainer">
-          <div className="individual-text title">{props.formData.name}</div>
-          <div className="individual-text">{props.formData.email}</div>
+          <div className="individual-text title">{studentSubmission.studentInfo.studentName}</div>
+          <div className="individual-text">{studentSubmission.studentInfo.studentEmail}</div>
         </div>
       </div>
       {studentAnswers.map((studentAnswer) => (
-        <AnswerCard formData={studentAnswer} />
+        <AnswerCard studentAnswer={studentAnswer} />
       ))}
-      <button onClick={props.onModalClosing}> Close</button>
+      <button onClick={props._onCloseApplicantView}>Close</button>
     </div>
   );
   // return <div style={{ display: "none" }}></div>;

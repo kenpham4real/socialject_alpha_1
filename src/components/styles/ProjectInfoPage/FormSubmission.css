@@ -1,3 +1,5 @@
+@import '../../../pages/app/styles/GlobalStyles.css';
+
 /*General stuff*/
 .formsub-text {
   font-size: 16px;
@@ -15,6 +17,7 @@
   display: inline-flex;
   width: 40%;
   padding: 2%;
+  cursor: pointer;
 }
 
 .formsub-avatar {
@@ -39,6 +42,6 @@
 
 .formsub-text.big {
   font-weight: 800;
-  font-size: 32px;
-  margin: 2%;
+  font-size: var(--global-headline-2-size);
+  margin-top: 2%;
 }

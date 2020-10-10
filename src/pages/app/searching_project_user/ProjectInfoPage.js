@@ -38,17 +38,8 @@ const ProjectInfoPage = (props) => {
   const orgId = props.history.location.orgId;
   const dispatch = useDispatch();
   const [isFetchedRecruitInfo, setIsFetchedRecruitInfo] = useState(false);
-  // const [isFetchedActivities, setIsFetchedActivities] = useState(false);
-  const [isModalOpen] = useState(false);
+  const [isViewApplicantModal, setIsViewApplicantModal] = useState(false);
   const [applicant, setApplicant] = useState({});
-  // const [formStudentId, setFormStudentId] = useState({
-  //   name: "",
-
-  //   email: "",
-  //   avatar: "",
-  //   answers: [],
-
-  // });
 
   const projectsData = useSelector(
     (state) => state.projectReducerSPU.projectsData
@@ -80,30 +71,12 @@ const ProjectInfoPage = (props) => {
 
   console.log("fetched projects", projectsData);
 
-  const _onViewStudentAnswer = (applicantInfo) => {
-    console.log(applicantInfo);
-    setApplicant(applicantInfo);
+  const _onViewStudentAnswer = (applicant) => {
+    setIsViewApplicantModal(true)
+    setApplicant(applicant);
   };
 
   /********************************* Small UI components *********************************/
-  /**
-   * @summary Render the tags of the project
-   * @param {void}
-   * @returns JSX Components
-   * @author Ken Pham, Dat Uchiha
-   */
-  // const _project_tags = () => {
-  //   return (
-  //     <div className="tags">
-  //       <a href="">Explore</a> <span> </span>
-  //       <a href="">Language</a> <span> </span>
-  //       <a href="" className="currentTags">
-  //         Tags
-  //       </a>{" "}
-  //       <span> </span>
-  //     </div>
-  //   );
-  // };
 
   /**
    * @summary Render the info of organization, including name, avatar and the follow button
@@ -333,7 +306,7 @@ const ProjectInfoPage = (props) => {
    * @author Ken Pham, Dat Uchiha
    */
   const _project_progress_section = () => {
-    let ifDisplay = "inline-block";
+    let ifDisplay = "flex";
     if (userId !== projectsData.projectInfo.orgId) ifDisplay = "none";
     const AddActivityButton = () => {
       return (
@@ -557,19 +530,16 @@ const ProjectInfoPage = (props) => {
             // onModalOpening={(props) => _handle_modal_open(props)}
             isFetchedRecruitInfo={isFetchedRecruitInfo}
             formSubmissions={projectsData.formSubmission}
-            _onViewStudentAnswer={_onViewStudentAnswer}
+            _onViewStudentAnswer={(submission) => _onViewStudentAnswer(submission)}
+            // _onViewApplicant={() => console.log('yayy')}
           />
-          <Modal isOpen={isModalOpen}>
+          <Modal isOpen={isViewApplicantModal}>
             <IndividualForm
               userId={userId}
               projectOwnerId={projectsData.projectInfo.orgId}
-              // formData={formStudentId}
-              // onModalClosing={_close_modal_handler}
               isFetchedRecruitInfo={isFetchedRecruitInfo}
-              allAnswers={applicant.answers}
-              studentName={applicant.studentName}
-              studentEmail={applicant.studentEmail}
-              studentAvatar={applicant.studentAvatar}
+              studentSubmission={applicant}
+              _onCloseApplicantView={() => setIsViewApplicantModal(false)}
             />
           </Modal>
         </div>

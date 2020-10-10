@@ -10,7 +10,7 @@
 }
 
 /*Component*/
-.profile--title {
+.profile--title__about, .profile--title {
   display: inline-block;
   color: var(--global-title-1-color);
   font-size: var(--global-title-1-size);
