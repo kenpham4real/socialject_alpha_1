@@ -188,8 +188,7 @@ export const _createProject_ppu = (
 export const _getFormSubmission = (orgId, projectId) => {
   return async (dispatch, getState) => {
     console.log("GETTING FORM SUBMISSION");
-
-    console.log("GETTING FORM SUBMISSION");
+    console.log("OrgId: ", orgId, " projectId", projectId);
 
     let formSubmission = [];
 
