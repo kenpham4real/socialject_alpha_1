@@ -112,12 +112,12 @@ export function _getProjectInfo(orgId, projectId) {
 			.get()
 			.then((query) =>{
 				// console.log('query: ', query);
-				let tmpDoc;
+				// let tmpDoc;
 				
 				query.forEach((doc) => {
 					// console.log('doc of form submission', doc);
 					projectData.formSubmission.push(doc.data())
-					tmpDoc = doc;
+					// tmpDoc = doc;
 				})
 				// console.log('added form submission data with doc', tmpDoc)
 			})
