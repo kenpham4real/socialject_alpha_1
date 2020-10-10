@@ -98,7 +98,8 @@ function OrgName(props) {
 function OrgVision(props) {
   return (
     <div className="profile-block-container">
-      <div className="profile--title">{props.data.vision}</div>
+      <p className="profile--title__about">About</p>
+      <p className="profile--title__description">{props.data.vision}</p>
       <p>{props.data.description}</p>
     </div>
   );
