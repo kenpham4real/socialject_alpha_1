@@ -46,7 +46,7 @@ export const SET_PROJECT_RECRUIT_INFO = "SET_PROJECT_RECRUIT_INFO";
 export function _getProjectInfo(orgId, projectId) {
 
  	 return async (dispatch, getState) => {
-		console.log("Fetching project info is beginning with projectId: ", projectId);
+		// console.log("Fetching project info is beginning with projectId: ", projectId, "and orgId", orgId);
 		let count = 0;
 		let projectData = {
 			projectInfo: {},
@@ -63,7 +63,7 @@ export function _getProjectInfo(orgId, projectId) {
 				.get()
 				.then(function (doc) {
 					projectData.projectInfo = doc.data();
-					console.log("Document data - Info:", projectData.projectInfo);
+					// console.log("Document data - Info:", projectData.projectInfo);
 				});
 
 			//Project Recruit Info
@@ -82,7 +82,7 @@ export function _getProjectInfo(orgId, projectId) {
 							questions: [],
 						};
 					}
-					console.log("Document data - Details:", projectData.projectDetail);
+					// console.log("Document data - Details:", projectData.projectDetail);
 				});
 
 			//Project Progress
@@ -98,7 +98,7 @@ export function _getProjectInfo(orgId, projectId) {
 						projectData.projectProgress[count] = doc.data();
 						count++;
 					});
-					console.log("Document data - progress:", projectData.projectProgress);
+					// console.log("Document data - progress:", projectData.projectProgress);
 				});
 				
 			// Form submission
@@ -111,18 +111,18 @@ export function _getProjectInfo(orgId, projectId) {
 			.collection('formSubmission')
 			.get()
 			.then((query) =>{
-				console.log('query.docs(): ', query.docs);
+				// console.log('query: ', query);
 				let tmpDoc;
 				
 				query.forEach((doc) => {
-					console.log('doc of form submission', doc);
+					// console.log('doc of form submission', doc);
 					projectData.formSubmission.push(doc.data())
 					tmpDoc = doc;
 				})
-				console.log('added form submission data with doc', tmpDoc)
+				// console.log('added form submission data with doc', tmpDoc)
 			})
 		
-			console.log('formSubmission',projectData.formSubmission)
+			// console.log('formSubmission',projectData.formSubmission)
 
 			dispatch({
 				type: SET_PROJECT_RECRUIT_INFO,
@@ -139,52 +139,8 @@ export function _getProjectInfo(orgId, projectId) {
 		
 
 		} catch (error) {
-			console.log("error", error);
+			// console.log("error", error);
 		}
 	}
   
 }
-
-// /************Push Data**************/
-// //Export the actions.
-// export const UP_DATA_FORM = "UP_DATA_FORM";
-
-// /**
-//  * @summary Send the profile data the PPU want to create to firestore
-//  * @param {string} FormState
-//  */
-// export const upDataForm = (FormState) => {
-//   /**
-//    * @summary Asynchronous function calling the database to push the data
-//    * @param {function} dispatch => Function used to send the action type and data to the Redux reducer
-//    * @returns {void}
-//    * @author TrNgTien
-//    */
-//   return async (dispatch) => {
-//     try {
-//       await firebase_db
-//         .collection("organization")
-//         .doc(`${testing_organization_id}`)
-//         .collection("projects")
-//         .doc(`${testing_submission_form}`)
-//         .collection("formSubmission")
-//         .doc()
-//         .set(
-//           {
-//             FormState,
-//           },
-//           { merge: true }
-//         );
-//       console.log("Submit form successfully");
-
-//       dispatch({
-//         type: UP_DATA_FORM,
-//         upDataForm: {
-//           FormState,
-//         },
-//       });
-//     } catch (error) {
-//       console.log("Error::", error);
-//     }
-//   };
-// };
