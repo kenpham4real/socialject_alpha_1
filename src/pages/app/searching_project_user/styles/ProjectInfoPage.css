@@ -259,12 +259,19 @@ This is CSS file for ProjectInfoPage.js
 }
 
 .progress-container-header-addActivityButton {
+  font-size: var(--global--add__project__activity-button-font-size);
+  border-radius: var(--global-border-radius);
+  color: var(--title);
+  background-color: var(--global-primary-color);
   flex: 1;
-  margin-top: 10px;
-}
-
-.progress-container-header-addActivityButton:hover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  font-weight: bold;
+  text-align: center;
   cursor: pointer;
+  margin: 10px;
 }
 
 .progress-container-activity {
