@@ -78,7 +78,7 @@ export const UP_DATA_FORM = "UP_DATA_FORM";
  * @param {string} email The email of SPU
  * @param {string} message The message of SPU
  */
-export const _onSubmitFormAnswers = (answers, organizationId, projectId) => {
+export const _onSubmitFormAnswers = (answerInput,orgId, projectId) => {
   /**
    * @summary Asynchronous function calling the database to push the data
    * @param {function} dispatch => Function used to send the action type and data to the Redux reducer
@@ -93,23 +93,29 @@ export const _onSubmitFormAnswers = (answers, organizationId, projectId) => {
       uid: studentUID,
     } = student;
 
+    console.log("getState",getState)
     console.log('submitting form answers')
+    console.log("uid",student.uid)
+    console.log("studentId",studentUID)
+    console.log("studentEmail",student.studentEmail)
+    console.log("orgId",orgId)
     try {
       await firebase_db
         .collection("organization")
-        .doc(`${organizationId}`)
+        .doc(`${orgId}`)
         .collection("projects")
         .doc(`${projectId}`)
         .collection("formSubmission")
-        .doc(`${studentUID}`)
+        // .doc(`${studentUID}`)
+        .doc()
         .set(
           {
-            answers: answers,
-            studentInfo: {
-                studentName: studentName,
-                studentEmail: studentEmail,
-                studentUID: studentUID 
-            }
+            answers: answerInput,
+            // studentInfo: {
+            //     studentName: studentName,
+            //     studentEmail: studentEmail,
+            //     studentUID: studentUID 
+            // }
           }
         );
       console.log("Submit form successfully");
