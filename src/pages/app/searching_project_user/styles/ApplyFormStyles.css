@@ -64,18 +64,18 @@
     border-radius: var(--global-border-radius);
     }
     .contact-form-submit {
-    color: white;
-    padding-top: 1%;
+    color: black;
+    font-weight: bold;
+    padding: 5px;
+    margin-top: 5px;
     width: var(--global--submit-button-width);
     height: var(--global--submit-button-height);
     font-size: var(--global--submit-button-font-size);
     border-radius: var(--global-border-radius);
     cursor: pointer;
     text-align: center;
-    white-space: nowrap;
-    letter-spacing: 3px;
+    letter-spacing: -2.2%;
     background-color: var(--global-primary-color);
-    box-shadow:0 10px 30px 0 var( --global-accent-1-color);
     margin-left: 300px;
     }
     

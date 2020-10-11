@@ -81,7 +81,7 @@ const Registration = (props) => {
 			<div className="container-registration">
 				<div>  
 					<h1 className='my-header-registration'> Start with the basics </h1>
-					<p className='description-registration'>  Tell people about your organiztion  </p>
+					<p className='description-registration'>  Tell people about your organization  </p>
 				</div>
 				<form>
 				<div className = "view-text-input-registration" >

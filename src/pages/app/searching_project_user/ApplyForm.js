@@ -19,8 +19,6 @@
 
 
 const ApplyForm = (props) => {
-
-	// const projectId = props.history.location.projectId;
     //Dispatch
     const dispatch = useDispatch();
 
@@ -42,9 +40,13 @@ const ApplyForm = (props) => {
 	 * @author Ken Pham
 	 */
     const _onSubmitAnswers =() =>{
-		const orgId = projectsData.projectInfo.orgID;
+		const orgId = projectsData.projectInfo.orgId;
 		const projectId = projectsData.projectInfo.projectId;
-		dispatch(_onSubmitFormAnswers(answerInput,orgId, projectId));   
+		dispatch(_onSubmitFormAnswers(answerInput,orgId, projectId));  
+		props.history.push({
+			pathname: "/projectInfo",
+			answerInput,
+		}); 
 	}
 
 
@@ -113,10 +115,6 @@ const ApplyForm = (props) => {
 				className="contact-form-submit"
 				onClick={() => {
 					_onSubmitAnswers();
-					props.history.goBack({
-						pathname: "/projectInfo",
-						answerInput,
-					});
 					}}
 			>
 				Submit
