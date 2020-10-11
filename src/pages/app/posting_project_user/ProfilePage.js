@@ -180,13 +180,12 @@ const ProfilePage = (props) => {
    * @returns {profileData and projectData} (The data is selected from global store)
    */
   //Get the Id from history.location (old code)
-  // const profileId = props.history.location.profileId;
-  // console.log("props", props);
-
-  //Get id from user data (local storage)
-  let user = JSON.parse(localStorage.getItem("userData"));
-  let profileId;
-  if (user) profileId = user.userId;
+  let profileId = props.history.location.profileId;
+  console.log("props", props);
+  //If there is no props passed from history, get the Id from the latest profile that the user
+  //had just accessed.
+  if (!profileId) profileId = sessionStorage.getItem("profileId");
+  else sessionStorage.setItem("profileId", profileId);
   console.log("profile Id received is: ", profileId);
 
   //This will not fetch if there is no if passed into it.
@@ -206,13 +205,14 @@ const ProfilePage = (props) => {
   );*/
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const fetchCallback = useCallback(() =>
-    profileAction.FetchProject(dispatch, profileId)
+  const _fetchCallback = useCallback(
+    () => profileAction.FetchProject(dispatch, profileId),
+    [dispatch, profileId]
   );
 
   useEffect(() => {
-    fetchCallback();
-  }, [fetchCallback, profileId]);
+    _fetchCallback();
+  }, [_fetchCallback, profileId]);
 
   //For testing purpose
   console.log("Selected Data:", projectData);
