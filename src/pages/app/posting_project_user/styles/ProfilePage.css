@@ -10,7 +10,8 @@
 }
 
 /*Component*/
-.profile--title__about, .profile--title {
+.profile--title__about,
+.profile--title {
   display: inline-block;
   color: var(--global-title-1-color);
   font-size: var(--global-title-1-size);
@@ -86,6 +87,7 @@
 .profile-button:active {
   opacity: 0.5;
 }
+/*
 .profile-button:hover {
   filter: brightness(130%);
   transition: 0.3s;
@@ -93,6 +95,7 @@
 .profile-button:not(:hover) {
   transition: 0.3s;
 }
+*/
 
 /*Container*/
 .profile-name-container {
