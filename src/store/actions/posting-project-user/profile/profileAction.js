@@ -113,7 +113,10 @@ export const _createProfile_ppu = (
       imageFile,
     });
     try {
-      await firebase_db.collection("organization").doc(`${orgId}`).set(
+      await firebase_db
+      .collection("organization")
+      .doc(`${orgId}`)
+      .set(
         {
           orgId: orgId,
           orgName: orgName,
