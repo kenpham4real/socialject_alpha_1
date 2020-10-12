@@ -106,16 +106,15 @@ export const _onSubmitFormAnswers = (answerInput, orgId, projectId) => {
         .collection("projects")
         .doc(`${projectId}`)
         .collection("formSubmission")
-        // .doc(`${studentUID}`)
-        .doc()
+        .doc(`${studentUID}`)
         .set(
           {
             answers: answerInput,
-            // studentInfo: {
-            //     studentName: studentName,
-            //     studentEmail: studentEmail,
-            //     studentUID: studentUID 
-            // }
+            studentInfo: {
+                studentName: studentName,
+                studentEmail: studentEmail,
+                studentUID: studentUID 
+            }
           }
         );
       console.log("Submit form successfully");
