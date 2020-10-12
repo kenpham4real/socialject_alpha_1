@@ -124,7 +124,7 @@ export const _createProfile_ppu = (
           description: description,
           location: location,
           university: university,
-          email: email,
+          orgEmail: email,
           phoneNumber: phoneNumber,
           facebook: facebook,
           orgAvatar: imageUrl,

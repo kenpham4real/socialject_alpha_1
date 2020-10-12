@@ -34,6 +34,8 @@ const ApplyForm = (props) => {
 		}
 	}))
 
+	console.log('projectsData', projectsData)
+
 
 	/**
 	 * @summary Dispatching the answers to firestore
@@ -42,7 +44,8 @@ const ApplyForm = (props) => {
     const _onSubmitAnswers =() =>{
 		const orgId = projectsData.projectInfo.orgId;
 		const projectId = projectsData.projectInfo.projectId;
-		dispatch(_onSubmitFormAnswers(answerInput,orgId, projectId));  
+
+		dispatch(_onSubmitFormAnswers(answerInput, orgId, projectId));  
 		props.history.push({
 			pathname: "/projectInfo",
 			answerInput,

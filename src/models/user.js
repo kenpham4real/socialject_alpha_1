@@ -1,19 +1,19 @@
 import { ADMIN } from "../constants/user-types";
 
 export class User{
-    constructor(uid, token, userType, userEmail, userAvatar, userName, authenticatedMethod, isAuth=false){
+    constructor(userId, token, userType, userEmail, userAvatar, userName, authenticatedMethod, isAuth=false){
         this.token = token;
         this.userType = userType;
         this.authenticatedMethod = authenticatedMethod;
         this.isAuth = isAuth;
 
         if(userType === ADMIN){
-            this.orgId = uid;
-            this.email = userEmail;
+            this.orgId = userId;
+            this.orgEmail = userEmail;
             this.orgAvatar = userAvatar;
             this.orgName = userName;
         }else{
-            this.userId = uid
+            this.userId = userId
             this.userEmail = userEmail;
             this.userAvatar = userAvatar;
             this.userName = userName;

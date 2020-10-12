@@ -84,7 +84,7 @@ function OrgName(props) {
       </div>
 
       <div className="profile-block-container-smaller">
-        <div>Email: {props.data.email}</div>
+        <div>Email: {props.data.orgEmail}</div>
         <div>Phone: {props.data.phoneNumber}</div>
       </div>
     </div>
