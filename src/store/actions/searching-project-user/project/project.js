@@ -78,7 +78,7 @@ export const UP_DATA_FORM = "UP_DATA_FORM";
  * @param {string} email The email of SPU
  * @param {string} message The message of SPU
  */
-export const _onSubmitFormAnswers = (answerInput,orgId, projectId) => {
+export const _onSubmitFormAnswers = (answerInput, orgId, projectId) => {
   /**
    * @summary Asynchronous function calling the database to push the data
    * @param {function} dispatch => Function used to send the action type and data to the Redux reducer
@@ -87,7 +87,7 @@ export const _onSubmitFormAnswers = (answerInput,orgId, projectId) => {
    */
   return async (dispatch, getState) => {
 
-    console.log('Organization:  ', organizationId)
+    console.log('Organization:  ', orgId)
 
     const student = getState().autoLoginReducer.userData;
     const{
