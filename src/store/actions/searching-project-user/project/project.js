@@ -86,14 +86,17 @@ export const _onSubmitFormAnswers = (answers, organizationId, projectId) => {
    * @author TrNgTien
    */
   return async (dispatch, getState) => {
-    const student = getState().authReducer.userData;
+
+    console.log('Organization:  ', organizationId)
+
+    const student = getState().autoLoginReducer.userData;
     const{
       userName: studentName,
       userEmail: studentEmail,
-      uid: studentUID,
+      userId: studentUID,
     } = student;
 
-    console.log('submitting form answers')
+    console.log('submitting form answers from student: ', student)
     try {
       await firebase_db
         .collection("organization")
