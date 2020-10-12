@@ -29,16 +29,16 @@
     return(
          
         <div className="contact">
-            <form  className="contact-form" autocomplete="off">
-                <div class="contact-form-group">
+            <form  className="contact-form" autoComplete="off">
+                <div className="contact-form-group">
                     <label 
-                        class="contact-form-label"
+                        className="contact-form-label"
                     >
                         {props.questionTitle}
                     </label>
                     <input 
                         type="text" 
-                        class="contact-form-input"
+                        className="contact-form-input"
                         value={props.answer}
                         onChange={(text) => _answerInputHandler(text.target.value)}
 

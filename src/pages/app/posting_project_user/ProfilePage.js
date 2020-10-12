@@ -53,10 +53,7 @@ function AddProjectButton(props) {
 
   if (userId === props.projectOwnerId)
     return (
-      <Link
-        to={`/createPostModal`}
-        className="profile-button"
-      >
+      <Link to={`/createPostModal`} className="profile-button">
         Add a project
       </Link>
     );
@@ -182,16 +179,22 @@ const ProfilePage = (props) => {
    * @param {void}
    * @returns {profileData and projectData} (The data is selected from global store)
    */
-  //Get the Id from history.location
-  const profileId = props.history.location.profileId;
+  //Get the Id from history.location (old code)
+  let profileId = props.history.location.profileId;
   console.log("props", props);
+  //If there is no props passed from history, get the Id from the latest profile that the user
+  //had just accessed.
+  if (!profileId) profileId = sessionStorage.getItem("profileId");
+  else sessionStorage.setItem("profileId", profileId);
   console.log("profile Id received is: ", profileId);
+
   //This will not fetch if there is no if passed into it.
   //Declare hooks as variables to be more flexible.
   const dispatch = useDispatch();
   //Select data from the global state.
   const projectData = useSelector((state) => state.profileReducer.projectArray);
   const profileData = useSelector((state) => state.profileReducer.profileData);
+
   //Use 2 hooks useEffect and useCallback to prevent re-render, but it still re-render anyway.
   /*const fetchCallback = profileAction.FetchCalling(
     profileAction.FetchProject,
@@ -200,14 +203,16 @@ const ProfilePage = (props) => {
     callback,
     profileId
   );*/
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const fetchCallback = useCallback(() =>
-    profileAction.FetchProject(dispatch, profileId)
+  const _fetchCallback = useCallback(
+    () => profileAction.FetchProject(dispatch, profileId),
+    [dispatch, profileId]
   );
 
   useEffect(() => {
-    fetchCallback();
-  }, [fetchCallback, profileId]);
+    _fetchCallback();
+  }, [_fetchCallback, profileId]);
 
   //For testing purpose
   console.log("Selected Data:", projectData);

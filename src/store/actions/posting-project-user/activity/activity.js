@@ -62,13 +62,12 @@ export const _fetchProjectActivity_ppu = () => {
  * @param {string} activityId
  * @param {string} activityName 
  * @param {string} activityDescription 
- * @param {string} activityLocation 
- * @param {string} activitycategory
+ * @param {string} activityLocation
  * @param {string} activityDate 
  * @returns @async @function
  * @author Ken Pham
  */
-export const _addActivity_ppu = (projectId, activityId, activityName, activityDescription, activityLocation,activitycategory, activityDate, activityImage) => {
+export const _addActivity_ppu = (projectId, activityId, activityName, activityDescription, activityLocation, activityDate, activityImage) => {
 
     /**
      * @summary Asynchronous function calling the database to push the data
@@ -85,7 +84,7 @@ export const _addActivity_ppu = (projectId, activityId, activityName, activityDe
         try {
             await
             firebase_db
-            .collection('public-projects')
+            .collection("public-projects")
             .doc(`${user.uid}`)
             .collection('recruit-info')
             .doc(`${projectId}`)
@@ -96,10 +95,13 @@ export const _addActivity_ppu = (projectId, activityId, activityName, activityDe
                 activityName: activityName,
                 activityDescription: activityDescription,
                 activityLocation: activityLocation,
-                activitycategory: activitycategory,
                 activityDate: activityDate,
                 activityImage: activityImageUrl
-            })
+            },
+            {
+                merge: true,
+            }
+            )
 
             console.log('Add activities successfully');
 
@@ -110,7 +112,6 @@ export const _addActivity_ppu = (projectId, activityId, activityName, activityDe
                     activityName: activityName,
                     activityDescription: activityDescription,
                     activityLocation: activityLocation,
-                    activitycategory:activitycategory,
                     activityDate: activityDate,
                     activityImage: activityImageUrl
                 }

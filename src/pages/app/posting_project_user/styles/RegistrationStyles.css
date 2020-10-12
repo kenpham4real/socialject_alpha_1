@@ -40,6 +40,5 @@
     letter-spacing: -2.2%;
     font-size: var(--global--submit-button-font-size);
     background-color: #2FAD58;
-    box-shadow:0 10px 30px 0 var( --global-accent-1-color);
     position: absolute;
 }
