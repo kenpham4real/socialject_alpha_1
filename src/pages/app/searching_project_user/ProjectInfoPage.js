@@ -290,7 +290,7 @@ const ProjectInfoPage = (props) => {
     return (
       <ProjectActivity
         key={activity.activityId}
-        project_activity_avatar={null}
+        project_activity_avatar={activity.activityImage}
         project_activity_name={activity.activityName}
         project_activity_date={activity.activityDate}
         project_activity_location={activity.activityLocation}
