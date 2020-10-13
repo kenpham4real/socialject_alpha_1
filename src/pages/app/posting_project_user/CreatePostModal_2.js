@@ -6,6 +6,7 @@
 */
 
 import React, { useState } from "react";
+import { FormInput } from "../../../components/app/Form/FormInput";
 import "./styles/CreatePostModal_2.css";
 
 const CreatePostModal_2 = (props) => {
@@ -14,56 +15,29 @@ const CreatePostModal_2 = (props) => {
   // const [projectQuestionArray, setProjectQuestionArray] = useState("");
   // const [projectQuestion, setProjectQuestion] = useState("");
   const [inputList, setInputList] = useState([""]);
-  
 
-  //Handle add question Event
-  console.log("props",props);
+  const [questionCount, setQuestionCount] = useState([0]);
+  const [questions, setQuestions] = useState([""]);
 
-
-  // const _onChangeAddProjectQuestion = (question) => {
-  //   setProjectQuestion(question);
-
-
-  //   setProjectQuestionArray((projectQuestionArray) =>
-  //     projectQuestionArray.concat(question)
-  //   );
-  // };
-
-
-  const Input = () => {
-    return(
-        // <input 
-        //   type="text"
-        //   placeholder="What do you want?" 
-        //   // value={projectQuestion}
-        //   // onChange={(e) => _onChangeAddProjectQuestion(e.target.value)}
-        //  >
-        //  </input>
-
-        <ul>
-        <li>
-          <input
-            type="text"
-            placeholder="Enter your question?"
-            // value={projectQuestion}
-            // onChange={(e) => _onChangeAddProjectQuestion(e.target.value)}
-          />
-        </li>
-        </ul>
-        
-    )
-  };
-  const _onAddBtnClick = (props) => {
-    setInputList(inputList.concat(<Input key={inputList.length} />));
-  };
-
-  // if(onAddBtnClick(props)===true){
+  const _onAddQuestionInput = () => {
     
-  // }
-  
+    const currentQuestionCount = questionCount;
+    const addedQuestionCount = currentQuestionCount.concat(currentQuestionCount[currentQuestionCount.length-1] + 1);
+    setQuestionCount(addedQuestionCount)
+    console.log('questionCount', questionCount)
+  }
 
+  console.log('questions outside', questions)
 
-  // console.log("projects",projectQuestionArray);
+  const _onChangeQuestion = (text, questionIndex) => {
+    console.log('index', questionIndex)
+    let changingQuestion = questions[questionIndex];
+    console.log('changingQuestion', changingQuestion)
+    changingQuestion = text;
+    const allQuestions = [...questions];
+    allQuestions[questionIndex] = changingQuestion;
+    setQuestions(allQuestions);
+  }
 
 
   const _onChangeHandleContinue = () => {
@@ -73,8 +47,7 @@ const CreatePostModal_2 = (props) => {
       projectDescription: props.location.state.projectDescription,
       projectLocation: props.location.state.projectLocation,
       projectDeadline: props.location.state.projectDeadline,
-      // projectQuestionArray:
-      // projectQuestionArray[projectQuestionArray.length - 1],
+      projectQuestions: questions
     });
   };
 
@@ -86,21 +59,21 @@ const CreatePostModal_2 = (props) => {
         <div>
           Question
           <div class="addQuestionButton">
-            <button onClick={_onAddBtnClick}> Add Your question</button> 
-                  {inputList}
+
+            <button onClick={_onAddQuestionInput} >Add your question</button>
+            <ul>
+              <li>
+                {questionCount.map((index) => (
+                  <input
+                    placeholder="Your question"
+                    value={questions[index]}
+                    onChange={(text) => _onChangeQuestion(text.target.value, index)}
+                  />
+                ))}
+              </li>
+            </ul>
            </div>
         </div>
-        
-        {/* <ul>
-          <li>
-            <input
-              type="text"
-              placeholder="What do you want?"
-              value={projectQuestion}
-              onChange={(e) => _onChangeAddProjectQuestion(e.target.value)}
-            />
-          </li>
-        </ul> */}
       </div>
       <button
         onClick={() => {
