@@ -6,8 +6,8 @@
 */
 //Packages
 import React, { useState } from "react";
-// import { FormInput } from "../../../components/app/Form/FormInput";
 import { IoIosAdd } from "react-icons/io";
+import {Link} from "react-router-dom";
 
 //Styles
 import "./styles/CreatePostModal_2.css";
@@ -99,6 +99,13 @@ const CreatePostModal_2 = (props) => {
       >
         Continue
       </div>
+      <Link
+      className="link-post-modal"
+        to={"/createPostModal_3"
+        }
+      > 
+      I don't need a form
+      </Link>
     </div>
   );
 };

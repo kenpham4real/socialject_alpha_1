@@ -85,3 +85,9 @@
 #createPostModal_2 .addQuestionBox li input {
   width: 80%;
 }
+
+.link-post-modal{
+  color:rgb(58, 58, 238) ;
+  margin-left: 100px;
+  margin-top: 10px;
+}
