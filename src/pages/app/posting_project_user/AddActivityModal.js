@@ -124,7 +124,7 @@ const AddActivityModal = (props) => {
       uuid_v4(), 
       activityName, 
       activityDescription,
-      activityLocation, 
+      activityLocation.value, 
       activityDate.toDateString(), 
       activityImageFile
     ))
