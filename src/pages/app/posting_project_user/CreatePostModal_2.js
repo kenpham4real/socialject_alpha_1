@@ -10,11 +10,6 @@ import { FormInput } from "../../../components/app/Form/FormInput";
 import "./styles/CreatePostModal_2.css";
 
 const CreatePostModal_2 = (props) => {
- 
-  //Initialize the state
-  // const [projectQuestionArray, setProjectQuestionArray] = useState("");
-  // const [projectQuestion, setProjectQuestion] = useState("");
-  const [inputList, setInputList] = useState([""]);
 
   const [questionCount, setQuestionCount] = useState([0]);
   const [questions, setQuestions] = useState([""]);
