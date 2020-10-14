@@ -22,7 +22,8 @@ const IndividualForm = (props) => {
   
   const studentSubmission = props.studentSubmission;
   const studentAnswers = studentSubmission.answers;
-  console.log("Form Data in Individual Form", studentSubmission);
+
+  
   // if (props.userId == props.projectOwnerId)
   return (
     <div className="individual-container">

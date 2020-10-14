@@ -22,10 +22,11 @@ const BeautifyProfile = (props) => {
 	*pass the state of localStorage to initialize state then we can keep the states when press back button's browser
 	*/
   let uni=null;
-	if(_getBeautifyData!=null) 
-	{
-		uni=_getBeautifyData.university
-  }
+  if(props.location.projectLocation)
+    if(_getBeautifyData!=null) 
+    {
+      uni=_getBeautifyData.university
+    }
 
 
   //Intialize the states

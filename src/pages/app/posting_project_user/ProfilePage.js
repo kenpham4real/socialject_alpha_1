@@ -115,7 +115,7 @@ function OrgHistory(props) {
    * @author Ken Pham, Long Avenger
    */
   const project_item = data.map((element) => {
-    console.log("Project Id in profile page: ", element.projectId);
+    // console.log("Project Id in profile page: ", element.projectId);
     return (
       <ProjectActivity
         key={element.orgId}
@@ -181,12 +181,12 @@ const ProfilePage = (props) => {
    */
   //Get the Id from history.location (old code)
   let profileId = props.history.location.profileId;
-  console.log("props", props);
+  // console.log("props", props);
   //If there is no props passed from history, get the Id from the latest profile that the user
   //had just accessed.
   if (!profileId) profileId = sessionStorage.getItem("profileId");
   else sessionStorage.setItem("profileId", profileId);
-  console.log("profile Id received is: ", profileId);
+  // console.log("profile Id received is: ", profileId);
 
   //This will not fetch if there is no if passed into it.
   //Declare hooks as variables to be more flexible.
@@ -215,7 +215,6 @@ const ProfilePage = (props) => {
   }, [_fetchCallback, profileId]);
 
   //For testing purpose
-  console.log("Selected Data:", projectData);
 
   return (
     <div className="profilePage">

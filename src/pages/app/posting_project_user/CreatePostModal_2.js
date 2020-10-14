@@ -19,14 +19,14 @@ import "./styles/CreatePostModal_2.css";
 
 
 const CreatePostModal_2 = (props) => {
-
-  console.log("props",props)
+  
 
   let locationLabel="";
-  if (props.location.projectLocation.selectedOption!==undefined)
-    {
-      locationLabel = props.location.projectLocation.selectedOption.label;
-    }
+  if(props.location.projectLocation)
+    if (props.location.projectLocation.selectedOption!==undefined)
+      {
+        locationLabel = props.location.projectLocation.selectedOption.label;
+      }
   
 
 

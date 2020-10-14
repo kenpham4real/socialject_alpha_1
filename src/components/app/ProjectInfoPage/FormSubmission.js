@@ -5,8 +5,7 @@ import "../../styles/ProjectInfoPage/FormSubmission.css";
 const SubmissionCard = (props) => {
   const applicantInfo = props.applicantInfo;
 
-  console.log('applicantInfo', applicantInfo);
-
+  
   const _onViewStudentAnswer = () => {
     props._onViewStudentAnswer();
     
@@ -24,8 +23,6 @@ const SubmissionCard = (props) => {
 };
 
 const FormSubmission = (props) => {
-  console.log('props in form submission', props)
-  console.log('props.userId: ', props.userId, "vs props.projectOwnerId", props.projectOwnerId)
   if (props.userId === props.projectOwnerId){
 
     const _onViewStudentAnswer = (submission) => {
