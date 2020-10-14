@@ -4,18 +4,18 @@
  * Main function: render IU of application form
  */
 
- //Packages
- import React, {useState} from "react";
- import { useDispatch, useSelector } from "react-redux";
- import { _onSubmitFormAnswers } from "../../../store/actions/searching-project-user/project/project";
- import QuestionLabel from "../../../components/app/QuestionLabel";
+//Packages
+import React, {useState} from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { _onSubmitFormAnswers } from "../../../store/actions/searching-project-user/project/project";
+import QuestionLabel from "../../../components/app/QuestionLabel";
 //  import _loadProjects from "./ProjectInfoPage";
 
  //Styles
- import "./styles/ApplyFormStyles.css";
+import "./styles/ApplyFormStyles.css";
+import FeedbackImage from "../../../components/FeedbackImage";
 
- //Funtions
-// import * as projectActions from "../../../store/actions/searching-project-user/project/projectAction";
+import NavigationBar_Ken from '../../../components/app/NavigationBar_Ken'
 
 
 const ApplyForm = (props) => {
@@ -33,8 +33,6 @@ const ApplyForm = (props) => {
 			answer: "",
 		}
 	}))
-
-	console.log('projectsData', projectsData)
 
 
 	/**
@@ -92,35 +90,44 @@ const ApplyForm = (props) => {
 	}
 
     return (
-        <div className="page" >
-            <h1 className="h1">{projectsData.projectInfo.projectName}</h1>
-            <p className="location">{projectsData.projectInfo.location}</p>
-            <ul>
-				<li>
-					{projectsData.projectDetail.questions.map((question) => {
+        <div className="apply-form-container" >
+			{/* <div>
+				<NavigationBar_Ken/>
+			</div> */}
+            <div className="apply-form--project">
+				<p className="apply-form--project-name">{projectsData.projectInfo.projectName}</p>
+				<p className="apply-form--project-location">{projectsData.projectInfo.location}</p>
+				<ul>
+					<li>
+						{projectsData.projectDetail.questions.map((question) => {
 
-						const answerPosition = _findAnswerPosition(question);
-						const answer = answerInput[answerPosition]["answer"];
+							const answerPosition = _findAnswerPosition(question);
+							const answer = answerInput[answerPosition]["answer"];
 
-						return(
-							<QuestionLabel
-								questionTitle={question}
-								answer={answer}
-								_onChangeAnswerInput={(answerText) => {
-									_onChangeAnswerInput(answerText, question)
-								}}
-							/>
-						)
-					})}
-				</li>
-			</ul>
-			<div
-				className="contact-form-submit"
-				onClick={() => {
-					_onSubmitAnswers();
-					}}
-			>
-				Submit
+							return(
+								<QuestionLabel
+									questionTitle={question}
+									answer={answer}
+									_onChangeAnswerInput={(answerText) => {
+										_onChangeAnswerInput(answerText, question)
+									}}
+								/>
+							)
+						})}
+					</li>
+				</ul>
+				<div
+					className="apply-form--submit-button"
+					onClick={() => {
+						_onSubmitAnswers();
+						}}
+				>
+					Submit
+				</div>
+			</div>
+
+			<div className="apply-form--feedback-image">
+				<FeedbackImage/>
 			</div>
             
         </div>

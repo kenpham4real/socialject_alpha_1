@@ -3,6 +3,11 @@
 .form-input-style{
     display: flex;
     flex-direction: column;
+    
+}
+
+.form-input-style > input{
+    background-color: white;
 }
 
 .form-input-style > p{

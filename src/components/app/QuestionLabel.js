@@ -9,6 +9,8 @@
  //Packages
  import React from "react";
  
+// Components
+import {FormInput} from '../../components/app/Form/FormInput'
 
  //Styles
  import "../../pages/app/searching_project_user/styles/ApplyFormStyles.css";
@@ -29,23 +31,16 @@
     return(
          
         <div className="contact">
-            <form  className="contact-form" autoComplete="off">
-                <div className="contact-form-group">
-                    <label 
-                        className="contact-form-label"
-                    >
-                        {props.questionTitle}
-                    </label>
-                    <input 
-                        type="text" 
-                        className="contact-form-input"
-                        value={props.answer}
-                        onChange={(text) => _answerInputHandler(text.target.value)}
-
-                />
-                </div>
+            {/* <form  className="contact-form" autoComplete="off"> */}
+                {/* <div className="contact-form-group"> */}
+                    <FormInput
+                        formInputLabel={props.questionTitle}
+                        formInputValue={props.answer}
+                        _formInputOnchangeText={_answerInputHandler}
+                    />
+                {/* </div> */}
                 
-            </form>
+            {/* </form> */}
         </div>
     );
  }
