@@ -29,7 +29,6 @@ const CreatePostModal = (props) => {
   let projName=null;
   let projDes=null;
   let projCate=null;
-  let projDate=null;
 
 	if(_getCreateModalData!=null) 
 	{
@@ -43,7 +42,7 @@ const CreatePostModal = (props) => {
   const [projectDescription, setProjectDescription] = useState(projDes);
   const [projectLocation, setProjectLocation] = useState("");
   const [projectCategory,setProjectCategory]=useState(projCate);
-  const [projectDate, setProjectDate] = useState(new Date(projDate));
+  const [projectDate, setProjectDate] = useState(new Date());
   const [showCalendar, setShowCalendar] = useState(false);
   const [projectImage, setProjectImage] = useState(null)
   const [projectImageFile, setProjectImageFile] = useState(false);
@@ -51,9 +50,7 @@ const CreatePostModal = (props) => {
   const dataCreateModal={
     projectName,
     projectDescription,
-    projectLocation,
     projectCategory,
-    projectDate,
   }
   console.log("location",projectLocation.selectedOption)
   /**
@@ -80,23 +77,21 @@ const CreatePostModal = (props) => {
     setShowCalendar(prevState => !prevState)
   }
   
+   
   const _onContinue =()=>
   {
-   
-      localStorage.setItem("CreateModal_1",JSON.stringify(dataCreateModal));
-     
-      props.history.push({
-      pathname:"/createPostModal_2",
-      projectName,
-      projectDescription,
-      projectLocation,
-      projectCategory,
-      projectDate,
-      showCalendar,
-      projectImage,
-      projectImageFile
-      })
-    
+    localStorage.setItem("CreateModal_1",JSON.stringify(dataCreateModal));
+    props.history.push({
+    pathname:"/createPostModal_2",
+    projectName,
+    projectDescription,
+    projectLocation,
+    projectCategory,
+    projectDate,
+    showCalendar,
+    projectImage,
+    projectImageFile
+    }) 
   }
 
   return (
