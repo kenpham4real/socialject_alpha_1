@@ -129,22 +129,55 @@ export const _createProject_ppu = (
   deadline,
   benefits,
   requirements,
-  imageFIle,
+  imageFile,
   questions,
   category = "General"
 ) => {
+  //Handle data error
+  if (orgId == "") orgId = JSON.parse(localStorage.getItem("userData")).userId;
+  if (!deadline) deadline = "";
+
+  //For debugging purpose
+  const project = {
+    orgId: orgId,
+    projectId: projectId,
+    name: name,
+    description: description,
+    location: location,
+    deadline: deadline,
+    benefits: benefits,
+    requirements: requirements,
+    imageFIle: imageFile,
+    questions: questions,
+    category: category,
+  };
+  console.log("Project to push: ", project);
+
+  //Fire store management
   return async (dispatch, getState) => {
-    const projectImageUrl = await _imageUploadHandler(imageFIle);
+    const projectImageUrl = await _imageUploadHandler(imageFile);
     console.log("projectImageUrl", projectImageUrl);
-    const projectRef = firebase_db
-      .collection("public-projects")
-      .doc(`${projectId}`);
-    const organizationRef = firebase_db
-      .collection("organization")
-      .doc(`${orgId}`);
+    const projectRef = firebase_db.collection("public-projects").doc(projectId);
+    const organizationRef = firebase_db.collection("organization").doc(orgId);
     console.log("questions are", questions);
     try {
       await projectRef.set({
+        orgId: orgId,
+        projectName: name,
+        projectId: projectId,
+        description: description,
+        location: location,
+        deadline: deadline,
+        //projectImage: projectImageUrl, this key is not compatible with the code that fetches
+        projectAvatar: projectImageUrl,
+        orgAvatar: projectImageUrl,
+        category: category,
+      });
+      await projectRef.collection("recruit-info").doc(projectId).set({
+        benefits: benefits,
+        requirements: requirements,
+      });
+      await organizationRef.collection("projects").doc(projectId).set({
         projectName: name,
         description: description,
         location: location,
@@ -152,31 +185,14 @@ export const _createProject_ppu = (
         projectImage: projectImageUrl,
         category: category,
       });
-      await projectRef
-        .collection("recruit-info")
-        .doc(`${testing_project_id}`)
-        .set({
-          benefits: benefits,
-          requirements: requirements,
-        });
-      await organizationRef
-        .collection("projects")
-        .doc(`${testing_project_id}`)
-        .set({
-          projectName: name,
-          description: description,
-          location: location,
-          deadline: deadline,
-          projectImage: projectImageUrl,
-          category: category,
-        });
 
       await projectRef
         .collection("recruit-info")
-        .doc(`${testing_project_id}`)
-        .update({
+        .doc(projectId)
+        /*.update({
           formQuestions: firebase.firestore.FieldValue.arrayUnion(questions),
-        });
+        });*/
+        .set({ formQuestions: questions });
 
       console.log("Create project successfully");
     } catch (error) {
