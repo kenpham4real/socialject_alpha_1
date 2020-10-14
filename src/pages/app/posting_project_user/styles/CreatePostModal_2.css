@@ -66,6 +66,7 @@
   font-family: var(--global-font-family);
   padding: 5px;
   font-weight: bold;
+  cursor: pointer;
   color: white;
 }
 #createPostModal_2 .addQuestionBox {

@@ -28,15 +28,7 @@ const CreatePostModal_2 = (props) => {
       locationLabel = props.location.projectLocation.selectedOption.label;
     }
   
-  const createPostModal_2={
-    projectName:props.location.projectName,
-    projectDescription:props.location.projectDescription,
-    projectLocation:locationLabel,
-    projectCategory:props.location.projectCategory,
-    projectDate:props.location.projectDate,
-    showCalendar:props.location.showCalendar,
-    projectImageFile:props.location.projectImageFile
-  }
+
 
 
   const [questionCount, setQuestionCount] = useState([0]);
@@ -79,7 +71,6 @@ const CreatePostModal_2 = (props) => {
       <div
         className="continue-post-modal"
         onClick={() => {
-          createPostModal_2();
           props.history.push({
             pathname: "/createPostModal_3",
             projectName:props.location.projectName,
