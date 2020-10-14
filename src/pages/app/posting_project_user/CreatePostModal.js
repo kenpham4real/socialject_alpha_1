@@ -24,16 +24,48 @@ import "./styles/CreatePostModal.css";
 
 const CreatePostModal = (props) => {
 
+
+  const _getCreateModalData=JSON.parse(localStorage.getItem("CreateModal_1"));
+  let projName=null;
+  let projDes=null;
+  let projCate=null;
+  let projDate=null;
+
+	if(_getCreateModalData!=null) 
+	{
+    projName=_getCreateModalData.projectName
+    projDes=_getCreateModalData.projectDescription
+    projCate=_getCreateModalData.projectCategory
+    
+  }
   //initialize the state
-  const [projectName, setProjectName] = useState("");
-  const [projectDescription, setProjectDescription] = useState("");
+  const [projectName, setProjectName] = useState(projName);
+  const [projectDescription, setProjectDescription] = useState(projDes);
   const [projectLocation, setProjectLocation] = useState("");
-  const [projectCategory,setProjectCategory]=useState("");
-  const [projectDate, setProjectDate] = useState(new Date());
+  const [projectCategory,setProjectCategory]=useState(projCate);
+  const [projectDate, setProjectDate] = useState(new Date(projDate));
   const [showCalendar, setShowCalendar] = useState(false);
   const [projectImage, setProjectImage] = useState(null)
   const [projectImageFile, setProjectImageFile] = useState(false);
 
+  const dataCreateModal={
+    projectName,
+    projectDescription,
+    projectLocation,
+    projectCategory,
+    projectDate,
+  }
+  console.log("location",projectLocation.selectedOption)
+  /**
+   * @summary Handle Select
+   * @param {string} location
+   * @return {void}
+   * @author TrNgTien
+   */
+  const handleChange =(projectLocation) =>{
+    setProjectLocation({selectedOption:projectLocation})
+  }
+ 
 
   /**
    * @summary Handle the state of activity date
@@ -48,6 +80,24 @@ const CreatePostModal = (props) => {
     setShowCalendar(prevState => !prevState)
   }
   
+  const _onContinue =()=>
+  {
+   
+      localStorage.setItem("CreateModal_1",JSON.stringify(dataCreateModal));
+     
+      props.history.push({
+      pathname:"/createPostModal_2",
+      projectName,
+      projectDescription,
+      projectLocation,
+      projectCategory,
+      projectDate,
+      showCalendar,
+      projectImage,
+      projectImageFile
+      })
+    
+  }
 
   return (
     <div className="add-activity-container">
@@ -84,8 +134,7 @@ const CreatePostModal = (props) => {
                 placeholder="Choose"
                 required="required"
                 options={LOCATIONS}
-                value={projectLocation.selectedOption}
-                onChange={setProjectLocation}
+                onChange={handleChange}
                 styles={selectInputStyles}
                 theme={theme => ({
                   ...theme,
@@ -118,7 +167,6 @@ const CreatePostModal = (props) => {
               <i>
                 <FcCalendar size={23} onClick={ ()=>{
                   _showCalendar();
-                  // localStorage.setItem("AddActivity",JSON.stringify(dataAddActivity));
                 }} 
                 className="add-activity--calendar--icon" />
               </i>
@@ -143,18 +191,9 @@ const CreatePostModal = (props) => {
                 <div 
                   className="add-activity--add__button" 
                   onClick={()=>{
-                    props.history.push({
-                    pathname:"/createPostModal_2",
-                    projectName,
-                    projectDescription,
-                    projectLocation,
-                    projectCategory,
-                    projectDate,
-                    showCalendar,
-                    projectImage,
-                    projectImageFile
-                    })
-                  }}>
+                    _onContinue();
+                  }}
+                  >
                   Continue
                 </div>
            </div>  
