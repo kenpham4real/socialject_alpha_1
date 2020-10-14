@@ -11,7 +11,7 @@
 #createPostModal_2 > * {
   grid-column-start: 2;
 }
-.h1-post-modal-2{
+.h1-post-modal-2 {
   margin-top: 100px;
   margin-bottom: 20px;
   font-size: 30px;
@@ -19,25 +19,25 @@
   font-family: var(--global-font-family);
   color: var(--global-primary-color);
 }
-.p-post-modal-2{
+.p-post-modal-2 {
   font-family: var(--global-font-family);
   white-space: nowrap;
   color: var(--global-title-1-light-color);
 }
-.question{
+.question {
   margin-top: 5px;
   margin-left: 10px;
 }
-.add-question{
+.add-question {
   margin-left: 290px;
   margin-top: -35px;
   cursor: pointer;
   width: 30px;
   height: 50px;
 }
-.form-input{
+.form-input {
   width: 25%;
-  border:1px solid red;
+  border: 1px solid red;
   margin-left: -0px;
   display: grid;
   border-radius: var(--global-border-radius);
@@ -56,7 +56,7 @@
 }
 
 .continue-post-modal {
-  background-color:var(--global-primary-color);
+  background-color: var(--global-primary-color);
   box-sizing: border-box;
   border-radius: 3px;
   max-width: 328px;
@@ -78,7 +78,6 @@
   padding-bottom: 46px;
 }
 
-
 #createPostModal_2 .addQuestionButton {
   margin: 8px;
 }
@@ -87,8 +86,8 @@
   width: 80%;
 }
 
-.link-post-modal{
-  color:rgb(58, 58, 238) ;
+.link-post-modal {
+  color: rgb(58, 58, 238);
   margin-left: 100px;
   margin-top: 10px;
 }

@@ -5,7 +5,7 @@
 
 */
 
-import React, {useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuid_v4 } from "uuid";
 
@@ -39,7 +39,7 @@ const CreatePostModal_3 = (props) => {
     projectLocation,
     projectDeadline,
     projectQuestions,
-    projectCategory
+    projectCategory,
   } = props.location;
 
   return (
@@ -49,19 +49,37 @@ const CreatePostModal_3 = (props) => {
       <div className="addBenefitBox">
         <div>
           Benefits for applicants
-          <div onClick={() => _onAddInput(setProjectBenefitCount, setProjectBenefits, projectBenefitCount, projectBenefits)} className="addBenefitButton">+</div>
+          <div
+            onClick={() =>
+              _onAddInput(
+                setProjectBenefitCount,
+                setProjectBenefits,
+                projectBenefitCount,
+                projectBenefits
+              )
+            }
+            className="addBenefitButton"
+          >
+            +
+          </div>
         </div>
         <ul>
           {" "}
           {/*Add benefit*/}
           <li>
-            {projectBenefitCount.map(benefitIndex => (
+            {projectBenefitCount.map((benefitIndex) => (
               <input
+                className="form-input"
                 type="text"
                 placeholder="Your benefit"
                 value={projectBenefits[benefitIndex]}
                 onChange={(benefit) =>
-                  _onChangeInputValue(benefit.target.value, benefitIndex, setProjectBenefits, projectBenefits)
+                  _onChangeInputValue(
+                    benefit.target.value,
+                    benefitIndex,
+                    setProjectBenefits,
+                    projectBenefits
+                  )
                 }
               />
             ))}
@@ -72,18 +90,36 @@ const CreatePostModal_3 = (props) => {
       <div className="addBenefitBox">
         <div>
           Requirements to join
-          <div onClick={() => _onAddInput(setProjectRequirementCount, setProjectRequirements, projectRequirementCount, projectRequirements)} className="addBenefitButton">+</div>
+          <div
+            onClick={() =>
+              _onAddInput(
+                setProjectRequirementCount,
+                setProjectRequirements,
+                projectRequirementCount,
+                projectRequirements
+              )
+            }
+            className="addBenefitButton"
+          >
+            +
+          </div>
         </div>
         <ul>
           <li>
-            {projectRequirementCount.map(requirementIndex => (
+            {projectRequirementCount.map((requirementIndex) => (
               <input
+                className="form-input"
                 type="text"
-                placeholder=""
+                placeholder="Your requirements"
                 value={projectRequirements[requirementIndex]}
                 onChange={(requirement) =>
-                  _onChangeInputValue(requirement.target.value, requirementIndex, setProjectRequirements, projectRequirements)
-                } 
+                  _onChangeInputValue(
+                    requirement.target.value,
+                    requirementIndex,
+                    setProjectRequirements,
+                    projectRequirements
+                  )
+                }
               />
             ))}
           </li>
@@ -96,8 +132,9 @@ const CreatePostModal_3 = (props) => {
         setImageFile={setProjectImageFile}
       />
 
-      <button
-        className="profile-button"
+      <div
+        //className="profile-button"
+        className="continue-post-modal"
         onClick={
           //Now push the data onto Firebase.
           () =>
@@ -119,8 +156,12 @@ const CreatePostModal_3 = (props) => {
         }
       >
         Continue
-      </button>
-      <button className="profile-button">Go Back</button>
+      </div>
+      <div //className="profile-button"
+        className="continue-post-modal"
+      >
+        Go Back
+      </div>
     </div>
   );
 };
