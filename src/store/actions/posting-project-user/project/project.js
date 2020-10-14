@@ -187,8 +187,8 @@ export const _createProject_ppu = (
 
 export const _getFormSubmission = (orgId, projectId) => {
   return async (dispatch, getState) => {
-    console.log("GETTING FORM SUBMISSION");
-    console.log("OrgId: ", orgId, " projectId", projectId);
+    // console.log("GETTING FORM SUBMISSION");
+    // console.log("OrgId: ", orgId, " projectId", projectId);
 
     let formSubmission = [];
 
@@ -205,14 +205,14 @@ export const _getFormSubmission = (orgId, projectId) => {
           let tmpDoc;
 
           query.forEach((doc) => {
-            console.log("doc of form submission", doc);
+            // console.log("doc of form submission", doc);
             formSubmission.push(doc.data());
             tmpDoc = doc;
           });
-          console.log("added form submission data with doc", tmpDoc);
+          // console.log("added form submission data with doc", tmpDoc);
         });
 
-      console.log("formSubmission", formSubmission);
+      // console.log("formSubmission", formSubmission);
 
       dispatch({
         type: GET_FORM_SUBMISSION,
