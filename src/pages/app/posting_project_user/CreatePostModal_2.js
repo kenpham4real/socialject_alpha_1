@@ -45,21 +45,21 @@ const CreatePostModal_2 = (props) => {
             <i>
               <IoIosAdd
                 className="add-question"
-                onClick={_onAddQuestionInput} 
+                onClick={() => _onAddInput(setQuestionCount,setQuestions,questionCount,questions)} 
               />
             </i>
             <ul>
               <li>
                 
                 {questionCount.map((index) => (
-                    <li>
-                      <input
+                  <li>
+                    <input
                       className="form-input"
                       placeholder="Your question"
                       value={questions[index]}
-                      onChange={(text) => _onChangeQuestion(text.target.value, index)}
-                      />
-                    </li>
+                      onChange={(text) => _onChangeInputValue(text.target.value, index, setQuestions, questions)}
+                    />
+                  </li>
                 ))}
               </li>
             </ul>
