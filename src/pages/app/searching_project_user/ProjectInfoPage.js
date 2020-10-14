@@ -32,7 +32,7 @@ import * as projectActions from "../../../store/actions/searching-project-user/p
 import NAVIGATION_BAR_KEN from "../../../components/app/NavigationBar_Ken";
 
 const ProjectInfoPage = (props) => {
-  console.log("PROJECT_INFO_PAGE");
+  // console.log("PROJECT_INFO_PAGE");
 
   const projectId = props.history.location.projectId;
   const orgId = props.history.location.orgId;
@@ -59,7 +59,7 @@ const ProjectInfoPage = (props) => {
     try {
       dispatch(projectActions._getProjectInfo(orgId, projectId));
     } catch (error) {
-      console.log("error", error);
+      // console.log("error", error);
     }
   }, [dispatch, orgId, projectId]);
 
@@ -69,7 +69,7 @@ const ProjectInfoPage = (props) => {
     });
   }, [dispatch, _loadProjects, isFetchedRecruitInfo]);
 
-  console.log("fetched projects", projectsData);
+  // console.log("fetched projects", projectsData);
 
   const _onViewStudentAnswer = (applicant) => {
     setIsViewApplicantModal(true)
@@ -114,8 +114,8 @@ const ProjectInfoPage = (props) => {
    * @author Ken Pham, Dat Uchiha
    */
   const _project_apply_button = () => {
-    console.log("User Id in the button is: ", userId);
-    console.log("Project owner's Id: ", projectsData.projectInfo.orgId);
+    // console.log("User Id in the button is: ", userId);
+    // console.log("Project owner's Id: ", projectsData.projectInfo.orgId);
     if (userId !== projectsData.projectInfo.orgId)
       return (
         <div

@@ -34,7 +34,7 @@ export const _fetchProject_basic_info_ppu = () => {
    */
   return async (dispatch, getState) => {
     let projectData;
-    console.log("Fetching basic info of projects");
+    // console.log("Fetching basic info of projects");
     try {
       // Retrieve the data from Firestore Cloud database
       await firebase_db
@@ -48,7 +48,7 @@ export const _fetchProject_basic_info_ppu = () => {
             : null;
         });
 
-      console.log("project data", projectData);
+      // console.log("project data", projectData);
 
       // dispatch helps us store the changed state/ data into the reducers
       dispatch({
@@ -56,7 +56,7 @@ export const _fetchProject_basic_info_ppu = () => {
         projectData: projectData,
       });
     } catch (error) {
-      console.log("error", error);
+      // console.log("error", error);
     }
   };
 };
@@ -77,7 +77,7 @@ export const _fetchProject_recruit_info_ppu = () => {
    */
   return async (dispatch, getState) => {
     let recruitInfo;
-    console.log("Fetching recruit info of projects");
+    // console.log("Fetching recruit info of projects");
     try {
       await firebase_db
         .collection("public-projects")
@@ -86,11 +86,11 @@ export const _fetchProject_recruit_info_ppu = () => {
         .doc(`${testing_project_id}`)
         .get()
         .then((doc) => {
-          console.log("doc", doc);
+          // console.log("doc", doc);
           recruitInfo = doc.data();
         });
 
-      console.log("recruit info of project loaded successfully", recruitInfo);
+      // console.log("recruit info of project loaded successfully", recruitInfo);
 
       /**
        * @description This is called Destructuring in JS
@@ -104,7 +104,7 @@ export const _fetchProject_recruit_info_ppu = () => {
         requirements: requirements,
       });
     } catch (error) {
-      console.log("error", error);
+      // console.log("error", error);
     }
   };
 };
@@ -135,14 +135,14 @@ export const _createProject_ppu = (
 ) => {
   return async (dispatch, getState) => {
     const projectImageUrl = await _imageUploadHandler(imageFIle);
-    console.log("projectImageUrl", projectImageUrl);
+    // console.log("projectImageUrl", projectImageUrl);
     const projectRef = firebase_db
       .collection("public-projects")
       .doc(`${projectId}`);
     const organizationRef = firebase_db
       .collection("organization")
       .doc(`${orgId}`);
-    console.log("questions are", questions);
+    // console.log("questions are", questions);
     try {
       await projectRef.set({
         projectName: name,
@@ -178,9 +178,9 @@ export const _createProject_ppu = (
           formQuestions: firebase.firestore.FieldValue.arrayUnion(questions),
         });
 
-      console.log("Create project successfully");
+      // console.log("Create project successfully");
     } catch (error) {
-      console.log("error", error);
+      // console.log("error", error);
     }
   };
 };

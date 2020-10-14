@@ -7,7 +7,7 @@ export async function FetchUser(dispatch, userId, userData, userType) {
   // let userData = currentData;
   // if (userData.userId == undefined) {
     let fetchedUserData;
-    console.log("User fetching beginning with the Id: ", userId);
+    // console.log("User fetching beginning with the Id: ", userId);
     const collectionRef = userType === ADMIN ? "organization" : "student";
     try {
       // Retrieve the data from Firestore Cloud database
@@ -18,10 +18,10 @@ export async function FetchUser(dispatch, userId, userData, userType) {
         .then(function (doc) {
           fetchedUserData = doc.data();
         });
-      console.log("User Data fetched: ", fetchedUserData);
+      // console.log("User Data fetched: ", fetchedUserData);
       // dispatch helps us store the changed state/ data into the reducers
     } catch (error) {
-      console.log("error", error);
+      // console.log("error", error);
     }
     dispatch({
       type: FETCH_USER,

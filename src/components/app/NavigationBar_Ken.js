@@ -63,8 +63,7 @@ function NAVIGATION_BAR_KEN (props) {
   useEffect(() => {
     fetchUser();
   }, [dispatch, fetchUser]);
-
-  console.log("User Data selected: ", user);
+  
 
   const CreateProfile = (props) => {
     let ifDisplay = "inline";

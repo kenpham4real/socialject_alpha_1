@@ -118,7 +118,6 @@ const AddActivityModal = (props) => {
    * @returns {void}
    */
   const _onAddActivity = () => {
-    console.log('activityDate', activityDate)
     dispatch(_activityActions._addActivity_ppu(
       projectId,
       uuid_v4(), 

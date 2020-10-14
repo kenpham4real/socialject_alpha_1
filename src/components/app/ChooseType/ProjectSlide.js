@@ -5,9 +5,7 @@ function ProjectSlide(props) {
   //get needed data from props
   const Data = props.data;
   const history = props.history;
-  console.log("Data in slide is: ", Data);
   function handleClick(id) {
-    console.log("Button clicked.");
     const user = JSON.parse(localStorage.getItem("userData"));
     if (user == null) {
       //if there the user didn't login yet, then push them into /choosingUser

@@ -24,7 +24,7 @@ export function FetchCalling(action, data, dispatch, callback) {
  */
 //Fetch the data from the Firebase.
 export async function FetchLanding(dispatch) {
-  console.log("Fetching is beginning.");
+  // console.log("Fetching is beginning.");
   let projectArray = [],
     count = 0;
   try {
@@ -41,7 +41,7 @@ export async function FetchLanding(dispatch) {
         });
       });
 
-    console.log("Array fetched: ", projectArray);
+    // console.log("Array fetched: ", projectArray);
 
     // dispatch helps us store the changed state/ data into the reducers
     dispatch({
@@ -49,6 +49,6 @@ export async function FetchLanding(dispatch) {
       payload: projectArray,
     });
   } catch (error) {
-    console.log("error", error);
+    // console.log("error", error);
   }
 }
