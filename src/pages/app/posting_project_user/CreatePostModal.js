@@ -52,7 +52,6 @@ const CreatePostModal = (props) => {
     projectDescription,
     projectCategory,
   }
-  console.log("location",projectLocation.selectedOption)
   /**
    * @summary Handle Select
    * @param {string} location

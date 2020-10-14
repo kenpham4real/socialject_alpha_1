@@ -1,5 +1,7 @@
 /*
-*Contributor: Đạt 4th september 2020
+*Contributor: 
+    *Đạt 4th september 2020
+    *Tiến 12th October 2020
 *Function: Create Form for PPU to create Project
 
 
@@ -19,13 +21,17 @@ import "./styles/CreatePostModal_2.css";
 const CreatePostModal_2 = (props) => {
 
   console.log("props",props)
-  const [questionCount, setQuestionCount] = useState([0]);
-  const [questions, setQuestions] = useState([""]);
 
-  const createPostModal={
+  let locationLabel="";
+  if (props.location.projectLocation.selectedOption!==undefined)
+    {
+      locationLabel = props.location.projectLocation.selectedOption.label;
+    }
+  
+  const createPostModal_2={
     projectName:props.location.projectName,
     projectDescription:props.location.projectDescription,
-    projectLocation:props.location.projectLocation,
+    projectLocation:locationLabel,
     projectCategory:props.location.projectCategory,
     projectDate:props.location.projectDate,
     showCalendar:props.location.showCalendar,
@@ -33,11 +39,15 @@ const CreatePostModal_2 = (props) => {
   }
 
 
+  const [questionCount, setQuestionCount] = useState([0]);
+  const [questions, setQuestions] = useState([""]);
+
+
   return (
     <div id="createPostModal_2">
       <h1 className="h1-post-modal-2">Recruiting your Members</h1>
       <p className="p-post-modal-2">Create a form with simple questions for your applicants</p>
-      <div class="addQuestionBox">
+      <div className="addQuestionBox">
         <div>
           <p className="question">Question</p>
           
@@ -67,15 +77,18 @@ const CreatePostModal_2 = (props) => {
         </div>
       </div>
       <div
-      className="continue-post-modal"
+        className="continue-post-modal"
         onClick={() => {
-          createPostModal();
+          createPostModal_2();
           props.history.push({
             pathname: "/createPostModal_3",
-            projectName: props.location.state.projectName,
-            projectDescription: props.location.state.projectDescription,
-            projectLocation: props.location.state.projectLocation,
-            projectDeadline: props.location.state.projectDeadline,
+            projectName:props.location.projectName,
+            projectDescription:props.location.projectDescription,
+            projectLocation:locationLabel,
+            projectCategory:props.location.projectCategory,
+            projectDate:props.location.projectDate,
+            showCalendar:props.location.showCalendar,
+            projectImageFile:props.location.projectImageFile,
             projectQuestions: questions
           });
         }}
@@ -83,9 +96,8 @@ const CreatePostModal_2 = (props) => {
         Continue
       </div>
       <Link
-      className="link-post-modal"
-        to={"/createPostModal_3"
-        }
+        className="link-post-modal"
+        to={"/createPostModal_3"}
       > 
       I don't need a form
       </Link>
