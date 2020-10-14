@@ -6,33 +6,17 @@
 */
 
 import React, { useState } from "react";
-import { FormInput } from "../../../components/app/Form/FormInput";
+
+// Helper
+import { _onAddInput, _onChangeInputValue } from "../../../helper/form/Input";
+
+// Style
 import "./styles/CreatePostModal_2.css";
 
 const CreatePostModal_2 = (props) => {
 
   const [questionCount, setQuestionCount] = useState([0]);
   const [questions, setQuestions] = useState([""]);
-
-  const _onAddQuestionInput = () => {
-    
-    const currentQuestionCount = questionCount;
-    const addedQuestionCount = currentQuestionCount.concat(currentQuestionCount[currentQuestionCount.length-1] + 1);
-    setQuestionCount(addedQuestionCount)
-    console.log('questionCount', questionCount)
-  }
-
-  console.log('questions outside', questions)
-
-  const _onChangeQuestion = (text, questionIndex) => {
-    console.log('index', questionIndex)
-    let changingQuestion = questions[questionIndex];
-    console.log('changingQuestion', changingQuestion)
-    changingQuestion = text;
-    const allQuestions = [...questions];
-    allQuestions[questionIndex] = changingQuestion;
-    setQuestions(allQuestions);
-  }
 
 
   const _onChangeHandleContinue = () => {
@@ -55,14 +39,14 @@ const CreatePostModal_2 = (props) => {
           Question
           <div class="addQuestionButton">
 
-            <button onClick={_onAddQuestionInput} >Add your question</button>
+            <button onClick={() => _onAddInput(setQuestionCount,setQuestions,questionCount,questions)} >Add your question</button>
             <ul>
               <li>
                 {questionCount.map((index) => (
                   <input
                     placeholder="Your question"
                     value={questions[index]}
-                    onChange={(text) => _onChangeQuestion(text.target.value, index)}
+                    onChange={(text) => _onChangeInputValue(text.target.value, index, setQuestions, questions)}
                   />
                 ))}
               </li>

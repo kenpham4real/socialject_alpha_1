@@ -17,41 +17,29 @@ import * as projectActions from "../../../store/actions/posting-project-user/pro
 
 // Components
 import { ImagePreview } from "../../../components/app/ImagePreview";
+import { _onAddInput, _onChangeInputValue } from "../../../helper/form/Input";
 
 const CreatePostModal_3 = (props) => {
   const dispatch = useDispatch();
   const organization = useSelector((state) => state.authReducer.userData);
 
   //Initialize the state
-  const [projectBenefitArray, setProjectBenefitArray] = useState([]);
-  const [projectBenefit, setProjectBenefit] = useState("");
+  const [projectBenefitCount, setProjectBenefitCount] = useState([0]);
+  const [projectBenefits, setProjectBenefits] = useState([""]);
 
-  const [projectRequirementArray, setProjectRequirementArray] = useState([]);
-  const [projectRequirement, setProjectRequirement] = useState("");
+  const [projectRequirementCount, setProjectRequirementCount] = useState([0]);
+  const [projectRequirements, setProjectRequirements] = useState([""]);
+
   const [projectImage, setProjectImage] = useState("");
   const [projectImageFile, setProjectImageFile] = useState(null);
-
-  //Handling Add benefits and requirements event
-
-  const _onChangeAddBenefit = (benefit) => {
-    setProjectBenefit(benefit);
-    // setProjectBenefitArray((benefit) => projectBenefitArray.concat(benefit));
-    setProjectBenefitArray((prev) => [...prev, benefit]);
-    console.log("projectBenefitArray", projectBenefitArray);
-  };
-
-  const _onChangeAddRequirement = (requirement) => {
-    setProjectRequirement(requirement);
-    setProjectRequirementArray((req) => req.concat(requirement));
-    console.log("projectRequirementArray", projectRequirementArray);
-  };
 
   const {
     projectName,
     projectDescription,
     projectLocation,
     projectDeadline,
-    question,
+    projectQuestions,
+    projectCategory
   } = props.location;
 
   return (
@@ -61,60 +49,44 @@ const CreatePostModal_3 = (props) => {
       <div className="addBenefitBox">
         <div>
           Benefits for applicants
-          <div className="addBenefitButton">+</div>
+          <div onClick={() => _onAddInput(setProjectBenefitCount, setProjectBenefits, projectBenefitCount, projectBenefits)} className="addBenefitButton">+</div>
         </div>
         <ul>
           {" "}
           {/*Add benefit*/}
           <li>
-            <input
-              type="text"
-              placeholder=""
-              value={projectBenefit}
-              onChange={(projectBenefit) =>
-                _onChangeAddBenefit(projectBenefit.target.value)
-              }
-            />
+            {projectBenefitCount.map(benefitIndex => (
+              <input
+                type="text"
+                placeholder="Your benefit"
+                value={projectBenefits[benefitIndex]}
+                onChange={(benefit) =>
+                  _onChangeInputValue(benefit.target.value, benefitIndex, setProjectBenefits, projectBenefits)
+                }
+              />
+            ))}
           </li>
-          {/* <li>
-            <input
-              type="text"
-              placeholder=""
-              value={projectRequirement}
-              onChange={(projectRequirement) =>
-                _onChangeAddRequirement(projectRequirement.target.value)
-              }
-            />
-          </li> */}
         </ul>
       </div>
       {/*REQUIREMENTS*/}
       <div className="addBenefitBox">
         <div>
           Requirements to join
-          <div className="addBenefitButton">+</div>
+          <div onClick={() => _onAddInput(setProjectRequirementCount, setProjectRequirements, projectRequirementCount, projectRequirements)} className="addBenefitButton">+</div>
         </div>
         <ul>
           <li>
-            <input
-              type="text"
-              placeholder=""
-              value={projectRequirement}
-              onChange={(projectRequirement) =>
-                _onChangeAddRequirement(projectRequirement.target.value)
-              }
-            />
+            {projectRequirementCount.map(requirementIndex => (
+              <input
+                type="text"
+                placeholder=""
+                value={projectRequirements[requirementIndex]}
+                onChange={(requirement) =>
+                  _onChangeInputValue(requirement.target.value, requirementIndex, setProjectRequirements, projectRequirements)
+                } 
+              />
+            ))}
           </li>
-          {/* <li>
-            <input
-              type="text"
-              placeholder=""
-              value={projectRequirement}
-              onChange={(projectRequirement) =>
-                _onChangeAddRequirement(projectRequirement.target.value)
-              }
-            />
-          </li> */}
         </ul>
       </div>
 
@@ -137,11 +109,11 @@ const CreatePostModal_3 = (props) => {
                 projectDescription,
                 projectLocation,
                 projectDeadline,
-                projectBenefitArray[projectBenefitArray.length - 1],
-                projectRequirementArray[projectRequirementArray.length - 1],
+                projectBenefits,
+                projectRequirements,
                 projectImageFile,
-                question,
-                "Something"
+                projectQuestions,
+                projectCategory
               )
             )
         }
