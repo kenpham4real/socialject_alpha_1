@@ -1,11 +1,7 @@
-/* * {
-  font-family: "Inter";
-  font-size: 16px;
-} */
+@import "../../styles/GlobalStyles.css";
 
 #createPostModal_2 {
   display: grid;
-  padding-top: 10vh;
   grid-template-columns: minmax(auto, 94px) 92%;
   grid-auto-rows: minmax(max-content, 59px);
   height: 100vh;
@@ -15,52 +11,72 @@
 #createPostModal_2 > * {
   grid-column-start: 2;
 }
-#createPostModal_2 > h1 {
-  font-size: 20px;
-  letter-spacing: -0.022em;
-  color: #000000;
+.h1-post-modal-2{
+  margin-top: 100px;
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-weight: var(--global-headline-1-font-weight);
+  font-family: var(--global-font-family);
+  color: var(--global-primary-color);
 }
-
-#createPostModal_2 > p {
-  grid-column-start: 2;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  max-width: 328px;
-  /* or 167% */
-
-  letter-spacing: -0.022em;
-
-  color: #929292;
+.p-post-modal-2{
+  font-family: var(--global-font-family);
+  white-space: nowrap;
+  color: var(--global-title-1-light-color);
 }
-
+.question{
+  margin-top: 5px;
+  margin-left: 10px;
+}
+.add-question{
+  margin-left: 290px;
+  margin-top: -35px;
+  cursor: pointer;
+  width: 30px;
+  height: 50px;
+}
+.form-input{
+  width: 25%;
+  border:1px solid red;
+  margin-left: -0px;
+  display: grid;
+  border-radius: var(--global-border-radius);
+  border: var(--global-border-color);
+  width: var(--global--form-input-width);
+  height: var(--global--form-input-height);
+  -webkit-transition: 0.5s;
+  transition: 0.1s;
+  outline: none;
+  margin: 4%;
+}
 #createPostModal_2 .modalContent > div {
   border: 2px solid black;
   max-width: 328px;
   margin-top: 36px;
 }
 
-#createPostModal_2 > button {
-  background-color: #c4c4c4;
-  border: 1px solid #000000;
+.continue-post-modal {
+  background-color:var(--global-primary-color);
   box-sizing: border-box;
   border-radius: 3px;
   max-width: 328px;
   margin-top: 36px;
+  text-align: center;
+  letter-spacing: -2.2%;
+  font-family: var(--global-font-family);
+  padding: 5px;
+  font-weight: bold;
+  color: white;
 }
 #createPostModal_2 .addQuestionBox {
   max-width: 328px;
-
   background-color: #c4c4c4;
-  border: 1px solid #6d6d6d;
+  border: 1px solid #666666;
   box-sizing: border-box;
-  border-radius: 3px;
+  border-radius: var(--global-border-radius);
   padding-bottom: 46px;
 }
-#createPostModal_2 .addQuestionBox > div {
-  display: flex;
-  justify-content: space-between;
-}
+
 
 #createPostModal_2 .addQuestionButton {
   margin: 8px;
@@ -68,4 +84,10 @@
 
 #createPostModal_2 .addQuestionBox li input {
   width: 80%;
+}
+
+.link-post-modal{
+  color:rgb(58, 58, 238) ;
+  margin-left: 100px;
+  margin-top: 10px;
 }

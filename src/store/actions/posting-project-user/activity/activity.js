@@ -81,11 +81,13 @@ export const _addActivity_ppu = (projectId, activityId, activityName, activityDe
         const user = getState().autoLoginReducer.userData;
         const activityImageUrl = await _imageUploadHandler(activityImage);
 
+        console.log('user in add activity', user)
+
         try {
             await
             firebase_db
             .collection("public-projects")
-            .doc(`${user.uid}`)
+            .doc(`${projectId}`)
             .collection('recruit-info')
             .doc(`${projectId}`)
             .collection('progress')
