@@ -109,6 +109,7 @@
 #createPostModal_3 .addBenefitButton {
   margin: 0 8px;
   transform: scale(1.6);
+  cursor: pointer;
 }
 
 #createPostModal_3 .addBenefitBox li input {
