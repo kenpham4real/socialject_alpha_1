@@ -157,8 +157,8 @@ export const _createProject_ppu = (
   return async (dispatch, getState) => {
     const projectImageUrl = await _imageUploadHandler(imageFile);
     console.log("projectImageUrl", projectImageUrl);
-    const projectRef = firebase_db.collection("public-projects").doc(projectId);
-    const organizationRef = firebase_db.collection("organization").doc(orgId);
+    const projectRef = firebase_db.collection("public-projects").doc(`${projectId}`);
+    const organizationRef = firebase_db.collection("organization").doc(`${orgId}`);
     console.log("questions are", questions);
     try {
       await projectRef.set({
@@ -173,11 +173,11 @@ export const _createProject_ppu = (
         orgAvatar: projectImageUrl,
         category: category,
       });
-      await projectRef.collection("recruit-info").doc(projectId).set({
+      await projectRef.collection("recruit-info").doc(`${projectId}`).set({
         benefits: benefits,
         requirements: requirements,
       });
-      await organizationRef.collection("projects").doc(projectId).set({
+      await organizationRef.collection("projects").doc(`${projectId}`).set({
         projectName: name,
         description: description,
         location: location,
@@ -188,7 +188,7 @@ export const _createProject_ppu = (
 
       await projectRef
         .collection("recruit-info")
-        .doc(projectId)
+        .doc(`${projectId}`)
         /*.update({
           formQuestions: firebase.firestore.FieldValue.arrayUnion(questions),
         });*/
