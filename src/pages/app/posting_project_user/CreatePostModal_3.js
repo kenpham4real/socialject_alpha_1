@@ -42,6 +42,26 @@ const CreatePostModal_3 = (props) => {
     projectCategory,
   } = props.location;
 
+  const _onContinue_3 = () =>{
+    props.history.push({
+      pathname: "/profile",
+    });
+    dispatch(
+      projectActions._createProject_ppu(
+        organization.uid,
+        uuid_v4(),
+        projectName,
+        projectDescription,
+        projectLocation,
+        projectDeadline,
+        projectBenefits,
+        projectRequirements,
+        projectImageFile,
+        projectQuestions,
+        projectCategory
+      )
+    )
+  }
   return (
     <div id="createPostModal_3">
       <h1>Bring it to everyone</h1>
@@ -137,22 +157,12 @@ const CreatePostModal_3 = (props) => {
         className="continue-post-modal"
         onClick={
           //Now push the data onto Firebase.
-          () =>
-            dispatch(
-              projectActions._createProject_ppu(
-                organization.uid,
-                uuid_v4(),
-                projectName,
-                projectDescription,
-                projectLocation,
-                projectDeadline,
-                projectBenefits,
-                projectRequirements,
-                projectImageFile,
-                projectQuestions,
-                projectCategory
-              )
-            )
+          () =>{
+            localStorage.removeItem("CreateModal_1");
+            _onContinue_3();
+          }
+          
+         
         }
       >
         Continue
