@@ -6,7 +6,7 @@ export const FEEDBACKS = [
     },
     {
         name: "Tran Ngoc Tien",
-        feedback: "The convenience SocialJect offers is amazing. It helps me manage my projects and clubs like a pro",
+        feedback: "The convenience of SocialJect offers is amazing. It helps me manage my projects and clubs like a pro",
         avatar: require('../assets/images/Tien_1.png'),
     },
     {

@@ -15,7 +15,7 @@ import QuestionLabel from "../../../components/app/QuestionLabel";
 import "./styles/ApplyFormStyles.css";
 import FeedbackImage from "../../../components/FeedbackImage";
 
-import NavigationBar_Ken from '../../../components/app/NavigationBar_Ken'
+// import NavigationBar_Ken from '../../../components/app/NavigationBar_Ken'
 
 
 const ApplyForm = (props) => {
