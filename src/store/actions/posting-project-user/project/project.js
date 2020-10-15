@@ -134,7 +134,7 @@ export const _createProject_ppu = (
   category = "General"
 ) => {
   //Handle data error
-  if (orgId == "") orgId = JSON.parse(localStorage.getItem("userData")).userId;
+  if (orgId === "") orgId = JSON.parse(localStorage.getItem("userData")).userId;
   if (!deadline) deadline = "";
 
   //For debugging purpose
@@ -161,22 +161,26 @@ export const _createProject_ppu = (
     const organizationRef = firebase_db.collection("organization").doc(`${orgId}`);
     console.log("questions are", questions);
     try {
-      await projectRef.set({
-        orgId: orgId,
-        projectName: name,
-        projectId: projectId,
-        description: description,
-        location: location,
-        deadline: deadline,
-        //projectImage: projectImageUrl, this key is not compatible with the code that fetches
-        projectAvatar: projectImageUrl,
-        orgAvatar: projectImageUrl,
-        category: category,
-      });
-      await projectRef.collection("recruit-info").doc(`${projectId}`).set({
-        benefits: benefits,
-        requirements: requirements,
-      });
+      await projectRef
+        .set({
+          orgId: orgId,
+          projectName: name,
+          projectId: projectId,
+          description: description,
+          location: location,
+          deadline: deadline,
+          //projectImage: projectImageUrl, this key is not compatible with the code that fetches
+          projectAvatar: projectImageUrl,
+          // orgAvatar: projectImageUrl,
+          category: category,
+        });
+      await projectRef
+        .collection("recruit-info")
+        .doc(`${projectId}`)
+        .set({
+          benefits: benefits,
+          requirements: requirements,
+        });
       await organizationRef.collection("projects").doc(`${projectId}`).set({
         projectName: name,
         description: description,

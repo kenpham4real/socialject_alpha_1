@@ -31,7 +31,7 @@ const CreatePostModal_3 = (props) => {
   const [projectRequirements, setProjectRequirements] = useState([""]);
 
   const [projectImage, setProjectImage] = useState(null)
-  const [projectImageFile, setProjectImageFile] = useState(false);
+  const [projectImageFile, setProjectImageFile] = useState(null);
 
   const {
     projectName,
@@ -42,7 +42,7 @@ const CreatePostModal_3 = (props) => {
     projectCategory,
   } = props.location;
 
-  const _onContinue_3 = () =>{
+  const _PostProject = () =>{
     props.history.push({
       pathname: "/profile",
     });
@@ -160,7 +160,7 @@ const CreatePostModal_3 = (props) => {
           //Now push the data onto Firebase.
           () =>{
             localStorage.removeItem("CreateModal_1");
-            _onContinue_3();
+            _PostProject();
           }
         }
       >
