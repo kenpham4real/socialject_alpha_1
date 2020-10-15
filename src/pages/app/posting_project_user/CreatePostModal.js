@@ -44,8 +44,6 @@ const CreatePostModal = (props) => {
   const [projectCategory,setProjectCategory]=useState(projCate);
   const [projectDate, setProjectDate] = useState(new Date());
   const [showCalendar, setShowCalendar] = useState(false);
-  const [projectImage, setProjectImage] = useState(null)
-  const [projectImageFile, setProjectImageFile] = useState(false);
 
   const dataCreateModal={
     projectName,
@@ -88,8 +86,8 @@ const CreatePostModal = (props) => {
     projectCategory,
     projectDate,
     showCalendar,
-    projectImage,
-    projectImageFile
+    // projectImage,
+    // projectImageFile
     }) 
   }
 
@@ -147,14 +145,6 @@ const CreatePostModal = (props) => {
               formInputPlaceholder=""
               formInputValue={projectCategory}
               _formInputOnchangeText={setProjectCategory}
-            />
-          </div>
-          <div className="add-activity--avatar-preview">
-            <p>Avatar</p>
-            <ImagePreview
-              setImage={setProjectImage}
-              setImageFile={setProjectImageFile}
-              image={projectImage}
             />
           </div>
           <div className="add-activity--input activity-calendar">

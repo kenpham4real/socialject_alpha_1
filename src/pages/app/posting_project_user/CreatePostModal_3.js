@@ -30,8 +30,8 @@ const CreatePostModal_3 = (props) => {
   const [projectRequirementCount, setProjectRequirementCount] = useState([0]);
   const [projectRequirements, setProjectRequirements] = useState([""]);
 
-  const [projectImage, setProjectImage] = useState("");
-  const [projectImageFile, setProjectImageFile] = useState(null);
+  const [projectImage, setProjectImage] = useState(null)
+  const [projectImageFile, setProjectImageFile] = useState(false);
 
   const {
     projectName,
@@ -145,13 +145,14 @@ const CreatePostModal_3 = (props) => {
           </li>
         </ul>
       </div>
-
-      <ImagePreview
-        image={projectImage}
-        setImage={setProjectImage}
-        setImageFile={setProjectImageFile}
-      />
-
+      <div className="add-activity--avatar-preview">
+        <p>Avatar for your project</p>
+        <ImagePreview
+          setImage={setProjectImage}
+          setImageFile={setProjectImageFile}
+          image={projectImage}
+        />
+      </div>
       <div
         //className="profile-button"
         className="continue-post-modal"
@@ -161,16 +162,9 @@ const CreatePostModal_3 = (props) => {
             localStorage.removeItem("CreateModal_1");
             _onContinue_3();
           }
-          
-         
         }
       >
-        Continue
-      </div>
-      <div //className="profile-button"
-        className="continue-post-modal"
-      >
-        Go Back
+        Post
       </div>
     </div>
   );
