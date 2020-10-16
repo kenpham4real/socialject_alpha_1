@@ -5,18 +5,24 @@ function ProjectSlide(props) {
   //get needed data from props
   const Data = props.data;
   const history = props.history;
-  function handleClick(id) {
+
+  console.log('data', Data)
+  function handleClick(projectId, projectOrgId) {
+
+    console.log('projectOrgId', projectOrgId)
+
     const user = JSON.parse(localStorage.getItem("userData"));
     if (user == null) {
       //if there the user didn't login yet, then push them into /choosingUser
       history.push({ pathname: "/choosingUser" });
-      sessionStorage.setItem("projectId", id);
+      sessionStorage.setItem("projectId", projectId);
     } //if they logged in, then flow is normal
     else
       history.push({
         pathname: "/projectInfo",
-        projectId: id,
+        projectId: projectId,
         orgId: user.userId,
+        projectOrgId: projectOrgId
       });
   }
   return (
@@ -26,7 +32,7 @@ function ProjectSlide(props) {
         <div className="project-card-container">
           <div
             className="project-card"
-            onClick={() => handleClick(Data.projectId)}
+            onClick={() => handleClick(Data.projectId, Data.orgId)}
           >
             <img alt="" className="project-image" src={Data.projectAvatar} />
             <img alt="" className="project-icon" src={Data.orgAvatar} />

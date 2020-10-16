@@ -10,8 +10,8 @@ export const FEEDBACKS = [
         avatar: require('../assets/images/Tien_1.png'),
     },
     {
-        name: "Long The God Wibu",
-        feedback: "Without great pressure, there would be no diamonds. SocialJect has helped me found that pressure and assist me overcome it",
+        name: "Long the Weeb Lord",
+        feedback: "I don't care if you're black, white, straight, bisexual, gay, lesbian, short, tall, fat, skinny, rich or poor. I love you all",
         avatar: require('../assets/images/long.png'),
     }
 ]

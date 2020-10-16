@@ -77,7 +77,7 @@ const ChooseType = (props) => {
   }, [dispatch, fetchCallback]);
 
   //For testing purpose.
-  // console.log("Selected Data:", selectData);
+  console.log("Selected Data:", selectData);
 
   // const _pathOfUser = (userData) => {
   //   return userData.userType === ADMIN ? "/profile" : null;

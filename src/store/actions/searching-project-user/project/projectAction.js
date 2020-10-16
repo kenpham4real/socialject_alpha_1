@@ -43,7 +43,7 @@ export const SET_PROJECT_RECRUIT_INFO = "SET_PROJECT_RECRUIT_INFO";
  * @param {string} projectId The id of the chosen project
  * @returns {function} An async function to call the database and dispatch the data to global store
  */
-export function _getProjectInfo(orgId, projectId) {
+export function _getProjectInfo(projectOrgId, orgId, projectId) {
 
  	 return async (dispatch, getState) => {
 		// console.log("Fetching project info is beginning with projectId: ", projectId, "and orgId", orgId);
@@ -52,7 +52,8 @@ export function _getProjectInfo(orgId, projectId) {
 			projectInfo: {},
 			projectDetail: {},
 			projectProgress: [],
-			formSubmission:[]
+			formSubmission:[],
+			orgInfo: {}
 		};
 		try {
 
@@ -122,7 +123,18 @@ export function _getProjectInfo(orgId, projectId) {
 				// console.log('added form submission data with doc', tmpDoc)
 			})
 		
-			// console.log('formSubmission',projectData.formSubmission)
+			console.log('Taking org info', projectOrgId)
+			await 
+			firebase_db
+			.collection('organization')
+			.doc(`${projectOrgId}`)
+			.get()
+			.then((doc) =>{
+				console.log('doc orgInfo', doc.data())
+				projectData.orgInfo = doc.data()
+			})
+
+			console.log('orgInfo', projectData.orgInfo)
 
 			dispatch({
 				type: SET_PROJECT_RECRUIT_INFO,

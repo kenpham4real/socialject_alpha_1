@@ -72,7 +72,7 @@ const ChooseType = (props) => {
   }, [dispatch]);
 
   //For testing purpose.
-  // console.log("Selected Data:", selectData);
+  console.log("Selected Data:", selectData);
 
   return (
     <div className="chooseTypePage">

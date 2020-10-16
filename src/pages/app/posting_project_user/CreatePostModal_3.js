@@ -21,7 +21,9 @@ import { _onAddInput, _onChangeInputValue } from "../../../helper/form/Input";
 
 const CreatePostModal_3 = (props) => {
   const dispatch = useDispatch();
-  const organization = useSelector((state) => state.authReducer.userData);
+  const organization = useSelector((state) => state.autoLoginReducer.userData);
+
+  console.log('organization', organization)
 
   //Initialize the state
   const [projectBenefitCount, setProjectBenefitCount] = useState([0]);
@@ -48,7 +50,7 @@ const CreatePostModal_3 = (props) => {
     });
     dispatch(
       projectActions._createProject_ppu(
-        organization.uid,
+        organization.orgId,
         uuid_v4(),
         projectName,
         projectDescription,

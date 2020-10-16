@@ -14,6 +14,7 @@ const initialState = {
       questions: [],
     },
     projectProgress: [],
+    orgInfo:{}
   },
   upDataForm: [],
 };
@@ -24,7 +25,7 @@ export const projectReducerSPU = (state = initialState, action) => {
   switch (action.type) {
     case SET_PROJECT_RECRUIT_INFO:
       const project = action.payload;
-      // console.log("Project array payload: ", project);
+      console.log("Project array payload: ", project);
       if (!project.projectDetail.benefits) project.projectDetail.benefits = [];
       if (!project.projectDetail.requirements)
         project.projectDetail.requirements = [];

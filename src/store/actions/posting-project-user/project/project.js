@@ -123,14 +123,14 @@ export const _fetchProject_recruit_info_ppu = () => {
 export const _createProject_ppu = (
   orgId,
   projectId,
-  name,
-  description,
-  location,
-  deadline,
-  benefits,
-  requirements,
-  imageFile,
-  questions,
+  name = null,
+  description = "None",
+  location = "None",
+  deadline = "None",
+  benefits = null,
+  requirements = null,
+  imageFile = null,
+  questions = null,
   category = "General"
 ) => {
   //Handle data error
@@ -155,6 +155,9 @@ export const _createProject_ppu = (
 
   //Fire store management
   return async (dispatch, getState) => {
+
+    const organization = getState().autoLoginReducer.userData;
+
     const projectImageUrl = await _imageUploadHandler(imageFile);
     console.log("projectImageUrl", projectImageUrl);
     const projectRef = firebase_db.collection("public-projects").doc(`${projectId}`);
@@ -164,14 +167,14 @@ export const _createProject_ppu = (
       await projectRef
         .set({
           orgId: orgId,
+          orgName: organization.orgName,
           projectName: name,
           projectId: projectId,
           description: description,
           location: location,
           deadline: deadline,
-          //projectImage: projectImageUrl, this key is not compatible with the code that fetches
           projectAvatar: projectImageUrl,
-          // orgAvatar: projectImageUrl,
+          orgAvatar: organization.orgAvatar,
           category: category,
         });
       await projectRef
