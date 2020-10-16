@@ -5,7 +5,6 @@
   grid-template-columns: minmax(auto, 94px) 92%;
   grid-auto-rows: minmax(max-content, 59px);
   height: 100vh;
-  background-color: #f4f4f4;
   font-family: Helvetica, Arial, sans-serif;
 }
 #createPostModal_2 > * {
@@ -71,7 +70,6 @@
 }
 #createPostModal_2 .addQuestionBox {
   max-width: 328px;
-  background-color: #c4c4c4;
   border: 1px solid #666666;
   box-sizing: border-box;
   border-radius: var(--global-border-radius);
