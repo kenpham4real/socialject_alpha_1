@@ -17,20 +17,20 @@ export const profileReducer = (state = initialState, action) => {
     case FETCH_PROFILE:
       let count = 0;
       let arrayToPush = [];
-      // console.log("Project filtered payload: ", action.payload.projectArray);
-      // console.log("Profile data fetched: ", action.payload.profileData);
+      // // console.log("Project filtered payload: ", action.payload.projectArray);
+      // // console.log("Profile data fetched: ", action.payload.profileData);
       const tempId = action.payload.profileData.orgId;
-      // console.log("Temp Id: ", tempId);
+      // // console.log("Temp Id: ", tempId);
       // eslint-disable-next-line array-callback-return
       action.payload.projectArray.map((tempo) => {
-        // console.log("Project has the Id: ", tempo.orgId);
+        // // console.log("Project has the Id: ", tempo.orgId);
         if (tempo.orgId === tempId) {
-          // console.log("Saved");
+          // // console.log("Saved");
           arrayToPush[count] = tempo;
           count++;
         }
       });
-      // console.log("Array to push is:", arrayToPush);
+      // // console.log("Array to push is:", arrayToPush);
 
       return {
         ...state,

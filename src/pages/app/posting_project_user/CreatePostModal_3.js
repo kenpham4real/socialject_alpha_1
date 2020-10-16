@@ -23,7 +23,7 @@ const CreatePostModal_3 = (props) => {
   const dispatch = useDispatch();
   const organization = useSelector((state) => state.autoLoginReducer.userData);
 
-  console.log('organization', organization)
+  // console.log('organization', organization)
 
   //Initialize the state
   const [projectBenefitCount, setProjectBenefitCount] = useState([0]);
@@ -43,6 +43,9 @@ const CreatePostModal_3 = (props) => {
     projectQuestions,
     projectCategory,
   } = props.location;
+
+
+    // console.log('props in create post modal 3', props)
 
   const _PostProject = () =>{
     props.history.push({

@@ -29,7 +29,7 @@ export const projectReducer = (state = initialState, action) => {
         projects_basic_info: state.projects_basic_info.concat(action.projectData)
       }
     case SET_PROJECT_RECRUIT_INFO:
-      // console.log('action.benefits', action.benefits)
+      // // console.log('action.benefits', action.benefits)
       return{
         ...state,
         projects_recruit_info: {

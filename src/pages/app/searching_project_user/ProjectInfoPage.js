@@ -32,13 +32,13 @@ import * as projectActions from "../../../store/actions/searching-project-user/p
 import NAVIGATION_BAR_KEN from "../../../components/app/NavigationBar_Ken";
 
 const ProjectInfoPage = (props) => {
-  // console.log("PROJECT_INFO_PAGE");
-  console.log('props in ProjectInfoPage', props)
+  // // console.log("PROJECT_INFO_PAGE");
+  // console.log('props in ProjectInfoPage', props)
   const projectId = props.history.location.projectId;
   const orgId = props.history.location.orgId;
   const projectOrgId = props.history.location.projectOrgId;
 
-  console.log('projectOrgId in ProjectInfoPage', projectOrgId)
+  // console.log('projectOrgId in ProjectInfoPage', projectOrgId)
 
   const dispatch = useDispatch();
   const [isFetchedRecruitInfo, setIsFetchedRecruitInfo] = useState(false);
@@ -63,7 +63,7 @@ const ProjectInfoPage = (props) => {
     try {
       dispatch(projectActions._getProjectInfo(projectOrgId, orgId, projectId));
     } catch (error) {
-      // console.log("error", error);
+      // // console.log("error", error);
     }
   }, [dispatch, orgId, projectId]);
 
@@ -73,7 +73,7 @@ const ProjectInfoPage = (props) => {
     });
   }, [dispatch, _loadProjects, isFetchedRecruitInfo]);
 
-  console.log("fetched projects", projectsData);
+  // console.log("fetched projects", projectsData);
 
   const _onViewStudentAnswer = (applicant) => {
     setIsViewApplicantModal(true)
@@ -118,8 +118,8 @@ const ProjectInfoPage = (props) => {
    * @author Ken Pham, Dat Uchiha
    */
   const _project_apply_button = () => {
-    // console.log("User Id in the button is: ", userId);
-    // console.log("Project owner's Id: ", projectsData.projectInfo.orgId);
+    // // console.log("User Id in the button is: ", userId);
+    // // console.log("Project owner's Id: ", projectsData.projectInfo.orgId);
     if (userId !== projectsData.projectInfo.orgId)
       return (
         <div
@@ -363,10 +363,10 @@ const ProjectInfoPage = (props) => {
   //     avatar: avatar,
   //     answers: answers,
   //   }));
-  //   console.log("Student ID", StudentId);
-  //   console.log("Modal Student Id", formStudentId);
+  //   // console.log("Student ID", StudentId);
+  //   // console.log("Modal Student Id", formStudentId);
   // };
-  // console.log("Modal Student Id", formStudentId);
+  // // console.log("Modal Student Id", formStudentId);
   // const _close_modal_handler = () => setIsModalOpen(false);
   // /********************************* MAIN Component: ProjectInfoPage *********************************/
   // const imageURL =
@@ -535,7 +535,7 @@ const ProjectInfoPage = (props) => {
             isFetchedRecruitInfo={isFetchedRecruitInfo}
             formSubmissions={projectsData.formSubmission}
             _onViewStudentAnswer={(submission) => _onViewStudentAnswer(submission)}
-            // _onViewApplicant={() => console.log('yayy')}
+            // _onViewApplicant={() => // console.log('yayy')}
           />
           <Modal isOpen={isViewApplicantModal}>
             <IndividualForm

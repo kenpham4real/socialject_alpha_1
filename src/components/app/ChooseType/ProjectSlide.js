@@ -6,10 +6,10 @@ function ProjectSlide(props) {
   const Data = props.data;
   const history = props.history;
 
-  console.log('data', Data)
+  // console.log('data', Data)
   function handleClick(projectId, projectOrgId) {
 
-    console.log('projectOrgId', projectOrgId)
+    // console.log('projectOrgId', projectOrgId)
 
     const user = JSON.parse(localStorage.getItem("userData"));
     if (user == null) {

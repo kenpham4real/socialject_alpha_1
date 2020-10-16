@@ -25,7 +25,7 @@ export const _imageUploadHandler = async (imageFile)=>{
             "state_changed",
             snapshot =>{},
             error =>{
-                // console.log("big erroor",error);
+                // // console.log("big erroor",error);
                 rej(error)
             },
             ()=>{ 
@@ -34,7 +34,7 @@ export const _imageUploadHandler = async (imageFile)=>{
                 .child(imageFile.name)
                 .getDownloadURL()
                 .then(url=>{
-                    // console.log(url)
+                    // // console.log(url)
                     res(url)
                 });
             }
