@@ -1,5 +1,5 @@
 // Firebase database
-import firebase from "firebase";
+// import firebase from "firebase";
 import { firebase_db } from "../../../../firebase-config";
 
 // Constants
@@ -138,20 +138,20 @@ export const _createProject_ppu = (
   if (!deadline) deadline = "";
 
   //For debugging purpose
-  const project = {
-    orgId: orgId,
-    projectId: projectId,
-    name: name,
-    description: description,
-    location: location,
-    deadline: deadline,
-    benefits: benefits,
-    requirements: requirements,
-    imageFIle: imageFile,
-    questions: questions,
-    category: category,
-  };
-  console.log("Project to push: ", project);
+  // const project = {
+  //   orgId: orgId,
+  //   projectId: projectId,
+  //   name: name,
+  //   description: description,
+  //   location: location,
+  //   deadline: deadline,
+  //   benefits: benefits,
+  //   requirements: requirements,
+  //   imageFIle: imageFile,
+  //   questions: questions,
+  //   category: category,
+  // };
+  // console.log("Project to push: ", project);
 
   //Fire store management
   return async (dispatch, getState) => {
@@ -225,12 +225,12 @@ export const _getFormSubmission = (orgId, projectId) => {
         .get()
         .then((query) => {
           console.log("query.docs(): ", query.docs);
-          let tmpDoc;
+          // let tmpDoc;
 
           query.forEach((doc) => {
             // console.log("doc of form submission", doc);
             formSubmission.push(doc.data());
-            tmpDoc = doc;
+            // tmpDoc = doc;
           });
           // console.log("added form submission data with doc", tmpDoc);
         });

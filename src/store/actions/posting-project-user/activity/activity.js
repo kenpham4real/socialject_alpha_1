@@ -78,7 +78,7 @@ export const _addActivity_ppu = (projectId, activityId, activityName, activityDe
      */
     return async (dispatch, getState) => {
 
-        const user = getState().autoLoginReducer.userData;
+        // const user = getState().autoLoginReducer.userData;
         const activityImageUrl = await _imageUploadHandler(activityImage);
 
         // console.log('user in add activity', user)

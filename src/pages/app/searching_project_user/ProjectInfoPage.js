@@ -65,7 +65,7 @@ const ProjectInfoPage = (props) => {
     } catch (error) {
       // console.log("error", error);
     }
-  }, [dispatch, orgId, projectId]);
+  }, [dispatch, orgId, projectId, projectOrgId]);
 
   useEffect(() => {
     _loadProjects().then(() => {
@@ -184,7 +184,7 @@ const ProjectInfoPage = (props) => {
   const _project_joined_users = () => {
     return (
       <div className="joinedUsers">
-        <span>100</span>
+        <span style={{color: '#666666'}}>100</span>
         <br /> has joined
       </div>
     );
