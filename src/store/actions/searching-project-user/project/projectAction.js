@@ -46,7 +46,7 @@ export const SET_PROJECT_RECRUIT_INFO = "SET_PROJECT_RECRUIT_INFO";
 export function _getProjectInfo(projectOrgId, orgId, projectId) {
 
  	 return async (dispatch, getState) => {
-		// console.log("Fetching project info is beginning with projectId: ", projectId, "and orgId", orgId);
+		// // console.log("Fetching project info is beginning with projectId: ", projectId, "and orgId", orgId);
 		let count = 0;
 		let projectData = {
 			projectInfo: {},
@@ -64,7 +64,7 @@ export function _getProjectInfo(projectOrgId, orgId, projectId) {
 				.get()
 				.then(function (doc) {
 					projectData.projectInfo = doc.data();
-					// console.log("Document data - Info:", projectData.projectInfo);
+					// // console.log("Document data - Info:", projectData.projectInfo);
 				});
 
 			//Project Recruit Info
@@ -83,7 +83,7 @@ export function _getProjectInfo(projectOrgId, orgId, projectId) {
 							questions: [],
 						};
 					}
-					// console.log("Document data - Details:", projectData.projectDetail);
+					// // console.log("Document data - Details:", projectData.projectDetail);
 				});
 
 			//Project Progress
@@ -99,7 +99,7 @@ export function _getProjectInfo(projectOrgId, orgId, projectId) {
 						projectData.projectProgress[count] = doc.data();
 						count++;
 					});
-					// console.log("Document data - progress:", projectData.projectProgress);
+					// // console.log("Document data - progress:", projectData.projectProgress);
 				});
 				
 			// Form submission
@@ -112,29 +112,29 @@ export function _getProjectInfo(projectOrgId, orgId, projectId) {
 			.collection('formSubmission')
 			.get()
 			.then((query) =>{
-				// console.log('query: ', query);
+				// // console.log('query: ', query);
 				// let tmpDoc;
 				
 				query.forEach((doc) => {
-					// console.log('doc of form submission', doc);
+					// // console.log('doc of form submission', doc);
 					projectData.formSubmission.push(doc.data())
 					// tmpDoc = doc;
 				})
-				// console.log('added form submission data with doc', tmpDoc)
+				// // console.log('added form submission data with doc', tmpDoc)
 			})
 		
-			console.log('Taking org info', projectOrgId)
+			// console.log('Taking org info', projectOrgId)
 			await 
 			firebase_db
 			.collection('organization')
 			.doc(`${projectOrgId}`)
 			.get()
 			.then((doc) =>{
-				console.log('doc orgInfo', doc.data())
+				// console.log('doc orgInfo', doc.data())
 				projectData.orgInfo = doc.data()
 			})
 
-			console.log('orgInfo', projectData.orgInfo)
+			// console.log('orgInfo', projectData.orgInfo)
 
 			dispatch({
 				type: SET_PROJECT_RECRUIT_INFO,
@@ -151,7 +151,7 @@ export function _getProjectInfo(projectOrgId, orgId, projectId) {
 		
 
 		} catch (error) {
-			// console.log("error", error);
+			// // console.log("error", error);
 		}
 	}
   

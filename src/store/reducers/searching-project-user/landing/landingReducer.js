@@ -11,7 +11,7 @@ const initialState = {
 export const landingReducer = (state = initialState, action) => {
   switch (action.type) {
     case "FETCH_LANDING":
-      // console.log("Project array payload: ", action.payload);
+      // // console.log("Project array payload: ", action.payload);
       return {
         ...state,
         projectData: action.payload,

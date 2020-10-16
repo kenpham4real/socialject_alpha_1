@@ -44,7 +44,7 @@
 //   const dispatch = useDispatch();
 //   //Get data from global store
 //   const user = useSelector((state) => state.autoLoginReducer.userData);
-//   console.log("User Data selected: ", user);
+//   // console.log("User Data selected: ", user);
 //   //Decide the path to push base on the userData
 //   let path = "";
 //   if (user.userType === ADMIN) path = "/profile";
@@ -53,7 +53,7 @@
 //   const user_localStorage = JSON.parse(localStorage.getItem("userData"));
 //   let userId = null;
 //   if (user_localStorage != null) userId = user_localStorage.userId; //if there is an user data, get userId from that.
-//   console.log("User id in app is: ", userId); //For testing
+//   // console.log("User id in app is: ", userId); //For testing
 //   //Call the function of auto-login using useCallback and useEffect
 //   const fetchUser = useCallback(() => {
 //     autoLoginAction.FetchUser(dispatch, userId, user);

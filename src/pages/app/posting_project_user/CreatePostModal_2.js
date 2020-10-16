@@ -28,7 +28,7 @@ const CreatePostModal_2 = (props) => {
         locationLabel = props.location.projectLocation.selectedOption.label;
       }
   
-
+  // console.log('props in post modal 2', props)
 
 
   const [questionCount, setQuestionCount] = useState([0]);
@@ -79,7 +79,6 @@ const CreatePostModal_2 = (props) => {
             projectCategory:props.location.projectCategory,
             projectDate:props.location.projectDate,
             showCalendar:props.location.showCalendar,
-            projectImageFile:props.location.projectImageFile,
             projectQuestions: questions
           });
         }}
@@ -88,9 +87,17 @@ const CreatePostModal_2 = (props) => {
       </div>
       <Link
         className="link-post-modal"
-        to={"/createPostModal_3"}
+        to={{
+          pathname:"/createPostModal_3",
+          projectName:props.location.projectName,
+          projectDescription:props.location.projectDescription,
+          projectLocation:locationLabel,
+          projectCategory:props.location.projectCategory,
+          projectDate:props.location.projectDate,
+          showCalendar:props.location.showCalendar,
+        }}
       > 
-      I don't need a form
+        I don't need a form
       </Link>
     </div>
   );
