@@ -1,5 +1,5 @@
 // Firebase database
-import firebase from "firebase";
+// import firebase from "firebase";
 import { firebase_db } from "../../../../firebase-config";
 
 // Constants
@@ -34,7 +34,7 @@ export const _fetchProject_basic_info_ppu = () => {
    */
   return async (dispatch, getState) => {
     let projectData;
-    console.log("Fetching basic info of projects");
+    // // console.log("Fetching basic info of projects");
     try {
       // Retrieve the data from Firestore Cloud database
       await firebase_db
@@ -48,7 +48,7 @@ export const _fetchProject_basic_info_ppu = () => {
             : null;
         });
 
-      console.log("project data", projectData);
+      // // console.log("project data", projectData);
 
       // dispatch helps us store the changed state/ data into the reducers
       dispatch({
@@ -56,7 +56,7 @@ export const _fetchProject_basic_info_ppu = () => {
         projectData: projectData,
       });
     } catch (error) {
-      console.log("error", error);
+      // // console.log("error", error);
     }
   };
 };
@@ -77,7 +77,7 @@ export const _fetchProject_recruit_info_ppu = () => {
    */
   return async (dispatch, getState) => {
     let recruitInfo;
-    console.log("Fetching recruit info of projects");
+    // // console.log("Fetching recruit info of projects");
     try {
       await firebase_db
         .collection("public-projects")
@@ -86,11 +86,11 @@ export const _fetchProject_recruit_info_ppu = () => {
         .doc(`${testing_project_id}`)
         .get()
         .then((doc) => {
-          console.log("doc", doc);
+          // // console.log("doc", doc);
           recruitInfo = doc.data();
         });
 
-      console.log("recruit info of project loaded successfully", recruitInfo);
+      // // console.log("recruit info of project loaded successfully", recruitInfo);
 
       /**
        * @description This is called Destructuring in JS
@@ -104,7 +104,7 @@ export const _fetchProject_recruit_info_ppu = () => {
         requirements: requirements,
       });
     } catch (error) {
-      console.log("error", error);
+      // // console.log("error", error);
     }
   };
 };
@@ -123,28 +123,69 @@ export const _fetchProject_recruit_info_ppu = () => {
 export const _createProject_ppu = (
   orgId,
   projectId,
-  name,
-  description,
-  location,
-  deadline,
-  benefits,
-  requirements,
-  imageFIle,
-  questions,
+  name = null,
+  description = "None",
+  location = "None",
+  deadline = "None",
+  benefits = null,
+  requirements = null,
+  imageFile = null,
+  questions = null,
   category = "General"
 ) => {
+  //Handle data error
+  if (orgId === "") orgId = JSON.parse(localStorage.getItem("userData")).userId;
+  // if (!deadline) deadline = "";
+
+  //For debugging purpose
+  // const project = {
+  //   orgId: orgId,
+  //   projectId: projectId,
+  //   name: name,
+  //   description: description,
+  //   location: location,
+  //   deadline: deadline,
+  //   benefits: benefits,
+  //   requirements: requirements,
+  //   imageFIle: imageFile,
+  //   questions: questions,
+  //   category: category,
+  // };
+  // console.log("Project to push: ", project);
+
+  //Fire store management
   return async (dispatch, getState) => {
-    const projectImageUrl = await _imageUploadHandler(imageFIle);
-    console.log("projectImageUrl", projectImageUrl);
-    const projectRef = firebase_db
-      .collection("public-projects")
-      .doc(`${projectId}`);
-    const organizationRef = firebase_db
-      .collection("organization")
-      .doc(`${orgId}`);
-    console.log("questions are", questions);
+
+    const organization = getState().autoLoginReducer.userData;
+
+    const projectImageUrl = await _imageUploadHandler(imageFile);
+    // console.log("projectImageUrl", projectImageUrl);
+    const projectRef = firebase_db.collection("public-projects").doc(`${projectId}`);
+    const organizationRef = firebase_db.collection("organization").doc(`${orgId}`);
+    // console.log("questions are", questions);
     try {
-      await projectRef.set({
+      await projectRef
+        .set({
+          orgId: orgId,
+          orgName: organization.orgName,
+          projectName: name,
+          projectId: projectId,
+          description: description,
+          location: location,
+          deadline: deadline,
+          projectAvatar: projectImageUrl,
+          orgAvatar: organization.orgAvatar,
+          category: category,
+        });
+      await projectRef
+        .collection("recruit-info")
+        .doc(`${projectId}`)
+        .set({
+          benefits: benefits,
+          requirements: requirements,
+          formQuestions: questions
+        });
+      await organizationRef.collection("projects").doc(`${projectId}`).set({
         projectName: name,
         description: description,
         location: location,
@@ -152,43 +193,26 @@ export const _createProject_ppu = (
         projectImage: projectImageUrl,
         category: category,
       });
-      await projectRef
-        .collection("recruit-info")
-        .doc(`${testing_project_id}`)
-        .set({
-          benefits: benefits,
-          requirements: requirements,
-        });
-      await organizationRef
-        .collection("projects")
-        .doc(`${testing_project_id}`)
-        .set({
-          projectName: name,
-          description: description,
-          location: location,
-          deadline: deadline,
-          projectImage: projectImageUrl,
-          category: category,
-        });
 
-      await projectRef
-        .collection("recruit-info")
-        .doc(`${testing_project_id}`)
-        .update({
-          formQuestions: firebase.firestore.FieldValue.arrayUnion(questions),
-        });
+      // await projectRef
+      //   .collection("recruit-info")
+      //   .doc(`${projectId}`)
+      //   /*.update({
+      //     formQuestions: firebase.firestore.FieldValue.arrayUnion(questions),
+      //   });*/
+      //   .set({ formQuestions: questions });
 
-      console.log("Create project successfully");
+      // // // console.log("Create project successfully");
     } catch (error) {
-      console.log("error", error);
+      // // console.log("error", error);
     }
   };
 };
 
 export const _getFormSubmission = (orgId, projectId) => {
   return async (dispatch, getState) => {
-    console.log("GETTING FORM SUBMISSION");
-    console.log("OrgId: ", orgId, " projectId", projectId);
+    // // console.log("GETTING FORM SUBMISSION");
+    // // console.log("OrgId: ", orgId, " projectId", projectId);
 
     let formSubmission = [];
 
@@ -201,18 +225,18 @@ export const _getFormSubmission = (orgId, projectId) => {
         .collection("formSubmission")
         .get()
         .then((query) => {
-          console.log("query.docs(): ", query.docs);
-          let tmpDoc;
+          // console.log("query.docs(): ", query.docs);
+          // let tmpDoc;
 
           query.forEach((doc) => {
-            console.log("doc of form submission", doc);
+            // // console.log("doc of form submission", doc);
             formSubmission.push(doc.data());
-            tmpDoc = doc;
+            // tmpDoc = doc;
           });
-          console.log("added form submission data with doc", tmpDoc);
+          // // console.log("added form submission data with doc", tmpDoc);
         });
 
-      console.log("formSubmission", formSubmission);
+      // // console.log("formSubmission", formSubmission);
 
       dispatch({
         type: GET_FORM_SUBMISSION,

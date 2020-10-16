@@ -162,19 +162,19 @@
 //   if (selectedProject != undefined) {
 //     projectData = selectedProject;
 //   } else FetchData("public-projects", `${testing_project_id}`);
-//   console.log("Profile data saved succesfully:", profileData.orgName); //For testing purpose
+//   // console.log("Profile data saved succesfully:", profileData.orgName); //For testing purpose
 //   //Similar for Profile Data
 //   if (selectedProfile != undefined) {
 //     profileData = selectedProfile;
 //   } else FetchData("organization", `${testing_organization_id}`);
-//   console.log("Profile data saved succesfully:", profileData.orgName); //For testing purpose
+//   // console.log("Profile data saved succesfully:", profileData.orgName); //For testing purpose
 
 //   //Function to fetch data and dispatch it into the global store.
 //   //The function need to use async and await to be able to fetch.
 //   async function FetchData(collection, fetchId) {
 //     let fetchedData; //This will later be used to fetch data.
-//     console.log("Starting to fetch data: "); //For testing purpose
-//     console.log("Params: ", collection, " + ", fetchId); //For testing purpose
+//     // console.log("Starting to fetch data: "); //For testing purpose
+//     // console.log("Params: ", collection, " + ", fetchId); //For testing purpose
 
 //     try {
 //       // Retrieve the data from Firestore Cloud database. Need to be 'await'
@@ -183,7 +183,7 @@
 //         .doc(fetchId) //access the docs with this id
 //         .get() //not sure what this do
 //         .then((documentSnapshot) => (fetchedData = documentSnapshot.data())); //fetch data into a variable.
-//       console.log("Profile Data fetched succesfully", fetchedData); //For testing purpose
+//       // console.log("Profile Data fetched succesfully", fetchedData); //For testing purpose
 //       const saveData = (props) => {
 //         //Dispatch this to the global store using "profileReducer"
 //         dispatch({
@@ -193,7 +193,7 @@
 //       };
 //       saveData(fetchedData); //now the data is dispatched into global store.
 //     } catch (error) {
-//       console.log("error", error);
+//       // console.log("error", error);
 //     }
 //   }
 

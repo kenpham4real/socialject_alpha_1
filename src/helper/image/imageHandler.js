@@ -25,7 +25,7 @@ export const _imageUploadHandler = async (imageFile)=>{
             "state_changed",
             snapshot =>{},
             error =>{
-                console.log("big erroor",error);
+                // // console.log("big erroor",error);
                 rej(error)
             },
             ()=>{ 
@@ -34,7 +34,7 @@ export const _imageUploadHandler = async (imageFile)=>{
                 .child(imageFile.name)
                 .getDownloadURL()
                 .then(url=>{
-                    console.log(url)
+                    // // console.log(url)
                     res(url)
                 });
             }
@@ -52,9 +52,7 @@ export const _imageUploadHandler = async (imageFile)=>{
 
 export const _previewImageHandler =(file, setImage, setImageFile) =>{
     const reader =new FileReader();
-    console.log('file', file)
     reader.onload= (event) =>{
-        console.log('event', event)
         if(reader.readyState===2){
             setImage(event.target.result)
         }

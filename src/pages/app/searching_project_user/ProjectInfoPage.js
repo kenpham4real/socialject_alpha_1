@@ -32,10 +32,14 @@ import * as projectActions from "../../../store/actions/searching-project-user/p
 import NAVIGATION_BAR_KEN from "../../../components/app/NavigationBar_Ken";
 
 const ProjectInfoPage = (props) => {
-  console.log("PROJECT_INFO_PAGE");
-
+  // // console.log("PROJECT_INFO_PAGE");
+  // console.log('props in ProjectInfoPage', props)
   const projectId = props.history.location.projectId;
   const orgId = props.history.location.orgId;
+  const projectOrgId = props.history.location.projectOrgId;
+
+  // console.log('projectOrgId in ProjectInfoPage', projectOrgId)
+
   const dispatch = useDispatch();
   const [isFetchedRecruitInfo, setIsFetchedRecruitInfo] = useState(false);
   const [isViewApplicantModal, setIsViewApplicantModal] = useState(false);
@@ -57,11 +61,11 @@ const ProjectInfoPage = (props) => {
    */
   const _loadProjects = useCallback(async () => {
     try {
-      dispatch(projectActions._getProjectInfo(orgId, projectId));
+      dispatch(projectActions._getProjectInfo(projectOrgId, orgId, projectId));
     } catch (error) {
-      console.log("error", error);
+      // // console.log("error", error);
     }
-  }, [dispatch, orgId, projectId]);
+  }, [dispatch, orgId, projectId, projectOrgId]);
 
   useEffect(() => {
     _loadProjects().then(() => {
@@ -69,7 +73,7 @@ const ProjectInfoPage = (props) => {
     });
   }, [dispatch, _loadProjects, isFetchedRecruitInfo]);
 
-  console.log("fetched projects", projectsData);
+  // console.log("fetched projects", projectsData);
 
   const _onViewStudentAnswer = (applicant) => {
     setIsViewApplicantModal(true)
@@ -89,18 +93,18 @@ const ProjectInfoPage = (props) => {
       <div className="organizationNameandPicture">
         <img
           className="projectLogo"
-          src={projectsData.projectInfo.orgAvatar}
+          src={projectsData.orgInfo.orgAvatar}
           alt="orgLogo"
           onClick={() =>
             props.history.push({
               pathname: userId ? "/profile" : "",
-              profileId: projectsData.projectInfo.orgId,
+              profileId: projectsData.orgInfo.orgId,
             })
           }
         />
 
         <div className="organizationName">
-          {projectsData.projectInfo.projectName}{" "}
+          {projectsData.orgInfo.orgName}{" "}
         </div>
         {/* <button>Follow</button>    //Follow Functionality has not been developed */}
       </div>
@@ -114,8 +118,8 @@ const ProjectInfoPage = (props) => {
    * @author Ken Pham, Dat Uchiha
    */
   const _project_apply_button = () => {
-    console.log("User Id in the button is: ", userId);
-    console.log("Project owner's Id: ", projectsData.projectInfo.orgId);
+    // // console.log("User Id in the button is: ", userId);
+    // // console.log("Project owner's Id: ", projectsData.projectInfo.orgId);
     if (userId !== projectsData.projectInfo.orgId)
       return (
         <div
@@ -180,7 +184,7 @@ const ProjectInfoPage = (props) => {
   const _project_joined_users = () => {
     return (
       <div className="joinedUsers">
-        <span>100</span>
+        <span style={{color: '#666666'}}>100</span>
         <br /> has joined
       </div>
     );
@@ -198,7 +202,7 @@ const ProjectInfoPage = (props) => {
         <h1 className="projectHeadings"> Held by</h1>
         <img
           className="projectLogo"
-          src={projectsData.projectInfo.orgAvatar}
+          src={projectsData.orgInfo.orgAvatar}
           alt="orgLogo"
           onClick={() =>
             props.history.push({
@@ -209,9 +213,9 @@ const ProjectInfoPage = (props) => {
         />
         <span>
           <p className="organizationName">
-            {projectsData.projectInfo.projectName}
+            {projectsData.orgInfo.orgName}
           </p>
-          <p>{projectsData.projectInfo.description}</p>
+          <p>{projectsData.orgInfo.description}</p>
         </span>
         {/* <div className="viewAllButton">View all</div> */}
       </div>
@@ -307,7 +311,7 @@ const ProjectInfoPage = (props) => {
    */
   const _project_progress_section = () => {
     let ifDisplay = "flex";
-    if (userId !== projectsData.projectInfo.orgId) ifDisplay = "none";
+    if (userId !== projectsData.orgInfo.orgId) ifDisplay = "none";
     const AddActivityButton = () => {
       return (
         <div
@@ -359,10 +363,10 @@ const ProjectInfoPage = (props) => {
   //     avatar: avatar,
   //     answers: answers,
   //   }));
-  //   console.log("Student ID", StudentId);
-  //   console.log("Modal Student Id", formStudentId);
+  //   // console.log("Student ID", StudentId);
+  //   // console.log("Modal Student Id", formStudentId);
   // };
-  // console.log("Modal Student Id", formStudentId);
+  // // console.log("Modal Student Id", formStudentId);
   // const _close_modal_handler = () => setIsModalOpen(false);
   // /********************************* MAIN Component: ProjectInfoPage *********************************/
   // const imageURL =
@@ -525,18 +529,18 @@ const ProjectInfoPage = (props) => {
           {_project_progress_section()}
           <FormSubmission
             userId={userId}
-            projectOwnerId={projectsData.projectInfo.orgId}
+            projectOwnerId={projectsData.orgInfo.orgId}
             // formData={exampleFormSubmissionData}
             // onModalOpening={(props) => _handle_modal_open(props)}
             isFetchedRecruitInfo={isFetchedRecruitInfo}
             formSubmissions={projectsData.formSubmission}
             _onViewStudentAnswer={(submission) => _onViewStudentAnswer(submission)}
-            // _onViewApplicant={() => console.log('yayy')}
+            // _onViewApplicant={() => // console.log('yayy')}
           />
           <Modal isOpen={isViewApplicantModal}>
             <IndividualForm
               userId={userId}
-              projectOwnerId={projectsData.projectInfo.orgId}
+              projectOwnerId={projectsData.orgInfo.orgId}
               isFetchedRecruitInfo={isFetchedRecruitInfo}
               studentSubmission={applicant}
               _onCloseApplicantView={() => setIsViewApplicantModal(false)}

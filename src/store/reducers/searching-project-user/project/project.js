@@ -13,7 +13,7 @@ const initialState = {
 export const landingReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_LANDING:
-      console.log("Project array payload: ", action.payload);
+      // // console.log("Project array payload: ", action.payload);
       return {
         ...state,
         projectData: action.payload,
@@ -30,7 +30,7 @@ export const landingReducer = (state = initialState, action) => {
 export const upDataFormReducer = (state = initialState, action) => {
     switch (action.type) {
       case UP_DATA_FORM:
-        console.log("Project array payload: ", action.upDataForm);
+        // // console.log("Project array payload: ", action.upDataForm);
         return {
           ...state,
           projectData: action.upDataForm,

@@ -20,7 +20,7 @@ export const FETCH_PROFILE = "FETCH_PROFILE";
 /******************************** ACTIONS ********************************/
 //Filter the projects from the Firebase.
 export async function FetchProject(dispatch, profileId) {
-  console.log("Fetching with filter is beginning with the Id: ", profileId);
+  // // console.log("Fetching with filter is beginning with the Id: ", profileId);
   let filteredData = {
     projectArray: [],
     profileData: {},
@@ -36,10 +36,10 @@ export async function FetchProject(dispatch, profileId) {
           filteredData.projectArray[count] = doc.data();
           count++;
           // doc.data() is never undefined for query doc snapshots
-          //console.log(doc.id, " => ", doc.data());
+          //// console.log(doc.id, " => ", doc.data());
         });
       });
-    console.log("Array fetched with filter: ", filteredData.projectArray);
+    // // console.log("Array fetched with filter: ", filteredData.projectArray);
 
     await firebase_db
       .collection("organization")
@@ -48,7 +48,7 @@ export async function FetchProject(dispatch, profileId) {
       .then(function (doc) {
         filteredData.profileData = doc.data();
       });
-    console.log("Profile Data is:", filteredData.profileData);
+    // // console.log("Profile Data is:", filteredData.profileData);
 
     // dispatch helps us store the changed state/ data into the reducers
     dispatch({
@@ -56,7 +56,7 @@ export async function FetchProject(dispatch, profileId) {
       payload: filteredData,
     });
   } catch (error) {
-    console.log("error", error);
+    // // console.log("error", error);
   }
 }
 
@@ -100,18 +100,18 @@ export const _createProfile_ppu = (
    */
   return async (dispatch, getState) => {
     const imageUrl = await _imageUploadHandler(imageFile);
-    console.log("check", {
-      orgId,
-      orgName,
-      category,
-      description,
-      location,
-      university,
-      email,
-      phoneNumber,
-      facebook,
-      imageFile,
-    });
+    // // console.log("check", {
+    //   orgId,
+    //   orgName,
+    //   category,
+    //   description,
+    //   location,
+    //   university,
+    //   email,
+    //   phoneNumber,
+    //   facebook,
+    //   imageFile,
+    // });
     try {
       await firebase_db
       .collection("organization")
@@ -133,7 +133,7 @@ export const _createProfile_ppu = (
           merge: true,
         }
       );
-      console.log("Create profile successfully");
+      // // console.log("Create profile successfully");
 
       analytics.logEvent("page_view", {
         page_location: "FinishCreate",
@@ -157,7 +157,7 @@ export const _createProfile_ppu = (
         },
       });
     } catch (error) {
-      console.log("Error::", error);
+      // // console.log("Error::", error);
     }
   };
 };
@@ -185,14 +185,14 @@ export const _fetchProfile_ppu = () => {
             .collection("projects")
             .get()
             .then((querySnapshot) => {
-              console.log("bitch");
+              // // console.log("bitch");
               querySnapshot.forEach((doc) => {
                 projects.push(doc.data());
               });
             });
         });
 
-      console.log("Profile Data fetched succesfully bitch", profileData);
+      // // console.log("Profile Data fetched succesfully bitch", profileData);
 
       // dispatch helps us store the changed state/ data into the reducers
       dispatch({
@@ -201,7 +201,7 @@ export const _fetchProfile_ppu = () => {
         profile_projectData: projects,
       });
     } catch (error) {
-      console.log("error", error);
+      // // console.log("error", error);
     }
   };
 };

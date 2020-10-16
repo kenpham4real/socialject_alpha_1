@@ -24,7 +24,7 @@ export const _fetchProjectActivity_ppu = () => {
 
     return async (dispatch, getState) => {
         let activityData = [];
-        console.log('Fetching data of project activities')
+        // // console.log('Fetching data of project activities')
         try {
             await
             firebase_db
@@ -44,7 +44,7 @@ export const _fetchProjectActivity_ppu = () => {
                 }
             )
             
-            console.log('activity data', activityData)
+            // // console.log('activity data', activityData)
 
             dispatch({
                 type: SET_ACTIVITY,
@@ -52,7 +52,7 @@ export const _fetchProjectActivity_ppu = () => {
             })
     
         } catch (error) {
-            console.log('error', error)
+            // // console.log('error', error)
         }
     }
 }
@@ -78,10 +78,10 @@ export const _addActivity_ppu = (projectId, activityId, activityName, activityDe
      */
     return async (dispatch, getState) => {
 
-        const user = getState().autoLoginReducer.userData;
+        // const user = getState().autoLoginReducer.userData;
         const activityImageUrl = await _imageUploadHandler(activityImage);
 
-        console.log('user in add activity', user)
+        // // console.log('user in add activity', user)
 
         try {
             await
@@ -105,7 +105,7 @@ export const _addActivity_ppu = (projectId, activityId, activityName, activityDe
             }
             )
 
-            console.log('Add activities successfully');
+            // // console.log('Add activities successfully');
 
             dispatch({
                 type: ADD_ACTIVITY,
@@ -131,7 +131,7 @@ export const _addActivity_ppu = (projectId, activityId, activityName, activityDe
             
             
         } catch (error) {
-            console.log('Error', error);
+            // // console.log('Error', error);
         }
     }
 }

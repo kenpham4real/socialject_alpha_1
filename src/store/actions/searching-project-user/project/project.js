@@ -37,7 +37,7 @@ export function FetchCalling(action, data, dispatch, callback) {
 
 //Fetch the data from the Firebase.
 export async function FetchLanding(dispatch) {
-  console.log("Fetching is beginning.");
+  // // console.log("Fetching is beginning.");
   let projectArray = [],
     count = 0;
   try {
@@ -50,11 +50,11 @@ export async function FetchLanding(dispatch) {
           projectArray[count] = doc.data();
           count++;
           // doc.data() is never undefined for query doc snapshots
-          //console.log(doc.id, " => ", doc.data());
+          //// console.log(doc.id, " => ", doc.data());
         });
       });
 
-    console.log("Array fetched: ", projectArray);
+    // // console.log("Array fetched: ", projectArray);
 
     // dispatch helps us store the changed state/ data into the reducers
     dispatch({
@@ -62,7 +62,7 @@ export async function FetchLanding(dispatch) {
       payload: projectArray,
     });
   } catch (error) {
-    console.log("error", error);
+    // // console.log("error", error);
   }
 }
 
@@ -87,7 +87,7 @@ export const _onSubmitFormAnswers = (answerInput, orgId, projectId) => {
    */
   return async (dispatch, getState) => {
 
-    console.log('Organization:  ', orgId)
+    // // console.log('Organization:  ', orgId)
 
     const student = getState().autoLoginReducer.userData;
     const{
@@ -97,7 +97,7 @@ export const _onSubmitFormAnswers = (answerInput, orgId, projectId) => {
     } = student;
 
 
-    console.log('submitting form answers from student: ', student)
+    // // console.log('submitting form answers from student: ', student)
 
     try {
       await firebase_db
@@ -117,10 +117,10 @@ export const _onSubmitFormAnswers = (answerInput, orgId, projectId) => {
             }
           }
         );
-      console.log("Submit form successfully");
+      // // console.log("Submit form successfully");
 
     } catch (error) {
-      console.log("Error::", error);
+      // // console.log("Error::", error);
     }
   };
 };

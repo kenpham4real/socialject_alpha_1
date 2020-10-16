@@ -15,7 +15,7 @@ const ProjectActivity = (props) => {
   const id = props.project_key;
   const dispatch = useDispatch();
 
-  //console.log("This is the activity props: ", props);
+  //// console.log("This is the activity props: ", props);
   //The function to navigate. Will be put in the "onClick" event handler
   const Navigate = () => {
     dispatch({

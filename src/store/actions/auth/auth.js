@@ -34,7 +34,7 @@ export const _onGoogleLogin = async () => {
     firebase_auth
       .signInWithPopup(provider)
       .then((result) => {
-        console.log("result from log in", result);
+        // console.log("result from log in", result);
 
         // Token is unique and always changed whenever users login in
         const token = result.credential.accessToken;
@@ -43,8 +43,8 @@ export const _onGoogleLogin = async () => {
         // We'll need the uid - a unique and permanent id of the authenticated user
         const { displayName, email, photoURL, uid } = result.user;
 
-        console.log("token", token);
-        console.log("user", result.user);
+        // // console.log("token", token);
+        // // console.log("user", result.user);
 
         resolve({
           token,
@@ -81,8 +81,8 @@ export const _onFacebookLogin = async () => {
         // We'll need the uid - a unique and permanent id of the authenticated user
         const { displayName, email, photoURL, uid } = result.user;
 
-        console.log("token", token);
-        console.log("user", result.user);
+        // // console.log("token", token);
+        // // console.log("user", result.user);
 
         resolve({
           token,
@@ -136,7 +136,7 @@ const _addUser = async (
     newUser[key] = user[key]
   }
 
-  console.log('new user', newUser)
+  // // console.log('new user', newUser)
 
   try {
     

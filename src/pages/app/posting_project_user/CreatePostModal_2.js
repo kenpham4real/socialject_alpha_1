@@ -1,114 +1,104 @@
 /*
-*Contributor: Đạt 4th september 2020
+*Contributor: 
+    *Đạt 4th september 2020
+    *Tiến 12th October 2020
 *Function: Create Form for PPU to create Project
 
 
 */
-
+//Packages
 import React, { useState } from "react";
+
+// Helper
+import { _onAddInput, _onChangeInputValue } from "../../../helper/form/Input";
+
+// Style
+import { IoIosAdd } from "react-icons/io";
+import {Link} from "react-router-dom";
 import "./styles/CreatePostModal_2.css";
 
+
 const CreatePostModal_2 = (props) => {
- 
-  //Initialize the state
-  // const [projectQuestionArray, setProjectQuestionArray] = useState("");
-  // const [projectQuestion, setProjectQuestion] = useState("");
-  const [inputList, setInputList] = useState([""]);
   
 
-  //Handle add question Event
-  console.log("props",props);
-
-
-  // const _onChangeAddProjectQuestion = (question) => {
-  //   setProjectQuestion(question);
-
-
-  //   setProjectQuestionArray((projectQuestionArray) =>
-  //     projectQuestionArray.concat(question)
-  //   );
-  // };
-
-
-  const Input = () => {
-    return(
-        // <input 
-        //   type="text"
-        //   placeholder="What do you want?" 
-        //   // value={projectQuestion}
-        //   // onChange={(e) => _onChangeAddProjectQuestion(e.target.value)}
-        //  >
-        //  </input>
-
-        <ul>
-        <li>
-          <input
-            type="text"
-            placeholder="Enter your question?"
-            // value={projectQuestion}
-            // onChange={(e) => _onChangeAddProjectQuestion(e.target.value)}
-          />
-        </li>
-        </ul>
-        
-    )
-  };
-  const _onAddBtnClick = (props) => {
-    setInputList(inputList.concat(<Input key={inputList.length} />));
-  };
-
-  // if(onAddBtnClick(props)===true){
-    
-  // }
+  let locationLabel="";
+  if(props.location.projectLocation)
+    if (props.location.projectLocation.selectedOption!==undefined)
+      {
+        locationLabel = props.location.projectLocation.selectedOption.label;
+      }
   
+  // console.log('props in post modal 2', props)
 
 
-  // console.log("projects",projectQuestionArray);
+  const [questionCount, setQuestionCount] = useState([0]);
+  const [questions, setQuestions] = useState([""]);
 
-
-  const _onChangeHandleContinue = () => {
-    props.history.push({
-      pathname: "/createPostModal_3",
-      projectName: props.location.state.projectName,
-      projectDescription: props.location.state.projectDescription,
-      projectLocation: props.location.state.projectLocation,
-      projectDeadline: props.location.state.projectDeadline,
-      // projectQuestionArray:
-      // projectQuestionArray[projectQuestionArray.length - 1],
-    });
-  };
 
   return (
     <div id="createPostModal_2">
-      <h1>Recruiting your Members</h1>
-      <p>Create a form with simple questions for your applicants</p>
-      <div class="addQuestionBox">
+      <h1 className="h1-post-modal-2">Recruiting your Members</h1>
+      <p className="p-post-modal-2">Create a form with simple questions for your applicants</p>
+      <div className="addQuestionBox">
         <div>
-          Question
-          <div class="addQuestionButton">
-            <button onClick={_onAddBtnClick}> Add Your question</button> 
-                  {inputList}
+          <p className="question">Question</p>
+          
+          <div >
+            <i>
+              <IoIosAdd
+                className="add-question"
+                onClick={() => _onAddInput(setQuestionCount,setQuestions,questionCount,questions)} 
+              />
+            </i>
+            <ul>
+              <li>
+                
+                {questionCount.map((index) => (
+                  <li>
+                    <input
+                      className="form-input"
+                      placeholder="Your question"
+                      value={questions[index]}
+                      onChange={(text) => _onChangeInputValue(text.target.value, index, setQuestions, questions)}
+                    />
+                  </li>
+                ))}
+              </li>
+            </ul>
            </div>
         </div>
-        
-        {/* <ul>
-          <li>
-            <input
-              type="text"
-              placeholder="What do you want?"
-              value={projectQuestion}
-              onChange={(e) => _onChangeAddProjectQuestion(e.target.value)}
-            />
-          </li>
-        </ul> */}
       </div>
-      <button
+      <div
+        className="continue-post-modal"
         onClick={() => {
-          _onChangeHandleContinue();
+          props.history.push({
+            pathname: "/createPostModal_3",
+            projectName:props.location.projectName,
+            projectDescription:props.location.projectDescription,
+            projectLocation:locationLabel,
+            projectCategory:props.location.projectCategory,
+            projectDate:props.location.projectDate,
+            showCalendar:props.location.showCalendar,
+            projectQuestions: questions
+          });
         }}
       >
         Continue
-      </button>
+      </div>
+      <Link
+        className="link-post-modal"
+        to={{
+          pathname:"/createPostModal_3",
+          projectName:props.location.projectName,
+          projectDescription:props.location.projectDescription,
+          projectLocation:locationLabel,
+          projectCategory:props.location.projectCategory,
+          projectDate:props.location.projectDate,
+          showCalendar:props.location.showCalendar,
+        }}
+      > 
+        I don't need a form
+      </Link>
     </div>
   );
 };

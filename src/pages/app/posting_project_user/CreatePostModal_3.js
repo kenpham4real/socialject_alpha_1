@@ -5,7 +5,7 @@
 
 */
 
-import React, {useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { v4 as uuid_v4 } from "uuid";
 
@@ -17,43 +17,56 @@ import * as projectActions from "../../../store/actions/posting-project-user/pro
 
 // Components
 import { ImagePreview } from "../../../components/app/ImagePreview";
+import { _onAddInput, _onChangeInputValue } from "../../../helper/form/Input";
 
 const CreatePostModal_3 = (props) => {
   const dispatch = useDispatch();
-  const organization = useSelector((state) => state.authReducer.userData);
+  const organization = useSelector((state) => state.autoLoginReducer.userData);
+
+  // console.log('organization', organization)
 
   //Initialize the state
-  const [projectBenefitArray, setProjectBenefitArray] = useState([]);
-  const [projectBenefit, setProjectBenefit] = useState("");
+  const [projectBenefitCount, setProjectBenefitCount] = useState([0]);
+  const [projectBenefits, setProjectBenefits] = useState([""]);
 
-  const [projectRequirementArray, setProjectRequirementArray] = useState([]);
-  const [projectRequirement, setProjectRequirement] = useState("");
-  const [projectImage, setProjectImage] = useState("");
+  const [projectRequirementCount, setProjectRequirementCount] = useState([0]);
+  const [projectRequirements, setProjectRequirements] = useState([""]);
+
+  const [projectImage, setProjectImage] = useState(null)
   const [projectImageFile, setProjectImageFile] = useState(null);
-
-  //Handling Add benefits and requirements event
-
-  const _onChangeAddBenefit = (benefit) => {
-    setProjectBenefit(benefit);
-    // setProjectBenefitArray((benefit) => projectBenefitArray.concat(benefit));
-    setProjectBenefitArray((prev) => [...prev, benefit]);
-    console.log("projectBenefitArray", projectBenefitArray);
-  };
-
-  const _onChangeAddRequirement = (requirement) => {
-    setProjectRequirement(requirement);
-    setProjectRequirementArray((req) => req.concat(requirement));
-    console.log("projectRequirementArray", projectRequirementArray);
-  };
 
   const {
     projectName,
     projectDescription,
     projectLocation,
     projectDeadline,
-    question,
+    projectQuestions,
+    projectCategory,
   } = props.location;
 
+
+    // console.log('props in create post modal 3', props)
+
+  const _PostProject = () =>{
+    props.history.push({
+      pathname: "/profile",
+    });
+    dispatch(
+      projectActions._createProject_ppu(
+        organization.orgId,
+        uuid_v4(),
+        projectName,
+        projectDescription,
+        projectLocation,
+        projectDeadline,
+        projectBenefits,
+        projectRequirements,
+        projectImageFile,
+        projectQuestions,
+        projectCategory
+      )
+    )
+  }
   return (
     <div id="createPostModal_3">
       <h1>Bring it to everyone</h1>
@@ -61,94 +74,103 @@ const CreatePostModal_3 = (props) => {
       <div className="addBenefitBox">
         <div>
           Benefits for applicants
-          <div className="addBenefitButton">+</div>
+          <div
+            onClick={() =>
+              _onAddInput(
+                setProjectBenefitCount,
+                setProjectBenefits,
+                projectBenefitCount,
+                projectBenefits
+              )
+            }
+            className="addBenefitButton"
+          >
+            +
+          </div>
         </div>
         <ul>
           {" "}
           {/*Add benefit*/}
           <li>
-            <input
-              type="text"
-              placeholder=""
-              value={projectBenefit}
-              onChange={(projectBenefit) =>
-                _onChangeAddBenefit(projectBenefit.target.value)
-              }
-            />
+            {projectBenefitCount.map((benefitIndex) => (
+              <input
+                className="form-input"
+                type="text"
+                placeholder="Your benefit"
+                value={projectBenefits[benefitIndex]}
+                onChange={(benefit) =>
+                  _onChangeInputValue(
+                    benefit.target.value,
+                    benefitIndex,
+                    setProjectBenefits,
+                    projectBenefits
+                  )
+                }
+              />
+            ))}
           </li>
-          {/* <li>
-            <input
-              type="text"
-              placeholder=""
-              value={projectRequirement}
-              onChange={(projectRequirement) =>
-                _onChangeAddRequirement(projectRequirement.target.value)
-              }
-            />
-          </li> */}
         </ul>
       </div>
       {/*REQUIREMENTS*/}
       <div className="addBenefitBox">
         <div>
           Requirements to join
-          <div className="addBenefitButton">+</div>
+          <div
+            onClick={() =>
+              _onAddInput(
+                setProjectRequirementCount,
+                setProjectRequirements,
+                projectRequirementCount,
+                projectRequirements
+              )
+            }
+            className="addBenefitButton"
+          >
+            +
+          </div>
         </div>
         <ul>
           <li>
-            <input
-              type="text"
-              placeholder=""
-              value={projectRequirement}
-              onChange={(projectRequirement) =>
-                _onChangeAddRequirement(projectRequirement.target.value)
-              }
-            />
+            {projectRequirementCount.map((requirementIndex) => (
+              <input
+                className="form-input"
+                type="text"
+                placeholder="Your requirements"
+                value={projectRequirements[requirementIndex]}
+                onChange={(requirement) =>
+                  _onChangeInputValue(
+                    requirement.target.value,
+                    requirementIndex,
+                    setProjectRequirements,
+                    projectRequirements
+                  )
+                }
+              />
+            ))}
           </li>
-          {/* <li>
-            <input
-              type="text"
-              placeholder=""
-              value={projectRequirement}
-              onChange={(projectRequirement) =>
-                _onChangeAddRequirement(projectRequirement.target.value)
-              }
-            />
-          </li> */}
         </ul>
       </div>
-
-      <ImagePreview
-        image={projectImage}
-        setImage={setProjectImage}
-        setImageFile={setProjectImageFile}
-      />
-
-      <button
-        className="profile-button"
+      <div className="add-activity--avatar-preview">
+        <p>Avatar for your project</p>
+        <ImagePreview
+          setImage={setProjectImage}
+          setImageFile={setProjectImageFile}
+          image={projectImage}
+        />
+      </div>
+      <div
+        //className="profile-button"
+        className="continue-post-modal"
         onClick={
           //Now push the data onto Firebase.
-          () =>
-            dispatch(
-              projectActions._createProject_ppu(
-                organization.uid,
-                uuid_v4(),
-                projectName,
-                projectDescription,
-                projectLocation,
-                projectDeadline,
-                projectBenefitArray[projectBenefitArray.length - 1],
-                projectRequirementArray[projectRequirementArray.length - 1],
-                projectImageFile,
-                question,
-                "Something"
-              )
-            )
+          () =>{
+            localStorage.removeItem("CreateModal_1");
+            _PostProject();
+          }
         }
       >
-        Continue
-      </button>
-      <button className="profile-button">Go Back</button>
+        Post
+      </div>
     </div>
   );
 };
