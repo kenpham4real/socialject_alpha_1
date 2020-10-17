@@ -115,7 +115,7 @@ function OrgHistory(props) {
    * @author Ken Pham, Long Avenger
    */
   const project_item = data.map((element) => {
-    // // console.log("Project Id in profile page: ", element.projectId);
+    console.log("Project Id in profile page: ", element);
     return (
       <ProjectActivity
         key={element.orgId}
@@ -145,7 +145,12 @@ function OrgHistory(props) {
         Add a project
       </a>
       */}
-      <div className="project-activity-list">
+      <div onClick={() => {
+        props.history.push({
+          pathname: "/projectInfo",
+
+        })
+      }} className="project-activity-list">
         {project_item}
         {/*<a
             className="project-activity-list--component"

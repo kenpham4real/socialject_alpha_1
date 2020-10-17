@@ -19,12 +19,18 @@ import "./styles/ChoosingUser.css";
  * @returns JSX Elements
  */
 const ChoosingUser = (props) => {
+
+  console.log('props in choosing user', props)
+
   /**
    * @summary Navigate to the Login Page with the user type of SPU
    */
   const _onChooseStudentRole = () => {
-    props.history.push("/login", {
+    props.history.push({
+      pathname: '/login',
       userType: userTypes.STUDENT,
+      projectId: props.location.projectId,
+      projectOrgId: props.location.projectOrgId,
     });
     localStorage.setItem("userType", userTypes.STUDENT);
   };
@@ -33,8 +39,11 @@ const ChoosingUser = (props) => {
    * @summary Navigate to the Login Page with the user type of PPU
    */
   const _onChooseAdminRole = () => {
-    props.history.push("/login", {
+    props.history.push({
+      pathname: "/login",
       userType: userTypes.ADMIN,
+      projectId: props.location.projectId,
+      projectOrgId: props.location.projectOrgId,
     });
     localStorage.setItem("userType", userTypes.ADMIN);
   };

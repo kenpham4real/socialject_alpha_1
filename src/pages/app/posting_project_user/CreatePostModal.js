@@ -42,7 +42,7 @@ const CreatePostModal = (props) => {
   const [projectDescription, setProjectDescription] = useState(projDes);
   const [projectLocation, setProjectLocation] = useState("");
   const [projectCategory,setProjectCategory]=useState(projCate);
-  const [projectDate, setProjectDate] = useState(new Date());
+  const [projectDeadline, setProjectDeadline] = useState(new Date());
   const [showCalendar, setShowCalendar] = useState(false);
 
   const dataCreateModal={
@@ -66,8 +66,8 @@ const CreatePostModal = (props) => {
    * @param {string} date
    * @returns {void}
    */
-  const _onChangeProjectDate = (date) => {
-    setProjectDate(date);
+  const _onChangeProjectDeadline = (date) => {
+    setProjectDeadline(date);
   }
   
   const _showCalendar = () => {
@@ -75,8 +75,7 @@ const CreatePostModal = (props) => {
   }
   
    
-  const _onContinue =()=>
-  {
+  const _onContinue = () => {
     localStorage.setItem("CreateModal_1",JSON.stringify(dataCreateModal));
     props.history.push({
     pathname:"/createPostModal_2",
@@ -84,12 +83,14 @@ const CreatePostModal = (props) => {
     projectDescription,
     projectLocation,
     projectCategory,
-    projectDate,
+    projectDeadline,
     showCalendar,
     // projectImage,
     // projectImageFile
     }) 
   }
+
+  console.log('deadline', projectDeadline);
 
   return (
     <div className="add-activity-container">
@@ -156,17 +157,17 @@ const CreatePostModal = (props) => {
               </i>
               <FormInput
                 formInputLabel="Deadline"
-                formInputPlaceholder={projectDate.toDateString()}
-                formInputValue={projectDate.toDateString()}
-                _formInputOnchangeText={projectDate}
+                formInputPlaceholder={projectDeadline.toDateString()}
+                formInputValue={projectDeadline.toDateString()}
+                _formInputOnchangeText={projectDeadline}
               />
           </div>
           {showCalendar && 
             <Calendar
               view='month'
-              value={projectDate}
-              onClickDay={_onChangeProjectDate}
-              activeStartDate={projectDate}
+              value={projectDeadline}
+              onClickDay={_onChangeProjectDeadline}
+              activeStartDate={projectDeadline}
               onDrillUp={() => console.log('drilled')}
             />
           }

@@ -26,19 +26,25 @@ import { GOOGLE_LOGIN } from "../../constants/auth";
  */
 const LoginPage = (props) => {
   const userType =
-    props.location.state && props.location.state.userType
-      ? props.location.state.userType
+    props.location && props.location.userType
+      ? props.location.userType
       : "NO TYPE";
 
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.authReducer.userData);
+
+  console.log('props in login page', props)
 
   React.useEffect(() => {
     if (userData.isAuth && userData.isAuth === true) {
       const projectId = sessionStorage.getItem("projectId");
       if (projectId != null) {
         //user have just logged in once, now redirect them to the projectInfo page
-        props.history.push({ pathname: "/projectInfo", projectId: projectId });
+        props.history.push({
+          pathname: "/projectInfo", 
+          projectId: projectId,
+          projectOrgId: props.history.location.projectOrgId,
+        });
         sessionStorage.removeItem("projectId");
       } else {
         // the user logged in 2 or more times already, so the flow is normal
