@@ -33,7 +33,7 @@ const LoginPage = (props) => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.authReducer.userData);
 
-  console.log('props in login page', props)
+  // console.log('props in login page', props)
 
   React.useEffect(() => {
     if (userData.isAuth && userData.isAuth === true) {
