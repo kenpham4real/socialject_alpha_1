@@ -134,7 +134,7 @@ export function _getProjectInfo(projectOrgId, orgId, projectId) {
 				projectData.orgInfo = doc.data()
 			})
 
-			console.log('orgInfo', projectData.orgInfo)
+			// console.log('orgInfo', projectData.orgInfo)
 
 			dispatch({
 				type: SET_PROJECT_RECRUIT_INFO,

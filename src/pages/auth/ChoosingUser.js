@@ -20,7 +20,7 @@ import "./styles/ChoosingUser.css";
  */
 const ChoosingUser = (props) => {
 
-  console.log('props in choosing user', props)
+  // console.log('props in choosing user', props)
 
   /**
    * @summary Navigate to the Login Page with the user type of SPU
