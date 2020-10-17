@@ -58,7 +58,7 @@ const CreatePostModal_3 = (props) => {
         projectName,
         projectDescription,
         projectLocation,
-        projectDeadline,
+        projectDeadline.toDateString(),
         projectBenefits,
         projectRequirements,
         projectImageFile,

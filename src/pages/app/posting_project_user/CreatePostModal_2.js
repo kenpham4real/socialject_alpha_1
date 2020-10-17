@@ -77,7 +77,7 @@ const CreatePostModal_2 = (props) => {
             projectDescription:props.location.projectDescription,
             projectLocation:locationLabel,
             projectCategory:props.location.projectCategory,
-            projectDate:props.location.projectDate,
+            projectDeadline: props.location.projectDeadline,
             showCalendar:props.location.showCalendar,
             projectQuestions: questions
           });
@@ -93,7 +93,7 @@ const CreatePostModal_2 = (props) => {
           projectDescription:props.location.projectDescription,
           projectLocation:locationLabel,
           projectCategory:props.location.projectCategory,
-          projectDate:props.location.projectDate,
+          projectDeadline: props.location.projectDeadline,
           showCalendar:props.location.showCalendar,
         }}
       > 

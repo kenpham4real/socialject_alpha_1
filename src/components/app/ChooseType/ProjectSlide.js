@@ -14,15 +14,19 @@ function ProjectSlide(props) {
     const user = JSON.parse(localStorage.getItem("userData"));
     if (user == null) {
       //if there the user didn't login yet, then push them into /choosingUser
-      history.push({ pathname: "/choosingUser" });
+      history.push({
+        pathname: "/choosingUser",
+        projectId: projectId,
+        projectOrgId: projectOrgId,
+      });
       sessionStorage.setItem("projectId", projectId);
     } //if they logged in, then flow is normal
     else
       history.push({
         pathname: "/projectInfo",
         projectId: projectId,
+        projectOrgId: projectOrgId,
         orgId: user.userId,
-        projectOrgId: projectOrgId
       });
   }
   return (
