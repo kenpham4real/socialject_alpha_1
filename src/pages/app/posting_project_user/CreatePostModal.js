@@ -90,7 +90,7 @@ const CreatePostModal = (props) => {
     }) 
   }
 
-  console.log('deadline', projectDeadline);
+  // console.log('deadline', projectDeadline);
 
   return (
     <div className="add-activity-container">

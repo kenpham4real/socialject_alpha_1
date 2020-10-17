@@ -125,7 +125,9 @@ function OrgHistory(props) {
         project_activity_location="Ho Chi Minh"
         project_activity_description={element.description}
         projectId={element.projectId}
-      ></ProjectActivity>
+        orgId={element.orgId}
+        projectOrgId={element.orgId}
+      />
     );
   });
 
@@ -145,12 +147,7 @@ function OrgHistory(props) {
         Add a project
       </a>
       */}
-      <div onClick={() => {
-        props.history.push({
-          pathname: "/projectInfo",
-
-        })
-      }} className="project-activity-list">
+      <div className="project-activity-list">
         {project_item}
         {/*<a
             className="project-activity-list--component"
@@ -200,15 +197,6 @@ const ProfilePage = (props) => {
   const projectData = useSelector((state) => state.profileReducer.projectArray);
   const profileData = useSelector((state) => state.profileReducer.profileData);
 
-  //Use 2 hooks useEffect and useCallback to prevent re-render, but it still re-render anyway.
-  /*const fetchCallback = profileAction.FetchCalling(
-    profileAction.FetchProject,
-    selectProject,
-    dispatch,
-    callback,
-    profileId
-  );*/
-
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const _fetchCallback = useCallback(
     () => profileAction.FetchProject(dispatch, profileId),
@@ -218,8 +206,6 @@ const ProfilePage = (props) => {
   useEffect(() => {
     _fetchCallback();
   }, [_fetchCallback, profileId]);
-
-  //For testing purpose
 
   return (
     <div className="profilePage">
@@ -237,7 +223,10 @@ const ProfilePage = (props) => {
       <OrgVision data={profileData}></OrgVision>
 
       {/*Org. History*/}
-      <OrgHistory data={projectData} projectOwnerId={profileId}></OrgHistory>
+      <OrgHistory
+        data={projectData} 
+        projectOwnerId={profileId} 
+      />
       {/*Copyright*/}
       <CopyrightBar></CopyrightBar>
 

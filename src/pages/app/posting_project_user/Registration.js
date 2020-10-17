@@ -115,14 +115,13 @@ const Registration = (props) => {
 							{
 								//save the states input to LocalStorage when onClick 
 								localStorage.setItem("Registration",JSON.stringify(dataRegistration));
-								props.history.push
-							({ 	
+								props.history.push({ 	
 								
-								pathname:'/beautifyProfile',
-								organizationName,
-								category,
-								description,
-							})
+									pathname:'/beautifyProfile',
+									organizationName,
+									category,
+									description,
+								})
 							}
 							
 						}
