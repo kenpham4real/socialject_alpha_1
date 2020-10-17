@@ -16,21 +16,20 @@ const ProjectActivity = (props) => {
   const dispatch = useDispatch();
 
   //// console.log("This is the activity props: ", props);
-  //The function to navigate. Will be put in the "onClick" event handler
-  const Navigate = () => {
-    dispatch({
-      type: "CHANGE_KEY",
-      payload: id,
-    });
-  };
+
   //UI rendering
   return (
     <div>
       <Link
         className="activityLink"
-        to={{ pathname: "/projectInfo", projectId: props.projectId }}
+        to={{
+          pathname: "/projectInfo", 
+          projectId: props.projectId,
+          orgId: props.orgId,
+          projectOrgId: props.projectOrgId
+        }}
       >
-        <button className="activityContainerButton" onClick={Navigate}>
+        <button className="activityContainerButton">
           <div className="projectActivity">
             <img
               className="activityPicture"

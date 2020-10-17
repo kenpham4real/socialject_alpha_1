@@ -34,9 +34,9 @@ import NAVIGATION_BAR_KEN from "../../../components/app/NavigationBar_Ken";
 const ProjectInfoPage = (props) => {
   // // console.log("PROJECT_INFO_PAGE");
   // console.log('props in ProjectInfoPage', props)
-  const projectId = props.history.location.projectId;
-  const orgId = props.history.location.orgId;
-  const projectOrgId = props.history.location.projectOrgId;
+  const projectId = props.location.projectId;
+  const orgId = props.location.orgId;
+  const projectOrgId = props.location.projectOrgId;
 
   // console.log('projectOrgId in ProjectInfoPage', projectOrgId)
 
@@ -317,7 +317,8 @@ const ProjectInfoPage = (props) => {
         <div
           className="progress-container-header-addActivityButton"
           onClick={() =>
-            props.history.push("/addActivity", {
+            props.history.push({
+              pathname: "/addActivity", 
               projectId: projectId,
             })
           }
