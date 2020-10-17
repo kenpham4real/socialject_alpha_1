@@ -119,7 +119,6 @@ function OrgHistory(props) {
     return (
       <ProjectActivity
         key={element.orgId}
-        _onNavigateToProject_or_Activity={() => props._onNavigateToProject_or_Activity(element.projectId, element.orgId)}
         project_activity_avatar={element.projectAvatar}
         project_activity_name={element.projectName}
         project_activity_date={element.deadline}
