@@ -181,14 +181,14 @@ const ProjectInfoPage = (props) => {
    * @returns JSX Components
    * @author Ken Pham, Dat Uchiha
    */
-  const _project_joined_users = () => {
-    return (
-      <div className="joinedUsers">
-        <span style={{color: '#666666'}}>100</span>
-        <br /> has joined
-      </div>
-    );
-  };
+  // const _project_joined_users = () => {
+  //   return (
+  //     <div className="joinedUsers">
+  //       <span style={{color: '#666666'}}>100</span>
+  //       <br /> has joined
+  //     </div>
+  //   );
+  // };
 
   /**
    * @summary Render the held-by section of the project
@@ -502,7 +502,7 @@ const ProjectInfoPage = (props) => {
           <div className="location">{projectsData.projectInfo.location}</div>
           {_organization_info()}
 
-          {_project_joined_users()}
+          {/* {_project_joined_users()} */}
           {_project_due_day()}
 
           {_project_apply_button()}
