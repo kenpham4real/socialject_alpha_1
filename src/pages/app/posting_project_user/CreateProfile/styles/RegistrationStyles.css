@@ -1,32 +1,32 @@
-@import "../../styles/GlobalStyles.css";
-.page{
+@import "../../../styles/GlobalStyles.css";
+.registration-page{
     display: grid;
 }
-.container-registration{
+.registration-container{
     display: grid;
     margin-top:50px;
     margin-left: 100px;
 }
-.my-header-registration{
+.registration-page__header{
     color: var(--global-primary-color);
     margin-top:50px;
     font-weight: var(--global-headline-1-font-weight);
     font-size: var(--global-headline-1-size);
     font-family: var(--global-font-family);
 }
-.description-registration{
+.registration-page__description{
     margin-top:10px;
     font-size: var(--global-title-1-light-size);
     color:var(--global-title-1-light-color);
     font-family: var(--global-font-family);
     font-weight:var(--global-title-1-light-font-weight);
 }
-.view-text-input-registration{
+.registration-page__view-text-input{
     margin-left:0px;
     margin-bottom:20px;
     margin-top:20px;  
 }
-.container-continue{
+.registration-page__btn--continue{
     height: var(--global--submit-button-height);
     line-height: 40px;
     cursor: pointer;
@@ -41,4 +41,5 @@
     font-size: var(--global--submit-button-font-size);
     background-color: #2FAD58;
     position: absolute;
+    width: 350px;
 }

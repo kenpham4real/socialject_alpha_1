@@ -10,13 +10,6 @@
     width:335px;
     margin-top:20px;
 }
-.avatar-text{
-    font-weight: var(--global-sub-title-light-font-weigh);
-    font-size:var(--global-sub-title-light-size);
-    font-family: var(--global-font-family);
-    color: var(--global-sub-title-light-color);
-    margin-left: 10px;
-}
 .image-holder{
     justify-items: center;
     margin-left: 20px;
@@ -38,7 +31,7 @@
     margin-left: 80px;
     cursor: pointer;
 }
-.p{
+.choose-picture{
     font-family: var(--global-font-family);
     margin-top: 3px;
     white-space: nowrap;

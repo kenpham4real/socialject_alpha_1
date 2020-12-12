@@ -21,10 +21,8 @@ export const ImagePreview = (props) => {
       <label className="label">
         <input
           className="import-file"
-          alt="hi"
+          alt=""
           type="file"
-          name="image"
-          capture="camera"
           accept="image/x-png,image/gif,image/jpeg"
           onChange={(img) =>
             _previewImageHandler(
@@ -35,7 +33,7 @@ export const ImagePreview = (props) => {
           }
         />
         <FcCompactCamera className="icon-img" />
-        <span className="p">Choose your picture</span>
+        <span className="choose-picture">Choose your picture</span>
       </label>
     </div>
   );

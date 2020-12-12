@@ -13,11 +13,11 @@ import { v4 as uuid_v4 } from "uuid";
 import "./styles/CreatePostModal_3.css";
 
 // Actions
-import * as projectActions from "../../../store/actions/posting-project-user/project/project";
+import * as projectActions from "../../../../store/actions/posting-project-user/project/project";
 
 // Components
-import { ImagePreview } from "../../../components/app/ImagePreview";
-import { _onAddInput, _onChangeInputValue } from "../../../helper/form/Input";
+import { ImagePreview } from "../../../../components/app/ImagePreview";
+import { _onAddInput, _onChangeInputValue } from "../../../../helper/form/Input";
 
 const CreatePostModal_3 = (props) => {
   const dispatch = useDispatch();

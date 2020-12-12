@@ -1,4 +1,4 @@
-@import "../../styles/GlobalStyles.css";
+@import "../../../styles/GlobalStyles.css";
 .page{
     display: grid;
 }

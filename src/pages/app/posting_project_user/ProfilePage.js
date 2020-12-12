@@ -114,8 +114,10 @@ function OrgHistory(props) {
    * @returns JSX Components
    * @author Ken Pham, Long Avenger
    */
+  console.log("data",data)
   const project_item = data.map((element) => {
     // console.log("Project Id in profile page: ", element);
+    if(data.length !== 0)
     return (
       <ProjectActivity
         key={element.orgId}
