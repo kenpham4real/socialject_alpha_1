@@ -4,7 +4,6 @@ import MainRoute from "./routes/MainRoute";
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import ReduxThunk from "redux-thunk";
-
 import { projectReducer } from "./store/reducers/posting-project-user/project/project";
 import { projectReducerSPU } from "./store/reducers/searching-project-user/project/projectReducer";
 import { activityReducer } from "./store/reducers/posting-project-user/activity/activity";
