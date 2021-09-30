@@ -7,9 +7,7 @@ function CopyrightBar(props) {
       <div className="line"></div>
 
       <div className="copyright-container">
-        {/*Copyright*/}
         <p className="copyright-text">Copyrighted by ...</p>
-        {/*Right corner*/}
         <div>
           <div className="copyright-text right"> SocialJect </div>
           <img
