@@ -12,10 +12,10 @@ import Calendar from "react-calendar";
 import { FcCalendar } from "react-icons/fc";
 
 //Component
-import {FormInput} from "../../../components/app/Form/FormInput";
-import {LOCATIONS} from "../../../constants/location";
+import {FormInput} from "../../../../components/app/Form/FormInput";
+import {LOCATIONS} from "../../../../constants/location";
 import Select from 'react-select';
-import {selectInputStyles} from "../../../constants/SelectInputStyle";
+import {selectInputStyles} from "../../../../constants/SelectInputStyle";
 // import {ImagePreview} from "../../../components/app/ImagePreview";
 
 //Styles

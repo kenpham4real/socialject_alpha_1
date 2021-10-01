@@ -1,0 +1,86 @@
+@import "../../../styles/GlobalStyles.css";
+/* 
+*Tien with global styles
+*3rd October 2020
+*/
+.beautify-page {
+  display: grid;
+}
+.beautify-page__container {
+  display: grid;
+  margin-left: 100px;
+}
+.beautify-page__header {
+  color: var(--global-primary-color);
+  margin-top: 50px;
+  font-weight: var(--global-headline-1-font-weight);
+  font-size: var(--global-headline-1-size);
+  font-family: var(--global-font-family);
+}
+.beautify-page__description {
+  margin-top: 10px;
+  font-size: var(--global-title-1-light-size);
+  color: var(--global-title-1-light-color);
+  font-family: var(--global-font-family);
+  font-weight: var(--global-title-1-light-font-weight);
+}
+.beautify-page__organization--title {
+  font-weight: var(--global-sub-title-light-font-weigh);
+  font-size: var(--global-sub-title-light-size);
+  font-family: var(--global-font-family);
+  color: var(--global-sub-title-light-color);
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+.beautify-page__school--title {
+  font-weight: var(--global-sub-title-light-font-weigh);
+  font-size: var(--global-sub-title-light-size);
+  font-family: var(--global-font-family);
+  color: var(--global-sub-title-light-color);
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+.beautify-page__avatar--title {
+  font-weight: var(--global-sub-title-light-font-weigh);
+  font-size: var(--global-sub-title-light-size);
+  font-family: var(--global-font-family);
+  color: var(--global-sub-title-light-color);
+  margin-top: 10px;
+  margin-bottom: -5px;
+}
+.beautify-page__view-text-input {
+  margin-left: 0px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  display: grid;
+}
+.beautify-page__input {
+  margin-right: 20px;
+  margin-bottom: 0px;
+  margin-top: 10px;
+  height: 50px;
+  font-size: var(--global-sub-title-light-size);
+  border: var(--global-border-color);
+  font-family: var(--global-font-family);
+  color: var(--global-sub-title-light-color);
+  width: 330px;
+  border-radius: var(--global-border-radius);
+}
+.select {
+  width: 338px;
+  outline: none;
+  border-radius: var(--global-border-radius);
+  /* border:var(--global-border-color); */
+}
+.import-file {
+  /* display: none; */
+  margin-left: 105px;
+}
+.container-continue {
+  width: 340px;
+  cursor: pointer;
+}
+#input > ::placeholder {
+  font-family: var(--global-font-family);
+}

@@ -1,7 +1,9 @@
 /*
 *Contributor: 
     *Đạt 4th september 2020
-    *Tiến 12th October 2020
+    *Tiến 
+    12th October 2020
+    12/12/2020 Refactor code
 *Function: Create Form for PPU to create Project
 
 
@@ -10,7 +12,7 @@
 import React, { useState } from "react";
 
 // Helper
-import { _onAddInput, _onChangeInputValue } from "../../../helper/form/Input";
+import { _onAddInput, _onChangeInputValue } from "../../../../helper/form/Input";
 
 // Style
 import { IoIosAdd } from "react-icons/io";
